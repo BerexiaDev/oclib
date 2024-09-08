@@ -4,7 +4,10 @@ setup(
     name='oc_lib',
     version='0.1',
     packages=find_packages(),
-    install_requires=[],
+    install_requires=[
+        'Flask-SQLAlchemy==2.3.2',
+        'SQLAlchemy==1.3.18'
+    ],
     author='Yassine Bouhm',
     author_email='yassinebouhm@gmail.com',
     description='OC Global Library',
