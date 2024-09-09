@@ -7,6 +7,7 @@ from oc_lib.models.banque import Banque
 from oc_lib.models.cancel_deadline import CancelDeadline
 from oc_lib.models.change import Change
 from oc_lib.models.co_gerant import Cogerant
+from oc_lib.models.complement_dotation import ComplementDotation
 from oc_lib.models.declaration_docs import DeclarationDocs
 from oc_lib.models.declaration_fiscal import DeclarationFiscal
 from oc_lib.models.declaration_pm import DeclarationPm
@@ -27,6 +28,7 @@ from oc_lib.models.mandataire import Mandataire
 from oc_lib.models.modification import Modification
 from oc_lib.models.motif import Motif
 from oc_lib.models.pattern import Pattern
+from oc_lib.models.plafond_dotation_sous_operation import PlafondDotationSousOperation
 from oc_lib.models.pm import Pm
 from oc_lib.models.poc_p import PocP
 from oc_lib.models.poc_s import PocS
