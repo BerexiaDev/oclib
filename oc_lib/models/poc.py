@@ -1,6 +1,6 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
-from app.main.utils.events_decorator import register_event_listeners
+from oc_lib.utils.events_decorator import register_event_listeners
 from app.db.derogation_poc_association import derogation_operation_poc_association
 
 # add a relationship one to one with LieuImplantation

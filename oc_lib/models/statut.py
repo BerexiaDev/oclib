@@ -1,7 +1,7 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
 from datetime import datetime
-from app.main.utils.events_decorator import register_event_listeners
+from oc_lib.utils.events_decorator import register_event_listeners
 
 
 @register_event_listeners

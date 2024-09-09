@@ -1,6 +1,6 @@
 from oc_lib.db import db
 from app.db.pm import Pm
-from app.main.utils.events_decorator import register_event_listeners
+from oc_lib.utils.events_decorator import register_event_listeners
 
 @register_event_listeners
 class GerantPm(Pm):
