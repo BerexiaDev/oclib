@@ -1,0 +1,48 @@
+from oc_lib.db import db
+from oc_lib.repository import Repository
+from datetime import date
+from sqlalchemy.dialects.postgresql import JSONB
+
+
+class Demande(db.Model, Repository):
+    id = db.Column(db.Integer, primary_key=True)
+    status = db.Column(db.Boolean, default=False)
+    motif_oc_decision = db.Column(db.String(255))
+    motif_oc_manager_decision = db.Column(db.String(255))
+    initiateur = db.Column(db.Integer)
+    validateurs = db.Column(db.ARRAY(db.Integer))
+    valide_oc = db.Column(db.Boolean, default=False)
+    valide_manager_oc = db.Column(db.Boolean, default=False)
+    avancement = db.Column(db.Boolean, default=False)
+    date_creation = db.Column(db.Date, default=date.today, onupdate=date.today)
+    modification_id = db.Column(db.Integer, db.ForeignKey('modification.id'))
+    modification = db.relationship('Modification', back_populates='demandes', lazy=True)
+    partner_id = db.Column(db.Integer, db.ForeignKey("associe_pp.id"))
+    partnerpm_id = db.Column(db.Integer, db.ForeignKey("associe_pm.id"))
+    manager_id = db.Column(db.Integer, db.ForeignKey("gerant.id"))
+    managerpm_id = db.Column(db.Integer)
+    comanager_id = db.Column(db.Integer, db.ForeignKey("cogerant.id"))
+    representant_id = db.Column(db.Integer, db.ForeignKey("representant.id"))
+    suppleant_id = db.Column(db.Integer, db.ForeignKey("suppleant.id"))
+    prepose_id = db.Column(db.Integer, db.ForeignKey("prepose.id"))
+    statut_id = db.Column(db.Integer, db.ForeignKey("statut.id"))
+    pocp = db.Column(db.Integer, db.ForeignKey("pocp.id"))
+    pocs = db.Column(db.Integer, db.ForeignKey("pocs.id"))
+    change = db.relationship("Change", backref="demande", lazy=True, uselist=False)
+    ep = db.Column(db.Integer, db.ForeignKey("ep.id"))
+    scd = db.Column(db.Integer, db.ForeignKey("scd.id"))
+    esd = db.Column(db.Integer, db.ForeignKey("esd.id"))
+
+    mandataire_id = db.Column(db.Integer, db.ForeignKey("mandataire.id"))
+    poc_id = db.Column(db.Integer, db.ForeignKey("poc.id"))
+    denomination_pm = db.Column(db.String(255), nullable=False)
+    centre_pm = db.Column(db.Integer, nullable=False)
+    rc_pm = db.Column(db.Integer, nullable=False)
+    type_pm = db.Column(db.String, nullable=False)
+    denomination_mandataire = db.Column(db.String(255))
+    centre_m = db.Column(db.Integer)
+    rc_m = db.Column(db.Integer)
+    numero_agrement = db.Column(db.String(255))
+    denomination_pc = db.Column(db.String(255))
+    numero_decision_autorisation = db .Column(db.String(255))
+    date_decision_autorisation = db.Column(db.Date)

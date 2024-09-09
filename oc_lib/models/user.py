@@ -2,7 +2,6 @@ from oc_lib.db import db
 from oc_lib.repository import Repository
 from datetime import datetime
 
-
 class User(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     keycloak_id = db.Column(db.String(40))
