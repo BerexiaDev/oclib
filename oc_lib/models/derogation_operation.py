@@ -1,9 +1,10 @@
 from oc_lib.models.derogation import Derogation
 from oc_lib.db import db
-from oc_lib.models.derogation_poc_association import derogation_operation_poc_association
+from oc_lib.models.derogation_operation_poc_association import derogation_operation_poc_association
 
 
 class DerogationOperation(Derogation):
+    __tablename__ = "derogation_operation"
     id = db.Column(db.Integer, db.ForeignKey("derogation.id"), primary_key=True, nullable=False)
 
     # Operateurs PM    
