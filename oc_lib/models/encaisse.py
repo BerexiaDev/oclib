@@ -1,6 +1,6 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
-from app.main.utils.strings import current_year
+from oc_lib.utils.strings import current_year
 
 
 class Encaisse(db.Model, Repository):

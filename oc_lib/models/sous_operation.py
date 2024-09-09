@@ -1,6 +1,7 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
-from app.main.utils.strings import date_now
+from oc_lib.utils.strings import date_now
+
 
 # add nature_beneficiaire ARRAY(db.Integer) multiple choice (page 11)
 
