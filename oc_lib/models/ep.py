@@ -1,5 +1,5 @@
 from oc_lib.db import db
-from app.db.pm import Pm
+from oc_lib.models.pm import Pm
 
 class Ep(Pm):
     id = db.Column(db.Integer, db.ForeignKey("pm.id"), primary_key=True, nullable=False)

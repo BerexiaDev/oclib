@@ -1,4 +1,4 @@
-from app.db.derogation import Derogation
+from oc_lib.models.derogation import Derogation
 from oc_lib.db import db
 
 # point de change simple ou bien multiple

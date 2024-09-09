@@ -1,4 +1,4 @@
-from app.db.pp import Pp
+from oc_lib.models.pp import Pp
 from oc_lib.db import db
 
 

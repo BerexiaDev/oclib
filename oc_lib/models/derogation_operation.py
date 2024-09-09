@@ -1,6 +1,6 @@
-from app.db.derogation import Derogation
+from oc_lib.models.derogation import Derogation
 from oc_lib.db import db
-from app.db.derogation_poc_association import derogation_operation_poc_association
+from oc_lib.models.derogation_poc_association import derogation_operation_poc_association
 
 
 class DerogationOperation(Derogation):

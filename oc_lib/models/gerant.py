@@ -1,5 +1,5 @@
 from oc_lib.db import db
-from app.db.pp import Pp
+from oc_lib.models.pp import Pp
 
 
 class Gerant(Pp):
