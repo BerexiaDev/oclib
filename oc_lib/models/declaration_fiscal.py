@@ -6,7 +6,7 @@ from oc_lib.utils.events_decorator import register_event_listeners
 @register_event_listeners
 class DeclarationFiscal(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
-    cadre = db.Column(db.Integer, nullable=False)  # change with Agent Oc
+    created_by = db.Column(db.String(240), nullable=False, server_default="")
 
     # Fiscal declaration details
     denomination_pm = db.Column(db.String(100), nullable=False)

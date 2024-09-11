@@ -10,7 +10,7 @@ class DeclarationPm(db.Model, Repository):
     denomination_mandataire = db.Column(db.String(100))
     centre_m = db.Column(db.Integer)
     rc_m = db.Column(db.Integer)
-    cadre = db.Column(db.Integer, nullable=False) 
+    created_by = db.Column(db.String(240), nullable=False, server_default="")
     validator = db.Column(db.String)
     date_demande = db.Column(db.Date)
     statut = db.Column(db.Integer)

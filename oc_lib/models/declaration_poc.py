@@ -10,7 +10,7 @@ class DeclarationPoc(db.Model, Repository):
     type_pm = db.Column(db.String)
     date_demande = db.Column(db.Date)
     motif = db.Column(db.String(50))  
-    cadre = db.Column(db.Integer, nullable=False)   
+    created_by = db.Column(db.String(240), nullable=False, server_default="")
     validator = db.Column(db.String)
     date_debut = db.Column(db.Date)
     date_fin = db.Column(db.Date)
