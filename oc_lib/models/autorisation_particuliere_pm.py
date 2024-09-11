@@ -7,6 +7,6 @@ class AutorisationParticulierePm(AutorisationParticuliere):
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
     sous_operation = db.relationship("SousOperation")
     beneficiaire_pm_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pm.id'))
-    beneficiaire_pm = db.relationship("BeneficiairePM")
+    beneficiaire_pm = db.relationship("BeneficiairePm")
 
     __mapper_args__ = {'polymorphic_identity': 'autorisation_particuliere_pm'}

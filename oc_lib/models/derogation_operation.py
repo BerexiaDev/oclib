@@ -7,7 +7,7 @@ class DerogationOperation(Derogation):
     __tablename__ = "derogation_operation"
     id = db.Column(db.Integer, db.ForeignKey("derogation.id"), primary_key=True, nullable=False)
 
-    # Operateurs PM    
+    # Operateurs Pm    
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
     esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"))
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"))
