@@ -3,7 +3,13 @@ from oc_lib.models.agrement import Agrement
 from oc_lib.models.associe_pm import AssociePm
 from oc_lib.models.associe_pp import AssociePp
 from oc_lib.models.authorized_operation import AuthorizedOperation
+from oc_lib.models.autorisation_particuliere_pm import AutorisationParticulierePM
+from oc_lib.models.autorisation_particuliere_pp import AutorisationParticulierePP
+from oc_lib.models.autorisation_particuliere import AutorisationParticuliere
 from oc_lib.models.banque import Banque
+from oc_lib.models.beneficiaire_pm import BeneficiairePM
+from oc_lib.models.beneficiaire_pp import BeneficiairePP
+from oc_lib.models.beneficiaire import Beneficiaire
 from oc_lib.models.cancel_deadline import CancelDeadline
 from oc_lib.models.change import Change
 from oc_lib.models.co_gerant import Cogerant
@@ -46,4 +52,5 @@ from oc_lib.models.user import User
 # Association tables
 from oc_lib.models.authorized_operation_lieu_implantation_association import authorized_operation_lieu_implantation_association
 from oc_lib.models.cancel_deadline_sous_operation_association import cancel_deadline_sous_operation_association
+from oc_lib.models.derogation_encaisse_poc_association import derogation_encaisse_poc_association
 from oc_lib.models.derogation_operation_poc_association import derogation_operation_poc_association
