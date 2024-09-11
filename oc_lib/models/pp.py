@@ -1,5 +1,7 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
+from oc_lib.utils.events_decorator import register_event_listeners
+
 
 class Pp(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,3 +22,4 @@ class Pp(db.Model, Repository):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        register_event_listeners(type(self))
