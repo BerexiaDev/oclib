@@ -3,12 +3,12 @@ from oc_lib.models.agrement import Agrement
 from oc_lib.models.associe_pm import AssociePm
 from oc_lib.models.associe_pp import AssociePp
 from oc_lib.models.authorized_operation import AuthorizedOperation
-from oc_lib.models.autorisation_particuliere_pm import AutorisationParticulierePM
-from oc_lib.models.autorisation_particuliere_pp import AutorisationParticulierePP
+from oc_lib.models.autorisation_particuliere_pm import AutorisationParticulierePm
+from oc_lib.models.autorisation_particuliere_pp import AutorisationParticulierePp
 from oc_lib.models.autorisation_particuliere import AutorisationParticuliere
 from oc_lib.models.banque import Banque
-from oc_lib.models.beneficiaire_pm import BeneficiairePM
-from oc_lib.models.beneficiaire_pp import BeneficiairePP
+from oc_lib.models.beneficiaire_pm import BeneficiairePm
+from oc_lib.models.beneficiaire_pp import BeneficiairePp
 from oc_lib.models.beneficiaire import Beneficiaire
 from oc_lib.models.cancel_deadline import CancelDeadline
 from oc_lib.models.change import Change

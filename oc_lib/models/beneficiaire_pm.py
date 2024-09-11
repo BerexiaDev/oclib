@@ -1,7 +1,7 @@
 from oc_lib.db import db
 from oc_lib.models.beneficiaire import Beneficiaire
 
-class BeneficiairePM(Beneficiaire):
+class BeneficiairePm(Beneficiaire):
     id = db.Column(db.Integer, db.ForeignKey("beneficiaire.id"), primary_key=True, nullable=False)
 
     rc = db.Column(db.String(100))

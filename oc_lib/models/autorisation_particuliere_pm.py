@@ -1,7 +1,7 @@
 from oc_lib.db import db
 from oc_lib.models.autorisation_particuliere import AutorisationParticuliere
 
-class AutorisationParticulierePM(AutorisationParticuliere):
+class AutorisationParticulierePm(AutorisationParticuliere):
     id = db.Column(db.Integer, db.ForeignKey("autorisation_particuliere.id"), primary_key=True, nullable=False)
     #Many to one
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
