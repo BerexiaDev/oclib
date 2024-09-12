@@ -13,4 +13,4 @@ class DerogationEncaisse(Derogation):
     encaisse = db.Column(db.Float, nullable=False, default = 0 )
     
     # One to many
-    pocs = db.relationship("Poc", backref="derogationencaisse")
+    pocs = db.relationship("Poc", backref="derogation_encaisses")
