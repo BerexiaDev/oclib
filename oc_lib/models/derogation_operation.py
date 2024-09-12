@@ -9,16 +9,16 @@ class DerogationOperation(Derogation):
 
     # Operateurs Pm    
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
-    scd = db.relationship("Scd", backref="derogation_encaisse")
+    scd = db.relationship("Scd", backref="derogation_operation")
 
     esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"))
-    esd = db.relationship("Esd", backref="derogation_encaisse")
+    esd = db.relationship("Esd", backref="derogation_operation")
 
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"))
-    ep = db.relationship("Ep", backref="derogation_encaisse")
+    ep = db.relationship("Ep", backref="derogation_operation")
 
     mandataire_id = db.Column(db.Integer, db.ForeignKey("mandataire.id"))
-    mandataire = db.relationship("Mandataire", backref="derogation_encaisse")
+    mandataire = db.relationship("Mandataire", backref="derogation_operation")
 
     categorie_pc = db.Column(db.Integer, nullable =False)
     
