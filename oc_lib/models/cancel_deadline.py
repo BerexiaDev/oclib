@@ -10,6 +10,5 @@ class CancelDeadline(db.Model, Repository):
     categorie_op = db.Column(db.Integer, nullable=False) # categorie du point de change
     type_operation = db.Column(db.Integer, nullable=False)
     delai = db.Column(db.Integer, nullable=False) # en minute
-    statut= db.Column(db.Boolean, nullable=False)
     
     sous_operations = db.relationship('SousOperation', secondary='cancel_deadline_sous_operation', backref='cancel_deadlines')
