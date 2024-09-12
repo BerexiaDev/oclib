@@ -34,7 +34,7 @@ from oc_lib.models.mandataire import Mandataire
 from oc_lib.models.modification import Modification
 from oc_lib.models.motif import Motif
 from oc_lib.models.pattern import Pattern
-from oc_lib.models.plafond_dotation_sous_operation import PlafondDotationSousOperation
+from oc_lib.models.plafond_dotation import PlafondDotation
 from oc_lib.models.pm import Pm
 from oc_lib.models.poc_p import PocP
 from oc_lib.models.poc_s import PocS
