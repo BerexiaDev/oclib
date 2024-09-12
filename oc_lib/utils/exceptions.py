@@ -8,16 +8,17 @@ class DataUnavailableError(Exception):
     """Exception raised when required data is not available."""
 
 
-class AlreadyExists(Exception):
+class AlreadyExistsError(Exception):
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
 
 
-class Unmodifiable(Exception):
+class UnmodifiableError(Exception):
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
+
         
 class DateValidationError(Exception):
     def __init__(self, message):
@@ -25,7 +26,7 @@ class DateValidationError(Exception):
         super().__init__(self.message)
 
 
-class InvalidDataException(Exception):
+class InvalidDataError(Exception):
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
