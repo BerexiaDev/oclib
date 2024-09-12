@@ -1,4 +1,4 @@
-from sqlalchemy import and_, or_, sql
+from sqlalchemy import and_, or_, sql, func
 from loguru import logger
 from oc_lib.models.poc import Poc
 
@@ -52,7 +52,7 @@ def build_operator(column, operator, value):
     elif operator == "IS NOT NULL":
         return column.isnot(None)
     elif operator == "ARRAY CONTAINS":
-        conditions = tuple(column.any(v) for v in value.split(','))
+        conditions = [func.array_to_string(column, ' ').ilike(f"%{v.strip()}%") for v in value.split(',')]
         return or_(*conditions)
     else:
         return column == value
