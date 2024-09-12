@@ -6,7 +6,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         'Flask-SQLAlchemy==2.3.2',
-        'SQLAlchemy==1.3.18'
+        'SQLAlchemy==1.3.18',
+        'flask-restx==1.1.0'
     ],
     author='Yassine Bouhm',
     author_email='yassinebouhm@gmail.com',
