@@ -3,9 +3,6 @@ from oc_lib.db import db
 from oc_lib.utils.events_decorator import register_event_listeners
 from oc_lib.models.derogation_operation_poc_association import derogation_operation_poc_association
 
-# add a relationship one to one with LieuImplantation
-# add a relationship with Pc
-
 
 @register_event_listeners
 class Poc(db.Model, Repository):
@@ -22,11 +19,12 @@ class Poc(db.Model, Repository):
     localite = db.Column(db.String(50), nullable=False)
     localite_code = db.Column(db.String(50), nullable=False)
     region = db.Column(db.String(50), nullable=False)
-    lieu_implantation = db.Column(db.Integer)
     is_agrement = db.Column(db.Boolean, nullable=False)
     is_permanent = db.Column(db.Boolean, nullable=False)
     numero_agrement = db.Column(db.String(50))
-    seuil_encaisse = db.Column(db.Integer)
+    encaisse = db.Column(db.Float, nullable=False, default=0)
+    seuil_encaisse = db.Column(db.Float, nullable=False,)
+    seuil_encaisse_depasse = db.Column(db.Boolean, default=False)  # Indicates if seuil_encaisse is exceeded
     flag_retablissement_agrement = db.Column(db.Boolean)
     date_retablissement_agrement = db.Column(db.Date)
     date_modification_encaisse = db.Column(db.Date)
@@ -51,6 +49,9 @@ class Poc(db.Model, Repository):
     esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"))
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"))
     mandataire_id = db.Column(db.Integer, db.ForeignKey("mandataire.id"))
+
+    lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id"))
+    lieu_implantation = db.relationship("LieuImplantation", backref="lieu_implantation")
     
     #many to many
     derogation_operations = db.relationship(
@@ -59,8 +60,11 @@ class Poc(db.Model, Repository):
         back_populates="pocs"
     )
     derogation_encaisse_id = db.Column(db.Integer, db.ForeignKey("derogation_encaisse.id"))
+    derogation_encaisse = db.relationship("DerogationEncaisse", backref="derogation_encaisse")
 
 
     # Self-referential one-to-one relationship
     linked_poc_id = db.Column(db.Integer, db.ForeignKey("poc.id"), nullable=True)
     linked_poc = db.relationship("Poc", remote_side=[id], uselist=False)
+
+    caisse_devises = db.relationship("CaisseDevise", back_populates="poc")

@@ -3,8 +3,6 @@ from oc_lib.db import db
 from oc_lib.utils.strings import date_now
 
 
-# add nature_beneficiaire ARRAY(db.Integer) multiple choice (page 11)
-
 class SousOperation(db.Model, Repository):
     """ Model pour paramétrage des sous opérations """
 
@@ -16,4 +14,4 @@ class SousOperation(db.Model, Repository):
     date_activation=db.Column(db.Date, nullable=False, default = date_now())
     date_desactivation=db.Column(db.Date, nullable=True)
     nature_beneficiaire = db.Column(db.ARRAY(db.Integer), nullable=False, default=[])
-
+    beneficaire_final_required = db.Column(db.Boolean, nullable=False, default=False)
