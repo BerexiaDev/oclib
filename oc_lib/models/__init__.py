@@ -10,7 +10,6 @@ from oc_lib.models.banque import Banque
 from oc_lib.models.beneficiaire_pm import BeneficiairePm
 from oc_lib.models.beneficiaire_pp import BeneficiairePp
 from oc_lib.models.caisse_devise import CaisseDevise
-from oc_lib.models.beneficiaire import Beneficiaire
 from oc_lib.models.cancel_deadline import CancelDeadline
 from oc_lib.models.change import Change
 from oc_lib.models.co_gerant import Cogerant
