@@ -9,7 +9,7 @@ from oc_lib.models.autorisation_particuliere import AutorisationParticuliere
 from oc_lib.models.banque import Banque
 from oc_lib.models.beneficiaire_pm import BeneficiairePm
 from oc_lib.models.beneficiaire_pp import BeneficiairePp
-from oc_lib.models.beneficiaire import Beneficiaire
+from oc_lib.models.caisse_devise import CaisseDevise
 from oc_lib.models.cancel_deadline import CancelDeadline
 from oc_lib.models.change import Change
 from oc_lib.models.co_gerant import Cogerant
@@ -23,7 +23,6 @@ from oc_lib.models.demande import Demande
 from oc_lib.models.derogation_encaisse import DerogationEncaisse
 from oc_lib.models.derogation_operation import DerogationOperation
 from oc_lib.models.derogation import Derogation
-from oc_lib.models.encaisse import Encaisse
 from oc_lib.models.ep import Ep
 from oc_lib.models.esd import Esd
 from oc_lib.models.gerant_pm import GerantPm
@@ -33,6 +32,12 @@ from oc_lib.models.lieu_implantation import LieuImplantation
 from oc_lib.models.mandataire import Mandataire
 from oc_lib.models.modification import Modification
 from oc_lib.models.motif import Motif
+from oc_lib.models.operation_achat import OperationAchat
+from oc_lib.models.operation_attachment import OperationAttachment
+from oc_lib.models.operation_cession import OperationCession
+from oc_lib.models.operation_devise import OperationDevise
+from oc_lib.models.operation_vente import OperationVente
+from oc_lib.models.operation import Operation
 from oc_lib.models.pattern import Pattern
 from oc_lib.models.plafond_dotation import PlafondDotation
 from oc_lib.models.pm import Pm
@@ -44,10 +49,12 @@ from oc_lib.models.prepose import Prepose
 from oc_lib.models.reference import Reference
 from oc_lib.models.representant import Representant
 from oc_lib.models.scd import Scd
+from oc_lib.models.seuil_encaisse import SeuilEncaisse
 from oc_lib.models.sous_operation import SousOperation
 from oc_lib.models.statut import Statut
 from oc_lib.models.suppleant import Suppleant
 from oc_lib.models.user import User
+
 
 # Association tables
 from oc_lib.models.authorized_operation_lieu_implantation_association import authorized_operation_lieu_implantation_association
