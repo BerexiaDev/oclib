@@ -6,8 +6,8 @@ from oc_lib.utils.strings import current_year
 class Encaisse(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     annee =db.Column(db.String(4), nullable=False, default=current_year()) 
-    categorie_op = db.Column(db.Integer, nullable=False)
+    categorie_op = db.Column(db.Integer, nullable=False) #catégorie du point de change ?
     lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id"))
     encaisse = db.Column(db.Float, nullable=False, default = 0)
     latence_jours = db.Column(db.Integer, nullable=False)
-    latense_heure = db.Column(db.Integer, nullable=False)
+    latence_heure = db.Column(db.Integer, nullable=False)

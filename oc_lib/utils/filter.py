@@ -18,9 +18,16 @@ tables_name_map = {
     "poc_p": "poc_p",
     "modification-setting": "modification",
     "pattern": "pattern",
-    "operation": "operation",
-    "sub-operation": "sous-operation",
-    "deadline": "deadline"
+    "sous_operation": "sous_operation",
+    "cancel_deadline": "cancel_deadline",
+    "lieu_implantation": "lieu_implantation",
+    "authorized_operation": "authorized_operation",
+    "derogation_operation": "derogation_operation",
+    "derogation_encaisse": "derogation_encaisse",
+    "autorization_particuliere_pp": "autorization_particuliere_pp",
+    "autorization_particuliere_pm": "autorization_particuliere_pm",
+    "beneficiaire_pp": "beneficiaire_pp",
+    "beneficiaire_pm": "beneficiaire_pm"
 }
 
 
