@@ -12,3 +12,4 @@ class OperationDevise(db.Model, Repository):
     support = db.Column(db.Integer)
     
     operation_id = db.Column(db.Integer, db.ForeignKey('operation.id'))
+    operation_cession_id = db.Column(db.Integer, db.ForeignKey('operation_cession.id'))

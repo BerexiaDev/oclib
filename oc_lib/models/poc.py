@@ -67,4 +67,4 @@ class Poc(db.Model, Repository):
     linked_poc_id = db.Column(db.Integer, db.ForeignKey("poc.id"), nullable=True)
     linked_poc = db.relationship("Poc", remote_side=[id], uselist=False)
 
-    caisse_devises = db.relationship("CaisseDevise", back_populates="poc")
+    caisse_devises = db.relationship("CaisseDevise")
