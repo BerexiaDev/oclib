@@ -15,3 +15,5 @@ class SousOperation(db.Model, Repository):
     statut = db.Column(db.Boolean,nullable=False, default=True)
     date_activation=db.Column(db.Date, nullable=False, default = date_now())
     date_desactivation=db.Column(db.Date, nullable=True)
+    nature_beneficiaire = db.Column(db.ARRAY(db.Integer), nullable=False, default=[])
+

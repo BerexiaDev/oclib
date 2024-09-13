@@ -1,11 +1,11 @@
 from oc_lib.db import db
-from oc_lib.models.beneficiaire import Beneficiaire
+from oc_lib.repository import Repository
 
-class BeneficiairePm(Beneficiaire):
-    id = db.Column(db.Integer, db.ForeignKey("beneficiaire.id"), primary_key=True, nullable=False)
+class BeneficiairePm(db.Model, Repository):
 
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rc = db.Column(db.String(100))
     centre = db.Column(db.String(100))
-    saison_sociale =db.Column(db.String(100))
-
-    __mapper_args__ = {'polymorphic_identity': 'beneficiaire_pm'}
+    raison_sociale =db.Column(db.String(100))
+    solde_disponible = db.Column(db.Float, nullable=False, default=0)
+    qualite = db.Column(db.Integer, nullable=False )

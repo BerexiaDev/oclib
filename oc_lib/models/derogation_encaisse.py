@@ -6,13 +6,11 @@ from oc_lib.db import db
 
 class DerogationEncaisse(Derogation):
     id = db.Column(db.Integer, db.ForeignKey("derogation.id"), primary_key=True, nullable=False)
+    # One to one
+    scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
+    scd = db.relationship("Scd", backref="derogation_encaisse")
+
     encaisse = db.Column(db.Float, nullable=False, default = 0 )
     
     # One to many
-    pocs = db.relationship("Poc", backref="derogationencaisse")
-    
-    # One to one
-    scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
-    esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"))
-    ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"))
-    mandataire_id = db.Column(db.Integer, db.ForeignKey("mandataire.id"))
+    pocs = db.relationship("Poc", backref="derogation_encaisses")
