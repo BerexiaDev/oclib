@@ -6,7 +6,8 @@ from sqlalchemy.dialects.postgresql import JSONB
 
 class Demande(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
-    status = db.Column(db.Boolean, default=False)
+    status = db.Column(db.Boolean)
+    etape = db.Column(db.Integer)
     motif_oc_decision = db.Column(db.String)
     motif_oc_manager_decision = db.Column(db.String)
     initiateur = db.Column(db.Integer)
