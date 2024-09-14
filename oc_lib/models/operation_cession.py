@@ -17,5 +17,5 @@ class OperationCession(db.Model, Repository):
     statut = db.Column(db.Integer, nullable=False, default = 1) # 1 enregistre, 2 annulee
 
     # Relationships
-    operation_devises = db.relationship("OperationDevise", back_populates="operation_cession")
+    operation_devises = db.relationship("OperationDevise")
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id')) 
