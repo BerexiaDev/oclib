@@ -23,6 +23,10 @@ class NullableBoolean(fields.Boolean):
     __schema_type__ = ["boolean", "null"]
     __schema_example__ = "nullable Boolean"
 
+class NullableFloat(fields.Float):
+    __schema_type__ = ["number", "null"]
+    __schema_example__ = "nullable float"
+
 
 class ErrorDto:
     api = Namespace("error", description="Error related operations")
