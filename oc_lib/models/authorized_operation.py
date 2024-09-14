@@ -16,6 +16,8 @@ class AuthorizedOperation(db.Model, Repository):
     statut = db.Column(db.Boolean, default=True)  
     date_activation=db.Column(db.Date, nullable=True)
     date_desactivation=db.Column(db.Date, nullable=True)
+    lieu_implantations_hash = db.Column(db.String(50),nullable=False, default="")
+
    
 
     #M Pas fiable maybe load the sous operation
