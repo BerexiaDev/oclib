@@ -27,7 +27,8 @@ tables_name_map = {
     "autorization_particuliere_pp": "autorization_particuliere_pp",
     "autorization_particuliere_pm": "autorization_particuliere_pm",
     "beneficiaire_pp": "beneficiaire_pp",
-    "beneficiaire_pm": "beneficiaire_pm"
+    "beneficiaire_pm": "beneficiaire_pm",
+    "seuil_encaisse":"seuil_encaisse"
 }
 
 
