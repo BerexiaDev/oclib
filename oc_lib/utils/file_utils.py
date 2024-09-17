@@ -8,10 +8,10 @@ ALLOWED_EXTENSIONS = {"pdf"}
 IMPORT_LIASSE_FOLDER = "liasse/"
 
 
-def allowed_file(filename):
+def allowed_file(filename, allowed_extensions=ALLOWED_EXTENSIONS):
     file_extension = filename.rsplit('.', 1)[-1].lower()
 
-    if '.' in filename and file_extension in ALLOWED_EXTENSIONS:
+    if '.' in filename and file_extension in allowed_extensions:
         return file_extension
 
 
