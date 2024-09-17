@@ -4,11 +4,8 @@ from pathlib import Path
 from werkzeug.utils import secure_filename
 from flask import current_app as app
 
-ALLOWED_EXTENSIONS = {"pdf"}
-IMPORT_LIASSE_FOLDER = "liasse/"
 
-
-def allowed_file(filename, allowed_extensions=ALLOWED_EXTENSIONS):
+def allowed_file(filename, allowed_extensions: list):
     file_extension = filename.rsplit('.', 1)[-1].lower()
 
     if '.' in filename and file_extension in allowed_extensions:
@@ -24,9 +21,9 @@ def generate_file_id(token):
     return f"{hashlib.sha256(token.encode('utf-8')).hexdigest()}"
 
 
-def get_path(folder, filename="", extension="pdf", as_folder=False, create=False, import_folder=IMPORT_LIASSE_FOLDER):
+def get_path(folder, import_folder: str, filename="", extension="pdf", as_folder=False, create=False):
     """Creates the full path for a file under UPLOAD FOLDER"""
-    folder_path = Path(get_upload_file_path(folder=folder, import_folder=import_folder))
+    folder_path = Path(get_upload_file_path(import_folder=import_folder, folder=folder))
     if create:
         folder_path.mkdir(parents=True, exist_ok=True)
     if as_folder:
@@ -35,7 +32,7 @@ def get_path(folder, filename="", extension="pdf", as_folder=False, create=False
         return str(folder_path.joinpath(f"{filename}.{extension}"))
 
 
-def get_upload_file_path(folder="", import_folder=IMPORT_LIASSE_FOLDER):
+def get_upload_file_path(import_folder, folder=""):
     """constructs the full path for a file under UPLOAD FOLDER """
     main_path = app.root_path
     project_path = Path(main_path).parent.parent
