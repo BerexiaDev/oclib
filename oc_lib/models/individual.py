@@ -7,9 +7,11 @@ class Individual(db.Model, Repository):
     second_name = db.Column(db.String)
     third_name = db.Column(db.String)
     fourth_name = db.Column(db.String)
+
     # Relationships
-    aliases = db.relationship('Alias', backref='individual', lazy=True)
-    identity_documents = db.relationship('IdentityDocument', backref='individual', lazy=True)
+    aliases = db.relationship('Alias', backref='individual', lazy=True, cascade='all, delete-orphan')
+    identity_documents = db.relationship('IdentityDocument', backref='individual', lazy=True, cascade='all, delete-orphan')
+
 
     def __repr__(self):
         return f'<Individual {self.first_name} {self.second_name}>'
