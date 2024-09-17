@@ -26,7 +26,6 @@ def generate_file_id(token):
 
 def get_path(folder, filename="", extension="pdf", as_folder=False, create=False):
     """Creates the full path for a file under UPLOAD FOLDER"""
-
     folder_path = Path(get_upload_file_path(folder=folder))
     if create:
         folder_path.mkdir(parents=True, exist_ok=True)
@@ -38,6 +37,7 @@ def get_path(folder, filename="", extension="pdf", as_folder=False, create=False
 
 def get_upload_file_path(folder=""):
     """constructs the full path for a file under UPLOAD FOLDER """
-
-    upload_path = Path(app.config['UPLOAD_FOLDER'] + "/" + (IMPORT_LIASSE_FOLDER))
+    main_path = app.root_path
+    project_path = Path(main_path).parent.parent
+    upload_path = Path(str(project_path) + app.config['UPLOAD_FOLDER'] + "/" + IMPORT_LIASSE_FOLDER)
     return upload_path.joinpath(folder)
