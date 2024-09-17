@@ -24,7 +24,7 @@ from oc_lib.models.demande import Demande
 from oc_lib.models.derogation_encaisse import DerogationEncaisse
 from oc_lib.models.derogation_operation import DerogationOperation
 from oc_lib.models.derogation import Derogation
-from oc_lib.models.document import Document
+from oc_lib.models.identity_document import IdentityDocument
 from oc_lib.models.ep import Ep
 from oc_lib.models.esd import Esd
 from oc_lib.models.gerant_pm import GerantPm
