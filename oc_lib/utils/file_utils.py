@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from flask import current_app as app
 
 
-def allowed_file(filename, allowed_extensions: list):
+def allowed_file(filename, allowed_extensions: set):
     file_extension = filename.rsplit('.', 1)[-1].lower()
 
     if '.' in filename and file_extension in allowed_extensions:
