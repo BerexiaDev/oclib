@@ -15,3 +15,4 @@ class SousOperation(db.Model, Repository):
     date_desactivation=db.Column(db.Date, nullable=True)
     nature_beneficiaire = db.Column(db.ARRAY(db.Integer), nullable=False, default=[])
     beneficaire_final_required = db.Column(db.Boolean, nullable=False, default=False)
+    attachements = db.Column(db.ARRAY(db.String), nullable=False, default=[])
