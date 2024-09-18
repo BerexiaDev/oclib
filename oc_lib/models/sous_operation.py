@@ -1,6 +1,8 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
 from oc_lib.utils.strings import date_now
+from oc_lib.models.cancel_deadline_sous_operation_association import cancel_deadline_sous_operation_association
+
 
 
 class SousOperation(db.Model, Repository):
@@ -16,3 +18,6 @@ class SousOperation(db.Model, Repository):
     nature_beneficiaire = db.Column(db.ARRAY(db.Integer), nullable=False, default=[])
     beneficaire_final_required = db.Column(db.Boolean, nullable=False, default=False)
     attachements = db.Column(db.ARRAY(db.String), nullable=False, default=[])
+
+    # Many to Many
+    cancel_deadlines = db.relationship('CancelDeadline', secondary=cancel_deadline_sous_operation_association, backref='sous_operations')
