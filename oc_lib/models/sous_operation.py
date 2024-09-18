@@ -15,3 +15,6 @@ class SousOperation(db.Model, Repository):
     nature_beneficiaire = db.Column(db.ARRAY(db.Integer), nullable=False, default=[])
     beneficaire_final_required = db.Column(db.Boolean, nullable=False, default=False)
     attachements = db.Column(db.ARRAY(db.String), nullable=False, default=[])
+
+    # many to one
+    cancel_deadline_id = db.Column(db.Integer, db.ForeignKey('cancel_deadline.id'))
