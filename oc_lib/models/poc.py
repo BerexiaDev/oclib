@@ -22,6 +22,7 @@ class Poc(db.Model, Repository):
     is_agrement = db.Column(db.Boolean, nullable=False)
     is_permanent = db.Column(db.Boolean, nullable=False)
     numero_agrement = db.Column(db.String(50))
+    encaisse = db.Column(db.Float, nullable=False, default=0)
     seuil_encaisse = db.Column(db.Float)
     seuil_encaisse_depasse = db.Column(db.Boolean, default=False)  # Indicates if seuil_encaisse is exceeded
     flag_retablissement_agrement = db.Column(db.Boolean)
