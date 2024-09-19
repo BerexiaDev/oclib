@@ -20,6 +20,6 @@ class Operation(db.Model, Repository):
     operation_devises = db.relationship("OperationDevise", cascade="all, delete")
     attachments = db.relationship("OperationAttachment")
 
-    type_operation = db.Column(db.Integer, nullable=False)
+    type_operation = db.Column(db.String(50), nullable=False)
 
     __mapper_args__ = {"polymorphic_identity": "operation", "polymorphic_on": type_operation}
