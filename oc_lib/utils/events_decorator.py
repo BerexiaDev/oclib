@@ -20,10 +20,12 @@ def register_event_listeners(cls):
 
                 if target.is_valid:
                     poc.statut_activite = target.statut_activite
+                    poc.statut_agrement = target.statut_agrement
                 else:
                     last_isvalid_statut = session.query(Statut).filter_by(poc_id=poc.id, is_valid=True).order_by(Statut.id.desc()).first()
                     if last_isvalid_statut:
                         poc.statut_activite = last_isvalid_statut.statut_activite
+                        poc.statut_agrement = last_isvalid_statut.statut_agrement
                 session.commit()
         except Exception as e:
             session.rollback()
