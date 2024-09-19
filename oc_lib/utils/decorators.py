@@ -15,7 +15,22 @@ def catch_exceptions(func):
         except ValueError as e:
             logger.error(f"Validation error: {e}")
             return {"status": "error", "message": str(e)}, 400
+        except NotNullViolation as e:
+            logger.error(f"Validation error: {e}")
+            return {"status": "error", "message": str(e)}, 400
         except Exception as e:
+            args = getattr(e, "args")
+
+            # Check if the exception is an IntegrityError, e.g: NotNullViolation or UniqueViolation or ForeignKeyViolation
+            if args and len(args) > 0:
+                if isinstance(args[0], IntegrityError):
+                    sub_args = getattr(args[0], "args")
+                    if sub_args and len(sub_args) > 0:
+                        return {
+                            "status": "error",
+                            "message": sub_args[0],
+                        }, 400
+
             traceback.print_exc()
             logger.error(f"Error {func.__name__}: {e}")
             return {
