@@ -8,4 +8,4 @@ class OperationAchat(Operation):
     numero_declaration = db.Column(db.String(240))
     date_declaration = db.Column(db.Date, default=date_now())
 
-    __mapper_args__ = {"polymorphic_identity": "achat"}
+    __mapper_args__ = {"polymorphic_identity": "operation_achat"}

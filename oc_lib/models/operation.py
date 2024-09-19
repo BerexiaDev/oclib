@@ -22,4 +22,4 @@ class Operation(db.Model, Repository):
 
     type_operation = db.Column(db.Integer, nullable=False)
 
-    __mapper_args__ = {"polymorphic_identity": "operation", "polymorphic_on": type_operation}
+    __mapper_args__ = {"polymorphic_identity": "operation"}
