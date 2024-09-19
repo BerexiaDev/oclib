@@ -3,6 +3,7 @@ import traceback
 from oc_lib.utils.exceptions import InvalidDataError, UnauthorizedError, NotFoundError, AlreadyExistsError
 from werkzeug.exceptions import NotFound
 from loguru import logger
+from psycopg2.errors import NotNullViolation, IntegrityError
 
 
 def catch_exceptions(func):
