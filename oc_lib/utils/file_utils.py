@@ -38,3 +38,14 @@ def get_upload_file_path(import_folder, folder=""):
     project_path = Path(main_path).parent.parent
     upload_path = Path(str(project_path) + app.config['UPLOAD_FOLDER'] + "/" + import_folder)
     return upload_path.joinpath(folder)
+
+
+def check_file_and_extension(file, allowed_extensions):
+    if not file or not file.filename:
+        raise ValueError("Aucun fichier trouvé")
+
+    file_extension = allowed_file(file.filename, allowed_extensions=allowed_extensions)
+
+    if not file_extension:
+        raise ValueError("Format de fichier non accepté")
+    return file_extension
