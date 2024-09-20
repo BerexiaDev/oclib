@@ -152,3 +152,20 @@ class Repository:
                 db.session.expire_all()
             db.session.refresh(self)
         return self
+
+    @classmethod
+    def bulk_save(cls, objects, commit=True):
+        """
+        Save multiple objects to the database in bulk.
+        """
+        try:
+            # Add all objects to the session in bulk
+            db.session.bulk_save_objects(objects)
+            
+            if commit:
+                db.session.commit()
+            
+            return True  # Return True to indicate success
+        except Exception as e:
+            db.session.rollback()  # Rollback if something goes wrong
+            raise Exception(f"Error in bulk saving objects: {e}")
