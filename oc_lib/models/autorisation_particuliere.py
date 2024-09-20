@@ -15,6 +15,6 @@ class AutorisationParticuliere(db.Model, Repository):
     date_creation = db.Column(db.Date, nullable=False, default=date_now())
     validated_by = db.Column(db.String(240))
     date_validation = db.Column(db.Date)
-    commentaire = db.Column(db.String(200), Nullable=True )
+    commentaire = db.Column(db.String(200), nullable=True )
 
     __mapper_args__ = {'polymorphic_identity': 'autorisation_particuliere', 'polymorphic_on': type}
