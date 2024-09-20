@@ -33,6 +33,16 @@ class Repository:
             db.session.rollback()
             raise Exception(e)
 
+    @classmethod
+    def delete_all(cls):
+        """Delete all rows from a table in the database."""
+        try:
+            db.session.query(cls).delete()
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            raise Exception(e)
+        
     def rollack(self):
         db.session.rollback()
 
