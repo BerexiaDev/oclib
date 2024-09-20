@@ -1,0 +1,49 @@
+Adding a New Derogation for a Specific PC:
+    Verify Seuil Encaisse: Ensure the new "seuil encaisse" is less than the current "point de change encaisse."
+    Trigger Alert: If the condition is met.
+
+****************************************************
+
+When Adding a New Seuil encaisse:
+    1 - Check if the New Seuil is the Most Recent by annee:
+            Find PCs: search for PCs with matching categorie point de change and lieu_implantation.
+                If PC has a Derogation Encaisse:
+                    If the derogation is greater than the new "seuil encaisse":
+                        Keep the current seuil encaisse, and do not update the "seuil encaisse"
+                    Sinon, update the "seuil encaisse of pc" with the new "seuil encaisse."
+
+
+                If No Derogation Exists:
+                    Update the "seuil encaisee of pc" with the new "seuil encaisse."
+
+    2 - Verify Seuil Encaisse:
+        Ensure that the new "seuil encaisse" is less than the "encaisse" of the PC.
+        Trigger Alert: If the condition is met.
+
+****************************************************
+
+Cycle de Vie de seuil_encaisse_depasse (le flag qui determine si on alert le pc ou pas):
+
+Après une Opération d'Achat => Augmenter l'encaisse:
+    Vérifier si la nouvelle encaisse dépasse le seuil d'encaisse.
+    Si oui, passer seuil_encaisse_depasse à True.
+
+Après l'Annulation d'une Opération de Vente => Augmenter l'encaisse:
+    Vérifier si la nouvelle encaisse dépasse le seuil d'encaisse.
+    Si oui, passer seuil_encaisse_depasse à True.
+    
+Après une Opération de Cession => Diminuer l'encaisse:
+    Vérifier si la nouvelle encaisse dépasse le seuil d'encaisse.
+    Si non, passer seuil_encaisse_depasse à False.
+
+****************************************************
+
+NEW TICKETS:
+
+Link pc with Parameterized Lieu d'Implantation:
+    Update the pc table to include the selected lieu d'implantation.
+    Set seuil encaisse based on the encaisse of the chosen lieu d'implantation.
+
+
+Sous Operation Update:
+    Add a new field (toggle/checkbox) to indicate if a final beneficaire is required for this sous operation.

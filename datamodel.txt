@@ -1,0 +1,134 @@
+operation achat:
+    benefeciare_pp - benefeciare_pm (one benefeciare has many operations)
+
+    sous operation: (one to one)
+        filtrer sur authorized operation sur la base de:
+            categorie pc + type operation (achat) + status (active) + lieu_implantation du pc
+            + 
+            filtrer sur le status sous operation (active) + sur la nature benefeciare chosiit
+
+        a base de cette list ci dessus on ajoute un autre filtre sur la base de derogation operation
+        
+    attachments (one to many, create new table (designation, filename, filepath)):
+        Identity card
+        declaration importation des devises billets de banque
+
+    numero_declaration
+    date_declaration
+
+    operation_devises (one operation has many Devise)
+    montant_global (sum of devise.montant_mad)
+    numero_bordeau
+    date_bordeau (datetime)
+
+    statut (enregistre / annulee)
+
+    poc (one point de chnage has many operations)
+
+******************************************************************************
+
+OperationDevise:
+    label
+    montant_devise
+    cours
+    montant_mad
+    support (Integer) (choosen from the support of selected operation autorisé)
+
+
+******************************************************************************
+
+CaisseDevise:
+    label (Unicité par label)
+    montant
+
+******************************************************************************
+
+// Apres une operation d'achat il faut augmenter l encaise 
+// => il faut verifer si on depase le seuil de l'encaisse
+
+******************************************************************************
+
+// si le montant de l'operation > solde disponible (n'autorise pas l'operation)
+
+operation vente:
+    benefeciare_pp - benefeciare_pm (one benefeciare has many operations)
+    benefeciare_final_pp
+
+    lien_parente (string) (en cas de pp)
+    fonction_pp (en cas de pm)
+
+    numero_autorisation (si pp dispose d\'autorisation')
+
+    sous operation: (one to one)
+        filtrer sur authorized operation sur la base de:
+            categorie pc + type operation (vente) + status (active) + lieu_implantation du pc
+            + 
+            filtrer sur le status sous operation (active) + sur la nature benefeciare chosiit
+
+        a base de cette list ci dessus on ajoute un autre filtre sur la base de derogation operation
+
+    attachments (one to many, create new table (designation, filename, filepath)):
+ 
+    operation_devises (one operation has many Devise)
+    montant_global (sum of devise.montant_mad)
+    numero_bordeau
+    date_bordeau (datetime)
+
+    statut (enregistre / annulee)
+
+    poc (one point de chnage has many operations)
+
+
+
+
+=> CYCLE DE VIE DU SOLD: (PAR OPERATION VENTE PLAFONEE)
+    au moment de la creation d un benefeciare:
+        solde = plafond dotation annee plus recente
+
+    au moment de creation d une autorisation particuliere:
+        solde += montant_supplementaire
+
+    apres une operation de vente:
+        solde -= montant de l operation
+    
+    apres une annulation:
+        solde += montant de l operation anulée
+    
+    Activation de DTS:
+        solde += montant DTS
+
+
+******************************************************************************
+
+operation cession:
+    date_cession
+    date_creation (datetime, system)
+    numero_bordeau
+    code_banque
+    code_agence
+
+    montant_global (contre valeur des devises cedées en MAD)
+
+    total_devises (sum of devise.montant_mad)
+    operation_devises (one operation has many Devise)
+
+    poc (one point de chnage has many operations)
+
+    statut (enregistre / annulee)
+
+******************************************************************************
+
+    qaulité bene
+    pp:
+        cin => search db :
+            si on trouve:
+                on popule le benef form avec possiilté de update
+            si on ne trouve:
+                on le cree
+            
+POC seuil encaisse
+    derogation encaisse
+
+**********************************************************
+
+
