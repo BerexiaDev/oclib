@@ -1,6 +1,7 @@
 from functools import wraps
 import traceback
 from oc_lib.utils.exceptions import InvalidDataError, UnauthorizedError, NotFoundError, AlreadyExistsError
+from sqlalchemy.exc import ProgrammingError
 from werkzeug.exceptions import NotFound
 from loguru import logger
 from psycopg2.errors import NotNullViolation, IntegrityError
@@ -24,7 +25,7 @@ def catch_exceptions(func):
 
             # Check if the exception is an IntegrityError, e.g: NotNullViolation or UniqueViolation or ForeignKeyViolation
             if args and len(args) > 0:
-                if isinstance(args[0], IntegrityError):
+                if isinstance(args[0], IntegrityError) or isinstance(args[0], ProgrammingError):
                     sub_args = getattr(args[0], "args")
                     if sub_args and len(sub_args) > 0:
                         return {
@@ -41,25 +42,26 @@ def catch_exceptions(func):
 
     return wrapper
 
+
 def exception_handler(message=None):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
-            
+
             except InvalidDataError as e:
-                return { "status":"error", "message":e.message }, 400
-            
+                return {"status": "error", "message": e.message}, 400
+
             except UnauthorizedError as e:
-                return { "status":"error", "message":e.message }, 401
-            
+                return {"status": "error", "message": e.message}, 401
+
             except NotFoundError as e:
-                return { "status":"error", "message":e.message }, 404
-            
+                return {"status": "error", "message": e.message}, 404
+
             except AlreadyExistsError as e:
-                return { "status":"error", "message":e.message }, 409
-            
+                return {"status": "error", "message": e.message}, 409
+
             except Exception as e:
                 logger.error(f"Error in {func.__name__}: {e}")
                 return {
@@ -68,4 +70,5 @@ def exception_handler(message=None):
                 }, 500
 
         return wrapper
+
     return decorator
