@@ -15,6 +15,7 @@ class OperationCession(db.Model, Repository):
     montant_global = db.Column(db.Float, nullable=False, default = 0) # Contre valeur des devises cedées en MAD
     total_devises = db.Column(db.Float, nullable=False, default = 0)  # Sum of all montant_mad from devises
     statut = db.Column(db.Integer, nullable=False, default = 1) # 1 enregistre, 2 annulee
+    poc_categorie = db.Column(db.Integer)
 
     # Relationships
     operation_devises = db.relationship("OperationDevise")
