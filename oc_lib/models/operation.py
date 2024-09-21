@@ -21,5 +21,7 @@ class Operation(db.Model, Repository):
     attachments = db.relationship("OperationAttachment")
 
     type_operation = db.Column(db.String(50), nullable=False)
+    beneficiaire_pp = db.relationship("BeneficiairePp", backref="operations")
+    beneficiaire_pm = db.relationship("BeneficiairePm", backref="operations")
 
     __mapper_args__ = {"polymorphic_identity": "operation", "polymorphic_on": type_operation}
