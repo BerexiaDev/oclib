@@ -61,6 +61,5 @@ from oc_lib.models.user import User
 
 # Association tables
 from oc_lib.models.authorized_operation_lieu_implantation_association import authorized_operation_lieu_implantation_association
-from oc_lib.models.cancel_deadline_sous_operation_association import cancel_deadline_sous_operation_association
 from oc_lib.models.derogation_encaisse_poc_association import derogation_encaisse_poc_association
 from oc_lib.models.derogation_operation_poc_association import derogation_operation_poc_association

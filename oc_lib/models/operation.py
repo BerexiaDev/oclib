@@ -17,9 +17,15 @@ class Operation(db.Model, Repository):
     beneficiaire_pp_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pp.id'))
     beneficiaire_pm_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pm.id'))
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
+    sous_operation = db.relationship("SousOperation")
     operation_devises = db.relationship("OperationDevise", cascade="all, delete")
     attachments = db.relationship("OperationAttachment")
 
-    type_operation = db.Column(db.String(50))
+    type_operation = db.Column(db.String(50), nullable=False)
+    beneficiaire_pp = db.relationship("BeneficiairePp", backref="operation")
+    beneficiaire_pm = db.relationship("BeneficiairePm", backref="operation")
+    nom = db.Column(db.String(120))
+    prenom = db.Column(db.String(120))
+    raison_sociale =db.Column(db.String(100))
 
     __mapper_args__ = {"polymorphic_identity": "operation", "polymorphic_on": type_operation}
