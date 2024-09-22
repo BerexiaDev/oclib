@@ -23,5 +23,8 @@ class Operation(db.Model, Repository):
     type_operation = db.Column(db.String(50), nullable=False)
     beneficiaire_pp = db.relationship("BeneficiairePp", backref="operation")
     beneficiaire_pm = db.relationship("BeneficiairePm", backref="operation")
+    nom = db.Column(db.String(120), nullable=False)
+    prenom = db.Column(db.String(120), nullable=False)
+    raison_sociale =db.Column(db.String(100))
 
     __mapper_args__ = {"polymorphic_identity": "operation", "polymorphic_on": type_operation}
