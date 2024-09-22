@@ -17,6 +17,7 @@ class Operation(db.Model, Repository):
     beneficiaire_pp_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pp.id'))
     beneficiaire_pm_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pm.id'))
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
+    sous_operation = db.relationship("SousOperation")
     operation_devises = db.relationship("OperationDevise", cascade="all, delete")
     attachments = db.relationship("OperationAttachment")
 
