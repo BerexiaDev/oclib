@@ -12,5 +12,5 @@ class BeneficiairePp(db.Model, Repository):
     nationalite = db.Column( db.String(120), nullable=True )
     solde_disponible = db.Column(db.Float, nullable=False, default=0)
     qualite = db.Column(db.Integer, nullable=False)
-    date_solde = db.Column(db.Date, nullable=False)
+    date_solde = db.Column(db.Date, nullable=True) #To be removed when we handle solde properly
     is_final = db.Column(db.Boolean, nullable=False, default=False) # pour deferencier beenfeciaire et beneficiare final
