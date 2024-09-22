@@ -32,7 +32,7 @@ tables_name_map = {
     "beneficiaire_pm": "beneficiaire_pm",
     "seuil_encaisse":"seuil_encaisse",
     "aliases": "aliases",
-    "identity_documents": "identity_documents"
+    "identity_documents": "identity_documents",
     "operation": "operation"
 }
 
