@@ -27,5 +27,8 @@ class Operation(db.Model, Repository):
     nom = db.Column(db.String(120))
     prenom = db.Column(db.String(120))
     raison_sociale =db.Column(db.String(100))
-
+    
+    created_by = db.Column(db.String(240), nullable = False )
+    date_creation = db.Column(db.DateTime, nullable = False, default = datetime.utcnow )
+    
     __mapper_args__ = {"polymorphic_identity": "operation", "polymorphic_on": type_operation}
