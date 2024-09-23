@@ -1,6 +1,7 @@
 from functools import wraps
 import traceback
-from oc_lib.utils.exceptions import InvalidDataError, UnauthorizedError, NotFoundError, AlreadyExistsError
+from oc_lib.utils.exceptions import InvalidDataError, UnauthorizedError, NotFoundError, AlreadyExistsError, \
+    DateValidationError
 from werkzeug.exceptions import NotFound
 from loguru import logger
 from psycopg2.errors import NotNullViolation, IntegrityError
@@ -16,7 +17,7 @@ def catch_exceptions(func):
         except ValueError as e:
             logger.error(f"Validation error: {e}")
             return {"status": "error", "message": str(e)}, 400
-        except NotNullViolation as e:
+        except (NotNullViolation, DateValidationError) as e:
             logger.error(f"Validation error: {e}")
             return {"status": "error", "message": str(e)}, 400
         except Exception as e:
