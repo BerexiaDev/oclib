@@ -10,7 +10,7 @@ class Derogation(db.Model, Repository):
     date_decision = db.Column(db.Date, nullable=False)
     created_by = db.Column(db.String(240), nullable=False)
     statut = db.Column(db.Integer, default=1) # 1 == encours
-    validator = db.Column(db.String(240))
+    validated_by = db.Column(db.String(240))
 
     __mapper_args__ = {'polymorphic_identity': 'derogation', 'polymorphic_on': type}
 
