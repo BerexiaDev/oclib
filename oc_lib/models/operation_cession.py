@@ -16,6 +16,9 @@ class OperationCession(db.Model, Repository):
     total_devises = db.Column(db.Float, nullable=False, default = 0)  # Sum of all montant_mad from devises
     statut = db.Column(db.Integer, nullable=False, default = 1) # 1 enregistre, 2 annulee
 
+    created_by = db.Column(db.String(240), nullable=False)
+    devise_labels = db.Column(db.String(1000), nullable=False)
+
     # Relationships
     operation_devises = db.relationship("OperationDevise")
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id')) 
