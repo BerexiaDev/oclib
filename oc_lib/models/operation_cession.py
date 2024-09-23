@@ -8,7 +8,7 @@ class OperationCession(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     date_cession = db.Column(db.Date, nullable=False) # date bordereau
     date_creation = db.Column(db.DateTime, default=datetime.utcnow)  
-    numero_bordeau = db.Column(db.String(240))
+    numero_bordereau = db.Column(db.String(240))
     code_banque = db.Column(db.String(240))
     code_agence = db.Column(db.String(240))
     
