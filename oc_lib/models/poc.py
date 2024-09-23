@@ -44,7 +44,6 @@ class Poc(db.Model, Repository):
     preposes = db.relationship("Prepose", backref="poc", lazy=True)
     
     declarations = db.relationship("DeclarationPoc", backref="poc", lazy=True)
-    categorie = db.Column(db.Integer)
 
     # One to one
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
