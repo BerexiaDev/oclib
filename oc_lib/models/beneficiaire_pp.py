@@ -5,8 +5,8 @@ from oc_lib.repository import Repository
 class BeneficiairePp(db.Model, Repository):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True )
-    nom = db.Column(db.String(120), nullable=False)
-    prenom = db.Column(db.String(120), nullable=False)
+    nom = db.Column(db.String(120))
+    prenom = db.Column(db.String(120))
     nature_piece = db.Column( db.String(50))
     numero_piece = db.Column( db.String(50))
     nationalite = db.Column( db.String(120))
