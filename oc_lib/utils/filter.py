@@ -2,6 +2,9 @@ from sqlalchemy import and_, or_, sql, func
 from loguru import logger
 from oc_lib.models.poc import Poc
 
+# We map related objects
+# for example one to many: 
+# Parent has many children, so we have to add to this map the children property name
 tables_name_map = {
     "manager-pp": "gerant_pp",
     "manager-pm": "gerant_pm",
@@ -19,7 +22,6 @@ tables_name_map = {
     "modification-setting": "modification",
     "pattern": "pattern",
     "sous_operation": "sous_operation",
-    "cancel_deadline": "cancel_deadline",
     "lieu_implantation": "lieu_implantation",
     "authorized_operation": "authorized_operation",
     "derogation_operation": "derogation_operation",
@@ -29,6 +31,8 @@ tables_name_map = {
     "beneficiaire_pp": "beneficiaire_pp",
     "beneficiaire_pm": "beneficiaire_pm",
     "seuil_encaisse":"seuil_encaisse",
+    "aliases": "aliases",
+    "identity_documents": "identity_documents",
     "operation": "operation"
 }
 
