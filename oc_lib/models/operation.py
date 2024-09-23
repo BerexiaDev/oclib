@@ -7,8 +7,8 @@ class Operation(db.Model, Repository):
     
     id = db.Column(db.Integer, primary_key=True)
 
-    numero_bordeau = db.Column(db.String(240))
-    date_bordeau = db.Column(db.DateTime, default=datetime.utcnow)
+    numero_bordereau = db.Column(db.String(240))
+    date_bordereau = db.Column(db.DateTime, default=datetime.utcnow)
     montant_global = db.Column(db.Float, nullable=False, default = 0)
     statut = db.Column(db.Integer, nullable=False, default = 1) # 1 enregistre, 2 annulee
 
