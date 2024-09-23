@@ -32,4 +32,3 @@ class OperationAchatRetrieveView(db.Model):
     count_of_devises = db.Column(db.Integer)
     montant_global = db.Column(db.Float)
     op_statut = db.Column(db.Integer)
-    devises = db.Column(JSONB)
