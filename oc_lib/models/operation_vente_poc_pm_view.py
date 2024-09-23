@@ -9,6 +9,8 @@ class OperationVentePocPmView(db.Model):
     operation_vente_date_bordereau = db.Column(db.DateTime)
     operation_vente_statut = db.Column(db.Integer)
     operation_vente_montant_global = db.Column(db.Float)
+    operation_vente_created_by = db.Column(db.String(240))
+    operation_vente_date_creation = db.Column(db.DateTime)
     
     operation_vente_lien_parente = db.Column(db.String(240)) # dans le cas de PP
     operation_vente_fonction_pp = db.Column(db.String(240)) # dans le cas de PM
@@ -45,5 +47,7 @@ class OperationVentePocPmView(db.Model):
     beneficiaire_final_pp_prenom_beneficiaire_final_pp = db.Column(db.String(120), nullable=False)
     beneficiaire_final_pp_nature_piece = db.Column( db.String(50), nullable=False )
     beneficiaire_final_pp_numero_piece = db.Column( db.String(50), nullable=False )
+    
+    
     
     sous_operation_label = db.Column(db.String, nullable=False)
