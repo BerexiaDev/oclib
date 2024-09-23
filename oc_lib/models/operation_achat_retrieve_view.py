@@ -18,7 +18,7 @@ class OperationAchatRetrieveView(db.Model):
     poc_id = db.Column(db.Integer)
     poc_denomination = db.Column(db.String(255))
     po_numero_agrement = db.Column(db.String(50))
-    sous_operation_type = db.Column(Integer)
+    sous_operation_type = db.Column(db.Integer)
     qualite = db.Column(db.Integer)
     beneficiaire_nom = db.Column(db.String(120))
     beneficiaire_prenom = db.Column(db.String(120))
