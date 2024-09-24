@@ -1,6 +1,6 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
-from oc_lib.utils.events_decorator import register_event_listeners
+from oc_lib.utils.events_decorator import register_event_listeners, change_statut_pp_listener
 
 
 class Pp(db.Model, Repository):
@@ -17,9 +17,11 @@ class Pp(db.Model, Repository):
     type = db.Column(db.String(50))
     date_nomination = db.Column(db.Date, nullable=False, default=db.func.now())     # date appointment
     date_demission = db.Column(db.Date)      # date resignation
+    statut = db.Column(db.Boolean)
 
     __mapper_args__ = {'polymorphic_identity': 'pp', 'polymorphic_on': type}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         register_event_listeners(type(self))
+        change_statut_pp_listener(type(self))

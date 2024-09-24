@@ -33,6 +33,7 @@ def register_event_listeners(cls):
         finally:
             session.close()
 
+
     @event.listens_for(cls, "before_insert")
     @event.listens_for(cls, "before_update")
     def validate_dates(mapper, connection, target):
@@ -81,4 +82,29 @@ def register_event_listeners(cls):
                     "La date de fin doit être supérieure à la date de début."
                 )
 
+    return cls
+
+def change_statut_pp_listener(cls):
+    @event.listens_for(cls, "before_insert")
+    @event.listens_for(cls, "before_update")
+    def change_pp_statut(mapper, connection, target):
+        Gerant = get_class_instance("oc_lib.models.gerant", "Gerant")
+        Cogerant = get_class_instance("oc_lib.models.co_gerant", "Cogerant")
+        AssociePp = get_class_instance("oc_lib.models.associe_pp", "AssociePp")
+        Prepose = get_class_instance("oc_lib.models.prepose", "Prepose")
+        Representant = get_class_instance("oc_lib.models.representant", "Representant")
+        Suppleant = get_class_instance("oc_lib.models.suppleant", "Suppleant")
+        PocS = get_class_instance("oc_lib.models.poc_s", "PocS")
+        PocP = get_class_instance("oc_lib.models.poc_p", "PocP")
+        Pp = get_class_instance("oc_lib.models.pp", "Pp")
+
+        children_of_pp = [Gerant, Cogerant, AssociePp, Prepose, Representant, Suppleant, PocS, PocP]
+        try:
+            if type(target) in children_of_pp:
+                if target.date_demission:
+                    target.statut = False
+                else:
+                    target.statut = True
+        except Exception as e:
+            raise e
     return cls
