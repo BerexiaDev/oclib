@@ -1,7 +1,7 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
 
-class OperationAchatView(db.Model):
+class OperationAchatView(db.Model, Repository):
     __tablename__ = 'operation_achat_view'
 
     id = db.Column(db.Integer, primary_key=True)
