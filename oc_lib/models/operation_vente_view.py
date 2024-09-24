@@ -1,7 +1,7 @@
 from oc_lib.db import db
 
-class OperationVentePocPmView(db.Model):
-    __tablename__ = 'operation_vente_poc_pm_view'
+class OperationVenteView(db.Model):
+    __tablename__ = 'operation_vente_view'
 
     id = db.Column(db.Integer, primary_key=True)
     op_id = db.Column(db.Integer)
