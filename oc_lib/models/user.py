@@ -11,5 +11,8 @@ class User(db.Model, Repository):
     email = db.Column(db.String(120), unique=True, nullable=False)
     role = db.Column(db.String(80), nullable=False)
     type_pm = db.Column(db.String(50), nullable=False)
+    op_id = db.Column(db.Integer)
+    poc_id = db.Column(db.Integer, db.ForeignKey('poc.id'))
+    categorie_pc = db.Column(db.Integer)
     created_on = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     modified_on = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
