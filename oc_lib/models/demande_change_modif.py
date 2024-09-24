@@ -13,7 +13,7 @@ class DemandeChangeModifView(db.Model):
     demande_ep = db.Column(db.Integer)
     demande_esd = db.Column(db.Integer)
     demande_mandataire_id = db.Column(db.Integer)
-    demande_status = db.Column(db.Integer)
+    demande_status = db.Column(db.Boolean)
     demande_poc_id = db.Column(db.Integer)
     modification_object = db.Column(db.Integer)
     modification_motif = db.Column(db.String)
