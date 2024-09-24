@@ -5,7 +5,7 @@ class CancelDeadline(db.Model, Repository):
     """ Model pour délai d'annulation """
 
     id = db.Column(db.Integer, primary_key=True)
-    categorie_op = db.Column(db.Integer, nullable=False) # categorie du point de change
+    categorie_pc = db.Column(db.Integer, nullable=False) # categorie du point de change
     type_operation = db.Column(db.Integer, nullable=False)
     delai = db.Column(db.Integer, nullable=False) # en minute
     
