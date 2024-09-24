@@ -7,7 +7,7 @@ class SousOperation(db.Model, Repository):
 
     id = db.Column(db.Integer, primary_key=True)
     type_operation = db.Column(db.Integer, nullable=False)
-    code = db.Column(db.Integer, nullable=False) 
+    code = db.Column(db.Integer, nullable=False, unique=True)
     label = db.Column(db.String, nullable=False)
     statut = db.Column(db.Boolean,nullable=False, default=True)
     date_activation=db.Column(db.Date, nullable=False, default = date_now())
