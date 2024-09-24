@@ -1,6 +1,5 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
-from sqlalchemy.dialects.postgresql import JSONB
 
 class OperationAchatView(db.Model):
     __tablename__ = 'operation_achat_view'
