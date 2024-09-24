@@ -2,7 +2,7 @@ from oc_lib.repository import Repository
 from oc_lib.db import db
 from sqlalchemy.dialects.postgresql import JSONB
 
-class CessionOperationView(db.Model):
+class OperationCessionView(db.Model):
     __tablename__ = 'operation_cession_view'
 
     id = db.Column(db.Integer, primary_key=True)
