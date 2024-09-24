@@ -47,19 +47,14 @@ def register_event_listeners(cls):
         Pp = get_class_instance("oc_lib.models.pp", "Pp")
 
         children_of_pp = [Gerant, Cogerant, AssociePp, Prepose, Representant, Suppleant, PocS, PocP]
-        session = Session(connection)
         try:
             if type(target) in children_of_pp:
                 if target.date_demission:
                     target.statut = False
                 else:
                     target.statut = True
-                session.commit()
         except Exception as e:
-            session.rollback()
             raise e
-        finally:
-            session.close()
 
     @event.listens_for(cls, "before_insert")
     @event.listens_for(cls, "before_update")
