@@ -2,8 +2,8 @@ from oc_lib.repository import Repository
 from oc_lib.db import db
 from sqlalchemy.dialects.postgresql import JSONB
 
-class OperationAchatRetrieveView(db.Model):
-    __tablename__ = 'operation_achat_retrieve_view'
+class OperationAchatView(db.Model):
+    __tablename__ = 'operation_achat_view'
 
     operation_id = db.Column(db.Integer, primary_key=True)
     operation_numero_bordeau = db.Column(db.String(240))
