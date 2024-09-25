@@ -32,7 +32,7 @@ class Operation(db.Model, Repository):
     created_by_id = db.Column(db.Integer, nullable=False)
     devise_labels = db.Column(db.String(1000), nullable=False)
     date_creation = db.Column(db.DateTime, default=datetime.utcnow)
-    cancellation_reason = db.Column(db.String(240), nullable=False)
+    cancellation_reason = db.Column(db.String(240))
     cancelled_by = db.Column(db.String(240))
     cancelled_by_id = db.Column(db.Integer)
     date_cancellation = db.Column(db.DateTime)
