@@ -53,6 +53,7 @@ from oc_lib.models.reference import Reference
 from oc_lib.models.representant import Representant
 from oc_lib.models.scd import Scd
 from oc_lib.models.seuil_encaisse import SeuilEncaisse
+from oc_lib.models.solde import Solde
 from oc_lib.models.sous_operation import SousOperation
 from oc_lib.models.statut import Statut
 from oc_lib.models.suppleant import Suppleant
