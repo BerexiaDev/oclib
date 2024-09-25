@@ -17,7 +17,12 @@ class OperationCession(db.Model, Repository):
     statut = db.Column(db.Integer, nullable=False, default = 1) # 1 enregistre, 2 annulee
 
     created_by = db.Column(db.String(240), nullable=False)
+    created_by_id = db.Column(db.Integer, nullable=False)
     devise_labels = db.Column(db.String(1000), nullable=False)
+    cancellation_reason = db.Column(db.String(240))
+    cancelled_by = db.Column(db.String(240))
+    cancelled_by_id = db.Column(db.Integer)
+    date_cancellation = db.Column(db.DateTime)
 
     # Relationships
     operation_devises = db.relationship("OperationDevise")
