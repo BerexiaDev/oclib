@@ -1,7 +1,7 @@
 from functools import wraps
 import traceback
 from oc_lib.utils.exceptions import InvalidDataError, UnauthorizedError, NotFoundError, AlreadyExistsError, \
-    DateValidationError
+    DateValidationError, PermissionDeniedError
 from werkzeug.exceptions import NotFound
 from loguru import logger
 from psycopg2.errors import NotNullViolation, IntegrityError
@@ -12,7 +12,7 @@ def catch_exceptions(func):
     def wrapper(*args, **kwargs):
         try:
             return func(*args, **kwargs)
-        except NotFound:
+        except (NotFound, NotFoundError):
             return {"status": "error", "message": "Non trouvé"}, 404
         except ValueError as e:
             logger.error(f"Validation error: {e}")
@@ -20,6 +20,9 @@ def catch_exceptions(func):
         except (NotNullViolation, DateValidationError) as e:
             logger.error(f"Validation error: {e}")
             return {"status": "error", "message": str(e)}, 400
+        except PermissionDeniedError as e:
+            logger.error(f"Permission denied error: {e}")
+            return {"status": "error", "message": str(e)}, 403
         except Exception as e:
             args = getattr(e, "args")
 
