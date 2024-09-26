@@ -1,5 +1,6 @@
 from oc_lib.db import db
 from oc_lib.repository import Repository
+from sqlalchemy.dialects.postgresql import ARRAY
 
 class OperationVenteView(db.Model, Repository):
     __tablename__ = 'operation_vente_view'
@@ -39,6 +40,7 @@ class OperationVenteView(db.Model, Repository):
     statut = db.Column(db.Integer)
     devise_labels = db.Column(db.String(1000))
     montant_global = db.Column(db.Float)
+    support_mad = db.Column(ARRAY(db.Integer), nullable=False)
     
     
     # operation_vente_lien_parente = db.Column(db.String(240)) # dans le cas de PP

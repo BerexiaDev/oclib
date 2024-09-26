@@ -1,6 +1,5 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
-from sqlalchemy.dialects.postgresql import JSONB
 
 class OperationCessionView(db.Model, Repository):
     __tablename__ = 'operation_cession_view'
