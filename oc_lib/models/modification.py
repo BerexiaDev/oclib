@@ -8,6 +8,7 @@ class Modification(db.Model, Repository):
     motif = db.Column(db.String(300), unique=True)
     object = db.Column(db.Integer)
     attributs = db.Column(db.ARRAY(db.String(100)))
+    op_category = db.Column(db.Integer)
     motif_status = db.Column(db.Boolean, default=True)
     date_activation = db.Column(db.Date, default=date.today)
     date_modification = db.Column(db.Date, default=date.today, onupdate=date.today)
