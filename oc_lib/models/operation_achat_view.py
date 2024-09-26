@@ -1,6 +1,6 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
-from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.dialects.postgresql import JSONB
 
 class OperationAchatView(db.Model, Repository):
     __tablename__ = 'operation_achat_view'
@@ -36,4 +36,4 @@ class OperationAchatView(db.Model, Repository):
     statut = db.Column(db.Integer)
     devise_labels = db.Column(db.String(1000))
     montant_global = db.Column(db.Float)
-    support_mad = db.Column(ARRAY(db.Integer), nullable=False)
+    support_mad = db.Column(JSONB, nullable=False)
