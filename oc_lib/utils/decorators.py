@@ -12,8 +12,10 @@ def catch_exceptions(func):
     def wrapper(*args, **kwargs):
         try:
             return func(*args, **kwargs)
-        except (NotFound, NotFoundError):
+        except NotFound:
             return {"status": "error", "message": "Non trouvé"}, 404
+        except NotFoundError as e:
+            return {"status": "error", "message": str(e)}, 404
         except ValueError as e:
             logger.error(f"Validation error: {e}")
             return {"status": "error", "message": str(e)}, 400
