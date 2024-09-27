@@ -15,16 +15,16 @@ class Scd(Pm):
     sequence_number = db.Column(db.Integer)
 
     # One to many
-    associe_pps = db.relationship("AssociePp", backref="scd")
+    associe_pps = db.relationship("AssociePp", backref="scd_relation")
     associe_pms = db.relationship(
         "AssociePm", backref="scd", foreign_keys="[AssociePm.scd_id]"
     )
-    co_gerants = db.relationship("Cogerant", backref="scd")
-    pocs = db.relationship("Poc", backref="scd")
+    co_gerants = db.relationship("Cogerant", backref="scd_relation")
+    pocs = db.relationship("Poc", backref="scd_relation")
 
     # One to one
-    representant = db.relationship("Representant", backref="scd", uselist=False)
-    gerant_pp = db.relationship("Gerant", backref="scd", uselist=False)
+    representant = db.relationship("Representant", backref="scd_relation", uselist=False)
+    gerant_pp = db.relationship("Gerant", backref="scd_relation", uselist=False)
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))

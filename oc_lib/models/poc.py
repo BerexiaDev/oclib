@@ -41,14 +41,17 @@ class Poc(db.Model, Repository):
     statuts = db.relationship("Statut", backref="poc", lazy=True)
     motifs = db.relationship("Motif", backref="poc", lazy=True)
 
-    preposes = db.relationship("Prepose", backref="poc", lazy=True)
+    preposes = db.relationship('Prepose', backref='poc_association')
     
     declarations = db.relationship("DeclarationPoc", backref="poc", lazy=True)
 
     # One to one
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
+    scd = db.relationship("Scd", backref="poc_association")
     esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"))
+    esd = db.relationship("Esd", backref="poc_association")
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"))
+    ep = db.relationship("Ep", backref="poc_association")
     mandataire_id = db.Column(db.Integer, db.ForeignKey("mandataire.id"))
 
     lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id"))

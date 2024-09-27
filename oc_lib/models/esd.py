@@ -10,14 +10,14 @@ class Esd(Pm):
     groupe = db.Column(db.Integer, nullable=True)
     motif = db.Column(db.Integer, nullable=True)
 
-    poc = db.relationship('Poc', backref='esd', uselist=False)
+    poc = db.relationship('Poc', backref='esd_relation', uselist=False)
     
-    gerant_pp = db.relationship('Gerant', backref='esd', uselist=False)
+    gerant_pp = db.relationship('Gerant', backref='esd_relation', uselist=False)
     gerant_pm = db.relationship('GerantPm', backref='esd', uselist=False, foreign_keys="[GerantPm.esd_id]")
     
-    associe_pps = db.relationship('AssociePp', backref='esd')
-    associe_pms = db.relationship('AssociePm', backref='esd', foreign_keys="[AssociePm.esd_id]")
-    co_gerants = db.relationship('Cogerant', backref='esd')
+    associe_pps = db.relationship('AssociePp', backref='esd_relation')
+    associe_pms = db.relationship('AssociePm', backref='esd_relation', foreign_keys="[AssociePm.esd_id]")
+    co_gerants = db.relationship('Cogerant', backref='esd_relation')
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))

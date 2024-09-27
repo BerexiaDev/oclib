@@ -12,5 +12,7 @@ class AssociePp(Pp):
     scd_id = db.Column(db.Integer, db.ForeignKey('scd.id'))
     associepm_id = db.Column(db.Integer, db.ForeignKey('associe_pm.id'))
     esd_id = db.Column(db.Integer, db.ForeignKey('esd.id'))
+    scd = db.relationship("Scd", backref="associe_association")
+    esd = db.relationship("Esd", backref="associe_association")
 
     __mapper_args__ = {'polymorphic_identity': 'associe_pp'}

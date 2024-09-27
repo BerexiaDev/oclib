@@ -10,11 +10,13 @@ class Representant(Pp):
     id = db.Column(db.Integer, db.ForeignKey("pp.id"), primary_key=True)
     fonction = db.Column(db.Integer)
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
+    scd = db.relationship("Scd", backref="representant_association")
+    suppleant_id = db.Column(db.Integer, db.ForeignKey("suppleant.id"))
 
     # One to one
     suppleant = db.relationship(
         "Suppleant",
-        backref="representant",
+        backref="representant_association",
         uselist=False,
         foreign_keys="[Suppleant.representant_id]",
     )

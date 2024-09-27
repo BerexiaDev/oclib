@@ -10,8 +10,7 @@ class Gerant(Pp):
     # One to one
     scd_id = db.Column(db.Integer, db.ForeignKey('scd.id'))
     esd_id = db.Column(db.Integer, db.ForeignKey('esd.id'))
-    
-    scd = db.relationship("Scd", backref="gerant")
-    esd = db.relationship("Esd", backref="gerant")
+    scd = db.relationship("Scd", backref="gerant_association")
+    esd = db.relationship("Esd", backref="gerant_association")
 
     __mapper_args__ = {"polymorphic_identity": "gerant"}

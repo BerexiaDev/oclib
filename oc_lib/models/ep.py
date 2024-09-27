@@ -17,11 +17,11 @@ class Ep(Pm):
     mandataires = db.relationship(
         "Mandataire", backref="ep", foreign_keys="[Mandataire.ep_id]"
     )
-    poc_ss = db.relationship("PocS", backref="ep", foreign_keys="[PocS.ep_id]")
-    pocs = db.relationship("Poc", backref="ep", foreign_keys="[Poc.ep_id]")
+    poc_ss = db.relationship("PocS", backref="ep_relation")
+    pocs = db.relationship("Poc", backref="ep_relation", foreign_keys="[Poc.ep_id]")
 
     # One to one
-    poc_p = db.relationship("PocP", backref="ep", uselist=False)
+    poc_p = db.relationship("PocP", backref="ep_relation", uselist=False)
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
