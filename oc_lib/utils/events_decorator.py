@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 
 from oc_lib.utils.exceptions import DateValidationError
 from oc_lib.utils.strings import get_class_instance
+from datetime import datetime
 
 
 # TODO: Bug front must send Date type not Datetime to avoid == bug
@@ -56,7 +57,7 @@ def register_event_listeners(cls):
             if (
                 target.date_debut_activite
                 and target.date_fin_activite
-                and target.date_fin_activite <= target.date_debut_activite
+                and datetime.strptime(target.date_fin_activite, "%Y-%m-%d").date() <= target.date_debut_activite
             ):
                 raise DateValidationError(
                     "La date de fin activité doit être supérieure à la date de début d'activité."
@@ -65,7 +66,7 @@ def register_event_listeners(cls):
             if (
                 target.date_nomination
                 and target.date_demission
-                and target.date_demission <= target.date_nomination
+                and datetime.strptime(target.date_demission, "%Y-%m-%d").date() <= target.date_nomination
             ):
                 raise DateValidationError(
                     "La date de démission doit être supérieure à la date de nomination."
@@ -76,7 +77,7 @@ def register_event_listeners(cls):
             if (
                 target.date_debut
                 and target.date_fin
-                and target.date_fin <= target.date_debut
+                and datetime.strptime(target.date_fin, "%Y-%m-%d").date() <= target.date_debut
             ):
                 raise DateValidationError(
                     "La date de fin doit être supérieure à la date de début."
