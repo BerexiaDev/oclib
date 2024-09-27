@@ -10,6 +10,7 @@ class Modification(db.Model, Repository):
     modifications = db.Column(JSONB)
     op_category = db.Column(db.Integer)
     motif_status = db.Column(db.Boolean, default=True)
+    is_add = db.Column(db.Boolean)
     date_activation = db.Column(db.Date, default=date.today)
     date_modification = db.Column(db.Date, default=date.today, onupdate=date.today)
     date_desactivation = db.Column(db.Date)
