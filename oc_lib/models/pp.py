@@ -18,6 +18,7 @@ class Pp(db.Model, Repository):
     date_nomination = db.Column(db.Date, nullable=False, default=db.func.now())     # date appointment
     date_demission = db.Column(db.Date)      # date resignation
     statut = db.Column(db.Boolean)
+    creation_status = db.Column(db.Integer, default=1)
 
     __mapper_args__ = {'polymorphic_identity': 'pp', 'polymorphic_on': type}
 
