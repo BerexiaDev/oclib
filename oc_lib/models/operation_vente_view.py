@@ -17,6 +17,7 @@ class OperationVenteView(db.Model, Repository):
     poc_id = db.Column(db.Integer)
     poc_denomination = db.Column(db.String(50))
     poc_numero_agrement = db.Column(db.String(50))
+    poc_adresse = db.Column(db.String(50), nullable=False)
     created_by = db.Column(db.String(240))
     date_creation = db.Column(db.DateTime)
     beneficiaire_pm_qualite =  db.Column(db.Integer, nullable=False)
