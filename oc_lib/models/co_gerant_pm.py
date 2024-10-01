@@ -1,5 +1,5 @@
 from oc_lib.db import db
-from oc_lib.models.pp import Pm
+from oc_lib.models.pm import Pm
 from oc_lib.utils.events_decorator import register_event_listeners
 
 @register_event_listeners
