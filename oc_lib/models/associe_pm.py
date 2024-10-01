@@ -5,6 +5,7 @@ from oc_lib.models.pm import Pm
 class AssociePm(Pm):
     id = db.Column(db.Integer, db.ForeignKey('pm.id'), primary_key=True)
     part_capital = db.Column(db.Integer)
+    creation_status = db.Column(db.Integer, default=1)
 
     # many to one
     scd_id = db.Column(db.Integer, db.ForeignKey('scd.id'))
