@@ -4,6 +4,22 @@ from pathlib import Path
 from werkzeug.utils import secure_filename
 from flask import current_app as app
 
+mime_types = {
+    "pdf": "application/pdf",
+    "txt": "text/plain",
+    "csv": "text/csv",
+    "doc": "application/msword",
+    "jpeg": "image/jpeg",
+    "jpg": "image/jpeg",
+    "png": "image/png",
+    "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "xls": "application/vnd.ms-excel",
+    "ppt": "application/vnd.ms-powerpoint",
+    "pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+}
+
+
 
 def allowed_file(filename, allowed_extensions: set):
     file_extension = filename.rsplit('.', 1)[-1].lower()

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from oc_lib.db import db
 from oc_lib.repository import Repository
 
@@ -7,6 +9,7 @@ class Individual(db.Model, Repository):
     second_name = db.Column(db.String)
     third_name = db.Column(db.String)
     fourth_name = db.Column(db.String)
+    date_creation = db.Column(db.DateTime, default=datetime.utcnow)
 
     # Relationships
     aliases = db.relationship('Alias', backref='individual', lazy=True, cascade='all, delete-orphan', passive_deletes=True)

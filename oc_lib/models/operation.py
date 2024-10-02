@@ -1,4 +1,5 @@
 from datetime import datetime
+from sqlalchemy.dialects.postgresql import JSONB
 from oc_lib.repository import Repository
 from oc_lib.db import db
 
@@ -10,6 +11,8 @@ class Operation(db.Model, Repository):
     numero_bordereau = db.Column(db.String(240))
     date_bordereau = db.Column(db.DateTime, default=datetime.utcnow)
     montant_global = db.Column(db.Float, nullable=False, default = 0)
+    support_mad = db.Column(JSONB, nullable=False)
+
     statut = db.Column(db.Integer, nullable=False, default = 1) # 1 enregistre, 2 annulee
 
     # Relationships
