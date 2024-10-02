@@ -32,6 +32,7 @@ class Operation(db.Model, Repository):
     raison_sociale =db.Column(db.String(100))
     
     created_by = db.Column(db.String(240), nullable=False)
+    created_by_id = db.Column(db.Integer, nullable=False)
     devise_labels = db.Column(db.String(1000), nullable=False)
     date_creation = db.Column(db.DateTime, default=datetime.utcnow)
  
