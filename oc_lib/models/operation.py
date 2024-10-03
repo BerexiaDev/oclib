@@ -2,9 +2,12 @@ from datetime import datetime
 from sqlalchemy.dialects.postgresql import JSONB
 from oc_lib.repository import Repository
 from oc_lib.db import db
+from oc_lib.utils.constants import Roles
+
 
 class Operation(db.Model, Repository):
     __tablename__ = 'operation'
+    ROLES_FOR_EXPORT = [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value, Roles.OC_AGENT.value, Roles.OC_MANAGER.value]
     
     id = db.Column(db.Integer, primary_key=True)
 
