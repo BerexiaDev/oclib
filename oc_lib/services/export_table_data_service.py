@@ -16,8 +16,6 @@ from oc_lib.utils.excel_utils import auto_adjust_column_width, set_data_sheet
 def export_tables(args, filter_data):
     sort_key = args.get("sort_key")
     sort_order = args.get("sort_order")
-    size = args.get("size")
-    page = args.get("page")
     table_name = args.get("table_name")
     model_class = find_class_by_table_name(table_name)
 
@@ -29,11 +27,7 @@ def export_tables(args, filter_data):
     query = build_filters(model_class, model_class.query, filter_data.get("filters", []), table_name)
     query = query.order_by(asc(sort_key) if sort_order == 1 else desc(sort_key))
 
-    if size and page:
-        pagination = query.paginate(page, size)
-        data = pagination.items
-    else:
-        data = query.all()
+    data = query.all()
 
     rows_data = _generate_rows_data(table_columns, data)
     return _excel_export(table_name, table_columns, rows_data)
