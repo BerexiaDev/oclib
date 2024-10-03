@@ -77,11 +77,12 @@ def _excel_export(table_name, columns, data):
 
     # Set the buffer position to the beginning
     output.seek(0)
+    date_str = datetime.now().strftime("%Y-%m-%d")
     response = send_file(
         output,
         as_attachment=True,
         mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        attachment_filename=f'{table_name}.xlsx',
+        attachment_filename=f'{table_name}_{date_str}.xlsx',
     )
 
     return response
