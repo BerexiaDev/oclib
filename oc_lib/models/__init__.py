@@ -1,3 +1,4 @@
+from oc_lib.models.activation_complement_dotation import ActivationComplementDotation
 from oc_lib.models.affiliation_group import AffiliationGroup
 from oc_lib.models.agrement import Agrement
 from oc_lib.models.alias import Alias
