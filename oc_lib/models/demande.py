@@ -7,6 +7,7 @@ from sqlalchemy.dialects.postgresql import JSONB
 class Demande(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.Boolean)
+    creation_status = db.Column(db.Integer)
     etape = db.Column(db.Integer)
     motif_oc_decision = db.Column(db.String)
     motif_oc_manager_decision = db.Column(db.String)
