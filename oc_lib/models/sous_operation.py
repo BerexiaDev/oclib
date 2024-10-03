@@ -7,12 +7,14 @@ class SousOperation(db.Model, Repository):
 
     id = db.Column(db.Integer, primary_key=True)
     type_operation = db.Column(db.Integer, nullable=False)
-    code = db.Column(db.Integer, nullable=False, unique=True)
+    code = db.Column(db.Integer, unique=True) #code statistique
+    code_sous_operation = db.Colum(db.String(4), nullable=False, unique= True) # code de la sous operation A###, V###, C###
     label = db.Column(db.String, nullable=False)
     statut = db.Column(db.Boolean,nullable=False, default=True)
     date_activation=db.Column(db.Date, nullable=False, default = date_now())
     date_desactivation=db.Column(db.Date, nullable=True)
     nature_beneficiaire = db.Column(db.ARRAY(db.Integer), nullable=False, default=[])
+    nature_beneficiaire_final = db.Column(db.ARRAY(db.Integer), nullable=False, default=[])
     beneficaire_final_required = db.Column(db.Boolean, nullable=False, default=False)
     attachements = db.Column(db.ARRAY(db.String), nullable=False, default=[])
 
