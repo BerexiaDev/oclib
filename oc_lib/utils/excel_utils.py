@@ -2,6 +2,7 @@ import traceback
 
 from openpyxl.cell import MergedCell
 from openpyxl.styles import PatternFill, Border, Side
+from openpyxl.utils import get_column_letter
 
 
 def auto_adjust_column_width(worksheet):

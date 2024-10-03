@@ -3,8 +3,6 @@ import pandas as pd
 from io import BytesIO
 from datetime import datetime
 from flask import send_file, g
-from openpyxl.cell import MergedCell
-from openpyxl.utils import get_column_letter
 from sqlalchemy import asc, desc
 
 from oc_lib.utils.decorators import exception_handler
