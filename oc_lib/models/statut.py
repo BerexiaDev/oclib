@@ -17,7 +17,7 @@ class Statut(db.Model, Repository):
     date_decision = db.Column(db.Date)
     date_delivrance = db.Column(db.Date)
     numero_delivrance = db.Column(db.String(50))
-    avancement = db.Column(db.Boolean, default=True)
+    avancement = db.Column(db.Boolean, default=False)
     is_valid = db.Column(db.Boolean, default=True)
     date_avancement = db.Column(db.Date, default=datetime.utcnow, onupdate=datetime.utcnow)
 
