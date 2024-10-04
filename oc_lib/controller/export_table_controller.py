@@ -1,3 +1,4 @@
+from flask import request
 from flask_restx import Resource
 
 from oc_lib.services.export_table_data_service import export_tables
