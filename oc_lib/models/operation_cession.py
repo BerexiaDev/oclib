@@ -22,6 +22,7 @@ class OperationCession(db.Model, Repository):
     devise_labels = db.Column(db.String(1000), nullable=False)    
 
     latency_accepted = db.Column(db.Boolean, nullable=False)
+    poc_date_depassement_seuil = db.Column(db.DateTime)
 
     # Relationships
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id')) 
