@@ -26,7 +26,8 @@ class Pm(db.Model, Repository):
     date_radiation = db.Column(db.Date, nullable=True)
     pays = db.Column(db.String(50))
     id_pays = db.Column(db.String(50))
-
+    date_debut = db.Column(db.Date)
+    date_depart = db.Column(db.Date)
     # this will be the discriminator attribute
     type = db.Column(db.String(50))
 
