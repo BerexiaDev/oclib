@@ -7,7 +7,7 @@ class OperationCessionView(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     op_id = db.Column(db.Integer)
     numero_bordereau = db.Column(db.String(240))
-    date_cession = db.Column(db.Date)
+    date_cession = db.Column(db.DateTime)
     categorie_op = db.Column(db.String(50))
     pm_registre_commerce = db.Column(db.Integer)
     pm_raison_sociale = db.Column(db.String(100))
