@@ -50,3 +50,12 @@ class SearchDto:
         "Search criteria",
         {"filters": fields.List(fields.Raw(), required=True)},
     )
+
+
+class ExportTableDto:
+    api = Namespace("Export Table", description="Export Table")
+
+    search_dto = api.model(
+        "Export Table search criteria",
+        {"filters": fields.List(fields.Raw(), required=True)},
+    )
