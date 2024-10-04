@@ -14,3 +14,6 @@ class BeneficiairePp(db.Model, Repository):
     qualite = db.Column(db.Integer, nullable=False)
     date_solde = db.Column(db.Date, nullable=True) #To be removed when we handle solde properly
     is_final = db.Column(db.Boolean, nullable=False, default=False) # pour deferencier beenfeciaire et beneficiare final
+    poc_id = db.Column(db.Integer, db.ForeignKey('poc.id'))
+    numero_agrement = db.Column(db.String(50))
+    nom_agence = db.Column(db.String(50))

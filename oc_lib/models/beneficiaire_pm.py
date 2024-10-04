@@ -12,3 +12,6 @@ class BeneficiairePm(db.Model, Repository):
     date_solde = db.Column(db.Date, nullable=True)#To be removed when we handle solde properly
     nationalite = db.Column(db.String(120), nullable=True)
     idce = db.Column(db.String(50))
+    poc_id = db.Column(db.Integer, db.ForeignKey('poc.id'))
+    numero_agrement = db.Column(db.String(50))
+    nom_agence = db.Column(db.String(50))
