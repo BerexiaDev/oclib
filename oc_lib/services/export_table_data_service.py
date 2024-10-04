@@ -17,11 +17,16 @@ def export_tables(args, filter_data):
     sort_key = args.get("sort_key")
     sort_order = args.get("sort_order")
     table_name = args.get("table_name")
+
     model_class = find_class_by_table_name(table_name)
+    if not model_class:
+        raise ValueError(f"Table {table_name} not found")
 
     # Check if the user has permission to export the table
-    _check_permission(model_class)
+    # TODO: implement this check below
+    # _check_permission(model_class)
 
+    # TODO: select columns to export
     table_columns = get_all_table_column_names(model_class)
 
     query = build_filters(model_class, model_class.query, filter_data.get("filters", []), table_name)
@@ -29,7 +34,7 @@ def export_tables(args, filter_data):
 
     data = query.all()
 
-    rows_data = _generate_rows_data(table_columns, data)
+    rows_data = _generate_rows_data(table_name, table_columns, data)
     return _excel_export(table_name, table_columns, rows_data)
 
 
@@ -42,13 +47,26 @@ def _check_permission(model_class):
         raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
 
 
-def _generate_rows_data(table_columns, data):
+# AA[table_name]['values_mapping'][column_name][val]
+
+# AA = {
+#     "table_name": {
+#         "required_roles": ["admin"],
+#         "values_mapping": {
+#             'status': {True: 'Active', False: 'Inactive'}
+#         }
+#     }
+# }
+
+# TODO Optimize this fct
+def _generate_rows_data(table_name, table_columns, data):
     rows_data = []
-    for each_row in [d.to_dict() for d in data]:
+    data = [d.to_dict() for d in data]
+    for each_row in data:
         row_data = []
         for column_name in table_columns:
             val = each_row[column_name]
-            if type(val) == datetime:
+            if isinstance(val, datetime):
                 val = val.strftime("%Y-%m-%d %H:%M:%S")
             else:
                 val = str(val)
