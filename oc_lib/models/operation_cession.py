@@ -21,6 +21,8 @@ class OperationCession(db.Model, Repository):
     created_by_id = db.Column(db.Integer, nullable=False)
     devise_labels = db.Column(db.String(1000), nullable=False)    
 
+    latency_accepted = db.Column(db.Boolean, nullable=False)
+
     # Relationships
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id')) 
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
