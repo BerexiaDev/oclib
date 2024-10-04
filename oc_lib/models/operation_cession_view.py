@@ -21,6 +21,7 @@ class OperationCessionView(db.Model, Repository):
     code_banque = db.Column(db.String(240))
     code_agence = db.Column(db.String(240))
     devise_labels = db.Column(db.String(1000))
+    latency_accepted = db.Column(db.Boolean)
     montant_global = db.Column(db.Float)
     total_devises = db.Column(db.Float)
     statut = db.Column(db.Integer)
