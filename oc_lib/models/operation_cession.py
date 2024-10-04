@@ -6,7 +6,7 @@ class OperationCession(db.Model, Repository):
     __tablename__ = 'operation_cession'
     
     id = db.Column(db.Integer, primary_key=True)
-    date_cession = db.Column(db.Date, nullable=False) # date bordereau
+    date_cession = db.Column(db.DateTime, nullable=False) # date bordereau
     date_creation = db.Column(db.DateTime, default=datetime.utcnow)
 
     numero_bordereau = db.Column(db.String(240), unique=True)
