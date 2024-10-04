@@ -8,8 +8,9 @@ from sqlalchemy import asc, desc
 from oc_lib.utils.decorators import exception_handler
 from oc_lib.utils.exceptions import UnauthorizedError
 from oc_lib.utils.filter import build_filters
-from oc_lib.utils.db_utils import find_class_by_table_name, get_all_table_column_names
+from oc_lib.utils.db_utils import find_class_by_table_name
 from oc_lib.utils.excel_utils import auto_adjust_column_width, set_data_sheet
+from oc_lib.utils.export_table_data_constants import EXPORT_TABLE_INFO
 
 
 @exception_handler(message="Erreur lors de l'exportation des données du tableau")
@@ -23,57 +24,57 @@ def export_tables(args, filter_data):
         raise ValueError(f"Table {table_name} not found")
 
     # Check if the user has permission to export the table
-    # TODO: implement this check below
-    # _check_permission(model_class)
+    values_mapping, columns = _check_permission_and_return_values_mapping_and_column_name(table_name)
 
-    # TODO: select columns to export
-    table_columns = get_all_table_column_names(model_class)
+    attrs = [getattr(model_class, column_name) for column_name in columns.keys()]
 
-    query = build_filters(model_class, model_class.query, filter_data.get("filters", []), table_name)
+    query = model_class.query.with_entities(*attrs)
+
+    query = build_filters(model_class, query, filter_data.get("filters", []), table_name)
     query = query.order_by(asc(sort_key) if sort_order == 1 else desc(sort_key))
 
     data = query.all()
 
-    rows_data = _generate_rows_data(table_name, table_columns, data)
-    return _excel_export(table_name, table_columns, rows_data)
+    column_ids = list(columns.keys())
+    column_names = list(columns.values())
+
+    rows_data = _generate_rows_data(column_ids, data, values_mapping)
+    return _excel_export(table_name, column_names, rows_data)
 
 
-def _check_permission(model_class):
-    roles = []
-    if hasattr(model_class, "ROLES_FOR_EXPORT"):
-        roles = model_class.ROLES_FOR_EXPORT
+def _check_permission_and_return_values_mapping_and_column_name(table_name):
+    table_info = EXPORT_TABLE_INFO.get(table_name)
 
-    if roles and g.user.role not in roles:
-        raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
+    if table_info:
+        required_roles = table_info.get("required_roles", [])
+        if g.user.role in required_roles:
+            return table_info.get("values_mapping", {}), table_info.get("columns", {})
+
+    raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
 
 
-# AA[table_name]['values_mapping'][column_name][val]
-
-# AA = {
-#     "table_name": {
-#         "required_roles": ["admin"],
-#         "values_mapping": {
-#             'status': {True: 'Active', False: 'Inactive'}
-#         }
-#     }
-# }
-
-# TODO Optimize this fct
-def _generate_rows_data(table_name, table_columns, data):
+def _generate_rows_data(table_columns, data, values_mapping):
     rows_data = []
-    data = [d.to_dict() for d in data]
     for each_row in data:
         row_data = []
-        for column_name in table_columns:
-            val = each_row[column_name]
-            if isinstance(val, datetime):
-                val = val.strftime("%Y-%m-%d %H:%M:%S")
-            else:
-                val = str(val)
+        for ind, cel in enumerate(each_row):
+            val = _get_mapping_value(table_columns[ind], cel, values_mapping)
             row_data.append(val)
         rows_data.append(row_data)
 
     return rows_data
+
+
+def _get_mapping_value(column_name, val, values_mapping):
+    mapping_value = values_mapping.get(column_name)
+    if mapping_value:
+        return mapping_value.get(val, val)
+    elif isinstance(val, datetime):
+        return val.strftime("%Y-%m-%d %H:%M:%S")
+    elif val is None:
+        return ""
+    else:
+        return str(val)
 
 
 def _excel_export(table_name, columns, data):
