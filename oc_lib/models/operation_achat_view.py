@@ -44,5 +44,4 @@ class OperationAchatView(db.Model, Repository):
 
     cancellation_reason = db.Column(db.String(240))
     cancelled_by = db.Column(db.String(240))
-    cancelled_by_id = db.Column(db.Integer)
     date_cancellation = db.Column(db.DateTime)
