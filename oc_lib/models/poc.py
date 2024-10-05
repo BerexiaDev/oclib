@@ -2,6 +2,7 @@ from oc_lib.repository import Repository
 from oc_lib.db import db
 from oc_lib.utils.events_decorator import register_event_listeners
 from oc_lib.models.derogation_operation_poc_association import derogation_operation_poc_association
+from oc_lib.models.derogation_encaisse_poc_association import derogation_encaisse_poc_association
 
 
 @register_event_listeners
@@ -25,6 +26,7 @@ class Poc(db.Model, Repository):
     encaisse = db.Column(db.Float, nullable=False, default=0)
     seuil_encaisse = db.Column(db.Float)
     seuil_encaisse_depasse = db.Column(db.Boolean, default=False)  # Indicates if seuil_encaisse is exceeded
+    date_depassement_seuil = db.Column(db.DateTime)
     flag_retablissement_agrement = db.Column(db.Boolean)
     date_retablissement_agrement = db.Column(db.Date)
     date_modification_encaisse = db.Column(db.Date)
@@ -57,12 +59,15 @@ class Poc(db.Model, Repository):
     #many to many
     derogation_operations = db.relationship(
         "DerogationOperation",
-        secondary=derogation_operation_poc_association,
+        secondary = derogation_operation_poc_association,
         back_populates="pocs"
     )
-    derogation_encaisse_id = db.Column(db.Integer, db.ForeignKey("derogation_encaisse.id"))
-    derogation_encaisse = db.relationship("DerogationEncaisse", backref="derogation_encaisse")
 
+    derogation_encaisses = db.relationship(
+        "DerogationEncaisse", 
+        secondary=derogation_encaisse_poc_association,
+        back_populates="pocs"
+    )
 
     # Self-referential one-to-one relationship
     linked_poc_id = db.Column(db.Integer, db.ForeignKey("poc.id"), nullable=True)
