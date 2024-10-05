@@ -11,7 +11,14 @@ search_dto = ExportTableDto.search_dto
 
 @api.route("")
 class ExportTable(Resource):
-    @api.doc(params={"sort_key":'sort key', "sort_order":"sort order (1 for asc -1 for desc)", "table_name":"table name"})
+    @api.doc(
+        params={
+            "sort_key":'sort key',
+            "sort_order":"sort order (1 for asc -1 for desc)",
+            "table_name":"table name",
+            "file_type": "xslx",
+        }
+    )
     @api.expect(search_dto, validate=True)
     @api.response(200, "Export Done")
     def post(self):

@@ -18,6 +18,7 @@ def export_tables(args, filter_data):
     sort_key = args.get("sort_key")
     sort_order = args.get("sort_order")
     table_name = args.get("table_name")
+    file_type = args.get("file_type")
 
     model_class = find_class_by_table_name(table_name)
     if not model_class:
@@ -39,7 +40,7 @@ def export_tables(args, filter_data):
     column_names = list(columns.values())
 
     rows_data = _generate_rows_data(column_ids, data, values_mapping)
-    return _excel_export(table_name, column_names, rows_data)
+    return _excel_export(table_name, column_names, rows_data, file_type)
 
 
 def _check_permission_and_return_values_mapping_and_column_name(table_name):
@@ -77,7 +78,7 @@ def _get_mapping_value(column_name, val, values_mapping):
         return str(val)
 
 
-def _excel_export(table_name, columns, data):
+def _excel_export(table_name, columns, data, file_type):
     # Initialize a new Excel workbook
     output = BytesIO()
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
@@ -95,7 +96,7 @@ def _excel_export(table_name, columns, data):
         output,
         as_attachment=True,
         mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        attachment_filename=f'{table_name}_{date_str}.xlsx',
+        attachment_filename=f'{table_name}_{date_str}.{file_type}',
     )
 
     return response
