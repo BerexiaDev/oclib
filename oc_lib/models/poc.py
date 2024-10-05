@@ -33,6 +33,8 @@ class Poc(db.Model, Repository):
     statut_activite = db.Column(db.Integer, default=1, nullable=False)
     statut_agrement = db.Column(db.Integer, default=1, nullable=False)
     raison_sociale_pm = db.Column(db.String(100), nullable=False)
+    date_delivrance = db.Column(db.Date)
+    numero_delivrance = db.Column(db.String(50))
 
     creation_status = db.Column(db.Integer, default=0)
     categorie = db.Column(db.Integer)
