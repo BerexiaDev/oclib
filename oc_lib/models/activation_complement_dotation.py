@@ -12,3 +12,5 @@ class ActivationComplementDotation(db.Model, Repository):
     adminitration_emettrice = db.Column(db.String(100), nullable = False)
     nom_document = db.Column(db.String(500), nullable = True)
     path_document = db.Column(db.String(500), nullable = True)
+    file_extension = db.Column(db.String(5), nullable=False)
+    
