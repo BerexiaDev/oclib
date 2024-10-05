@@ -1,5 +1,6 @@
 from oc_lib.db import db
 from oc_lib.repository import Repository
+from oc_lib.models.beneficiaire import Beneficiaire
 
 
 class BeneficiairePm(Beneficiaire):
