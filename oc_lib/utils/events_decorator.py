@@ -50,8 +50,11 @@ def register_event_listeners(cls):
         Suppleant = get_class_instance("oc_lib.models.suppleant", "Suppleant")
         PocS = get_class_instance("oc_lib.models.poc_s", "PocS")
         PocP = get_class_instance("oc_lib.models.poc_p", "PocP")
+        GerantPm = get_class_instance("oc_lib.models.gerant_pm", "GerantPm")
+        AssociePm = get_class_instance("oc_lib.models.associe_pm", "AssociePm")
 
         children_of_pp = [Gerant, Cogerant, AssociePp, Prepose, Representant, Suppleant, PocS, PocP]
+        children_of_pm = [GerantPm, AssociePm]
 
         if type(target) == Poc:
             if (
@@ -70,6 +73,15 @@ def register_event_listeners(cls):
             ):
                 raise DateValidationError(
                     "La date de démission doit être supérieure à la date de nomination."
+                )
+        elif type(target) in children_of_pm:
+             if (
+                target.date_debut
+                and target.date_debut
+                and datetime.strptime(str(target.date_depart), "%Y-%m-%d").date() <= target.date_debut
+            ):
+                raise DateValidationError(
+                    "La date de depart doit être supérieure à la date de debut."
                 )
         elif (
             type(target) == DeclarationFiscal
