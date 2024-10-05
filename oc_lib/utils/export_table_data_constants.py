@@ -131,13 +131,129 @@ EXPORT_TABLE_INFO = {
             "statut": "Statut"
         }
     },
+    "poc": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "creation_status": {
+                1: "Created",
+                2: "Cancelled"
+            },
+            "statut_activite": {
+                1: "Active",
+                2: "Inactive"
+            },
+            "statut_agrement": {
+                1: "Active",
+                2: "Inactive"
+            },
+        },
+        "columns": {
+            "id": "ID",
+            "forme_juridique": "Forme Juridique",
+            "is_link": "Is Link",
+            "is_source": "Is Source",
+            "motif": "Motif",
+            "secteur_activite": "Secteur Activite",
+            "nature": "Nature",
+            "nom_agence": "Nom Agence",
+            "adresse": "Adresse",
+            "date_modification_adresse": "Date Modification Adresse",
+            "localite": "Localite",
+            "localite_code": "Localite Code",
+            "region": "Region",
+            "is_agrement": "Is Agrement",
+            "is_permanent": "Is Permanent",
+            "numero_agrement": "Numero Agrement",
+            "encaisse": "Encaisse",
+            "seuil_encaisse": "Seuil Encaisse",
+            "seuil_encaisse_depasse": "Seuil Encaisse Depasse",
+            "flag_retablissement_agrement": "Flag Retablissement Agrement",
+            "date_retablissement_agrement": "Date Retablissement Agrement",
+            "date_modification_encaisse": "Date Modification Encaisse",
+            "date_debut_activite": "Date Debut Activite",
+            "date_fin_activite": "Date Fin Activite",
+            "statut_activite": "Statut Activite",
+            "statut_agrement": "Statut Agrement",
+            "raison_sociale_pm": "Raison Sociale PM",
+            "creation_status": "Creation Status",
+            "categorie": "Categorie",
+            "scd_id": "SCD ID",
+            "esd_id": "ESD ID",
+            "ep_id": "EP ID",
+            "mandataire_id": "Mandataire ID",
+            "lieu_implantation_id": "Lieu Implantation ID",
+            "linked_poc_id": "Linked POC ID"
+        }
+    },
+    "pp": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "statut": {
+                True: "Active",
+                False: "Inactive"
+            },
+        },
+        "columns": {
+            "id": "ID",
+            "nom": "Nom",
+            "prenom": "Prenom",
+            "nature_piece": "Nature Piece",
+            "numero_piece": "Numero Piece",
+            "nationalite": "Nationalite",
+            "adresse": "Adresse",
+            "email": "Email",
+            "phone": "Phone",
+            "nature_pp": "Nature PP",
+            "date_nomination": "Date Nomination",
+            "date_demission": "Date Demission",
+            "statut": "Statut",
+        }
+    },
+    "pm": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "statut": {
+                1: "Active",
+                2: "Inactive"
+            },
+        },
+        "columns": {
+            "id": "ID",
+            "nature_pm": "Nature PM",
+            "numero_autorisation": "Numero autorisation",
+            "localite": "Localite",
+            "localite_code": "Localite code",
+            "region": "Region",
+            "centre": "Centre",
+            "ville": "Ville",
+            "registre_commerce": "Registre commerce",
+            "adresse": "Adresse",
+            "raison_sociale": "Raison sociale",
+            "idce": "IDCE",
+            "idf": "IDF",
+            "forme_juridique": "Forme juridique",
+            "capital_social": "Capital social",
+            "statut": "Statut",
+            "email": "Email",
+            "telephone": "Telephone",
+            "date_creation": "Date de creation",
+            "date_radiation": "Date de radiation",
+            "pays": "Pays",
+            "id_pays": "ID pays",
+            "type": "Type"
+        }
+    },
     "scd": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Saved",
+                1: "Active",
+                2: "Inactive"
+            },
+            "creation_status": {
+                1: "Created",
                 2: "Cancelled"
-            }
+            },
         },
         "columns": {
             "id": "ID",
@@ -182,9 +298,13 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Saved",
+                1: "Active",
+                2: "Inactive"
+            },
+            "creation_status": {
+                1: "Created",
                 2: "Cancelled"
-            }
+            },
         },
         "columns": {
             "id": "ID",
@@ -225,9 +345,13 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Saved",
+                1: "Active",
+                2: "Inactive"
+            },
+            "creation_status": {
+                1: "Created",
                 2: "Cancelled"
-            }
+            },
         },
         "columns": {
             "id": "ID",
@@ -270,9 +394,13 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Saved",
+                1: "Active",
+                2: "Inactive"
+            },
+            "creation_status": {
+                1: "Created",
                 2: "Cancelled"
-            }
+            },
         },
         "columns": {
             "id": "ID",
@@ -351,118 +479,6 @@ EXPORT_TABLE_INFO = {
             "is_final": "Is Final"
         }
     },
-    "poc": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
-        "values_mapping": {
-            "creation_status": {
-                1: "Created",
-                2: "Cancelled"
-            },
-            "statut_activite": {
-                1: "Active",
-                2: "Inactive"
-            },
-            "statut_agrement": {
-                1: "Active",
-                2: "Inactive"
-            },
-        },
-        "columns": {
-            "id": "ID",
-            "forme_juridique": "Forme Juridique",
-            "is_link": "Is Link",
-            "is_source": "Is Source",
-            "motif": "Motif",
-            "secteur_activite": "Secteur Activite",
-            "nature": "Nature",
-            "nom_agence": "Nom Agence",
-            "adresse": "Adresse",
-            "date_modification_adresse": "Date Modification Adresse",
-            "localite": "Localite",
-            "localite_code": "Localite Code",
-            "region": "Region",
-            "is_agrement": "Is Agrement",
-            "is_permanent": "Is Permanent",
-            "numero_agrement": "Numero Agrement",
-            "encaisse": "Encaisse",
-            "seuil_encaisse": "Seuil Encaisse",
-            "seuil_encaisse_depasse": "Seuil Encaisse Depasse",
-            "flag_retablissement_agrement": "Flag Retablissement Agrement",
-            "date_retablissement_agrement": "Date Retablissement Agrement",
-            "date_modification_encaisse": "Date Modification Encaisse",
-            "date_debut_activite": "Date Debut Activite",
-            "date_fin_activite": "Date Fin Activite",
-            "statut_activite": "Statut Activite",
-            "statut_agrement": "Statut Agrement",
-            "raison_sociale_pm": "Raison Sociale PM",
-            "creation_status": "Creation Status",
-            "categorie": "Categorie",
-            "scd_id": "SCD ID",
-            "esd_id": "ESD ID",
-            "ep_id": "EP ID",
-            "mandataire_id": "Mandataire ID",
-            "lieu_implantation_id": "Lieu Implantation ID",
-            "linked_poc_id": "Linked POC ID"
-        }
-    },
-    "pp": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
-        "values_mapping": {
-            "statut": {
-                True: "Created",
-                False: "Cancelled"
-            },
-        },
-        "columns": {
-            "id": "ID",
-            "nom": "Nom",
-            "prenom": "Prenom",
-            "nature_piece": "Nature Piece",
-            "numero_piece": "Numero Piece",
-            "nationalite": "Nationalite",
-            "adresse": "Adresse",
-            "email": "Email",
-            "phone": "Phone",
-            "nature_pp": "Nature PP",
-            "date_nomination": "Date Nomination",
-            "date_demission": "Date Demission",
-            "statut": "Statut",
-        }
-    },
-    "pm": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
-        "values_mapping": {
-            "statut": {
-                1: "Created",
-                2: "Cancelled"
-            },
-        },
-        "columns": {
-            "id": "ID",
-            "nature_pm": "Nature PM",
-            "numero_autorisation": "Numero autorisation",
-            "localite": "Localite",
-            "localite_code": "Localite code",
-            "region": "Region",
-            "centre": "Centre",
-            "ville": "Ville",
-            "registre_commerce": "Registre commerce",
-            "adresse": "Adresse",
-            "raison_sociale": "Raison sociale",
-            "idce": "IDCE",
-            "idf": "IDF",
-            "forme_juridique": "Forme juridique",
-            "capital_social": "Capital social",
-            "statut": "Statut",
-            "email": "Email",
-            "telephone": "Telephone",
-            "date_creation": "Date de creation",
-            "date_radiation": "Date de radiation",
-            "pays": "Pays",
-            "id_pays": "ID pays",
-            "type": "Type"
-        }
-    },
     "demande_change_modif_view": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
@@ -524,6 +540,14 @@ EXPORT_TABLE_INFO = {
     "declaration_pm": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
+            "statut": {
+                1: "Active",
+                2: "Inactive"
+            },
+            "decision": {
+                1: "Approved",
+                2: "Rejected"
+            }
         },
         "columns": {
             "id": "ID",
@@ -548,14 +572,6 @@ EXPORT_TABLE_INFO = {
     "declaration_fiscal": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
-            "statut": {
-                1: "Active",
-                2: "Inactive"
-            },
-            "decision": {
-                1: "Approved",
-                2: "Rejected"
-            }
         },
         "columns": {
             "id": "ID",
