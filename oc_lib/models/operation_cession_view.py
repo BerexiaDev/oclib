@@ -26,3 +26,8 @@ class OperationCessionView(db.Model, Repository):
     montant_global = db.Column(db.Float)
     total_devises = db.Column(db.Float)
     statut = db.Column(db.Integer)
+
+    cancellation_reason = db.Column(db.String(240))
+    cancelled_by = db.Column(db.String(240))
+    cancelled_by_id = db.Column(db.Integer)
+    date_cancellation = db.Column(db.DateTime)
