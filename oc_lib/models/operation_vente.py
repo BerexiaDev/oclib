@@ -9,5 +9,6 @@ class OperationVente(Operation):
     numero_autorisation = db.Column(db.String(240), nullable=True) # Si pp dispose d'autorisation 
 
     beneficiaire_final_pp_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pp.id'))
-
+    activation_complement_dotation_id = db.Column(db.Integer, db.ForeignKey('activation_complement_dotation.id'))
+    
     __mapper_args__ = {"polymorphic_identity": "vente"}

@@ -10,4 +10,5 @@ class ActivationComplementDotation(db.Model, Repository):
     date_activation = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     nature_document = db.Column(db.String(100), nullable = False)
     adminitration_emettrice = db.Column(db.String(100), nullable = False)
+    nom_document = db.Column(db.String(100), nullable = True)
     path_document = db.Column(db.String(100), nullable = True)

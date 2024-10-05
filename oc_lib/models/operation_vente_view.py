@@ -45,6 +45,7 @@ class OperationVenteView(db.Model, Repository):
     devise_labels = db.Column(db.String(1000))
     montant_global = db.Column(db.Float)
     support_mad = db.Column(JSONB, nullable=False)
+    activation_complement_dotation_id = db.Column(db.Integer, db.ForeignKey('activation_complement_dotation.id'))
     
     
     # operation_vente_lien_parente = db.Column(db.String(240)) # dans le cas de PP
