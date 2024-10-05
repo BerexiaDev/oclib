@@ -6,8 +6,8 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Saved",
-                2: "Cancelled"
+                1: "Enregistre",
+                2: "Annulee"
             }
         },
         "columns": {
@@ -53,8 +53,8 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Saved",
-                2: "Cancelled"
+                1: "Enregistre",
+                2: "Annulee"
             }
         },
         "columns": {
@@ -104,8 +104,8 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Saved",
-                2: "Cancelled"
+                1: "Enregistre",
+                2: "Annulee"
             }
         },
         "columns": {
@@ -135,17 +135,33 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "creation_status": {
-                1: "Created",
-                2: "Cancelled"
+                0: "En cours",
+                1: "Validated",
+                2: "En attente de validation"
             },
             "statut_activite": {
-                1: "Active",
-                2: "Inactive"
+                1: "EN ACTIVITE",
+                2: "ARRET PROVISOIRE",
+                3: "SUSPENSION_FERME",
+                4: "SUSPENSION_OUVERTE",
+                5: "RETIRE",
+                6: "ANNULE",
+                7: "EN_ARRET",
             },
             "statut_agrement": {
-                1: "Active",
-                2: "Inactive"
+                1: "ACTIF",
+                2: "INACTIF",
+                3: "NEANT"
             },
+            "categorie": {
+                1: "Point de change SCD",
+                2: "Agence Propre Agrée",
+                3: "Agence Propre Non Agrée",
+                4: "Agence Mandataire Agrée",
+                5: "Agence Mandataire Non Agrée",
+                6: "Esd",
+                7: "Banque"
+            }
         },
         "columns": {
             "id": "ID",
