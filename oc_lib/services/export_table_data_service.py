@@ -1,3 +1,6 @@
+import io
+import csv
+
 import pandas as pd
 
 from io import BytesIO
@@ -79,24 +82,45 @@ def _get_mapping_value(column_name, val, values_mapping):
 
 
 def _excel_export(table_name, columns, data, file_type):
-    # Initialize a new Excel workbook
-    output = BytesIO()
-    with pd.ExcelWriter(output, engine="openpyxl") as writer:
-        workbook = writer.book
-
-        # Set up the Data sheet
-        worksheet_data = workbook.create_sheet(table_name)
-        set_data_sheet(worksheet_data, columns, data)
-        auto_adjust_column_width(worksheet_data)
-
-    # Set the buffer position to the beginning
-    output.seek(0)
     date_str = datetime.now().strftime("%Y-%m-%d")
-    response = send_file(
-        output,
-        as_attachment=True,
-        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        attachment_filename=f'{table_name}_{date_str}.{file_type}',
-    )
+
+    if file_type == "csv":
+        output = io.StringIO()
+        writer = csv.writer(output)
+
+        # Write CSV header
+        writer.writerow(columns)
+        writer.writerows(data)
+
+        # Move to the beginning of the StringIO buffer
+        output.seek(0)
+
+        # Send the file as a CSV download
+        return send_file(
+            io.BytesIO(output.getvalue().encode('utf-8')),
+            mimetype='text/csv',
+            as_attachment=True,
+            attachment_filename=f'{table_name}_{date_str}.{file_type}',
+        )
+
+    else:
+        output = BytesIO()
+        # Initialize a new Excel workbook
+        with pd.ExcelWriter(output, engine="openpyxl") as writer:
+            workbook = writer.book
+
+            # Set up the Data sheet
+            worksheet_data = workbook.create_sheet(table_name)
+            set_data_sheet(worksheet_data, columns, data)
+            auto_adjust_column_width(worksheet_data)
+
+        # Set the buffer position to the beginning
+        output.seek(0)
+        response = send_file(
+            output,
+            as_attachment=True,
+            mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            attachment_filename=f'{table_name}_{date_str}.{file_type}',
+        )
 
     return response
