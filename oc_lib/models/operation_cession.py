@@ -24,6 +24,11 @@ class OperationCession(db.Model, Repository):
     latency_accepted = db.Column(db.Boolean, nullable=False)
     poc_date_depassement_seuil = db.Column(db.DateTime)
 
+    cancellation_reason = db.Column(db.String(240))
+    cancelled_by = db.Column(db.String(240))
+    cancelled_by_id = db.Column(db.Integer)
+    date_cancellation = db.Column(db.DateTime)
+
     # Relationships
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id')) 
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
