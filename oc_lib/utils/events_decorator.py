@@ -77,7 +77,7 @@ def register_event_listeners(cls):
         elif type(target) in children_of_pm:
              if (
                 target.date_debut
-                and target.date_debut
+                and target.date_depart
                 and datetime.strptime(str(target.date_depart), "%Y-%m-%d").date() <= target.date_debut
             ):
                 raise DateValidationError(
