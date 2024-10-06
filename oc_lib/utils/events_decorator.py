@@ -51,10 +51,11 @@ def register_event_listeners(cls):
         PocS = get_class_instance("oc_lib.models.poc_s", "PocS")
         PocP = get_class_instance("oc_lib.models.poc_p", "PocP")
         GerantPm = get_class_instance("oc_lib.models.gerant_pm", "GerantPm")
+        CogerantPm = get_class_instance("oc_lib.models.co_gerant_pm", "CogerantPm")
         AssociePm = get_class_instance("oc_lib.models.associe_pm", "AssociePm")
 
         children_of_pp = [Gerant, Cogerant, AssociePp, Prepose, Representant, Suppleant, PocS, PocP]
-        children_of_pm = [GerantPm, AssociePm]
+        children_of_pm = [GerantPm, AssociePm, CogerantPm]
 
         if type(target) == Poc:
             if (
