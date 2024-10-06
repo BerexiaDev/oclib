@@ -19,7 +19,7 @@ def catch_exceptions(func):
         except ValueError as e:
             logger.error(f"Validation error: {e}")
             return {"status": "error", "message": str(e)}, 400
-        except (NotNullViolation, DateValidationError) as e:
+        except (NotNullViolation, DateValidationError, InvalidDataError) as e:
             logger.error(f"Validation error: {e}")
             return {"status": "error", "message": str(e)}, 400
         except PermissionDeniedError as e:
