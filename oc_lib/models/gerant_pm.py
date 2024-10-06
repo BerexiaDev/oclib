@@ -5,6 +5,8 @@ from oc_lib.utils.events_decorator import register_event_listeners
 @register_event_listeners
 class GerantPm(Pm):
     id = db.Column(db.Integer, db.ForeignKey('pm.id'), primary_key=True)
+    date_debut = db.Column(db.Date)
+    date_depart = db.Column(db.Date)
 
     esd_id = db.Column(db.Integer, db.ForeignKey('esd.id'))
 
