@@ -9,3 +9,13 @@ class Roles(Enum):
     PREPOSE = "PREPOSE"
     AGENT_AUTORISATION = "AGENT_AUTORISATION"
     MANAGER_AUTORISATION = "MANAGER_AUTORISATION"
+
+    @classmethod
+    def get_oc_roles(cls):
+        return [cls.OC_MANAGER.value, cls.OC_ADMIN.value, cls.OC_AGENT.value, cls.OC_SUPER_ADMIN.value]
+
+
+class TypeOperation(Enum):
+    ACHAT = 1
+    VENTE = 2
+    CESSION = 3
