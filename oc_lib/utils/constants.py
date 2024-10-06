@@ -1,6 +1,5 @@
 from enum import Enum
 
-
 class Roles(Enum):
     OC_ADMIN = "OC_ADMIN"
     OC_SUPER_ADMIN = "OC_SUPER_ADMIN"
