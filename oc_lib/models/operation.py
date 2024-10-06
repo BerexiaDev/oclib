@@ -8,7 +8,7 @@ class Operation(db.Model, Repository):
     
     id = db.Column(db.Integer, primary_key=True)
 
-    numero_bordereau = db.Column(db.String(240))
+    numero_bordereau = db.Column(db.String(240), unique=True)
     date_bordereau = db.Column(db.DateTime, default=datetime.utcnow)
     montant_global = db.Column(db.Float, nullable=False, default = 0)
     support_mad = db.Column(JSONB, nullable=False)
@@ -24,7 +24,7 @@ class Operation(db.Model, Repository):
     operation_devises = db.relationship("OperationDevise", cascade="all, delete")
     attachments = db.relationship("OperationAttachment")
 
-    type_operation = db.Column(db.String(50), nullable=False)
+    type_operation = db.Column(db.Integer, nullable=False)
     beneficiaire_pp = db.relationship("BeneficiairePp", backref="operation")
     beneficiaire_pm = db.relationship("BeneficiairePm", backref="operation")
     nom = db.Column(db.String(120))
@@ -32,7 +32,12 @@ class Operation(db.Model, Repository):
     raison_sociale =db.Column(db.String(100))
     
     created_by = db.Column(db.String(240), nullable=False)
+    created_by_id = db.Column(db.Integer, nullable=False)
     devise_labels = db.Column(db.String(1000), nullable=False)
     date_creation = db.Column(db.DateTime, default=datetime.utcnow)
+    cancellation_reason = db.Column(db.String(240))
+    cancelled_by = db.Column(db.String(240))
+    cancelled_by_id = db.Column(db.Integer)
+    date_cancellation = db.Column(db.DateTime)
  
     __mapper_args__ = {"polymorphic_identity": "operation", "polymorphic_on": type_operation}
