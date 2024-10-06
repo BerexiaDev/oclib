@@ -6,8 +6,8 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Enregistre",
-                2: "Annulee"
+                1: "Enregistrée",
+                2: "Annulée"
             }
         },
         "columns": {
@@ -53,8 +53,8 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Enregistre",
-                2: "Annulee"
+                1: "Enregistrée",
+                2: "Annulée"
             }
         },
         "columns": {
@@ -104,8 +104,8 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Enregistre",
-                2: "Annulee"
+                1: "Enregistrée",
+                2: "Annulée"
             }
         },
         "columns": {

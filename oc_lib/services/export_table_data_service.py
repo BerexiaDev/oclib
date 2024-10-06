@@ -51,10 +51,10 @@ def _check_permission_and_return_values_mapping_and_column_name(table_name):
 
     if table_info:
         required_roles = table_info.get("required_roles", [])
-        if g.user.role in required_roles:
-            return table_info.get("values_mapping", {}), table_info.get("columns", {})
+        if g.user.role not in required_roles:
+            raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
 
-    raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
+        return table_info.get("values_mapping", {}), table_info.get("columns", {})
 
 
 def _generate_rows_data(table_columns, data, values_mapping):
