@@ -21,7 +21,7 @@ class OperationCession(db.Model, Repository):
     created_by_id = db.Column(db.Integer, nullable=False)
     devise_labels = db.Column(db.String(1000), nullable=False)    
 
-    latency_accepted = db.Column(db.Boolean, nullable=False)
+    is_late = db.Column(db.Boolean, nullable=False)
     poc_date_depassement_seuil = db.Column(db.DateTime)
 
     cancellation_reason = db.Column(db.String(240))
