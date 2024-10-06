@@ -9,6 +9,5 @@ class Solde(db.Model, Repository):
     montant = db.Column(db.Float, nullable=False, default=0)
     date = db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
 
-    beneficiaire_pp_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pp.id'))
-    beneficiaire_pm_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pm.id'))
+    beneficiaire_id = db.Column(db.Integer, db.ForeignKey('beneficiaire.id'))
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))    
