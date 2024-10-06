@@ -10,8 +10,8 @@ class OperationCession(db.Model, Repository):
     date_creation = db.Column(db.DateTime, default=datetime.utcnow)
 
     numero_bordereau = db.Column(db.String(240), unique=True)
-    code_banque = db.Column(db.String(240))
-    code_agence = db.Column(db.String(240))
+    code_banque = db.Column(db.Integer)
+    code_agence = db.Column(db.Integer)
     
     montant_global = db.Column(db.Float, nullable=False, default = 0) # Contre valeur des devises cedées en MAD
     total_devises = db.Column(db.Float, nullable=False, default = 0)  # Sum of all montant_mad from devises
