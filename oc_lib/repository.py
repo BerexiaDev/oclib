@@ -147,7 +147,7 @@ class Repository:
             except Exception as e:
                 db.session.rollback()
                 # return False
-                raise e
+                raise Exception(e)
             finally:
                 db.session.expire_all()
             db.session.refresh(self)

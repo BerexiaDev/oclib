@@ -66,14 +66,6 @@ def exception_handler(message=None, unique_violation_message=None):
             except AlreadyExistsError as e:
                 return {"status": "error", "message": e.message}, 409
             
-            except IntegrityError as e:
-                # Check if the original exception is UniqueViolation
-                if isinstance(e.orig, UniqueViolation):
-                    return {"status": "error", "message": unique_violation_message or "A record with these details already exists."}, 409
-                else:
-                    logger.error(f"IntegrityError in {func.__name__}: {e}")
-                    return {"status": "error", "message": "Integrity error occurred."}, 400
-            
             except Exception as e:
                 logger.error(f"Error in {func.__name__}: {e}")
                 return {
