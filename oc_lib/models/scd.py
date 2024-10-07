@@ -21,6 +21,7 @@ class Scd(Pm):
     )
     co_gerants = db.relationship("Cogerant", backref="scd")
     pocs = db.relationship("Poc", backref="scd")
+    inactif_pps = db.relationship("InactifPp", backref="scd")
 
     # One to one
     representant = db.relationship("Representant", backref="scd", uselist=False)
