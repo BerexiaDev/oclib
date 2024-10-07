@@ -10,6 +10,8 @@ class Statut(db.Model, Repository):
     state = db.Column(db.Integer, default=0)
     statut_activite = db.Column(db.Integer, nullable=False)
     statut_agrement = db.Column(db.Integer, nullable=False)
+    next_statut_activite = db.Column(db.Integer)
+    next_statut_agrement = db.Column(db.Integer)
     date_debut = db.Column(db.Date, nullable=False)
     date_fin = db.Column(db.Date)
     commentaire = db.Column(db.String)
