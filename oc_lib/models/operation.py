@@ -32,10 +32,6 @@ class Operation(db.Model, Repository):
     prenom = db.Column(db.String(120))
     raison_sociale =db.Column(db.String(100))
     
-    #For beneficiaire point de change
-    numero_agrement = db.Column(db.String(50))
-    nom_agence = db.Column(db.String(50))
-    
     created_by = db.Column(db.String(240), nullable=False)
     created_by_id = db.Column(db.Integer, nullable=False)
     devise_labels = db.Column(db.String(1000), nullable=False)
