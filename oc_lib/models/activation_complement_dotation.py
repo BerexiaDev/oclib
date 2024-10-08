@@ -8,6 +8,8 @@ class ActivationComplementDotation(db.Model, Repository):
     beneficiaire_pp_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pp.id'))
     beneficiaire_pm_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pm.id'))
     date_activation = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    montant = db.Column(db.Float, nullable = False)
+    montant_base = db.Column(db.Float, nullable = False)
     nature_document = db.Column(db.String(100), nullable = False)
     adminitration_emettrice = db.Column(db.String(100), nullable = False)
     nom_document = db.Column(db.String(500), nullable = True)
