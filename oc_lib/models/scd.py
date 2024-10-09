@@ -10,7 +10,6 @@ class Scd(Pm):
     poc_total = db.Column(db.Integer, default=0)
     poc_actif = db.Column(db.Integer, default=0)
     poc_inactif = db.Column(db.Integer, default=0)
-    creation_status = db.Column(db.Integer, default=0)
     part_total = db.Column(db.Integer, default=0)
     sequence_number = db.Column(db.Integer)
 

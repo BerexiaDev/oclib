@@ -5,7 +5,6 @@ from oc_lib.models.pm import Pm
 class Esd(Pm):
     id = db.Column(db.Integer, db.ForeignKey('pm.id'), primary_key=True)
     part_total = db.Column(db.Integer, default=0)  # Set default value to 0
-    creation_status = db.Column(db.Integer, default=0)
     sequence_number = db.Column(db.Integer)
     groupe = db.Column(db.Integer, nullable=True)
     motif = db.Column(db.Integer, nullable=True)
