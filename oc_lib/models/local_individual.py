@@ -5,10 +5,10 @@ from oc_lib.repository import Repository
 
 class LocalIndividual(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String)
-    last_name = db.Column(db.String)
-    passport = db.Column(db.Array(db.String))
-    cin = db.Column(db.Array(db.String))
+    first_name = db.Column(db.String(240))
+    last_name = db.Column(db.String(240))
+    passport = db.Column(db.ARRAY(db.String(50)))
+    cin = db.Column(db.ARRAY(db.String(50)))
     date_creation = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
