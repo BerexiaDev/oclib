@@ -2,12 +2,15 @@ from oc_lib.db import db
 from oc_lib.utils.exceptions import DateValidationError
 
 from sqlalchemy import desc, func
+from copy import deepcopy
 
 
 class Repository:
 
     def to_dict(self):
-        return self.__dict__
+        full_dict = deepcopy(self.__dict__)
+        full_dict.pop('_sa_instance_state')
+        return full_dict
 
     @classmethod
     def create(cls, **kwargs):
