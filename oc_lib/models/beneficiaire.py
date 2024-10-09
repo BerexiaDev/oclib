@@ -6,8 +6,6 @@ class Beneficiaire(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     qualite = db.Column(db.Integer, nullable=False)
     nationalite = db.Column( db.String(120))
-    date_solde = db.Column(db.Date, nullable=True) # To be removed when we handle solde properly
-    solde_disponible = db.Column(db.Float, nullable=False, default=0)
 
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id'))
     numero_agrement = db.Column(db.String(50)) # of the poc that did the changes
