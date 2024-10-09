@@ -1,10 +1,10 @@
 from functools import wraps
 import traceback
 from oc_lib.utils.exceptions import InvalidDataError, UnauthorizedError, NotFoundError, AlreadyExistsError, \
-    DateValidationError
+    DateValidationError, PermissionDeniedError
 from werkzeug.exceptions import NotFound
 from loguru import logger
-from psycopg2.errors import NotNullViolation, IntegrityError
+from psycopg2.errors import NotNullViolation, IntegrityError, UniqueViolation
 
 
 def catch_exceptions(func):
@@ -14,12 +14,17 @@ def catch_exceptions(func):
             return func(*args, **kwargs)
         except NotFound:
             return {"status": "error", "message": "Non trouvé"}, 404
+        except NotFoundError as e:
+            return {"status": "error", "message": str(e)}, 404
         except ValueError as e:
             logger.error(f"Validation error: {e}")
             return {"status": "error", "message": str(e)}, 400
-        except (NotNullViolation, DateValidationError) as e:
+        except (NotNullViolation, DateValidationError, InvalidDataError) as e:
             logger.error(f"Validation error: {e}")
             return {"status": "error", "message": str(e)}, 400
+        except PermissionDeniedError as e:
+            logger.error(f"Permission denied error: {e}")
+            return {"status": "error", "message": str(e)}, 403
         except Exception as e:
             args = getattr(e, "args")
 
@@ -42,24 +47,24 @@ def catch_exceptions(func):
 
     return wrapper
 
-def exception_handler(message=None):
+def exception_handler(message=None, unique_violation_message=None):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
-            
+
             except InvalidDataError as e:
-                return { "status":"error", "message":e.message }, 400
+                return {"status": "error", "message": e.message}, 400
             
             except UnauthorizedError as e:
-                return { "status":"error", "message":e.message }, 401
+                return {"status": "error", "message": e.message}, 401
             
             except NotFoundError as e:
-                return { "status":"error", "message":e.message }, 404
+                return {"status": "error", "message": e.message}, 404
             
             except AlreadyExistsError as e:
-                return { "status":"error", "message":e.message }, 409
+                return {"status": "error", "message": e.message}, 409
             
             except Exception as e:
                 logger.error(f"Error in {func.__name__}: {e}")

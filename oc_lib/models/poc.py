@@ -26,6 +26,7 @@ class Poc(db.Model, Repository):
     encaisse = db.Column(db.Float, nullable=False, default=0)
     seuil_encaisse = db.Column(db.Float)
     seuil_encaisse_depasse = db.Column(db.Boolean, default=False)  # Indicates if seuil_encaisse is exceeded
+    date_depassement_seuil = db.Column(db.DateTime)
     flag_retablissement_agrement = db.Column(db.Boolean)
     date_retablissement_agrement = db.Column(db.Date)
     date_modification_encaisse = db.Column(db.Date)

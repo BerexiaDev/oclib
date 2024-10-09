@@ -41,3 +41,7 @@ class OperationAchatView(db.Model, Repository):
     devise_labels = db.Column(db.String(1000))
     montant_global = db.Column(db.Float)
     support_mad = db.Column(JSONB, nullable=False)
+
+    cancellation_reason = db.Column(db.String(240))
+    cancelled_by = db.Column(db.String(240))
+    date_cancellation = db.Column(db.DateTime)

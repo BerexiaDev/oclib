@@ -10,4 +10,4 @@ class OperationVente(Operation):
 
     beneficiaire_final_pp_id = db.Column(db.Integer, db.ForeignKey('beneficiaire_pp.id'))
 
-    __mapper_args__ = {"polymorphic_identity": "vente"}
+    __mapper_args__ = {"polymorphic_identity": 2}
