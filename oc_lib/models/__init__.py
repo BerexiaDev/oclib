@@ -58,8 +58,6 @@ from oc_lib.models.sous_operation import SousOperation
 from oc_lib.models.statut import Statut
 from oc_lib.models.suppleant import Suppleant
 from oc_lib.models.user import User
-from oc_lib.models.inactif_pp import InactifPp
-from oc_lib.models.inactif_pm import InactifPm
 
 
 # Association tables
