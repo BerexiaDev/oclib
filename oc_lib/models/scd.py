@@ -21,11 +21,39 @@ class Scd(Pm):
     )
     co_gerants = db.relationship("Cogerant", backref="scd")
     pocs = db.relationship("Poc", backref="scd")
-    inactif_gerants = db.relationship("Gerant", backref="scd_inactifs_gerant", uselist=True)
+    inactif_gerants = db.relationship(
+        "Gerant",
+        backref="scd",
+        uselist=True,
+        foreign_keys="[Gerant.scd_inactifs_gerant]"
+    )
+    inactif_suppleants = db.relationship(
+        "Suppleant",
+        backref="scd",
+        uselist=True,
+        foreign_keys="[Suppleant.scd_inactifs_suppleant]"
+    )
+
+    inactif_representants = db.relationship(
+        "Representant",
+        backref="scd",
+        uselist=True,
+        foreign_keys="[Representant.scd_inactifs_representant]"
+    )
 
     # One to one
-    representant = db.relationship("Representant", backref="scd", uselist=False)
-    gerant_pp = db.relationship("Gerant", backref="scd", uselist=False)
+    representant = db.relationship(
+        "Representant",
+        backref="scd_representant_pp_ref", 
+        uselist=False,
+        foreign_keys="[Representant.scd_id]" 
+    )
+    gerant_pp = db.relationship(
+        "Gerant",
+        backref="scd_gerant_pp_ref",  
+        uselist=False,
+        foreign_keys="[Gerant.scd_id]" 
+    )
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))

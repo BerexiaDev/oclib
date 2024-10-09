@@ -19,10 +19,20 @@ class Ep(Pm):
     )
     poc_ss = db.relationship("PocS", backref="ep", foreign_keys="[PocS.ep_id]")
     pocs = db.relationship("Poc", backref="ep", foreign_keys="[Poc.ep_id]")
-    inactif_pps = db.relationship("InactifPp", backref="ep")
+    inactif_pocps = db.relationship(
+        "PocP",
+        backref="ep_pocp_pp_ref",
+        uselist=True,
+        foreign_keys="[PocP.scd_inactifs_pocp]"
+    )
 
     # One to one
-    poc_p = db.relationship("PocP", backref="ep", uselist=False)
+    poc_p = db.relationship(
+        "PocP",
+        backref="ep", 
+        uselist=False,
+        foreign_keys="[PocP.ep_id]" 
+    )
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
