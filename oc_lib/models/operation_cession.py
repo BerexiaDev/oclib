@@ -34,3 +34,4 @@ class OperationCession(db.Model, Repository):
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
     sous_operation = db.relationship("SousOperation")
     operation_devises = db.relationship("OperationDevise")
+    attachments = db.relationship("OperationAttachment")

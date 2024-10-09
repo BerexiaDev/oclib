@@ -8,9 +8,9 @@ class Beneficiaire(db.Model, Repository):
     nationalite = db.Column( db.String(120))
 
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id'))
-    numero_agrement = db.Column(db.String(50))
-    nom_agence = db.Column(db.String(50))
-    date_deactivation = db.Column(db.Date)
+    numero_agrement = db.Column(db.String(50)) # of the poc that did the changes
+    nom_agence = db.Column(db.String(50)) # of the poc that did the changes
+    date_deactivation = db.Column(db.DateTime) # date of deactivation
     statut = db.Column(db.Boolean, default=True, nullable=False)  # True active, False inactive
 
     # this will be the discriminator attribute

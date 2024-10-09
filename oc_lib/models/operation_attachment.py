@@ -12,3 +12,4 @@ class OperationAttachment(db.Model, Repository):
     date_creation = db.Column(db.Date, default=db.func.now())
 
     operation_id = db.Column(db.Integer, db.ForeignKey('operation.id'))
+    operation_cession_id = db.Column(db.Integer, db.ForeignKey('operation_cession.id'))
