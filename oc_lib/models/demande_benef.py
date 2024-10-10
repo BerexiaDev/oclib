@@ -12,8 +12,10 @@ class DemandeBenef(db.Model, Repository):
     validateurs = db.Column(db.ARRAY(db.String(240)))
     valide_oc = db.Column(db.Boolean, default=False)
     valide_manager_oc = db.Column(db.Boolean, default=False)
+    benef_pp_id = db.Column(db.Integer, db.ForeignKey("beneficiaire_pp.id"))
+    benef_pm_id = db.Column(db.Integer, db.ForeignKey("beneficiaire_pm.id"))
     avancement = db.Column(db.Boolean, default=False)
     date_creation = db.Column(db.Date, default=date.today, onupdate=date.today)
 
     change = db.relationship(
-        "Change", backref="demande", lazy=True, uselist=False)
+        "Change", backref="demande_benef", lazy=True, uselist=False)
