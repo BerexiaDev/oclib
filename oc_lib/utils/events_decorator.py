@@ -115,10 +115,12 @@ def change_statut_pp_listener(cls):
         children_of_pp = [Gerant, Cogerant, AssociePp, Prepose, Representant, Suppleant, PocS, PocP]
         try:
             if type(target) in children_of_pp:
-                if target.date_demission:
+                if target.date_demission and target.creation_status == 1:
                     target.statut = False
-                else:
+                elif not target.date_demission and target.creation_status == 1:
                     target.statut = True
+                else:
+                    target.statut = None
         except Exception as e:
             raise e
     return cls
