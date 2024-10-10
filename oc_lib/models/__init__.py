@@ -8,6 +8,7 @@ from oc_lib.models.autorisation_particuliere_pm import AutorisationParticuliereP
 from oc_lib.models.autorisation_particuliere_pp import AutorisationParticulierePp
 from oc_lib.models.autorisation_particuliere import AutorisationParticuliere
 from oc_lib.models.banque import Banque
+from oc_lib.models.beneficiaire_pc import BeneficiairePc
 from oc_lib.models.beneficiaire_pm import BeneficiairePm
 from oc_lib.models.beneficiaire_pp import BeneficiairePp
 from oc_lib.models.caisse_devise import CaisseDevise
@@ -58,6 +59,7 @@ from oc_lib.models.statut import Statut
 from oc_lib.models.suppleant import Suppleant
 from oc_lib.models.user import User
 from oc_lib.models.blacklist_beneficiaire import BlacklistBeneficiaire
+from oc_lib.models.local_individual import LocalIndividual
 
 
 # Association tables
