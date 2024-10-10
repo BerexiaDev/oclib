@@ -11,3 +11,5 @@ class Solde(db.Model, Repository):
 
     beneficiaire_id = db.Column(db.Integer, db.ForeignKey('beneficiaire.id'))
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))    
+    sous_operation = db.relationship("SousOperation")
+
