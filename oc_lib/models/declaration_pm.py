@@ -21,4 +21,3 @@ class DeclarationPm(db.Model, Repository):
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id", ondelete="SET NULL"))
     esd_id = db.Column(db.Integer, db.ForeignKey("esd.id", ondelete="SET NULL"))
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id", ondelete="SET NULL"))
-    mandataire_id = db.Column(db.Integer, db.ForeignKey("mandataire.id", ondelete="SET NULL"))
