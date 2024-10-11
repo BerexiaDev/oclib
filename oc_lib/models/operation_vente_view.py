@@ -40,7 +40,7 @@ class OperationVenteView(db.Model, Repository):
     beneficiaire_pm_centre = db.Column(db.Integer, nullable=False)
     beneficiaire_pm_raison_sociale = db.Column(db.String(100))
     beneficiaire_pm_idce = db.Column(db.String(50))
-    numero_autorisation = db.Column(db.String(240), nullable=True) # Si pp dispose d'autorisation 
+    numero_autorisation = db.Column(db.Integer, nullable=True) # Si pp dispose d'autorisation 
     statut = db.Column(db.Integer)
     devise_labels = db.Column(db.String(1000))
     montant_global = db.Column(db.Float)
@@ -50,12 +50,13 @@ class OperationVenteView(db.Model, Repository):
     beneficiaire_pc_numero_agrement = db.Column(db.String(50))
     beneficiaire_pc_nom_agence = db.Column(db.String(50))
     beneficiaire_pc_qualite = db.Column(db.Integer, nullable=False)
-
     
     cancellation_reason = db.Column(db.String(240))
     cancelled_by = db.Column(db.String(240))
     date_cancellation = db.Column(db.DateTime)
     
+    activation_complement_dotation_id = db.Column( db.Integer )
+
     # operation_vente_lien_parente = db.Column(db.String(240)) # dans le cas de PP
     # operation_vente_fonction_pp = db.Column(db.String(240)) # dans le cas de PM
     
