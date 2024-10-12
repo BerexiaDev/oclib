@@ -10,7 +10,6 @@ class Mandataire(Pm):
     ama_actif = db.Column(db.Integer, default=0)
     amna_actif = db.Column(db.Integer, default=0)
 
-    creation_status = db.Column(db.Integer, default=0)
     sequence_number = db.Column(db.Integer)
 
     # One to many

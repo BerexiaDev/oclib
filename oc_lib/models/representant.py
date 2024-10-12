@@ -11,6 +11,8 @@ class Representant(Pp):
     fonction = db.Column(db.Integer)
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
 
+    scd_inactifs_representant = db.Column(db.Integer, db.ForeignKey('scd.id'))
+
     # One to one
     suppleant = db.relationship(
         "Suppleant",

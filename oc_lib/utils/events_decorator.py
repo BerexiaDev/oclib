@@ -121,6 +121,7 @@ def change_statut_pp_listener(cls):
         Pp = get_class_instance("oc_lib.models.pp", "Pp")
 
         children_of_pp = [Gerant, Cogerant, AssociePp, Prepose, Representant, Suppleant, PocS, PocP]
+        
         try:
             if type(target) in children_of_pp:
                 if target.date_demission and target.creation_status == 1:
