@@ -10,8 +10,8 @@ class DeclarationPm(db.Model, Repository):
     created_by = db.Column(db.String(240), nullable=False, server_default="")
     validator = db.Column(db.String)
     date_demande = db.Column(db.Date)
-    statut = db.Column(db.Integer)
-    decision = db.Column(db.Integer)
+    statut = db.Column(db.Integer) # Avancement
+    decision = db.Column(db.Integer) # Statut (accepté/rejeté)
     
     
     # One to one
