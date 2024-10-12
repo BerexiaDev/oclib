@@ -2,7 +2,7 @@ from sqlalchemy import event
 from sqlalchemy.orm import Session
 
 from oc_lib.utils.exceptions import DateValidationError
-from oc_lib.utils.strings import get_class_instance
+from oc_lib.utils.strings import get_class_instance, date_now
 from datetime import datetime
 
 
@@ -68,6 +68,14 @@ def register_event_listeners(cls):
                 )
         elif type(target) in children_of_pp:
             if (
+                target.date_demission
+                and datetime.strptime(str(target.date_demission), "%Y-%m-%d").date() <= date_now()
+            ):
+                raise DateValidationError(
+                    "La date de démission doit être supérieure à la date d'aujourd'hui."
+                )
+                
+            elif (
                 target.date_nomination
                 and target.date_demission
                 and datetime.strptime(str(target.date_demission), "%Y-%m-%d").date() <= datetime.strptime(str(target.date_nomination), "%Y-%m-%d").date()
@@ -116,14 +124,12 @@ def change_statut_pp_listener(cls):
         
         try:
             if type(target) in children_of_pp:
-                ## REF check datedemission > today
-                if target.date_demission and target.creation_status == 1 :
+                if target.date_demission and target.creation_status == 1:
                     target.statut = False
-                elif not target.date_demission and target.creation_status == 1 :
+                elif not target.date_demission and target.creation_status == 1:
                     target.statut = True
                 else:
                     target.statut = None
-
         except Exception as e:
             raise e
     return cls
