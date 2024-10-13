@@ -15,6 +15,7 @@ class BlacklistBeneficiaire(db.Model, Repository):
     numero_piece = db.Column(db.String(50))
     fullname = db.Column(db.String(240))
     id_documents = db.Column(JSONB)
+    individual_type = db.Column(db.String(50))
 
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id'))
     operation_id = db.Column(db.Integer, db.ForeignKey('operation.id'))
