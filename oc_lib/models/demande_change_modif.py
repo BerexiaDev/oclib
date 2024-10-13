@@ -12,7 +12,7 @@ class DemandeChangeModifView(db.Model):
     demande_scd = db.Column(db.Integer)
     demande_ep = db.Column(db.Integer)
     demande_esd = db.Column(db.Integer)
-    demande_decision = db.Column(db.Boolean)
+    demande_decision = db.Column(db.Integer)
     modification_category_op = db.Column(db.Integer)
     modification_motif = db.Column(db.String)
     change_ecran = db.Column(db.String)
