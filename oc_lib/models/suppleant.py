@@ -9,4 +9,6 @@ class Suppleant(Pp):
     fonction = db.Column(db.Integer)
     representant_id = db.Column(db.Integer, db.ForeignKey("representant.id"))
 
+    scd_inactifs_suppleant = db.Column(db.Integer, db.ForeignKey('scd.id'))
+
     __mapper_args__ = {"polymorphic_identity": "suppleant"}

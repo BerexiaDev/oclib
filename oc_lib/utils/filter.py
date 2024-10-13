@@ -33,7 +33,8 @@ tables_name_map = {
     "seuil_encaisse":"seuil_encaisse",
     "aliases": "aliases",
     "identity_documents": "identity_documents",
-    "operation": "operation"
+    "operation": "operation",
+    "statut": "statuts"
 }
 
 

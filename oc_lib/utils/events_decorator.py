@@ -2,7 +2,8 @@ from sqlalchemy import event
 from sqlalchemy.orm import Session
 
 from oc_lib.utils.exceptions import DateValidationError
-from oc_lib.utils.strings import get_class_instance
+from oc_lib.utils.strings import get_class_instance, date_now
+from datetime import datetime
 
 
 # TODO: Bug front must send Date type not Datetime to avoid == bug
@@ -49,26 +50,47 @@ def register_event_listeners(cls):
         Suppleant = get_class_instance("oc_lib.models.suppleant", "Suppleant")
         PocS = get_class_instance("oc_lib.models.poc_s", "PocS")
         PocP = get_class_instance("oc_lib.models.poc_p", "PocP")
+        GerantPm = get_class_instance("oc_lib.models.gerant_pm", "GerantPm")
+        CogerantPm = get_class_instance("oc_lib.models.co_gerant_pm", "CogerantPm")
+        AssociePm = get_class_instance("oc_lib.models.associe_pm", "AssociePm")
 
         children_of_pp = [Gerant, Cogerant, AssociePp, Prepose, Representant, Suppleant, PocS, PocP]
+        children_of_pm = [GerantPm, AssociePm, CogerantPm]
 
         if type(target) == Poc:
             if (
                 target.date_debut_activite
                 and target.date_fin_activite
-                and target.date_fin_activite <= target.date_debut_activite
+                and datetime.strptime(str(target.date_fin_activite), "%Y-%m-%d").date() <= datetime.strptime(str(target.date_debut_activite), "%Y-%m-%d").date()
             ):
                 raise DateValidationError(
                     "La date de fin activité doit être supérieure à la date de début d'activité."
                 )
         elif type(target) in children_of_pp:
             if (
+                target.date_demission
+                and datetime.strptime(str(target.date_demission), "%Y-%m-%d").date() <= date_now()
+            ):
+                raise DateValidationError(
+                    "La date de démission doit être supérieure à la date d'aujourd'hui."
+                )
+                
+            elif (
                 target.date_nomination
                 and target.date_demission
-                and target.date_demission <= target.date_nomination
+                and datetime.strptime(str(target.date_demission), "%Y-%m-%d").date() <= datetime.strptime(str(target.date_nomination), "%Y-%m-%d").date()
             ):
                 raise DateValidationError(
                     "La date de démission doit être supérieure à la date de nomination."
+                )
+        elif type(target) in children_of_pm:
+             if (
+                target.date_debut
+                and target.date_depart
+                and datetime.strptime(str(target.date_depart), "%Y-%m-%d").date() <= datetime.strptime(str(target.date_debut), "%Y-%m-%d").date()
+            ):
+                raise DateValidationError(
+                    "La date de depart doit être supérieure à la date de debut."
                 )
         elif (
             type(target) == DeclarationFiscal
@@ -76,7 +98,7 @@ def register_event_listeners(cls):
             if (
                 target.date_debut
                 and target.date_fin
-                and target.date_fin <= target.date_debut
+                and datetime.strptime(str(target.date_fin), "%Y-%m-%d").date() <= datetime.strptime(str(target.date_debut), "%Y-%m-%d").date()
             ):
                 raise DateValidationError(
                     "La date de fin doit être supérieure à la date de début."
@@ -99,12 +121,15 @@ def change_statut_pp_listener(cls):
         Pp = get_class_instance("oc_lib.models.pp", "Pp")
 
         children_of_pp = [Gerant, Cogerant, AssociePp, Prepose, Representant, Suppleant, PocS, PocP]
+        
         try:
             if type(target) in children_of_pp:
-                if target.date_demission:
+                if target.date_demission and target.creation_status == 1:
                     target.statut = False
-                else:
+                elif not target.date_demission and target.creation_status == 1:
                     target.statut = True
+                else:
+                    target.statut = None
         except Exception as e:
             raise e
     return cls

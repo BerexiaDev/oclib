@@ -1,3 +1,4 @@
+from oc_lib.models.activation_complement_dotation import ActivationComplementDotation
 from oc_lib.models.affiliation_group import AffiliationGroup
 from oc_lib.models.agrement import Agrement
 from oc_lib.models.alias import Alias
@@ -15,6 +16,7 @@ from oc_lib.models.caisse_devise import CaisseDevise
 from oc_lib.models.cancel_deadline import CancelDeadline
 from oc_lib.models.change import Change
 from oc_lib.models.co_gerant import Cogerant
+from oc_lib.models.co_gerant_pm import CogerantPm
 from oc_lib.models.complement_dotation import ComplementDotation
 from oc_lib.models.declaration_docs import DeclarationDocs
 from oc_lib.models.declaration_fiscal import DeclarationFiscal
@@ -54,6 +56,7 @@ from oc_lib.models.reference import Reference
 from oc_lib.models.representant import Representant
 from oc_lib.models.scd import Scd
 from oc_lib.models.seuil_encaisse import SeuilEncaisse
+from oc_lib.models.solde import Solde
 from oc_lib.models.sous_operation import SousOperation
 from oc_lib.models.statut import Statut
 from oc_lib.models.suppleant import Suppleant
