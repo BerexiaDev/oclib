@@ -16,3 +16,5 @@ class Modification(db.Model, Repository):
     date_desactivation = db.Column(db.Date)
     demandes = db.relationship("Demande", back_populates="modification", lazy=True)
     pattern_id = db.Column(db.Integer, db.ForeignKey("pattern.id"))
+    pattern = db.relationship("Pattern")
+
