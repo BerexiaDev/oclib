@@ -1,6 +1,6 @@
 from oc_lib.db import db
 from oc_lib.repository import Repository
-from oc_lib.utils.strings import current_year, date_now
+from oc_lib.utils.strings import date_now
 
 class AutorisationParticuliere(db.Model, Repository):
     __tablename__ = "autorisation_particuliere"
