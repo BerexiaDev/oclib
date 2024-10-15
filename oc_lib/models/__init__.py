@@ -61,6 +61,7 @@ from oc_lib.models.sous_operation import SousOperation
 from oc_lib.models.statut import Statut
 from oc_lib.models.suppleant import Suppleant
 from oc_lib.models.user import User
+from oc_lib.models.blacklist_beneficiaire import BlacklistBeneficiaire
 from oc_lib.models.local_individual import LocalIndividual
 
 
