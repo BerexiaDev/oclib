@@ -6,7 +6,6 @@ from datetime import date
 class DemandeBenef(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.Boolean)
-    etape = db.Column(db.Integer)
     initiateur = db.Column(db.Integer)
     created_by = db.Column(db.String(240), nullable=False, server_default="")
     validateurs = db.Column(db.ARRAY(db.String(240)))
