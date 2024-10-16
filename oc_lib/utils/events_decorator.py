@@ -118,7 +118,6 @@ def change_statut_pp_listener(cls):
         Suppleant = get_class_instance("oc_lib.models.suppleant", "Suppleant")
         PocS = get_class_instance("oc_lib.models.poc_s", "PocS")
         PocP = get_class_instance("oc_lib.models.poc_p", "PocP")
-        Pp = get_class_instance("oc_lib.models.pp", "Pp")
 
         children_of_pp = [Gerant, Cogerant, AssociePp, Prepose, Representant, Suppleant, PocS, PocP]
         
@@ -127,6 +126,28 @@ def change_statut_pp_listener(cls):
                 if target.date_demission and target.creation_status == 1:
                     target.statut = False
                 elif not target.date_demission and target.creation_status == 1:
+                    target.statut = True
+                else:
+                    target.statut = None
+        except Exception as e:
+            raise e
+    return cls
+
+def change_statut_pm_listener(cls):
+    @event.listens_for(cls, "before_insert")
+    @event.listens_for(cls, "before_update")
+    def change_pp_statut(mapper, connection, target):
+        
+        GerantPm = get_class_instance("oc_lib.models.gerant_pm", "GerantPm")
+        CogerantPm = get_class_instance("oc_lib.models.co_gerant_pm", "CogerantPm")
+        AssociePm = get_class_instance("oc_lib.models.associe_pm", "AssociePm")
+        children_of_pm = [GerantPm, AssociePm, CogerantPm]
+        
+        try:
+            if type(target) in children_of_pm:
+                if target.date_depart and target.creation_status == 1:
+                    target.statut = False
+                elif not target.date_depart and target.creation_status == 1:
                     target.statut = True
                 else:
                     target.statut = None
