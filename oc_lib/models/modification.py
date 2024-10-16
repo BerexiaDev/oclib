@@ -17,4 +17,3 @@ class Modification(db.Model, Repository):
     demandes = db.relationship("Demande", back_populates="modification", lazy=True)
     pattern_id = db.Column(db.Integer, db.ForeignKey("pattern.id"))
     pattern = db.relationship('Pattern', back_populates='modification', lazy=True)
-
