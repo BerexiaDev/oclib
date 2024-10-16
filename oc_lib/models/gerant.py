@@ -11,7 +11,7 @@ class Gerant(Pp):
     scd_id = db.Column(db.Integer, db.ForeignKey('scd.id'))
     esd_id = db.Column(db.Integer, db.ForeignKey('esd.id'))
     
-    scd_inactifs_gerant = db.Column(db.Integer, db.ForeignKey('scd.id'))
+    # scd_inactifs_gerant = db.Column(db.Integer, db.ForeignKey('scd.id'))
     esd_inactifs_gerant = db.Column(db.Integer, db.ForeignKey('esd.id'))
 
     __mapper_args__ = {"polymorphic_identity": "gerant"}
