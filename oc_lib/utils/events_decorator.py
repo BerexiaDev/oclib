@@ -134,7 +134,6 @@ def change_statut_pp_listener(cls):
             raise e
     return cls
 
-## MOD
-# Add event to change PM status:
+## MOD Add event to change PM status:
     # CASE 2: Gerant PM, CO Gerant PM, Associe PM
     # if date debut kayna and date depart kayne and depart >= debut => set statut 2
