@@ -646,5 +646,253 @@ EXPORT_TABLE_INFO = {
             "created_on": "Created On",
             "modified_on": "Modified On"
         }
+    },
+    "modification": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "motif_status": {
+                True: "ACTIF",
+                False: "INACTIF"
+            },
+            "op_category": {
+                1: "Scd",
+                2: "Esd",
+                3: "Ep",
+                4: "Mandataire",
+                5: "Point de change",
+            }
+        },
+        "columns": {
+            "id": "ID",
+            "motif": "Motif",
+            "modifications": "Modifications",
+            "op_category": "Operation Category",
+            "motif_status": "Motif Status",
+            "is_add": "Is Add",
+            "date_activation": "Date Activation",
+            "date_modification": "Date Modification",
+            "date_desactivation": "Date Desactivation",
+            "pattern_id": "Pattern ID"
+        }
+    },
+    "affiliation_group": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "type_operator": {
+                1: "Scd",
+                2: "Esd",
+                3: "Ep",
+                4: "Mandataire",
+            }
+        },
+        "columns": {
+            "id": "ID",
+            "name": "Name",
+            "description": "Description",
+            "type_operator": "Type Operator"
+        }
+    },
+    "lieu_implantation": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+        },
+        "columns": {
+            "id": "ID",
+            "label": "Label",
+            "creation_date": "Creation Date",
+            "modification_date": "Modification Date"
+        }
+    },
+    "sous_operation": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "type_operation": {
+                1: "Achat",
+                2: "Vente",
+                3: "Cession"
+            },
+            "statut": {
+                True: "ACTIF",
+                False: "INACTIF"
+            }
+        },
+        "columns": {
+            "id": "ID",
+            "type_operation": "Type Operation",
+            "code": "Code",
+            "code_statistique": "Code Statistique",
+            "label": "Label",
+            "statut": "Statut",
+            "date_activation": "Date Activation",
+            "date_desactivation": "Date Desactivation",
+            "nature_beneficiaire": "Nature Beneficiaire",
+            "nature_beneficiaire_final": "Nature Beneficiaire Final",
+            "beneficiaire_final_required": "Beneficiaire Final Required",
+            "attachements": "Attachements",
+            "cancel_deadline_id": "Cancel Deadline ID"
+        }
+    },
+    "authorized_operation": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "categorie_pc": {
+                1: "Point de change SCD",
+                2: "Agence Propre Agrée",
+                3: "Agence Propre Non Agrée",
+                4: "Agence Mandataire Agrée",
+                5: "Agence Mandataire Non Agrée",
+                6: "Esd",
+                7: "Banque"
+            },
+            "type_operation": {
+                1: "Achat",
+                2: "Vente",
+                3: "Cession"
+            },
+            "statut": {
+                True: "ACTIF",
+                False: "INACTIF"
+            }
+        },
+        "columns": {
+            "id": "ID",
+            "categorie_pc": "Categorie PC",
+            "type_operation": "Type Operation",
+            "support_mad": "Support MAD",
+            "support_devise": "Support Devise",
+            "statut": "Statut",
+            "date_activation": "Date Activation",
+            "date_desactivation": "Date Desactivation",
+            "lieu_implantations_hash": "Lieu Implantations Hash",
+            "sous_operation_id": "Sous Operation ID"
+        }
+    },
+    "derogation_encaisse": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "statut": {
+                1: "En cours",
+                2: "Validée"
+            }
+        },
+        "columns": {
+            "id": "ID",
+            "type": "Type",
+            "numero_decision": "Numero Decision",
+            "date_decision": "Date Decision",
+            "created_by": "Created By",
+            "statut": "Statut",
+            "validated_by": "Validated By",
+            "scd_id": "SCD ID",
+            "encaisse": "Encaisse",
+        }
+    },
+    "derogation_operation": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "statut": {
+                1: "En cours",
+                2: "Validée"
+            },
+            "categorie_pc": {
+                1: "Point de change SCD",
+                2: "Agence Propre Agrée",
+                3: "Agence Propre Non Agrée",
+                4: "Agence Mandataire Agrée",
+                5: "Agence Mandataire Non Agrée",
+                6: "Esd",
+                7: "Banque"
+            },
+        },
+        "columns": {
+            "id": "ID",
+            "type": "Type",
+            "numero_decision": "Numero Decision",
+            "date_decision": "Date Decision",
+            "created_by": "Created By",
+            "statut": "Statut",
+            "validated_by": "Validated By",
+            "scd_id": "SCD ID",
+            "esd_id": "ESD ID",
+            "ep_id": "EP ID",
+            "mandataire_id": "Mandataire ID",
+            "categorie_pc": "Categorie PC",
+            "authorized_operation_id": "Authorized Operation ID",
+            "is_included": "Is Included"
+        }
+    },
+    "seuil_encaisse": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "categorie_pc": {
+                1: "Point de change SCD",
+                2: "Agence Propre Agrée",
+                3: "Agence Propre Non Agrée",
+                4: "Agence Mandataire Agrée",
+                5: "Agence Mandataire Non Agrée",
+                6: "Esd",
+                7: "Banque"
+            },
+        },
+        "columns": {
+            "id": "ID",
+            "annee": "Annee",
+            "categorie_pc": "Categorie PC",
+            "encaisse": "Encaisse",
+            "latence_jours": "Latence Jours",
+            "latence_heure": "Latence Heure",
+            "lieu_implantation_id": "Lieu Implantation ID"
+        }
+    },
+    "cancel_deadline": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+            "categorie_pc": {
+                1: "Point de change SCD",
+                2: "Agence Propre Agrée",
+                3: "Agence Propre Non Agrée",
+                4: "Agence Mandataire Agrée",
+                5: "Agence Mandataire Non Agrée",
+                6: "Esd",
+                7: "Banque"
+            },
+            "type_operation": {
+                1: "Achat",
+                2: "Vente",
+                3: "Cession"
+            }
+        },
+        "columns": {
+            "id": "ID",
+            "categorie_pc": "Categorie PC",
+            "type_operation": "Type Operation",
+            "delai": "Delai"
+        }
+    },
+    "plafond_dotation": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+        },
+        "columns": {
+            "id": "ID",
+            "annee": "Annee",
+            "plafond": "Plafond",
+            "sous_operation_id": "Sous Operation ID"
+        }
+    },
+    "complement_dotation": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "values_mapping": {
+        },
+        "columns": {
+            "id": "ID",
+            "annee": "Annee",
+            "label": "Label",
+            "nature_beneficiaire": "Nature Beneficiaire",
+            "base_calcul": "Base Calcul",
+            "percentage": "Percentage",
+            "plafond": "Plafond",
+            "sous_operation_id": "Sous Operation ID"
+        }
     }
 }
