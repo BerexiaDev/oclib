@@ -148,7 +148,7 @@ def change_statut_pp_pm_listener(cls):
                 elif not target.date_depart and target.creation_status == 1:
                     target.is_actif = True
                 else:
-                    target.statut = None
+                    target.is_actif = None
         except Exception as e:
             raise e
     return cls
