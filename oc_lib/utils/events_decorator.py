@@ -132,6 +132,8 @@ def change_statut_pp_pm_listener(cls):
         except Exception as e:
             raise e
     
+    @event.listens_for(cls, "before_insert")
+    @event.listens_for(cls, "before_update")
     def change_pm_statut(mapper, connection, target):
         
         GerantPm = get_class_instance("oc_lib.models.gerant_pm", "GerantPm")
@@ -142,9 +144,9 @@ def change_statut_pp_pm_listener(cls):
         try:
             if type(target) in children_of_pm:
                 if target.date_depart and target.creation_status == 1:
-                    target.statut = 2
+                    target.is_actif = False
                 elif not target.date_depart and target.creation_status == 1:
-                    target.statut = 1
+                    target.is_actif = True
                 else:
                     target.statut = None
         except Exception as e:
