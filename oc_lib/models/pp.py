@@ -1,6 +1,6 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
-from oc_lib.utils.events_decorator import register_event_listeners, change_statut_pp_listener
+from oc_lib.utils.events_decorator import register_event_listeners, change_statut_pp_pm_listener
 
 
 class Pp(db.Model, Repository):
@@ -25,4 +25,4 @@ class Pp(db.Model, Repository):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         register_event_listeners(type(self))
-        change_statut_pp_listener(type(self))
+        change_statut_pp_pm_listener(type(self))

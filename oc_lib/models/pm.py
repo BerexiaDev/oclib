@@ -1,6 +1,6 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
-
+from oc_lib.utils.events_decorator import register_event_listeners, change_statut_pp_pm_listener
 
 class Pm(db.Model, Repository):
     __tablename__ = "pm"
@@ -19,7 +19,7 @@ class Pm(db.Model, Repository):
     idf = db.Column(db.String(100))
     forme_juridique = db.Column(db.String(100))
     capital_social = db.Column(db.Numeric(precision=20, scale=3))
-    statut = db.Column(db.Integer)
+    statut = db.Column(db.Integer) #1 actif #2 inactif
     email = db.Column(db.String(50))
     telephone = db.Column(db.String(50))
     date_creation = db.Column(db.Date, nullable=True)
@@ -31,3 +31,8 @@ class Pm(db.Model, Repository):
     type = db.Column(db.String(50))
 
     __mapper_args__ = {"polymorphic_identity": "pm", "polymorphic_on": type}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        register_event_listeners(type(self))
+        change_statut_pp_pm_listener(type(self))
