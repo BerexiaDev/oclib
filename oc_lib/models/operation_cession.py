@@ -6,8 +6,8 @@ class OperationCession(db.Model, Repository):
     __tablename__ = 'operation_cession'
     
     id = db.Column(db.Integer, primary_key=True)
-    date_cession = db.Column(db.DateTime, nullable=False) # date bordereau
-    date_creation = db.Column(db.DateTime, default=datetime.utcnow)
+    date_cession = db.Column(db.DateTime(timezone=True), nullable=False) # date bordereau
+    date_creation = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
 
     numero_bordereau = db.Column(db.String(240), unique=True)
     code_banque = db.Column(db.Integer)
@@ -22,12 +22,12 @@ class OperationCession(db.Model, Repository):
     devise_labels = db.Column(db.String(1000), nullable=False)    
 
     is_late = db.Column(db.Boolean, nullable=False)
-    poc_date_depassement_seuil = db.Column(db.DateTime)
+    poc_date_depassement_seuil = db.Column(db.DateTime(timezone=True))
 
     cancellation_reason = db.Column(db.String(240))
     cancelled_by = db.Column(db.String(240))
     cancelled_by_id = db.Column(db.Integer)
-    date_cancellation = db.Column(db.DateTime)
+    date_cancellation = db.Column(db.DateTime(timezone=True))
 
     # Relationships
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id')) 
