@@ -458,18 +458,23 @@ EXPORT_TABLE_INFO = {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
             "statut": {
-                1: "Saved",
-                2: "Cancelled"
+                1: "ACTIF",
+                2: "INACTIF"
             }
         },
         "columns": {
             "id": "ID",
-            "registre_commerce": "Registre commerce",
-            "centre": "Centre",
-            "raison_sociale": "Raison sociale",
             "qualite": "Qualite",
-            "date_solde": "Date solde",
             "nationalite": "Nationalite",
+            "poc_id": "POC ID",
+            "numero_agrement": "Numero Agrement",
+            "nom_agence": "Nom Agence",
+            "date_deactivation": "Date Deactivation",
+            "statut": "Statut",
+            "type": "Type",
+            "registre_commerce": "Registre Commerce",
+            "centre": "Centre",
+            "raison_sociale": "Raison Sociale",
             "idce": "IDCE"
         }
     },
@@ -483,19 +488,31 @@ EXPORT_TABLE_INFO = {
         },
         "columns": {
             "id": "ID",
+            "qualite": "Qualite",
+            "nationalite": "Nationalite",
+            "poc_id": "POC ID",
+            "numero_agrement": "Numero Agrement",
+            "nom_agence": "Nom Agence",
+            "date_deactivation": "Date Deactivation",
+            "statut": "Statut",
+            "type": "Type",
             "nom": "Nom",
             "prenom": "Prenom",
             "nature_piece": "Nature Piece",
             "numero_piece": "Numero Piece",
-            "nationalite": "Nationalite",
-            "qualite": "Qualite",
-            "date_solde": "Date solde",
             "is_final": "Is Final"
         }
     },
     "demande_change_modif_view": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
+            "modification_category_op": {
+                1: "Scd",
+                2: "Esd",
+                3: "Ep",
+                4: "Mandataire",
+                5: "Point de change",
+            }
         },
         "columns": {
             "id": "ID",
@@ -508,10 +525,12 @@ EXPORT_TABLE_INFO = {
             "demande_mandataire_id": "Demande Mandataire ID",
             "demande_status": "Demande Status",
             "demande_poc_id": "Demande POC ID",
+            "modification_category_op": "Modification Category Op",
             "modification_motif": "Modification Motif",
-            "key": "Key",
-            "value": "Value",
-            "oldvalue": "Old Value"
+            "change_ecran": "Change Ecran",
+            "change_key": "Change Key",
+            "change_value": "Change Value",
+            "change_oldvalue": "Change Oldvalue",
         }
     },
     "declaration_poc": {
@@ -558,8 +577,8 @@ EXPORT_TABLE_INFO = {
                 2: "Inactive"
             },
             "decision": {
-                1: "Approved",
-                2: "Rejected"
+                1: "Accepté",
+                2: "Rejetée"
             }
         },
         "columns": {
