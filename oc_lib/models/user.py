@@ -14,5 +14,5 @@ class User(db.Model, Repository):
     esd_id = db.Column(db.Integer, db.ForeignKey('esd.id'))
     ep_id = db.Column(db.Integer, db.ForeignKey('ep.id'))
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id'))
-    created_on = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-    modified_on = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+    created_on = db.Column(db.DateTime(timezone=True), default=datetime.utcnow, nullable=False)
+    modified_on = db.Column(db.DateTime(timezone=True), default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
