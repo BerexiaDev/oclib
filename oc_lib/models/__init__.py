@@ -63,6 +63,7 @@ from oc_lib.models.suppleant import Suppleant
 from oc_lib.models.user import User
 from oc_lib.models.blacklist_beneficiaire import BlacklistBeneficiaire
 from oc_lib.models.local_individual import LocalIndividual
+from oc_lib.models.beneficiaire_pp_final import BeneficiairePpFinal
 
 
 # Association tables
