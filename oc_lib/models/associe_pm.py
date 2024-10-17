@@ -9,6 +9,7 @@ class AssociePm(Pm):
     part_capital = db.Column(db.Integer)
     date_debut = db.Column(db.Date)
     date_depart = db.Column(db.Date)
+    is_actif = db.Column(db.Boolean)
 
     # many to one
     scd_id = db.Column(db.Integer, db.ForeignKey('scd.id'))

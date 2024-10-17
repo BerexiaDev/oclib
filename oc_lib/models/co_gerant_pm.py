@@ -8,5 +8,6 @@ class CogerantPm(Pm):
     id = db.Column(db.Integer, db.ForeignKey("pm.id"), primary_key=True)
     date_debut = db.Column(db.Date)
     date_depart = db.Column(db.Date)
+    is_actif = db.Column(db.Boolean)
     esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"))
     __mapper_args__ = {"polymorphic_identity": "cogerantpm"}
