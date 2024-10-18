@@ -10,7 +10,7 @@ class BlacklistBeneficiaire(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     denomination = db.Column(db.String(120))
     numero_agrement = db.Column(db.String(50))
-    date_operation = db.Column(db.DateTime, nullable=False)
+    date_operation = db.Column(db.DateTime(timezone=True), nullable=False)
     nature_piece = db.Column(db.String(50))
     numero_piece = db.Column(db.String(50))
     fullname = db.Column(db.String(240))

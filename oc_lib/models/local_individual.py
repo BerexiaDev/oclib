@@ -9,7 +9,7 @@ class LocalIndividual(db.Model, Repository):
     last_name = db.Column(db.String(240), nullable=False)
     passport = db.Column(db.ARRAY(db.String(50)))
     cin = db.Column(db.ARRAY(db.String(50)))
-    date_creation = db.Column(db.DateTime, default=datetime.utcnow)
+    date_creation = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
 
     def __repr__(self):
         return f'<Local Individual {self.first_name} {self.last_name}>'
