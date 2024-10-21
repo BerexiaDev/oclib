@@ -16,4 +16,7 @@ class DemandeBenef(db.Model, Repository):
     benef_pm_id = db.Column(db.Integer, db.ForeignKey("beneficiaire_pm.id"))
     date_creation = db.Column(db.Date, default=date.today, onupdate=date.today)
 
+    beneficiaire_pp = db.relationship("BeneficiairePp")
+    beneficiaire_pm = db.relationship("BeneficiairePm")
+    
     change = db.relationship("Change", backref="demande_benef", lazy=True, uselist=False)
