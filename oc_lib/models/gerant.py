@@ -16,11 +16,11 @@ class Gerant(Pp):
     def validate_unique_active_gerant(scd_id):
         # Create an alias for Pp
         PpAlias = aliased(Pp)
-        
         # Query the database for any active gerant with the same scd_id
         active_gerant = db.session.query(Gerant).join(PpAlias).filter(
             Gerant.scd_id == scd_id,
-            PpAlias.statut == True
+            PpAlias.statut.in_([True, None]),
+            PpAlias.creation_status != 4
         ).first()
         
         if active_gerant:

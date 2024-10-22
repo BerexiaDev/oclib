@@ -1,6 +1,6 @@
 from oc_lib.db import db
 from oc_lib.models.pm import Pm
-
+from sqlalchemy import or_
 
 class Scd(Pm):
     id = db.Column(db.Integer, db.ForeignKey("pm.id"), primary_key=True, nullable=False)
@@ -36,7 +36,7 @@ class Scd(Pm):
 
     gerant_pp = db.relationship(
         "Gerant",
-        primaryjoin="and_(Gerant.scd_id==Scd.id, Gerant.statut==True)", 
+        primaryjoin="and_(Gerant.scd_id==Scd.id,Gerant.creation_status!=4 ,or_(Gerant.statut==True, Gerant.statut.is_(None)))", 
         uselist=False
     )
     # Many to one
