@@ -22,11 +22,15 @@ class Scd(Pm):
     pocs = db.relationship("Poc", backref="scd")
 
     # One to one
+    representants = db.relationship(
+        "Representant",
+        backref="scd",
+        uselist=True
+    )
     representant = db.relationship(
         "Representant",
-        backref="scd_representant_pp_ref", 
-        uselist=False,
-        foreign_keys="[Representant.scd_id]" 
+        primaryjoin="and_(Representant.scd_id==Scd.id,Representant.creation_status!=4 ,or_(Representant.statut==True, Representant.statut.is_(None)))", 
+        uselist=False, 
     )
     gerants = db.relationship(
         "Gerant", 
