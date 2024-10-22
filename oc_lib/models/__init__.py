@@ -64,10 +64,6 @@ from oc_lib.models.user import User
 from oc_lib.models.blacklist_beneficiaire import BlacklistBeneficiaire
 from oc_lib.models.local_individual import LocalIndividual
 from oc_lib.models.beneficiaire_pp_final import BeneficiairePpFinal
-from oc_lib.models.demande_benef import DemandeBenef
-from oc_lib.models.operation_achat_view import OperationAchatView
-from oc_lib.models.operation_vente_view import OperationVenteView
-from oc_lib.models.operation_cession_view import OperationCessionView
 
 
 # Association tables

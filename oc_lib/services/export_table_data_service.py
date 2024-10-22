@@ -56,8 +56,6 @@ def _check_permission_and_return_values_mapping_and_column_name(table_name):
 
         return table_info.get("values_mapping", {}), table_info.get("columns", {})
 
-    raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
-
 
 def _generate_rows_data(table_columns, data, values_mapping):
     rows_data = []
