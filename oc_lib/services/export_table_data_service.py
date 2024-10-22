@@ -2,6 +2,7 @@ import io
 import csv
 
 import pandas as pd
+import importlib
 
 from io import BytesIO
 from datetime import datetime
@@ -16,31 +17,42 @@ from oc_lib.utils.excel_utils import auto_adjust_column_width, set_data_sheet
 from oc_lib.utils.export_table_data_constants import EXPORT_TABLE_INFO
 
 
+def get_function_from_path(module_path, function_name):
+    module = importlib.import_module(module_path)
+    return getattr(module, function_name)
+
+
 @exception_handler(message="Erreur lors de l'exportation des données du tableau")
-def export_tables(args, filter_data):
+def export_tables(args, request_body):
     sort_key = args.get("sort_key")
     sort_order = args.get("sort_order")
     table_name = args.get("table_name")
     file_type = args.get("file_type")
+    column_ids = request_body.get("columns", [])
 
     model_class = find_class_by_table_name(table_name)
     if not model_class:
         raise ValueError(f"Table {table_name} not found")
 
     # Check if the user has permission to export the table
-    values_mapping, columns = _check_permission_and_return_values_mapping_and_column_name(table_name)
+    values_mapping, columns, func_path, func_name = _check_permission_and_return_values_mapping_and_column_name(table_name)
 
-    attrs = [getattr(model_class, column_name) for column_name in columns.keys()]
+    column_names = [columns.get(c) if type(columns.get(c)) == str else columns.get(c).get("title") for c in column_ids]
 
-    query = model_class.query.with_entities(*attrs)
-
-    query = build_filters(model_class, query, filter_data.get("filters", []), table_name)
-    query = query.order_by(asc(sort_key) if sort_order == 1 else desc(sort_key))
-
-    data = query.all()
-
-    column_ids = list(columns.keys())
-    column_names = list(columns.values())
+    func_ins = get_function_from_path(func_path, func_name)
+    query = func_ins(request_body, {"sort_key": sort_key, "sort_order": sort_order}, True)
+    all_result = query.all()
+    data = []
+    for d in all_result:
+        each_data = []
+        for col_id in column_ids:
+            col_info = columns.get(col_id)
+            if type(col_info) == str:
+                each_data.append(getattr(d, col_id))
+            else:
+                func = col_info.get("func")
+                each_data.append(func(d, col_id))
+        data.append(each_data)
 
     rows_data = _generate_rows_data(column_ids, data, values_mapping)
     return _excel_export(table_name, column_names, rows_data, file_type)
@@ -54,7 +66,7 @@ def _check_permission_and_return_values_mapping_and_column_name(table_name):
         if g.user.role not in required_roles:
             raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
 
-        return table_info.get("values_mapping", {}), table_info.get("columns", {})
+        return table_info.get("values_mapping", {}), table_info.get("columns", {}), table_info.get("func_path"), table_info.get("func_name")
 
     raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
 

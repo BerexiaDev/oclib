@@ -1,4 +1,5 @@
 from oc_lib.utils.constants import Roles
+from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_id, get_pp_field_name
 
 
 EXPORT_TABLE_INFO = {
@@ -203,26 +204,56 @@ EXPORT_TABLE_INFO = {
     },
     "pp": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.entity_service",
+        "func_name": "get_all_pps",
         "values_mapping": {
             "statut": {
                 True: "Active",
                 False: "Inactive"
             },
+            "type": {
+                "prepose": "Préposé",
+                "suppleant": "Suppléant",
+                "associe_pp": "Associé",
+                "representant": "Représentant",
+                "gerant": "Gérant"
+            }
         },
         "columns": {
             "id": "ID",
             "nom": "Nom",
-            "prenom": "Prenom",
-            "nature_piece": "Nature Piece",
-            "numero_piece": "Numero Piece",
-            "nationalite": "Nationalite",
+            "prenom": "Prénom",
+            "nature_piece": "Nature",
+            "numero_piece": "Numéro Pièce",
+            "nationalite": "Nationalité",
             "adresse": "Adresse",
             "email": "Email",
             "phone": "Phone",
             "nature_pp": "Nature PP",
-            "date_nomination": "Date Nomination",
-            "date_demission": "Date Demission",
+            "date_nomination": "Date nomination",
+            "date_demission": "Date démission",
             "statut": "Statut",
+            "type": "Type PP",
+            "": {
+                "title": "Désignation de l'agence",
+                "func": get_designation_agence
+            },
+            "poc_id": {
+                "title": "POC",
+                "func": get_poc_id
+            },
+            "raison_sociale": {
+                "title": "Raison Sociale",
+                "func": get_pp_field_name
+            },
+            "centre": {
+                "title": "Centre",
+                "func": get_pp_field_name
+            },
+            "registre_commerce": {
+                "title": "Registre de Commerce",
+                "func": get_pp_field_name
+            }
         }
     },
     "pm": {
