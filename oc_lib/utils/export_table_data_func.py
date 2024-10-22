@@ -1,3 +1,17 @@
+# ep functions
+def get_apa_actif(item, _):
+    return getattr(item, "apa_actif", 0) + getattr(item, "apna_actif", 0)
+
+
+def get_m_actif(item, _):
+    return getattr(item, "m_actif", 0)
+
+
+def get_ama_actif(item, _):
+    # item.ama_actif + item.amna_actif
+    return getattr(item, "ama_actif", 0) + getattr(item, "amna_actif", 0)
+
+
 # scd functions
 def get_affiliation_group(item, _):
     if getattr(item, "affiliation_group", None):

@@ -1,7 +1,7 @@
 from oc_lib.utils.constants import Roles
 from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_id, get_pp_field_name, \
     get_lieu_implantation_label, \
-    get_categorie_op, get_pm_id, get_affiliation_group
+    get_categorie_op, get_pm_id, get_affiliation_group, get_apa_actif, get_m_actif, get_ama_actif
 
 EXPORT_TABLE_INFO = {
     "operation_achat_view": {
@@ -481,27 +481,41 @@ EXPORT_TABLE_INFO = {
     },
     "ep": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.ep_service",
+        "func_name": "get_all_eps",
         "values_mapping": {
             "statut": {
                 1: "Active",
-                2: "Inactive"
+                2: "Radiée"
+            },
+            "type": {
+                "associe_pm": "Associé",
+                "ep": "Ep",
+                "esd": "Esd",
+                "gerantpm": "Gérant",
+                "mandataire": "Mandataire",
+                "scd": "Scd"
             },
             "creation_status": {
-                1: "Created",
-                2: "Cancelled"
+                0: "En cours de saisi",
+                1: "Validé",
+                2: "En cours de validation",
+                3: "En cours de demande modification",
+                4: "Rejeté"
             },
         },
         "columns": {
             "id": "ID",
-            "apa_actif": "APA Actif",
-            "apna_actif": "APNA Actif",
-            "m_actif": "M Actif",
-            "ama_actif": "AMA Actif",
-            "amna_actif": "AMNA Actif",
-            "creation_status": "Creation Status",
+            "groupe": "Groupe",
+            "motif": "Motif",
+            "poc_total": "PC total",
+            "poc_actif": "PC actifs",
+            "poc_inactif": "PC inactifs",
+            "creation_status": "Statut de création",
+            "part_total": "Part Total",
             "sequence_number": "Sequence Number",
             "affiliation_group_id": "Affiliation Group ID",
-            "affiliation_group_motif": "Affiliation Group Motif",
+            "affiliation_group_motif": "Groupe Motif",
             "numero_decision_autorisation": "Numero Decision Autorisation",
             "date_decision_autorisation": "Date Decision Autorisation",
 
@@ -512,24 +526,43 @@ EXPORT_TABLE_INFO = {
             "region": "Region",
             "centre": "Centre",
             "ville": "Ville",
-            "registre_commerce": "Registre commerce",
+            "registre_commerce": "RC",
             "adresse": "Adresse",
-            "raison_sociale": "Raison sociale",
-            "idce": "IDCE",
-            "idf": "IDF",
-            "forme_juridique": "Forme juridique",
+            "raison_sociale": "RS",
+            "idce": "ICE",
+            "idf": "IF",
+            "forme_juridique": "Forme Juridique",
             "capital_social": "Capital social",
             "statut": "Statut",
-            "email": "Email",
+            "email": "E-Mail",
             "telephone": "Telephone",
-            "date_creation": "Date de creation",
+            "date_creation": "Statut de création",
             "date_radiation": "Date de radiation",
             "pays": "Pays",
-            "id_pays": "ID pays"
+            "id_pays": "ID pays",
+
+            "apa_actif": {
+                "title": "Agences propres",
+                "func": get_apa_actif
+            },
+            "m_actif": {
+                "title": "Mandataires",
+                "func": get_m_actif
+            },
+            "ama_actif": {
+                "title": "Agences mandataires",
+                "func": get_ama_actif
+            },
+            "affiliation_group": {
+                "title": "Groupe",
+                "func": get_affiliation_group
+            }
         }
     },
     "mandataire": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.mandataire_service",
+        "func_name": "get_all_eps",
         "values_mapping": {
             "statut": {
                 1: "Active",
