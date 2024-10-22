@@ -1,5 +1,6 @@
 from oc_lib.utils.constants import Roles
-from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_id, get_pp_field_name
+from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_id, get_pp_field_name, get_lieu_implantation_label,\
+get_categorie_op, get_pm_id
 
 
 EXPORT_TABLE_INFO = {
@@ -134,72 +135,106 @@ EXPORT_TABLE_INFO = {
     },
     "poc": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.entity_service",
+        "func_name": "get_all_pocs",
         "values_mapping": {
             "creation_status": {
-                0: "En cours",
-                1: "Validated",
-                2: "En attente de validation"
+                0: "En cours de saisi",
+                1: "Validé",
+                2: "En cours de validation",
+                3: "En cours de demande modification",
+                4: "Rejeté"
             },
             "statut_activite": {
-                1: "EN ACTIVITE",
-                2: "ARRET PROVISOIRE",
-                3: "SUSPENSION_FERME",
-                4: "SUSPENSION_OUVERTE",
-                5: "RETIRE",
-                6: "ANNULE",
-                7: "EN_ARRET",
+                1: 'En activité',
+                2: 'Arrêt Provisoire',
+                3: 'Suspension ferme',
+                4: 'Suspension ouverte',
+                5: 'Retiré',
+                6: 'Annulé',
+                7: 'En arrêt'
             },
             "statut_agrement": {
-                1: "ACTIF",
-                2: "INACTIF",
-                3: "NEANT"
+                1: 'Actif',
+                2: 'Inactif',
+                3: 'Néant'
             },
             "categorie": {
-                1: "Point de change SCD",
-                2: "Agence Propre Agrée",
-                3: "Agence Propre Non Agrée",
-                4: "Agence Mandataire Agrée",
-                5: "Agence Mandataire Non Agrée",
-                6: "Esd",
+                1: "Société de change de devises",
+                2: "Etablissement de paiement – Agences propres agréée",
+                3: "Etablissement de paiement – Agences propres non-agréée",
+                4: "Etablissement de paiement – Agences Mandataires agréée",
+                5: "Etablissement de paiement – Agences Mandataires non-agréée",
+                6: "Etablissement Sous Délégataire",
                 7: "Banque"
+            },
+            "is_agrement": {
+                True: "Oui",
+                False: "Non"
+            },
+            "is_permanent": {
+                True: "Oui",
+                False: "Non"
+            },
+            "is_link": {
+                True: "Oui",
+                False: "Non"
             }
         },
         "columns": {
             "id": "ID",
             "forme_juridique": "Forme Juridique",
-            "is_link": "Is Link",
+            "is_link": "Avec liaison",
             "is_source": "Is Source",
-            "motif": "Motif",
+            "motif": "Motif liaison",
             "secteur_activite": "Secteur Activite",
             "nature": "Nature",
-            "nom_agence": "Nom Agence",
+            "nom_agence": "Désignation de l'agence",
             "adresse": "Adresse",
             "date_modification_adresse": "Date Modification Adresse",
-            "localite": "Localite",
+            "localite": "Localité",
             "localite_code": "Localite Code",
-            "region": "Region",
-            "is_agrement": "Is Agrement",
-            "is_permanent": "Is Permanent",
-            "numero_agrement": "Numero Agrement",
+            "region": "Région",
+            "is_agrement": "Agrément",
+            "is_permanent": "Permanent",
+            "numero_agrement": "№ Agrément",
             "encaisse": "Encaisse",
             "seuil_encaisse": "Seuil Encaisse",
             "seuil_encaisse_depasse": "Seuil Encaisse Depasse",
             "flag_retablissement_agrement": "Flag Retablissement Agrement",
             "date_retablissement_agrement": "Date Retablissement Agrement",
             "date_modification_encaisse": "Date Modification Encaisse",
-            "date_debut_activite": "Date Debut Activite",
-            "date_fin_activite": "Date Fin Activite",
-            "statut_activite": "Statut Activite",
-            "statut_agrement": "Statut Agrement",
+            "date_debut_activite": "Date début activité",
+            "date_fin_activite": "Date fin activité",
+            "statut_activite": "Statut activité",
+            "statut_agrement": "Statut agrément",
             "raison_sociale_pm": "Raison Sociale PM",
-            "creation_status": "Creation Status",
-            "categorie": "Categorie",
+            "creation_status": "Statut de création",
+            "categorie": "Catégorie Point de change",
             "scd_id": "SCD ID",
             "esd_id": "ESD ID",
             "ep_id": "EP ID",
             "mandataire_id": "Mandataire ID",
             "lieu_implantation_id": "Lieu Implantation ID",
-            "linked_poc_id": "Linked POC ID"
+            "linked_poc_id": "ID PC liaison",
+            # "numero_delivrance": {
+            #     "title": "N° délivrance décision premier agrément"
+            # },
+            # "date_delivrance": {
+            #     "title": "Date délivrance décision premier agrément"
+            # },
+            "lieu_implantation": {
+                "title": "Lieu Implantation",
+                "func": get_lieu_implantation_label
+            },
+            "categorie_op": {
+                "title": "Catégorie Opérateur",
+                "func": get_categorie_op
+            },
+            "pm_id": {
+                "title": "PM",
+                "func": get_pm_id
+            }
         }
     },
     "pp": {
@@ -234,7 +269,7 @@ EXPORT_TABLE_INFO = {
             "date_demission": "Date démission",
             "statut": "Statut",
             "type": "Type PP",
-            "designation_de_lagence": {
+            "nom_agence": {
                 "title": "Désignation de l'agence",
                 "func": get_designation_agence
             },
@@ -258,6 +293,8 @@ EXPORT_TABLE_INFO = {
     },
     "pm": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.entity_service",
+        "func_name": "get_all_pms",
         "values_mapping": {
             "statut": {
                 1: "Active",
@@ -273,16 +310,16 @@ EXPORT_TABLE_INFO = {
             "region": "Region",
             "centre": "Centre",
             "ville": "Ville",
-            "registre_commerce": "Registre commerce",
+            "registre_commerce": "RC",
             "adresse": "Adresse",
-            "raison_sociale": "Raison sociale",
-            "idce": "IDCE",
-            "idf": "IDF",
-            "forme_juridique": "Forme juridique",
+            "raison_sociale": "RS",
+            "idce": "ICE",
+            "idf": "IF",
+            "forme_juridique": "Forme Juridique",
             "capital_social": "Capital social",
             "statut": "Statut",
-            "email": "Email",
-            "telephone": "Telephone",
+            "email": "E-Mail",
+            "telephone": "Téléphone",
             "date_creation": "Date de creation",
             "date_radiation": "Date de radiation",
             "pays": "Pays",

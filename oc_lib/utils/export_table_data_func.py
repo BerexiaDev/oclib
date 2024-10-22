@@ -1,9 +1,34 @@
-def get_poc_id(item, field_name):
+# pm functions
+def get_lieu_implantation_label(item, _):
+    if getattr(item, "lieu_implantation", None):
+        return item.lieu_implantation.label
+    return ""
+
+
+def get_categorie_op(item, _):
+    if getattr(item, "scd_id", None):
+        return "Scd"
+    elif getattr(item, "esd_id", None):
+        return "Esd"
+    elif getattr(item, "mandataire_id", None):
+        return "Mandataire"
+    elif getattr(item, "ep_id", None):
+        return "Ep"
+    else:
+        return "N/A"
+
+
+def get_pm_id(item, _):
+    return getattr(item, "mandataire_id", "") or getattr(item, "scd_id", "") or getattr(item, "esd_id", "") or getattr(item, "ep_id", "")
+
+
+# pp functions
+def get_poc_id(item, _):
     return getattr(item, "poc_id", "")
 
 
-def get_designation_agence(item):
-    if getattr(item, "poc_id", None):
+def get_designation_agence(item, _):
+    if getattr(item, "poc", None):
         return getattr(item.poc, "nom_agence", "")
     return ""
 

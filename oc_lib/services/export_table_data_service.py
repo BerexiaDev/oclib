@@ -10,7 +10,7 @@ from flask import send_file, g
 from sqlalchemy import asc, desc
 
 from oc_lib.utils.decorators import exception_handler
-from oc_lib.utils.exceptions import UnauthorizedError
+from oc_lib.utils.exceptions import UnauthorizedError, InvalidDataError
 from oc_lib.utils.filter import build_filters
 from oc_lib.utils.db_utils import find_class_by_table_name
 from oc_lib.utils.excel_utils import auto_adjust_column_width, set_data_sheet
@@ -32,12 +32,13 @@ def export_tables(args, request_body):
 
     model_class = find_class_by_table_name(table_name)
     if not model_class:
-        raise ValueError(f"Table {table_name} not found")
+        raise InvalidDataError(f"Table {table_name} not found")
 
     # Check if the user has permission to export the table
-    values_mapping, columns, func_path, func_name = _check_permission_and_return_values_mapping_and_column_name(table_name)
+    values_mapping, columns, func_path, func_name = _check_permission_and_return_values_mapping_and_column_name(
+        table_name)
 
-    column_names = [columns.get(c) if type(columns.get(c)) == str else columns.get(c).get("title") for c in column_ids]
+    column_names = _validate_column_ids(column_ids, columns)
 
     func_ins = get_function_from_path(func_path, func_name)
     query = func_ins(request_body, {"sort_key": sort_key, "sort_order": sort_order}, True)
@@ -58,6 +59,21 @@ def export_tables(args, request_body):
     return _excel_export(table_name, column_names, rows_data, file_type)
 
 
+def _validate_column_ids(column_ids, columns):
+    column_names = []
+    error_column_ids = []
+    for c in column_ids:
+        if c not in columns:
+            error_column_ids.append(c)
+        else:
+            column_name = columns.get(c) if type(columns.get(c)) == str else columns.get(c).get("title")
+            column_names.append(column_name)
+
+    if error_column_ids:
+        raise InvalidDataError(f"Les colonnes suivantes n'existent pas: {', '.join(error_column_ids)}")
+    return column_names
+
+
 def _check_permission_and_return_values_mapping_and_column_name(table_name):
     table_info = EXPORT_TABLE_INFO.get(table_name)
 
@@ -66,7 +82,8 @@ def _check_permission_and_return_values_mapping_and_column_name(table_name):
         if g.user.role not in required_roles:
             raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
 
-        return table_info.get("values_mapping", {}), table_info.get("columns", {}), table_info.get("func_path"), table_info.get("func_name")
+        return table_info.get("values_mapping", {}), table_info.get("columns", {}), table_info.get(
+            "func_path"), table_info.get("func_name")
 
     raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
 
