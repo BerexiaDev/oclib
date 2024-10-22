@@ -298,8 +298,16 @@ EXPORT_TABLE_INFO = {
         "values_mapping": {
             "statut": {
                 1: "Active",
-                2: "Inactive"
+                2: "Radiée"
             },
+            "type": {
+                "associe_pm": "Associé",
+                "ep": "Ep",
+                "esd": "Esd",
+                "gerantpm": "Gérant",
+                "mandataire": "Mandataire",
+                "scd": "Scd"
+            }
         },
         "columns": {
             "id": "ID",
