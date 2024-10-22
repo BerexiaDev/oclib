@@ -1,3 +1,10 @@
+# scd functions
+def get_affiliation_group(item, _):
+    if getattr(item, "affiliation_group", None):
+        return item.affiliation_group.name
+    return ""
+
+
 # pm functions
 def get_lieu_implantation_label(item, _):
     if getattr(item, "lieu_implantation", None):

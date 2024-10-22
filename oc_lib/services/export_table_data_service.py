@@ -41,8 +41,7 @@ def export_tables(args, request_body):
     column_names = _validate_column_ids(column_ids, columns)
 
     func_ins = get_function_from_path(func_path, func_name)
-    query = func_ins(request_body, {"sort_key": sort_key, "sort_order": sort_order}, True)
-    all_result = query.all()
+    all_result = func_ins(request_body, {"sort_key": sort_key, "sort_order": sort_order}, True)
     data = []
     for d in all_result:
         each_data = []
