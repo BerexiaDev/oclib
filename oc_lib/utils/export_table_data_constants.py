@@ -234,7 +234,7 @@ EXPORT_TABLE_INFO = {
             "date_demission": "Date démission",
             "statut": "Statut",
             "type": "Type PP",
-            "": {
+            "designation_de_lagence": {
                 "title": "Désignation de l'agence",
                 "func": get_designation_agence
             },
