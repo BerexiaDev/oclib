@@ -23,8 +23,6 @@ class Gerant(Pp):
             PpAlias.creation_status != 4
         ).first()
         
-        if not active_gerant:
-            return True
         if active_gerant:
 
             raise ValueError(
