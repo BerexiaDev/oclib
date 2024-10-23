@@ -13,12 +13,12 @@ class Gerant(Pp):
     esd_id = db.Column(db.Integer, db.ForeignKey('esd.id'))
     
     @staticmethod
-    def validate_unique_active_gerant(current_gerant, scd_id, esd_id):
+    def validate_unique_active_gerant(current_gerant):
         # Create an alias for Pp
         PpAlias = aliased(Pp)
         # Query the database for any active gerant with the same scd_id
         active_gerant = db.session.query(Gerant).join(PpAlias).filter(
-            Gerant.scd_id == scd_id if scd_id else Gerant.esd_id == esd_id,
+            Gerant.scd_id == current_gerant.scd_id if current_gerant.scd_id else Gerant.esd_id == current_gerant.esd_id,
             PpAlias.statut.in_([True, None]),
             PpAlias.creation_status != 4
         ).first()
@@ -34,7 +34,7 @@ class Gerant(Pp):
     def save(self, *args, **kwargs):
         try:
             # Before saving, validate the uniqueness of the active gerant
-            self.validate_unique_active_gerant(self, self.scd_id, self.esd_id)
+            self.validate_unique_active_gerant(self)
             super(Gerant, self).save(*args, **kwargs)
         except ValueError as e:
             print(f"Error while saving Gerant: {str(e)}")

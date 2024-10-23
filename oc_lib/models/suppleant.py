@@ -12,12 +12,12 @@ class Suppleant(Pp):
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
 
     @staticmethod
-    def validate_unique_active_suppleant(current_suppleant, scd_id):
+    def validate_unique_active_suppleant(current_suppleant):
         # Create an alias for Pp
         PpAlias = aliased(Pp)
         # Query the database for any active gerant with the same scd_id
         active_suppleant = db.session.query(Suppleant).join(PpAlias).filter(
-            Suppleant.scd_id == scd_id,
+            Suppleant.scd_id == current_suppleant.scd_id,
             PpAlias.statut.in_([True, None]),
             PpAlias.creation_status != 4
         ).first()
@@ -34,7 +34,7 @@ class Suppleant(Pp):
     def save(self, *args, **kwargs):
         try:
             # Before saving, validate the uniqueness of the active gerant
-            self.validate_unique_active_suppleant(self, self.scd_id)
+            self.validate_unique_active_suppleant(self)
             super(Suppleant, self).save(*args, **kwargs)
         except ValueError as e:
             print(f"Error while saving suppleant: {str(e)}")
