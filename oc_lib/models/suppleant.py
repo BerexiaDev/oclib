@@ -24,7 +24,6 @@ class Suppleant(Pp):
         
         if not active_suppleant:
             return True
-        
         if active_suppleant != current_suppleant:
 
             raise ValueError(

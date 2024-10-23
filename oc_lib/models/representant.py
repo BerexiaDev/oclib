@@ -28,7 +28,7 @@ class Representant(Pp):
             PpAlias.statut.in_([True, None]),
             PpAlias.creation_status != 4
         ).first()
-        
+
         if not active_representant:
             return True
         if active_representant != current_representant:

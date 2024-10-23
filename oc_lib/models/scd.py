@@ -32,16 +32,6 @@ class Scd(Pm):
         primaryjoin="and_(Representant.scd_id==Scd.id,Representant.creation_status!=4 ,or_(Representant.statut==True, Representant.statut.is_(None)))", 
         uselist=False, 
     )
-    suppleants = db.relationship(
-        "Suppleant",
-        backref="scd",
-        uselist=True
-    )
-    suppleant = db.relationship(
-        "Suppleant",
-        primaryjoin="and_(Suppleant.scd_id==Scd.id,Suppleant.creation_status!=4 ,or_(Suppleant.statut==True, Suppleant.statut.is_(None)))", 
-        uselist=False, 
-    )
     gerants = db.relationship(
         "Gerant", 
         backref="scd",

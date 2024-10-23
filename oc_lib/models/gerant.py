@@ -25,7 +25,7 @@ class Gerant(Pp):
         
         if not active_gerant:
             return True
-        if active_gerant != current_gerant:
+        if active_gerant:
 
             raise ValueError(
                 "There is already an active gerant for this Operator."
