@@ -34,6 +34,8 @@ class Poc(db.Model, Repository):
     date_fin_activite = db.Column(db.Date)
     statut_activite = db.Column(db.Integer)
     statut_agrement = db.Column(db.Integer)
+    date_delivrance = db.Column(db.Date)
+    numero_delivrance = db.Column(db.String(50))
     raison_sociale_pm = db.Column(db.String(100), nullable=False)
 
     creation_status = db.Column(db.Integer, default=0)
