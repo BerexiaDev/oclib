@@ -28,7 +28,7 @@ class Gerant(Pp):
         if active_gerant:
 
             raise ValueError(
-                "There is already an active gerant for this Operator."
+                "Il existe déjà un gerant actif pour cet opérateur."
             )
 
     def save(self, *args, **kwargs):

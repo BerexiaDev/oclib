@@ -27,7 +27,7 @@ class Suppleant(Pp):
         if active_suppleant != current_suppleant:
 
             raise ValueError(
-                "There is already an active suppleant for this Operator."
+                "Il existe déjà un suppleant actif pour cet opérateur."
             )
 
     def save(self, *args, **kwargs):

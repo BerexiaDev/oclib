@@ -34,7 +34,7 @@ class Representant(Pp):
         if active_representant != current_representant:
 
             raise ValueError(
-                "There is already an active representant for this Operator."
+                "Il existe déjà un representant actif pour cet opérateur."
             )
 
     def save(self, *args, **kwargs):
