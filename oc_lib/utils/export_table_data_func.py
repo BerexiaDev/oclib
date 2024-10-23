@@ -1,3 +1,12 @@
+# operation achat view
+def get_pm(item, _):
+    return f'{getattr(item, "pm_raison_sociale", "")}, {getattr(item, "pm_registre_commerce", "")}, {getattr(item, "pm_registre_commerce", "")}'
+
+
+def get_poc(item, _):
+    return f'{getattr(item, "poc_id", "")}, {getattr(item, "poc_denomination", "")}, {getattr(item, "poc_numero_agrement", "")}'
+
+
 # ep functions
 def get_apa_actif(item, _):
     return getattr(item, "apa_actif", 0) + getattr(item, "apna_actif", 0)

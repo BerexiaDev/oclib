@@ -1,11 +1,13 @@
 from oc_lib.utils.constants import Roles
 from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_id, get_pp_field_name, \
-    get_lieu_implantation_label, \
-    get_categorie_op, get_pm_id, get_affiliation_group, get_apa_actif, get_m_actif, get_ama_actif
+    get_lieu_implantation_label, get_categorie_op, get_pm_id, get_affiliation_group, get_apa_actif, \
+    get_m_actif, get_ama_actif, get_pm, get_poc
 
 EXPORT_TABLE_INFO = {
     "operation_achat_view": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.operation_achat_service",
+        "func_name": "get_all_operation_achats",
         "values_mapping": {
             "statut": {
                 1: "Enregistrée",
@@ -15,40 +17,56 @@ EXPORT_TABLE_INFO = {
         "columns": {
             "id": "ID",
             "op_id": "Operation ID",
-            "numero_bordereau": "Numero de bordereau",
-            "date_bordereau": "Date de bordereau",
-            "categorie_op": "Categorie op",
+            "numero_bordereau": "Numéro Bordereau",
+            "date_bordereau": "Date & Heure Bordereau",
+
+            "categorie_op": "Catégorie PM",
             "pm_raison_sociale": "Pm raison sociale",
             "pm_registre_commerce": "Pm registre commerce",
             "pm_centre": "Pm centre",
-            "categorie_pc": "Categorie pc",
+            "categorie_pc": "Catégorie Point de change",
             "poc_id": "Poc ID",
             "poc_denomination": "Poc denomination",
             "poc_numero_agrement": "Poc numero agrement",
             "poc_adresse": "Poc adresse",
-            "created_by": "Created by",
-            "date_creation": "Date de creation",
-            "beneficiaire_pm_qualite": "Beneficiaire pm qualite",
-            "beneficiaire_pp_qualite": "Beneficiaire pp qualite",
+            "created_by": "Préposé",
+            "date_creation": "Date de création",
+            "beneficiaire_pm_qualite": "Qualité Client/Bénéficiaire PM",
+            "beneficiaire_pp_qualite": "Qualité Client/Bénéficiaire PP",
             "sous_operation_label": "Sous operation label",
             "sous_operation_id": "Sous operation ID",
             "beneficiaire_pp_id": "Beneficiaire pp ID",
-            "beneficiaire_pp_nature_piece": "Beneficiaire pp nature piece",
-            "beneficiaire_pp_numero_piece": "Beneficiaire pp numero piece",
-            "beneficiaire_pp_nom": "Beneficiaire pp nom",
-            "beneficiaire_pp_prenom": "Beneficiaire pp prenom",
-            "beneficiaire_pp_nationalite": "Beneficiaire pp nationalite",
+            "beneficiaire_pp_nature_piece": "Nature de la pièce d’identité",
+            "beneficiaire_pp_numero_piece": "Numéro de la pièce d’identité",
+            "beneficiaire_pp_nom": "Nom bénéficiaire",
+            "beneficiaire_pp_prenom": "Prénom bénéficiaire",
+            "beneficiaire_pp_nationalite": "Nationalité du client/Pays d’accueil",
             "beneficiaire_pm_id": "Beneficiaire pm ID",
-            "beneficiaire_pm_registre_commerce": "Beneficiaire pm registre commerce",
-            "beneficiaire_pm_centre": "Beneficiaire pm centre",
-            "beneficiaire_pm_raison_sociale": "Beneficiaire pm raison sociale",
-            "beneficiaire_pm_idce": "Beneficiaire pm IDCE",
-            "numero_declaration": "Numero de declaration",
-            "date_declaration": "Date de declaration",
+            "beneficiaire_pm_registre_commerce": "RC",
+            "beneficiaire_pm_centre": "Centre",
+            "beneficiaire_pm_raison_sociale": "Raison sociale",
+            "beneficiaire_pm_idce": "ICE",
+            "numero_declaration": "Numéro de la déclaration d’importation des devises billets de banque",
+            "date_declaration": "Date de la déclaration d’importation des devises billets de banque",
             "statut": "Statut",
-            "devise_labels": "Devise labels",
-            "montant_global": "Montant global",
-            "support_mad": "Support MAD"
+            "devise_labels": "Devises",
+            "montant_global": "Montant Global en MAD",
+            "support_mad": "Support MAD",
+
+            "beneficiaire_pc_qualite": "Qualité Client/Bénéficiaire PC",
+            "beneficiaire_pc_numero_agrement": "Numéro agrément",
+            "beneficiaire_pc_nom_agence": "Dénomination PC",
+            "cancelled_by": "Annulé par",
+            "date_cancellation": "Date d'annulation",
+            "cancellation_reason": "Motif d'annulation",
+            "pm": {
+                "title": "Opérateur",
+                "func": get_pm
+            },
+            "poc": {
+                "title": "Point de change",
+                "func": get_poc
+            }
         }
     },
     "operation_vente_view": {
