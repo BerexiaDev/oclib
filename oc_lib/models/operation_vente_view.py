@@ -8,7 +8,7 @@ class OperationVenteView(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     op_id = db.Column(db.Integer)
     numero_bordereau = db.Column(db.String(240))
-    date_bordereau = db.Column(db.DateTime)
+    date_bordereau = db.Column(db.DateTime(timezone=True))
     categorie_op = db.Column(db.String(50))
     pm_registre_commerce = db.Column(db.Integer)
     pm_raison_sociale =  db.Column(db.String(100))
@@ -19,7 +19,7 @@ class OperationVenteView(db.Model, Repository):
     poc_numero_agrement = db.Column(db.String(50))
     poc_adresse = db.Column(db.String(50), nullable=False)
     created_by = db.Column(db.String(240))
-    date_creation = db.Column(db.DateTime)
+    date_creation = db.Column(db.DateTime(timezone=True))
     beneficiaire_pm_qualite =  db.Column(db.Integer, nullable=False)
     beneficiaire_pp_qualite = db.Column(db.Integer, nullable=False)
     beneficiaire_final_pp_qualite = db.Column(db.Integer, nullable=False)
@@ -53,7 +53,7 @@ class OperationVenteView(db.Model, Repository):
     
     cancellation_reason = db.Column(db.String(240))
     cancelled_by = db.Column(db.String(240))
-    date_cancellation = db.Column(db.DateTime)
+    date_cancellation = db.Column(db.DateTime(timezone=True))
     
     activation_complement_dotation_id = db.Column( db.Integer )
 
