@@ -740,7 +740,6 @@ EXPORT_TABLE_INFO = {
             "nationalite": "Nationalité",
             "statut": "Statut",
 
-
             "poc_id": "POC ID",
             "numero_agrement": "Numero Agrement",
             "nom_agence": "Nom Agence",
@@ -813,6 +812,8 @@ EXPORT_TABLE_INFO = {
     },
     "demande_change_modif_view": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.modification_history_service",
+        "func_name": "get_all_history_info",
         "values_mapping": {
             "modification_category_op": {
                 1: "Scd",
@@ -823,10 +824,15 @@ EXPORT_TABLE_INFO = {
             }
         },
         "columns": {
+            "demande_date_creation": "Date modification",
+            "modification_motif": "Motif",
+            "change_key": "Attribut",
+            "change_oldvalue": "Ancienne valeur",
+            "change_value": "Nouvelle valeur",  # Valeur attribut
+            "demande_initiateur": "Modifié par",
+
             "id": "ID",
             "demande_id": "Demande ID",
-            "demande_initiateur": "Demande Initiateur",
-            "demande_date_creation": "Demande Date Creation",
             "demande_scd": "Demande SCD",
             "demande_ep": "Demande EP",
             "demande_esd": "Demande ESD",
@@ -834,11 +840,7 @@ EXPORT_TABLE_INFO = {
             "demande_status": "Demande Status",
             "demande_poc_id": "Demande POC ID",
             "modification_category_op": "Modification Category Op",
-            "modification_motif": "Modification Motif",
             "change_ecran": "Change Ecran",
-            "change_key": "Change Key",
-            "change_value": "Change Value",
-            "change_oldvalue": "Change Oldvalue",
         }
     },
     "declaration_poc": {
