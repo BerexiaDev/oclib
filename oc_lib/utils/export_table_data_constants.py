@@ -1,7 +1,7 @@
 from oc_lib.utils.constants import Roles
 from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_id, get_pp_field_name, \
     get_lieu_implantation_label, get_categorie_op, get_pm_id, get_affiliation_group, get_apa_actif, \
-    get_m_actif, get_ama_actif, get_pm, get_poc
+    get_m_actif, get_ama_actif, get_pm, get_poc, get_motif, get_valide_manager_oc
 
 CATEGORIE_PC_MAPPING = {
     1: "Société de change de devises",
@@ -762,6 +762,53 @@ EXPORT_TABLE_INFO = {
             "numero_agrement": "Numéro agrément",
             "nom_agence": "Dénomination PC",
             "poc_id": "ID Point de change",
+        }
+    },
+    "demande": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.demande_service",
+        "func_name": "get_all_demandes",
+        "is_multiple_sort": True,
+        "values_mapping": {
+            "statut": {
+                0: "En cours de saisi",
+                1: "Traité",
+                2: "En cours de validation",
+            },
+            "qualite": QUALITE_BENEFICIAIRE_MAPPING,
+            "decision": {
+                1: "Rejetée",
+                2: "Acceptée"
+            },
+            "initiateur": {
+                1: "OP",
+                2: "OC"
+            }
+        },
+        "columns": {
+            "id": "ID",
+            "initiateur": "Initiateur",
+            "created_by": "Agent Traitant",
+            "validateurs": "Validateurs",
+            "date_creation": "Date de la demande",
+            "motif_oc_manager_decision": "Motif de rejet",
+            "denomination_pm": "Dénomination PM",
+            "centre_pm": "Centre PM",
+            "rc_pm": "RC PM",
+            "type_pm": "Type PM",
+            "numero_decision_autorisation": "Numéro décision modification",
+            "date_decision_autorisation": "Date décision modification",
+            "statut": "Avancement",
+
+            "motif": {
+                "title": "Motif de modification",
+                "func": get_motif,
+            },
+            "valide_manager_oc": {
+                "title": "Etape",
+                "func": get_valide_manager_oc
+            },
+            "decision": "Décision finale",
         }
     },
     "demande_change_modif_view": {

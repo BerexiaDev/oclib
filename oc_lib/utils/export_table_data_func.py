@@ -1,3 +1,17 @@
+# demande
+def get_motif(item, _):
+    if getattr(item, "modification", None):
+        return getattr(item.modification, "motif", "")
+    return ""
+
+def get_valide_manager_oc(item, _):
+    if getattr(item, "valide_manager_oc", False) or (not getattr(item, "valide_manager_oc", False) and getattr(item, "motif_oc_manager_decision", None) is not None):
+        return "Fini"
+    elif getattr(item, "valide_oc", False) or (not getattr(item, "valide_oc", False) and getattr(item, "motif_oc_decision", None) is not None):
+        return "Valider fiche OP - niv2"
+    else:
+        return "Valider fiche OP - niv1"
+
 # operation achat view
 def get_pm(item, _):
     return f'{getattr(item, "pm_raison_sociale", "")}, {getattr(item, "pm_registre_commerce", "")}, {getattr(item, "pm_centre", "")}'

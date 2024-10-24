@@ -35,12 +35,18 @@ def export_tables(args, request_body):
         raise InvalidDataError(f"Table {table_name} not found")
 
     # Check if the user has permission to export the table
-    values_mapping, columns, func_path, func_name = _check_permission_and_return_values_mapping_and_column_name(
+    values_mapping, columns, func_path, func_name, is_multiple_sort = _check_permission_and_return_values_mapping_and_column_name(
         table_name)
 
     column_names = _validate_column_ids(column_ids, columns)
 
     func_ins = get_function_from_path(func_path, func_name)
+    if is_multiple_sort:
+        if not isinstance(sort_key, list):
+            sort_key = [sort_key]
+        if not isinstance(sort_order, list):
+            sort_order = [sort_order]
+
     all_result = func_ins({"sort_key": sort_key, "sort_order": sort_order}, request_body, True)
     data = []
     for d in all_result:
@@ -82,7 +88,7 @@ def _check_permission_and_return_values_mapping_and_column_name(table_name):
             raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
 
         return table_info.get("values_mapping", {}), table_info.get("columns", {}), table_info.get(
-            "func_path"), table_info.get("func_name")
+            "func_path"), table_info.get("func_name"), table_info.get("is_multiple_sort", False)
 
     raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
 
@@ -102,7 +108,7 @@ def _generate_rows_data(table_columns, data, values_mapping):
 def _get_mapping_value(column_name, val, values_mapping):
     mapping_value = values_mapping.get(column_name)
     if mapping_value:
-        return mapping_value.get(val, val)
+        return mapping_value.get(val, "")
     elif isinstance(val, datetime):
         return val.strftime("%Y-%m-%d %H:%M:%S")
     elif val is None:
