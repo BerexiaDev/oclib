@@ -1,3 +1,26 @@
+QUALITE_BENEFICIAIRE_MAPPING = {
+    1: "PM-Résident",
+    2: "PM-Non Résident",
+    3: "PP-Etranger non Résident",
+    4: "PP-Etranger Résident",
+    5: "PP-Marocain Résident",
+    6: "PP-Marocain non résident (MRE)",
+    7: "Point de change",
+}
+
+
+# complement dotation
+def get_nature_beneficiaire(item, _):
+    if getattr(item, "nature_beneficiaire", None):
+        return ", ".join([QUALITE_BENEFICIAIRE_MAPPING.get(n, "") for n in getattr(item, "nature_beneficiaire", [])])
+    return ""
+
+
+# seuil encaisse
+def get_latence_jours(item, _):
+    return f"J + {item.latence_jours} à {item.latence_heure}h"
+
+
 # derogration enciase
 def get_operator_pm(item, _):
     if getattr(item, "scd", None):

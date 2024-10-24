@@ -3,7 +3,8 @@ from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_
     get_lieu_implantation_label, get_categorie_op, get_pm_id, get_affiliation_group, get_apa_actif, \
     get_m_actif, get_ama_actif, get_pm, get_poc, get_motif, get_valide_manager_oc, get_numero_agrement, \
     get_pattern, get_sous_operation_code, get_sous_operation_code_statistique, get_sous_operation_label, \
-    get_sous_operation_lieu_implantations, get_payment_method, get_operator_pm, get_derogration_op
+    get_sous_operation_lieu_implantations, get_payment_method, get_operator_pm, get_derogration_op, \
+    get_latence_jours, QUALITE_BENEFICIAIRE_MAPPING, get_nature_beneficiaire
 
 CATEGORIE_PC_MAPPING = {
     1: "Société de change de devises",
@@ -13,16 +14,6 @@ CATEGORIE_PC_MAPPING = {
     5: "Etablissement de paiement – Agences Mandataires non-agréée",
     6: "Etablissement Sous Délégataire",
     7: "Banque"
-}
-
-QUALITE_BENEFICIAIRE_MAPPING = {
-    1: "PM-Résident",
-    2: "PM-Non Résident",
-    3: "PP-Etranger non Résident",
-    4: "PP-Etranger Résident",
-    5: "PP-Marocain Résident",
-    6: "PP-Marocain non résident (MRE)",
-    7: "Point de change",
 }
 
 EXPORT_TABLE_INFO = {
@@ -1245,25 +1236,26 @@ EXPORT_TABLE_INFO = {
     },
     "seuil_encaisse": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.seuil_encaisse_service",
+        "func_name": "get_all_seuil_encaisses",
         "values_mapping": {
-            "categorie_pc": {
-                1: "Point de change SCD",
-                2: "Agence Propre Agrée",
-                3: "Agence Propre Non Agrée",
-                4: "Agence Mandataire Agrée",
-                5: "Agence Mandataire Non Agrée",
-                6: "Esd",
-                7: "Banque"
-            },
+            "categorie_pc": CATEGORIE_PC_MAPPING,
         },
         "columns": {
             "id": "ID",
-            "annee": "Annee",
-            "categorie_pc": "Categorie PC",
+            "annee": "Année",
+            "categorie_pc": "Catégorie du Point de change",
+            "lieu_implantation": {
+                "title": "Lieu d’implantation",
+                "func": get_lieu_implantation_label
+            },
             "encaisse": "Encaisse",
-            "latence_jours": "Latence Jours",
+            "latence_jours": {
+                "title": "Temps de latence",
+                "func": get_latence_jours
+            },
+
             "latence_heure": "Latence Heure",
-            "lieu_implantation_id": "Lieu Implantation ID"
         }
     },
     "cancel_deadline": {
@@ -1293,27 +1285,46 @@ EXPORT_TABLE_INFO = {
     },
     "plafond_dotation": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.plafond_dotation_service",
+        "func_name": "get_all_plafond_dotations",
         "values_mapping": {
         },
         "columns": {
             "id": "ID",
-            "annee": "Annee",
-            "plafond": "Plafond",
-            "sous_operation_id": "Sous Operation ID"
+            "annee": "Année",
+            "sous_operation_id": {
+                "title": "Sous-opération",
+                "func": get_sous_operation_label
+            },
+            "plafond": "Plafond de dotation",
         }
     },
     "complement_dotation": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.complement_dotation_service",
+        "func_name": "get_all_complement_dotations",
         "values_mapping": {
         },
         "columns": {
             "id": "ID",
-            "annee": "Annee",
-            "label": "Label",
-            "nature_beneficiaire": "Nature Beneficiaire",
-            "base_calcul": "Base Calcul",
-            "percentage": "Percentage",
-            "plafond": "Plafond",
+            "annee": "Année",
+            "label": "Libellé du complément",
+            "sous_operation_code": {
+                "title": "ID sous-opération",
+                "func": get_sous_operation_code
+            },
+            "sous_operation_label": {
+                "title": "Sous-opération",
+                "func": get_sous_operation_label
+            },
+            "nature_beneficiaire": {
+                "title": "Bénéficiaire",
+                "func": get_nature_beneficiaire
+            },
+            "base_calcul": "Base de calcul",
+            "percentage": "%",
+            "plafond": "Plafond de la dotation",
+
             "sous_operation_id": "Sous Operation ID"
         }
     }
