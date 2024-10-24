@@ -29,7 +29,7 @@ def validate_unique_active(class_name, current_instance):
     # Add specific conditions based on the instance type
     if is_gerant:
         extra_conditions = class_name.scd_id == current_instance.scd_id if current_instance.scd_id else class_name.esd_id == current_instance.esd_id
-    else:
+    elif is_rep_sup:
         extra_conditions = class_name.scd_id == current_instance.scd_id
         
     filters.append(extra_conditions)
