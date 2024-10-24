@@ -1,3 +1,29 @@
+# derogration enciase
+def get_operator_pm(item, _):
+    if getattr(item, "scd", None):
+        return f"{item.scd.registre_commerce}/{item.scd.raison_sociale}"
+    return ""
+
+
+operators_with_type = [
+    {"code": 1, "label": "Société de change de devises", "type": "scd"},
+    {"code": 2, "label": "Etablissement de paiement – Agences propres agréée", "type": "ep"},
+    {"code": 3, "label": "Etablissement de paiement – Agences propres non-agréée", "type": "ep"},
+    {"code": 4, "label": "Etablissement de paiement – Agences Mandataires agréée", "type": "ep"},
+    {"code": 5, "label": "Etablissement de paiement – Agences Mandataires non-agréée", "type": "ep"},
+    {"code": 6, "label": "Etablissement Sous Délégataire", "type": "esd"},
+    {"code": 7, "label": "Banque", "type": "banque"},
+]
+
+
+def get_derogration_op(item, _):
+    matching_one = next(filter(lambda operator: operator["code"] == item.categorie_pc, operators_with_type), None)
+    if matching_one and getattr(item, matching_one["type"], None):
+        op = getattr(item, matching_one['type'])
+        return f"{op.registre_commerce}/{op.raison_sociale}"
+    return ""
+
+
 # authorized operation
 
 PAYMENT_METHODS_MAPPING = {

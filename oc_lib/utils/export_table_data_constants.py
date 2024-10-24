@@ -3,7 +3,7 @@ from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_
     get_lieu_implantation_label, get_categorie_op, get_pm_id, get_affiliation_group, get_apa_actif, \
     get_m_actif, get_ama_actif, get_pm, get_poc, get_motif, get_valide_manager_oc, get_numero_agrement, \
     get_pattern, get_sous_operation_code, get_sous_operation_code_statistique, get_sous_operation_label, \
-    get_sous_operation_lieu_implantations, get_payment_method
+    get_sous_operation_lieu_implantations, get_payment_method, get_operator_pm, get_derogration_op
 
 CATEGORIE_PC_MAPPING = {
     1: "Société de change de devises",
@@ -1173,6 +1173,8 @@ EXPORT_TABLE_INFO = {
     },
     "derogation_encaisse": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.derogation_encaisse_service",
+        "func_name": "get_all_derogation_encaisses",
         "values_mapping": {
             "statut": {
                 1: "En cours",
@@ -1180,19 +1182,26 @@ EXPORT_TABLE_INFO = {
             }
         },
         "columns": {
+            "operator_pm": {
+                "title": "Opérateur PM",
+                "func": get_operator_pm
+            },
+            "encaisse": "Encaisse",
+            "numero_decision": "Numéro de la décision",
+            "date_decision": "Date de la décision",
+            "created_by": "Créé par",
+            "statut": "Statut",
+            "validated_by": "Validé par",
+
             "id": "ID",
             "type": "Type",
-            "numero_decision": "Numero Decision",
-            "date_decision": "Date Decision",
-            "created_by": "Created By",
-            "statut": "Statut",
-            "validated_by": "Validated By",
             "scd_id": "SCD ID",
-            "encaisse": "Encaisse",
         }
     },
     "derogation_operation": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.derogation_operation_service",
+        "func_name": "get_all_derogation_operations",
         "values_mapping": {
             "statut": {
                 1: "En cours",
@@ -1207,22 +1216,31 @@ EXPORT_TABLE_INFO = {
                 6: "Esd",
                 7: "Banque"
             },
+            "is_included": {
+                True: "Inclure",
+                False: "Exclure"
+            }
         },
         "columns": {
+            "derogation_op": {
+                "title": "Opérateur PM",
+                "func": get_derogration_op
+            },
+            "authorized_operation_id": "Opération ID",
+            "is_included": "Inclure/Exclure",
+            "numero_decision": "Numéro de la décision",
+            "date_decision": "Date de la décision",
+            "created_by": "Créé par",
+            "statut": "Statut",
+            "validated_by": "Validé par",
+
             "id": "ID",
             "type": "Type",
-            "numero_decision": "Numero Decision",
-            "date_decision": "Date Decision",
-            "created_by": "Created By",
-            "statut": "Statut",
-            "validated_by": "Validated By",
             "scd_id": "SCD ID",
             "esd_id": "ESD ID",
             "ep_id": "EP ID",
             "mandataire_id": "Mandataire ID",
             "categorie_pc": "Categorie PC",
-            "authorized_operation_id": "Authorized Operation ID",
-            "is_included": "Is Included"
         }
     },
     "seuil_encaisse": {
