@@ -14,7 +14,6 @@ tables_name_map = {
     "partner-pm": "associe_pms",
     "partner-pp": "associe_pps",
     "agency": "guichets",
-    "agrement": "agrements",
     "motif": "motifs",
     "mandataire": "mandataire",
     "poc_ss": "poc_ss",
