@@ -1,6 +1,6 @@
 # operation achat view
 def get_pm(item, _):
-    return f'{getattr(item, "pm_raison_sociale", "")}, {getattr(item, "pm_registre_commerce", "")}, {getattr(item, "pm_registre_commerce", "")}'
+    return f'{getattr(item, "pm_raison_sociale", "")}, {getattr(item, "pm_registre_commerce", "")}, {getattr(item, "pm_centre", "")}'
 
 
 def get_poc(item, _):

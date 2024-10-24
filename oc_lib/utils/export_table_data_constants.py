@@ -3,6 +3,26 @@ from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_
     get_lieu_implantation_label, get_categorie_op, get_pm_id, get_affiliation_group, get_apa_actif, \
     get_m_actif, get_ama_actif, get_pm, get_poc
 
+CATEGORIE_PC_MAPPING = {
+    1: "Société de change de devises",
+    2: "Etablissement de paiement – Agences propres agréée",
+    3: "Etablissement de paiement – Agences propres non-agréée",
+    4: "Etablissement de paiement – Agences Mandataires agréée",
+    5: "Etablissement de paiement – Agences Mandataires non-agréée",
+    6: "Etablissement Sous Délégataire",
+    7: "Banque"
+}
+
+QUALITE_BENEFICIAIRE_MAPPING = {
+    1: "PM-Résident",
+    2: "PM-Non Résident",
+    3: "PP-Etranger non Résident",
+    4: "PP-Etranger Résident",
+    5: "PP-Marocain Résident",
+    6: "PP-Marocain non résident (MRE)",
+    7: "Point de change",
+}
+
 EXPORT_TABLE_INFO = {
     "operation_achat_view": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
@@ -12,7 +32,11 @@ EXPORT_TABLE_INFO = {
             "statut": {
                 1: "Enregistrée",
                 2: "Annulée"
-            }
+            },
+            "categorie_pc": CATEGORIE_PC_MAPPING,
+            "beneficiaire_pp_qualite": QUALITE_BENEFICIAIRE_MAPPING,
+            "beneficiaire_pc_qualite": QUALITE_BENEFICIAIRE_MAPPING,
+            "beneficiaire_pm_qualite": QUALITE_BENEFICIAIRE_MAPPING,
         },
         "columns": {
             "id": "ID",
@@ -177,15 +201,7 @@ EXPORT_TABLE_INFO = {
                 2: 'Inactif',
                 3: 'Néant'
             },
-            "categorie": {
-                1: "Société de change de devises",
-                2: "Etablissement de paiement – Agences propres agréée",
-                3: "Etablissement de paiement – Agences propres non-agréée",
-                4: "Etablissement de paiement – Agences Mandataires agréée",
-                5: "Etablissement de paiement – Agences Mandataires non-agréée",
-                6: "Etablissement Sous Délégataire",
-                7: "Banque"
-            },
+            "categorie": CATEGORIE_PC_MAPPING,
             "is_agrement": {
                 True: "Oui",
                 False: "Non"
