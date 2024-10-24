@@ -1,7 +1,9 @@
 from oc_lib.utils.constants import Roles
 from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_id, get_pp_field_name, \
     get_lieu_implantation_label, get_categorie_op, get_pm_id, get_affiliation_group, get_apa_actif, \
-    get_m_actif, get_ama_actif, get_pm, get_poc, get_motif, get_valide_manager_oc
+    get_m_actif, get_ama_actif, get_pm, get_poc, get_motif, get_valide_manager_oc, get_numero_agrement, \
+    get_pattern, get_sous_operation_code, get_sous_operation_code_statistique, get_sous_operation_label, \
+    get_sous_operation_lieu_implantations, get_payment_method
 
 CATEGORIE_PC_MAPPING = {
     1: "Société de change de devises",
@@ -845,38 +847,46 @@ EXPORT_TABLE_INFO = {
     },
     "declaration_poc": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.declaration_service",
+        "func_name": "get_all_poc_declarations",
+        "is_multiple_sort": True,
         "values_mapping": {
             "statut": {
-                1: "Active",
-                2: "Inactive"
+                1: "En cours",
+                2: "Terminée"
             },
             "decision": {
-                1: "Approved",
-                2: "Rejected"
+                1: "Rejetée",
+                2: "Validée"
             }
         },
         "columns": {
             "id": "ID",
+            "poc_addresse": "POC Adresse",
+            "numero_agrement": {
+                "title": "№ Agrément",
+                "func": get_numero_agrement
+            },
+            "motif": "Motif",
+            "date_debut": "Date début",
+            "date_fin": "Date fin",
+            "created_by": "Crée par",
+            "validator": "Validator",
+            "denomination_pm": "Dénomination PM",
+            "centre_pm": "Centre PM",
+            "rc_pm": "RC PM",
+            "denomination_mandataire": "Dénomination Mandataire",
+            "centre_m": "Centre Mandataire",
+            "rc_m": "RC Mandataire",
+            "statut": "Statut",
+            "decision": "Décision",
+
             "poc_id": "POC ID",
-            "poc_addresse": "POC Address",
-            "numero_agrement": "Numero Agrement",
             "nom_agence": "Nom Agence",
             "type_pm": "Type PM",
             "date_demande": "Date Demande",
-            "motif": "Motif",
-            "created_by": "Created By",
-            "validator": "Validator",
-            "date_debut": "Date Debut",
             "date_fin": "Date Fin",
-            "denomination_pm": "Denomination PM",
-            "centre_pm": "Centre PM",
-            "rc_pm": "RC PM",
-            "denomination_mandataire": "Denomination Mandataire",
-            "centre_m": "Centre M",
-            "rc_m": "RC M",
             "date_declaration_m": "Date Declaration M",
-            "statut": "Statut",
-            "decision": "Decision"
         }
     },
     "declaration_pm": {
@@ -912,16 +922,50 @@ EXPORT_TABLE_INFO = {
     },
     "declaration_fiscal": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.declaration_service",
+        "func_name": "get_all_fiscal_declarations",
         "values_mapping": {
         },
         "columns": {
             "id": "ID",
-            "created_by": "Created By",
-            "denomination_pm": "Denomination PM",
+            "created_by": "Crée par",
+            "denomination_pm": "Dénomination PM",
             "centre_pm": "Centre PM",
             "rc_pm": "RC PM",
-            "date_declaration": "Date Declaration",
-            "annee_comptable_de": "Annee Comptable De",
+            "date_declaration": "Date déclaration",
+            "annee_comptable_de": "Année déclaration",
+
+            "date_debut": "Date Debut",
+            "date_fin": "Date Fin",
+            "capital_social": "Capital Social",
+            "capitaux_propres": "Capitaux Propres",
+            "chiffre_affaires": "Chiffre Affaires",
+            "resultat_exploitation": "Resultat Exploitation",
+            "resultat_net": "Resultat Net",
+            "resultat_fiscal": "Resultat Fiscal",
+            "resultat_financier": "Resultat Financier",
+            "charges_personnel": "Charges Personnel",
+            "charges_exploitation": "Charges Exploitation",
+            "produits_financiers": "Produits Financiers",
+            "documents": "Documents",
+            "scd_id": "SCD ID",
+        }
+    },
+    "declaration_liasse": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.declaration_service",
+        "func_name": "get_all_fiscal_declarations",
+        "values_mapping": {
+        },
+        "columns": {
+            "id": "ID",
+            "created_by": "Crée par",
+            "denomination_pm": "Dénomination PM",
+            "centre_pm": "Centre PM",
+            "rc_pm": "RC PM",
+            "date_declaration": "Date déclaration",
+            "annee_comptable_de": "Année déclaration",
+
             "date_debut": "Date Debut",
             "date_fin": "Date Fin",
             "capital_social": "Capital Social",
@@ -974,10 +1018,12 @@ EXPORT_TABLE_INFO = {
     },
     "modification": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.modification_service",
+        "func_name": "get_all_modification_info",
         "values_mapping": {
             "motif_status": {
-                True: "ACTIF",
-                False: "INACTIF"
+                True: "Actif",
+                False: "Inactif"
             },
             "op_category": {
                 1: "Scd",
@@ -985,23 +1031,34 @@ EXPORT_TABLE_INFO = {
                 3: "Ep",
                 4: "Mandataire",
                 5: "Point de change",
+            },
+            "pattern": {
+                1: "Modifier par OP sans validation",
+                2: "Modifier par OP avec validation",
+                3: "Modifier par OC"
             }
         },
         "columns": {
             "id": "ID",
             "motif": "Motif",
+            "motif_status": "Statut",
+            "date_activation": "Date d'activation",
+            "date_desactivation": "Date de désactivation",
+            "pattern": {
+                "title": "Pattern",
+                "func": get_pattern
+            },
+
             "modifications": "Modifications",
             "op_category": "Operation Category",
-            "motif_status": "Motif Status",
             "is_add": "Is Add",
-            "date_activation": "Date Activation",
             "date_modification": "Date Modification",
-            "date_desactivation": "Date Desactivation",
-            "pattern_id": "Pattern ID"
         }
     },
     "affiliation_group": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.affiliation_group_service",
+        "func_name": "get_all_affiliation_groups",
         "values_mapping": {
             "type_operator": {
                 1: "Scd",
@@ -1012,24 +1069,28 @@ EXPORT_TABLE_INFO = {
         },
         "columns": {
             "id": "ID",
-            "name": "Name",
+            "name": "Nom",
             "description": "Description",
-            "type_operator": "Type Operator"
+            "type_operator": "Catégorie Opérateur"
         }
     },
     "lieu_implantation": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.lieu_implantation_service",
+        "func_name": "get_all_lieu_implantations",
         "values_mapping": {
         },
         "columns": {
             "id": "ID",
-            "label": "Label",
-            "creation_date": "Creation Date",
-            "modification_date": "Modification Date"
+            "label": "Lieu d’implantation",
+            "creation_date": "Date création",
+            "modification_date": "Date modification"
         }
     },
     "sous_operation": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.sub_operation_service",
+        "func_name": "get_all_sub_operations",
         "values_mapping": {
             "type_operation": {
                 1: "Achat",
@@ -1037,57 +1098,75 @@ EXPORT_TABLE_INFO = {
                 3: "Cession"
             },
             "statut": {
-                True: "ACTIF",
-                False: "INACTIF"
+                True: "Actif",
+                False: "Inactif"
             }
         },
         "columns": {
             "id": "ID",
-            "type_operation": "Type Operation",
-            "code": "Code",
-            "code_statistique": "Code Statistique",
-            "label": "Label",
+            "code": "Code Sous-opération",
+            "type_operation": "Opération",
+            "code_statistique": "Code statistique Sous-opération",
+            "label": "Sous-opération",
             "statut": "Statut",
-            "date_activation": "Date Activation",
-            "date_desactivation": "Date Desactivation",
-            "nature_beneficiaire": "Nature Beneficiaire",
-            "nature_beneficiaire_final": "Nature Beneficiaire Final",
-            "beneficiaire_final_required": "Beneficiaire Final Required",
+            "nature_beneficiaire": "Qualité bénficiaire",
+            "beneficiaire_final_required": "Bénéficiaire = bénéficiaire final",
+            "nature_beneficiaire_final": "Qualité bénficiaire final",
+            "date_activation": "Date d’activation",
+            "date_desactivation": "Date désactivation",
+
             "attachements": "Attachements",
             "cancel_deadline_id": "Cancel Deadline ID"
         }
     },
     "authorized_operation": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.authorized_operation_service",
+        "func_name": "get_all_authorized_operations",
         "values_mapping": {
-            "categorie_pc": {
-                1: "Point de change SCD",
-                2: "Agence Propre Agrée",
-                3: "Agence Propre Non Agrée",
-                4: "Agence Mandataire Agrée",
-                5: "Agence Mandataire Non Agrée",
-                6: "Esd",
-                7: "Banque"
-            },
+            "categorie_pc": CATEGORIE_PC_MAPPING,
             "type_operation": {
                 1: "Achat",
                 2: "Vente",
                 3: "Cession"
             },
             "statut": {
-                True: "ACTIF",
-                False: "INACTIF"
+                True: "Actif",
+                False: "Inactif"
             }
         },
         "columns": {
             "id": "ID",
-            "categorie_pc": "Categorie PC",
-            "type_operation": "Type Operation",
-            "support_mad": "Support MAD",
-            "support_devise": "Support Devise",
+            "sous_operation_code": {
+                "title": "Code sous-opération",
+                "func": get_sous_operation_code
+            },
+            "type_operation": "Opération",
+            "sous_operation_code_statistique": {
+                "title": "Code statistique Sous-opération",
+                "func": get_sous_operation_code_statistique
+            },
+            "sous_operation_label": {
+                "title": "Sous Opération",
+                "func": get_sous_operation_label
+            },
+            "categorie_pc": "Catégorie du point de change",
+            "lieu_implantations": {
+                "title": "Lieu d’implantation",
+                "func": get_sous_operation_lieu_implantations,
+            },
+            "support_mad": {
+                "title": "Support MAD",
+                "func": get_payment_method
+            },
+            "support_devise": {
+                "title": "Support DEVISE",
+                "func": get_payment_method
+            },
             "statut": "Statut",
-            "date_activation": "Date Activation",
-            "date_desactivation": "Date Desactivation",
+            "date_activation": "Date d’activation",
+            "date_desactivation": "Date de désactivation",
+
             "lieu_implantations_hash": "Lieu Implantations Hash",
             "sous_operation_id": "Sous Operation ID"
         }

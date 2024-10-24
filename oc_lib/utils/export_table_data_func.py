@@ -1,16 +1,87 @@
+# authorized operation
+
+PAYMENT_METHODS_MAPPING = {
+    1: 'Billet de banque',
+    2: 'Carte Prépayée',
+    3: 'Carte bancaire internationale (TPE)',
+    4: 'Carte bancaire marocaine (TPE)',
+    5: 'Lettres de crédit',
+    6: 'Chèques bancaires',
+    7: 'Ordres monétaires',
+    8: 'Virement',
+}
+
+
+def get_sous_operation_code(item, _):
+    if getattr(item, "sous_operation", None):
+        return item.sous_operation.code
+    return ""
+
+
+def get_sous_operation_code_statistique(item, _):
+    if getattr(item, "sous_operation", None):
+        return item.sous_operation.code_statistique
+    return ""
+
+
+def get_sous_operation_label(item, _):
+    if getattr(item, "sous_operation", None):
+        return item.sous_operation.label
+    return ""
+
+
+def get_sous_operation_lieu_implantations(item, _):
+    if getattr(item, "lieu_implantations", None):
+        return ", ".join([lieu.label for lieu in item.lieu_implantations])
+    return ""
+
+
+def get_sous_operaton_label(item, _):
+    if getattr(item, "sous_operation", None):
+        return item.sous_operation.label
+    return ""
+
+
+def get_payment_method(item, field_name):
+    if getattr(item, field_name, None):
+        return ", ".join([PAYMENT_METHODS_MAPPING.get(method, "") for method in getattr(item, field_name, [])])
+    return ""
+
+
+# modification
+def get_pattern(item, _):
+    if getattr(item, "pattern", None):
+        return item.pattern._type
+    return ""
+
+
+# declaration_poc
+def get_numero_agrement(item, _):
+    numero_agrement = getattr(item, "numero_agrement", None)
+    if numero_agrement is None:
+        return "N/A"
+
+    return numero_agrement
+
+
 # demande
 def get_motif(item, _):
     if getattr(item, "modification", None):
         return getattr(item.modification, "motif", "")
     return ""
 
+
 def get_valide_manager_oc(item, _):
-    if getattr(item, "valide_manager_oc", False) or (not getattr(item, "valide_manager_oc", False) and getattr(item, "motif_oc_manager_decision", None) is not None):
+    if getattr(item, "valide_manager_oc", False) or (
+            not getattr(item, "valide_manager_oc", False) and getattr(item, "motif_oc_manager_decision",
+                                                                      None) is not None):
         return "Fini"
-    elif getattr(item, "valide_oc", False) or (not getattr(item, "valide_oc", False) and getattr(item, "motif_oc_decision", None) is not None):
+    elif getattr(item, "valide_oc", False) or (
+            not getattr(item, "valide_oc", False) and getattr(item, "motif_oc_decision", None) is not None):
         return "Valider fiche OP - niv2"
     else:
         return "Valider fiche OP - niv1"
+
 
 # operation achat view
 def get_pm(item, _):
@@ -63,7 +134,8 @@ def get_categorie_op(item, _):
 
 
 def get_pm_id(item, _):
-    return getattr(item, "mandataire_id", "") or getattr(item, "scd_id", "") or getattr(item, "esd_id", "") or getattr(item, "ep_id", "")
+    return getattr(item, "mandataire_id", "") or getattr(item, "scd_id", "") or getattr(item, "esd_id", "") or getattr(
+        item, "ep_id", "")
 
 
 # pp functions
