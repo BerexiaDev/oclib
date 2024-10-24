@@ -95,84 +95,131 @@ EXPORT_TABLE_INFO = {
     },
     "operation_vente_view": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.operation_vente_service",
+        "func_name": "get_all_operation_ventes",
         "values_mapping": {
             "statut": {
                 1: "Enregistrée",
                 2: "Annulée"
-            }
+            },
+            "categorie_pc": CATEGORIE_PC_MAPPING,
+            "beneficiaire_pp_qualite": QUALITE_BENEFICIAIRE_MAPPING,
+            "beneficiaire_final_pp_qualite": QUALITE_BENEFICIAIRE_MAPPING,
+            "beneficiaire_pc_qualite": QUALITE_BENEFICIAIRE_MAPPING,
+            "beneficiaire_pm_qualite": QUALITE_BENEFICIAIRE_MAPPING,
         },
         "columns": {
             "id": "ID",
             "op_id": "Operation ID",
-            "numero_bordereau": "Numero de bordereau",
-            "date_bordereau": "Date de bordereau",
-            "categorie_op": "Categorie op",
+
+            "numero_bordereau": "Numéro Bordereau",
+            "date_bordereau": "Date & Heure Bordereau",
+            "date_creation": "Date de création",
+            "created_by": "Préposé",
+            "categorie_op": "Catégorie PM",
+            "categorie_pc": "Catégorie Point de change",
+            "beneficiaire_pp_qualite": "Qualité Client/Bénéficiaire PP",
+            "sous_operation_label": "Type d’opération",
+            "beneficiaire_pp_nature_piece": "Nature de la pièce d’identité",
+            "beneficiaire_pp_numero_piece": "Numéro de la pièce d’identité",
+            "beneficiaire_pp_nom": "Nom bénéficiaire",
+            "beneficiaire_pp_prenom": "Prénom bénéficiaire",
+            "beneficiaire_final_pp_nom": "Nom bénéficiaire final",
+            "beneficiaire_final_pp_prenom": "Prénom bénéficiaire final",
+            "beneficiaire_final_pp_qualite": "Qualité Bénéficiaire final",
+            "beneficiaire_final_pp_nature_piece": "Nature pièce d’identité – Bénéficiaire final",
+            "beneficiaire_final_pp_numero_piece": "Numéro pièce d’identité – Bénéficiaire final",
+            "beneficiaire_pc_qualite": "Qualité Client/Bénéficiaire PC",
+            "beneficiaire_pc_numero_agrement": "Numéro agrément",
+            "beneficiaire_pc_nom_agence": "Dénomination PC",
+            "beneficiaire_pm_qualite": "Qualité Client/Bénéficiaire PM",
+            "beneficiaire_pm_raison_sociale": "Raison sociale",
+            "beneficiaire_pm_registre_commerce": "RC",
+            "beneficiaire_pm_centre": "Centre",
+            "numero_autorisation": "Numéro d’autorisation particulière",
+            "montant_global": "Montant Global en MAD",
+            "devise_labels": "Devises",
+            "statut": "Statut",
+            "cancelled_by": "Annulé par",
+            "date_cancellation": "Date d’annulation",
+            "cancellation_reason": "Motif d’annulation",
+
             "pm_raison_sociale": "Pm raison sociale",
             "pm_registre_commerce": "Pm registre commerce",
             "pm_centre": "Pm centre",
-            "categorie_pc": "Categorie pc",
             "poc_id": "Poc ID",
             "poc_denomination": "Poc denomination",
             "poc_numero_agrement": "Poc numero agrement",
             "poc_adresse": "Poc adresse",
-            "created_by": "Created by",
-            "date_creation": "Date de creation",
-            "beneficiaire_pm_qualite": "Beneficiaire pm qualite",
-            "beneficiaire_pp_qualite": "Beneficiaire pp qualite",
-            "beneficiaire_final_pp_qualite": "Beneficiaire final pp qualite",
-            "sous_operation_label": "Sous operation label",
             "sous_operation_id": "Sous operation ID",
             "beneficiaire_pp_id": "Beneficiaire pp ID",
-            "beneficiaire_pp_nature_piece": "Beneficiaire pp nature piece",
-            "beneficiaire_pp_numero_piece": "Beneficiaire pp numero piece",
-            "beneficiaire_pp_nom": "Beneficiaire pp nom",
-            "beneficiaire_pp_prenom": "Beneficiaire pp prenom",
             "beneficiaire_pp_nationalite": "Beneficiaire pp nationalite",
-            "beneficiaire_final_pp_nature_piece": "Beneficiaire final pp nature piece",
-            "beneficiaire_final_pp_numero_piece": "Beneficiaire final pp numero piece",
-            "beneficiaire_final_pp_nom": "Beneficiaire final pp nom",
-            "beneficiaire_final_pp_prenom": "Beneficiaire final pp prenom",
             "beneficiaire_pm_id": "Beneficiaire pm ID",
-            "beneficiaire_pm_registre_commerce": "Beneficiaire pm registre commerce",
-            "beneficiaire_pm_centre": "Beneficiaire pm centre",
-            "beneficiaire_pm_raison_sociale": "Beneficiaire pm raison sociale",
             "beneficiaire_pm_idce": "Beneficiaire pm IDCE",
-            "numero_autorisation": "Numero autorisation",
-            "statut": "Statut",
-            "devise_labels": "Devise labels",
-            "montant_global": "Montant global",
-            "support_mad": "Support MAD"
+            "support_mad": "Support MAD",
+
+            "pm": {
+                "title": "Opérateur",
+                "func": get_pm,
+            },
+            "poc": {
+                "title": "Point de change",
+                "func": get_poc,
+            }
         }
     },
     "operation_cession_view": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.operation_cession_service",
+        "func_name": "get_all_operation_cessions",
         "values_mapping": {
             "statut": {
                 1: "Enregistrée",
                 2: "Annulée"
+            },
+            "categorie_pc": CATEGORIE_PC_MAPPING,
+            "is_late": {
+                True: "Oui",
+                False: "Non"
             }
         },
         "columns": {
             "id": "ID",
             "op_id": "Operation ID",
-            "numero_bordereau": "Numero de bordereau",
-            "date_cession": "Date de cession",
-            "categorie_op": "Categorie op",
+
+            "numero_bordereau": "Numéro Bordereau",
+            "date_cession": "Date de la cession",
+            "categorie_op": "Catégorie Opérateur",
+            "categorie_pc": "Catégorie Point de change",
+            "sous_operation_label": "Type d’opération",
+            "date_creation": "Date/Heure de la saisie de cession",
+            "created_by": "Préposé",
+            "code_banque": "Banque ",
+            "code_agence": "Agence",
+            "devise_labels": "Devises",
+            "montant_global": "Montant Global en MAD",
+            "cancelled_by": "Annulé par",
+            "date_cancellation": "Date d’annulation",
+            "cancellation_reason": "Motif d’annulation",
+            "is_late": "Effectuée en retard",
+
             "pm_raison_sociale": "Pm raison sociale",
             "pm_registre_commerce": "Pm registre commerce",
             "pm_centre": "Pm centre",
-            "categorie_pc": "Categorie pc",
             "poc_id": "Poc ID",
             "poc_denomination": "Poc denomination",
             "poc_numero_agrement": "Poc numero agrement",
-            "created_by": "Created by",
-            "date_creation": "Date de creation",
-            "code_banque": "Code banque",
-            "code_agence": "Code agence",
-            "devise_labels": "Devise labels",
-            "montant_global": "Montant global",
             "total_devises": "Total devises",
-            "statut": "Statut"
+            "statut": "Statut",
+
+            "pm": {
+                "title": "Opérateur",
+                "func": get_pm
+            },
+            "poc": {
+                "title": "Point de change",
+                "func": get_poc
+            },
         }
     },
     "poc": {
@@ -645,51 +692,76 @@ EXPORT_TABLE_INFO = {
     },
     "beneficiaire_pm": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.beneficiaire_pm_service",
+        "func_name": "get_all_beneficiaire_pms",
         "values_mapping": {
             "statut": {
-                1: "ACTIF",
-                2: "INACTIF"
-            }
+                1: "Actif",
+                2: "Inactif"
+            },
+            "qualite": QUALITE_BENEFICIAIRE_MAPPING
         },
         "columns": {
             "id": "ID",
-            "qualite": "Qualite",
-            "nationalite": "Nationalite",
+            "qualite": "Qualité Client/Bénéficiaire",
+            "centre": "Centre",
+            "registre_commerce": "Registre commerce",
+            "raison_sociale": "Raison sociale",
+            "idce": "IDCE",
+            "nationalite": "Nationalité",
+            "statut": "Statut",
+
             "poc_id": "POC ID",
             "numero_agrement": "Numero Agrement",
             "nom_agence": "Nom Agence",
             "date_deactivation": "Date Deactivation",
-            "statut": "Statut",
             "type": "Type",
-            "registre_commerce": "Registre Commerce",
-            "centre": "Centre",
-            "raison_sociale": "Raison Sociale",
-            "idce": "IDCE"
+
         }
     },
     "beneficiaire_pp": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.beneficiaire_pp_service",
+        "func_name": "get_all_beneficiaire_pps",
         "values_mapping": {
             "statut": {
-                1: "Saved",
-                2: "Cancelled"
-            }
+                1: "Actif",
+                2: "Inactif"
+            },
+            "qualite": QUALITE_BENEFICIAIRE_MAPPING
         },
         "columns": {
             "id": "ID",
-            "qualite": "Qualite",
-            "nationalite": "Nationalite",
+            "prenom": "Prénom",
+            "nom": "Nom",
+            "qualite": "Qualité Client/Bénéficiaire",
+            "nature_piece": "Nature pièce identité",
+            "numero_piece": "Numéro pièce d’identité",
+            "nationalite": "Nationalité",
+            "statut": "Statut",
+
+
             "poc_id": "POC ID",
             "numero_agrement": "Numero Agrement",
             "nom_agence": "Nom Agence",
             "date_deactivation": "Date Deactivation",
-            "statut": "Statut",
             "type": "Type",
-            "nom": "Nom",
-            "prenom": "Prenom",
-            "nature_piece": "Nature Piece",
-            "numero_piece": "Numero Piece",
             "is_final": "Is Final"
+        }
+    },
+    "beneficiaire_pc": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.beneficiaire_pc_service",
+        "func_name": "get_all_beneficiaire_pcs",
+        "values_mapping": {
+            "qualite": QUALITE_BENEFICIAIRE_MAPPING
+        },
+        "columns": {
+            "id": "ID",
+            "qualite": "Qualité Client/Bénéficiaire",
+            "numero_agrement": "Numéro agrément",
+            "nom_agence": "Dénomination PC",
+            "poc_id": "ID Point de change",
         }
     },
     "demande_change_modif_view": {
