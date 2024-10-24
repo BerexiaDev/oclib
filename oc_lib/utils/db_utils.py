@@ -21,22 +21,24 @@ def validate_unique_active(class_name, current_instance):
     is_rep_sup = isinstance(current_instance, (Representant, Suppleant))
     #more models to be added
 
+    filters = [
+        PpAlias.statut.in_([True, None]),
+        PpAlias.creation_status != 4
+    ]
+
+    # Add specific conditions based on the instance type
     if is_gerant:
-        active_instance = db.session.query(class_name).join(PpAlias).filter(
-            class_name.scd_id == current_instance.scd_id if current_instance.scd_id else Gerant.esd_id == current_instance.esd_id,
-            PpAlias.statut.in_([True, None]),
-            PpAlias.creation_status != 4
-        ).first()
-    elif is_rep_sup:
-        active_instance = db.session.query(class_name).join(PpAlias).filter(
-            class_name.scd_id == current_instance.scd_id,
-            PpAlias.statut.in_([True, None]),
-            PpAlias.creation_status != 4
-        ).first()
-    
+        extra_conditions = class_name.scd_id == current_instance.scd_id if current_instance.scd_id else class_name.esd_id == current_instance.esd_id
+    else:
+        extra_conditions = class_name.scd_id == current_instance.scd_id
+        
+    filters.append(extra_conditions)
+
+    active_instance = db.session.query(class_name).join(PpAlias).filter(*filters).first()
+
     if not active_instance:
         return True
-    
+
     if is_gerant and active_instance:
         raise ValueError(
             "Il existe déjà un gerant actif pour cet opérateur."
