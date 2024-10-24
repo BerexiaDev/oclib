@@ -1,9 +1,6 @@
 from oc_lib.db import db
 from sqlalchemy.orm import aliased
 from oc_lib.models.pp import Pp
-from oc_lib.models.gerant import Gerant
-from oc_lib.models.representant import Representant
-from oc_lib.models.suppleant import Suppleant
 
 def find_class_by_table_name(table_name):
     # Find the class by table name
@@ -13,6 +10,10 @@ def find_class_by_table_name(table_name):
     return None
 
 def validate_unique_active(class_name, current_instance):
+
+    from oc_lib.models.gerant import Gerant
+    from oc_lib.models.representant import Representant
+    from oc_lib.models.suppleant import Suppleant
     # Create an alias for Pp
     PpAlias = aliased(Pp)
 
@@ -42,5 +43,5 @@ def validate_unique_active(class_name, current_instance):
         )
     elif is_rep_sup and (active_instance != current_instance):
         raise ValueError(
-            "Il existe déjà un representant actif pour cet opérateur."
+            "Il existe déjà un representant/suppleant actif pour cet opérateur."
         )
