@@ -1,7 +1,7 @@
 from oc_lib.models.pp import Pp
 from oc_lib.db import db
 from oc_lib.utils.events_decorator import register_event_listeners, change_statut_pp_pm_listener
-from sqlalchemy.orm import aliased
+from oc_lib.utils.db_utils import validate_unique_active
 
 #TODO: all qualities need date debut + fin RG
 @register_event_listeners
@@ -19,28 +19,13 @@ class Representant(Pp):
         foreign_keys="[Suppleant.representant_id]",
     )
     @staticmethod
-    def validate_unique_active_representant(current_representant):
-        # Create an alias for Pp
-        PpAlias = aliased(Pp)
-        # Query the database for any active gerant with the same scd_id
-        active_representant = db.session.query(Representant).join(PpAlias).filter(
-            Representant.scd_id == current_representant.scd_id,
-            PpAlias.statut.in_([True, None]),
-            PpAlias.creation_status != 4
-        ).first()
-
-        if not active_representant:
-            return True
-        if active_representant != current_representant:
-
-            raise ValueError(
-                "Il existe déjà un representant actif pour cet opérateur."
-            )
+    def validate_wrapper(self):
+        validate_unique_active(Representant, self)
 
     def save(self, *args, **kwargs):
         try:
             # Before saving, validate the uniqueness of the active gerant
-            self.validate_unique_active_representant(self)
+            self.validate_wrapper(self)
             super(Representant, self).save(*args, **kwargs)
         except ValueError as e:
             print(f"Error while saving representant: {str(e)}")

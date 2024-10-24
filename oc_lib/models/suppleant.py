@@ -1,7 +1,7 @@
 from oc_lib.db import db
 from oc_lib.models.pp import Pp
 from oc_lib.utils.events_decorator import register_event_listeners, change_statut_pp_pm_listener
-from sqlalchemy.orm import aliased
+from oc_lib.utils.db_utils import validate_unique_active
 
 @register_event_listeners
 @change_statut_pp_pm_listener
@@ -12,28 +12,13 @@ class Suppleant(Pp):
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
 
     @staticmethod
-    def validate_unique_active_suppleant(current_suppleant):
-        # Create an alias for Pp
-        PpAlias = aliased(Pp)
-        # Query the database for any active gerant with the same scd_id
-        active_suppleant = db.session.query(Suppleant).join(PpAlias).filter(
-            Suppleant.scd_id == current_suppleant.scd_id,
-            PpAlias.statut.in_([True, None]),
-            PpAlias.creation_status != 4
-        ).first()
-        
-        if not active_suppleant:
-            return True
-        if active_suppleant != current_suppleant:
-
-            raise ValueError(
-                "Il existe déjà un suppleant actif pour cet opérateur."
-            )
+    def validate_wrapper(self):
+        validate_unique_active(Suppleant, self)
 
     def save(self, *args, **kwargs):
         try:
             # Before saving, validate the uniqueness of the active gerant
-            self.validate_unique_active_suppleant(self)
+            self.validate_wrapper(self)
             super(Suppleant, self).save(*args, **kwargs)
         except ValueError as e:
             print(f"Error while saving suppleant: {str(e)}")
