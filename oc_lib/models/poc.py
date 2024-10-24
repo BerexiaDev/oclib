@@ -39,7 +39,6 @@ class Poc(db.Model, Repository):
     creation_status = db.Column(db.Integer, default=0)
     categorie = db.Column(db.Integer)
 
-    agrements = db.relationship("Agrement", backref="poc", lazy=True)
     statuts = db.relationship("Statut", backref="poc", lazy=True)
     motifs = db.relationship("Motif", backref="poc", lazy=True)
 
