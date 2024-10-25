@@ -14,11 +14,13 @@ def validate_unique_active(class_name, current_instance):
     from oc_lib.models.gerant import Gerant
     from oc_lib.models.representant import Representant
     from oc_lib.models.suppleant import Suppleant
+    from oc_lib.models.poc_p import PocP
     # Create an alias for Pp
     PpAlias = aliased(Pp)
 
     is_gerant = isinstance(current_instance, Gerant)
     is_rep_sup = isinstance(current_instance, (Representant, Suppleant))
+    is_pocp = isinstance(current_instance, PocP)
     #more models to be added
 
     filters = [
@@ -31,7 +33,9 @@ def validate_unique_active(class_name, current_instance):
         extra_conditions = class_name.scd_id == current_instance.scd_id if current_instance.scd_id else class_name.esd_id == current_instance.esd_id
     elif is_rep_sup:
         extra_conditions = class_name.scd_id == current_instance.scd_id
-        
+    elif is_pocp:
+        extra_conditions = class_name.ep_id = current_instance.ep_id
+
     filters.append(extra_conditions)
 
     active_instance = db.session.query(class_name).join(PpAlias).filter(*filters).first()
@@ -46,4 +50,8 @@ def validate_unique_active(class_name, current_instance):
     elif is_rep_sup and (active_instance != current_instance):
         raise ValueError(
             "Il existe déjà un representant/suppleant actif pour cet opérateur."
+        )
+    elif is_pocp and active_instance:
+        raise ValueError(
+            "Il existe déjà un Poc principale actif pour cet opérateur."
         )
