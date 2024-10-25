@@ -54,7 +54,10 @@ def export_tables(args, request_body):
         for col_id in column_ids:
             col_info = columns.get(col_id)
             if type(col_info) == str:
-                each_data.append(getattr(d, col_id))
+                try:
+                    each_data.append(getattr(d, col_id))
+                except AttributeError:
+                    each_data.append(d.get(col_id))
             else:
                 func = col_info.get("func")
                 each_data.append(func(d, col_id))

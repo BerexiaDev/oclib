@@ -1,5 +1,21 @@
 from oc_lib.utils.constants import QUALITE_BENEFICIAIRE_MAPPING, PAYMENT_METHODS_MAPPING, OPERATORS_WITH_TYPE
 
+# cnasnu
+def get_only_date(item, field_name):
+    if item.get(field_name):
+        return item.get(field_name).strftime("%b %d, %Y")
+    return ""
+
+def get_cin(item, _):
+    if getattr(item, "cin", None):
+        return "****".join(item.cin)
+    return ""
+
+def get_passport(item, _):
+    if getattr(item, "passport", None):
+        return "****".join(item.passport)
+    return ""
+
 # cancel_deadline
 def get_delai(item, _):
     return f"{item.delai} Minutes"

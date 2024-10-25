@@ -5,7 +5,7 @@ from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_
     get_m_actif, get_ama_actif, get_pm, get_poc, get_motif, get_valide_manager_oc, get_numero_agrement, \
     get_pattern, get_sous_operation_code, get_sous_operation_code_statistique, get_sous_operation_label, \
     get_sous_operation_lieu_implantations, get_payment_method, get_operator_pm, get_derogration_op, \
-    get_latence_jours, get_nature_beneficiaire, get_delai
+    get_latence_jours, get_nature_beneficiaire, get_delai, get_only_date, get_cin, get_passport
 
 
 EXPORT_TABLE_INFO = {
@@ -1250,6 +1250,48 @@ EXPORT_TABLE_INFO = {
             "plafond": "Plafond de la dotation",
 
             "sous_operation_id": "Sous Operation ID"
+        }
+    },
+    "individual": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.cnasnu_service",
+        "func_name": "get_international_individuals",
+        "values_mapping": {
+        },
+        "columns": {
+            "id": "ID",
+            "full_name": "Nom complet",
+            "low_aliases": "Good aliases",
+            "good_aliases": "Good aliases",
+            "identity_documents": "ID documents",
+            "date_creation": {
+                "title": "Date de création",
+                "func": get_only_date
+            },
+        }
+    },
+    "local_individual": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.cnasnu_service",
+        "func_name": "get_local_individuals",
+        "values_mapping": {
+        },
+        "columns": {
+            "id": "ID",
+            "first_name": "Nom",
+            "last_name": "Prénom",
+            "date_creation": {
+                "title": "Date de création",
+                "func": get_only_date
+            },
+            "cin": {
+                "title": "CIN",
+                "func": get_cin,
+            },
+            "passport": {
+                "title": "Passport",
+                "func": get_passport,
+            },
         }
     }
 }
