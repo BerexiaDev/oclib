@@ -1,12 +1,8 @@
-QUALITE_BENEFICIAIRE_MAPPING = {
-    1: "PM-Résident",
-    2: "PM-Non Résident",
-    3: "PP-Etranger non Résident",
-    4: "PP-Etranger Résident",
-    5: "PP-Marocain Résident",
-    6: "PP-Marocain non résident (MRE)",
-    7: "Point de change",
-}
+from oc_lib.utils.constants import QUALITE_BENEFICIAIRE_MAPPING
+
+# cancel_deadline
+def get_delai(item, _):
+    return f"{item.delai} Minutes"
 
 
 # complement dotation

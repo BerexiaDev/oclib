@@ -1,20 +1,12 @@
-from oc_lib.utils.constants import Roles
+from oc_lib.utils.constants import Roles, QUALITE_BENEFICIAIRE_MAPPING, CATEGORIE_PC_MAPPING, STATUT_MAPPING, \
+    YES_NO_MAPPING, CREATION_STATUS_MAPPING, Type_Operation_MAPPING, PM_TYPE_MAPPING
 from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_id, get_pp_field_name, \
     get_lieu_implantation_label, get_categorie_op, get_pm_id, get_affiliation_group, get_apa_actif, \
     get_m_actif, get_ama_actif, get_pm, get_poc, get_motif, get_valide_manager_oc, get_numero_agrement, \
     get_pattern, get_sous_operation_code, get_sous_operation_code_statistique, get_sous_operation_label, \
     get_sous_operation_lieu_implantations, get_payment_method, get_operator_pm, get_derogration_op, \
-    get_latence_jours, QUALITE_BENEFICIAIRE_MAPPING, get_nature_beneficiaire
+    get_latence_jours, get_nature_beneficiaire, get_delai
 
-CATEGORIE_PC_MAPPING = {
-    1: "Société de change de devises",
-    2: "Etablissement de paiement – Agences propres agréée",
-    3: "Etablissement de paiement – Agences propres non-agréée",
-    4: "Etablissement de paiement – Agences Mandataires agréée",
-    5: "Etablissement de paiement – Agences Mandataires non-agréée",
-    6: "Etablissement Sous Délégataire",
-    7: "Banque"
-}
 
 EXPORT_TABLE_INFO = {
     "operation_achat_view": {
@@ -22,10 +14,7 @@ EXPORT_TABLE_INFO = {
         "func_path": "app.main.services.operation_achat_service",
         "func_name": "get_all_operation_achats",
         "values_mapping": {
-            "statut": {
-                1: "Enregistrée",
-                2: "Annulée"
-            },
+            "statut": STATUT_MAPPING,
             "categorie_pc": CATEGORIE_PC_MAPPING,
             "beneficiaire_pp_qualite": QUALITE_BENEFICIAIRE_MAPPING,
             "beneficiaire_pc_qualite": QUALITE_BENEFICIAIRE_MAPPING,
@@ -91,10 +80,7 @@ EXPORT_TABLE_INFO = {
         "func_path": "app.main.services.operation_vente_service",
         "func_name": "get_all_operation_ventes",
         "values_mapping": {
-            "statut": {
-                1: "Enregistrée",
-                2: "Annulée"
-            },
+            "statut": STATUT_MAPPING,
             "categorie_pc": CATEGORIE_PC_MAPPING,
             "beneficiaire_pp_qualite": QUALITE_BENEFICIAIRE_MAPPING,
             "beneficiaire_final_pp_qualite": QUALITE_BENEFICIAIRE_MAPPING,
@@ -166,15 +152,9 @@ EXPORT_TABLE_INFO = {
         "func_path": "app.main.services.operation_cession_service",
         "func_name": "get_all_operation_cessions",
         "values_mapping": {
-            "statut": {
-                1: "Enregistrée",
-                2: "Annulée"
-            },
+            "statut": STATUT_MAPPING,
             "categorie_pc": CATEGORIE_PC_MAPPING,
-            "is_late": {
-                True: "Oui",
-                False: "Non"
-            }
+            "is_late": YES_NO_MAPPING,
         },
         "columns": {
             "id": "ID",
@@ -220,13 +200,7 @@ EXPORT_TABLE_INFO = {
         "func_path": "app.main.services.entity_service",
         "func_name": "get_all_pocs",
         "values_mapping": {
-            "creation_status": {
-                0: "En cours de saisi",
-                1: "Validé",
-                2: "En cours de validation",
-                3: "En cours de demande modification",
-                4: "Rejeté"
-            },
+            "creation_status": CREATION_STATUS_MAPPING,
             "statut_activite": {
                 1: 'En activité',
                 2: 'Arrêt Provisoire',
@@ -242,18 +216,9 @@ EXPORT_TABLE_INFO = {
                 3: 'Néant'
             },
             "categorie": CATEGORIE_PC_MAPPING,
-            "is_agrement": {
-                True: "Oui",
-                False: "Non"
-            },
-            "is_permanent": {
-                True: "Oui",
-                False: "Non"
-            },
-            "is_link": {
-                True: "Oui",
-                False: "Non"
-            }
+            "is_agrement": YES_NO_MAPPING,
+            "is_permanent": YES_NO_MAPPING,
+            "is_link": YES_NO_MAPPING,
         },
         "columns": {
             "id": "ID",
@@ -374,21 +339,8 @@ EXPORT_TABLE_INFO = {
                 1: "Active",
                 2: "Radiée"
             },
-            "type": {
-                "associe_pm": "Associé",
-                "ep": "Ep",
-                "esd": "Esd",
-                "gerantpm": "Gérant",
-                "mandataire": "Mandataire",
-                "scd": "Scd"
-            },
-            "creation_status": {
-                0: "En cours de saisi",
-                1: "Validé",
-                2: "En cours de validation",
-                3: "En cours de demande modification",
-                4: "Rejeté"
-            },
+            "type": PM_TYPE_MAPPING,
+            "creation_status": CREATION_STATUS_MAPPING,
         },
         "columns": {
             "id": "ID",
@@ -425,21 +377,8 @@ EXPORT_TABLE_INFO = {
                 1: "Active",
                 2: "Radiée"
             },
-            "type": {
-                "associe_pm": "Associé",
-                "ep": "Ep",
-                "esd": "Esd",
-                "gerantpm": "Gérant",
-                "mandataire": "Mandataire",
-                "scd": "Scd"
-            },
-            "creation_status": {
-                0: "En cours de saisi",
-                1: "Validé",
-                2: "En cours de validation",
-                3: "En cours de demande modification",
-                4: "Rejeté"
-            },
+            "type": PM_TYPE_MAPPING,
+            "creation_status": CREATION_STATUS_MAPPING,
         },
         "columns": {
             "id": "ID",
@@ -494,21 +433,8 @@ EXPORT_TABLE_INFO = {
                 1: "Active",
                 2: "Radiée"
             },
-            "type": {
-                "associe_pm": "Associé",
-                "ep": "Ep",
-                "esd": "Esd",
-                "gerantpm": "Gérant",
-                "mandataire": "Mandataire",
-                "scd": "Scd"
-            },
-            "creation_status": {
-                0: "En cours de saisi",
-                1: "Validé",
-                2: "En cours de validation",
-                3: "En cours de demande modification",
-                4: "Rejeté"
-            },
+            "type": PM_TYPE_MAPPING,
+            "creation_status": CREATION_STATUS_MAPPING,
         },
         "columns": {
             "id": "ID",
@@ -562,21 +488,8 @@ EXPORT_TABLE_INFO = {
                 1: "Active",
                 2: "Radiée"
             },
-            "type": {
-                "associe_pm": "Associé",
-                "ep": "Ep",
-                "esd": "Esd",
-                "gerantpm": "Gérant",
-                "mandataire": "Mandataire",
-                "scd": "Scd"
-            },
-            "creation_status": {
-                0: "En cours de saisi",
-                1: "Validé",
-                2: "En cours de validation",
-                3: "En cours de demande modification",
-                4: "Rejeté"
-            },
+            "type": PM_TYPE_MAPPING,
+            "creation_status": CREATION_STATUS_MAPPING,
         },
         "columns": {
             "id": "ID",
@@ -640,12 +553,9 @@ EXPORT_TABLE_INFO = {
         "values_mapping": {
             "statut": {
                 1: "Active",
-                2: "Inactive"
+                2: "Radiée"
             },
-            "creation_status": {
-                1: "Created",
-                2: "Cancelled"
-            },
+            "creation_status": CREATION_STATUS_MAPPING,
         },
         "columns": {
             "id": "ID",
@@ -1083,11 +993,7 @@ EXPORT_TABLE_INFO = {
         "func_path": "app.main.services.sub_operation_service",
         "func_name": "get_all_sub_operations",
         "values_mapping": {
-            "type_operation": {
-                1: "Achat",
-                2: "Vente",
-                3: "Cession"
-            },
+            "type_operation": Type_Operation_MAPPING,
             "statut": {
                 True: "Actif",
                 False: "Inactif"
@@ -1116,11 +1022,7 @@ EXPORT_TABLE_INFO = {
         "func_name": "get_all_authorized_operations",
         "values_mapping": {
             "categorie_pc": CATEGORIE_PC_MAPPING,
-            "type_operation": {
-                1: "Achat",
-                2: "Vente",
-                3: "Cession"
-            },
+            "type_operation": Type_Operation_MAPPING,
             "statut": {
                 True: "Actif",
                 False: "Inactif"
@@ -1260,27 +1162,20 @@ EXPORT_TABLE_INFO = {
     },
     "cancel_deadline": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.cancel_deadline_service",
+        "func_name": "get_all_cancel_deadlines",
         "values_mapping": {
-            "categorie_pc": {
-                1: "Point de change SCD",
-                2: "Agence Propre Agrée",
-                3: "Agence Propre Non Agrée",
-                4: "Agence Mandataire Agrée",
-                5: "Agence Mandataire Non Agrée",
-                6: "Esd",
-                7: "Banque"
-            },
-            "type_operation": {
-                1: "Achat",
-                2: "Vente",
-                3: "Cession"
-            }
+            "categorie_pc": CATEGORIE_PC_MAPPING,
+            "type_operation": Type_Operation_MAPPING,
         },
         "columns": {
             "id": "ID",
-            "categorie_pc": "Categorie PC",
-            "type_operation": "Type Operation",
-            "delai": "Delai"
+            "categorie_pc": "Catégorie du Point de change",
+            "type_operation": "Opération",
+            "delai": {
+                "title": "Délai d’annulation",
+                "func": get_delai
+            }
         }
     },
     "plafond_dotation": {
@@ -1300,6 +1195,35 @@ EXPORT_TABLE_INFO = {
         }
     },
     "complement_dotation": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "func_path": "app.main.services.complement_dotation_service",
+        "func_name": "get_all_complement_dotations",
+        "values_mapping": {
+        },
+        "columns": {
+            "id": "ID",
+            "annee": "Année",
+            "label": "Libellé du complément",
+            "sous_operation_code": {
+                "title": "ID sous-opération",
+                "func": get_sous_operation_code
+            },
+            "sous_operation_label": {
+                "title": "Sous-opération",
+                "func": get_sous_operation_label
+            },
+            "nature_beneficiaire": {
+                "title": "Bénéficiaire",
+                "func": get_nature_beneficiaire
+            },
+            "base_calcul": "Base de calcul",
+            "percentage": "%",
+            "plafond": "Plafond de la dotation",
+
+            "sous_operation_id": "Sous Operation ID"
+        }
+    },
+    "caisee": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "func_path": "app.main.services.complement_dotation_service",
         "func_name": "get_all_complement_dotations",
