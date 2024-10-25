@@ -1,4 +1,4 @@
-from oc_lib.utils.constants import QUALITE_BENEFICIAIRE_MAPPING
+from oc_lib.utils.constants import QUALITE_BENEFICIAIRE_MAPPING, PAYMENT_METHODS_MAPPING, OPERATORS_WITH_TYPE
 
 # cancel_deadline
 def get_delai(item, _):
@@ -24,19 +24,8 @@ def get_operator_pm(item, _):
     return ""
 
 
-operators_with_type = [
-    {"code": 1, "label": "Société de change de devises", "type": "scd"},
-    {"code": 2, "label": "Etablissement de paiement – Agences propres agréée", "type": "ep"},
-    {"code": 3, "label": "Etablissement de paiement – Agences propres non-agréée", "type": "ep"},
-    {"code": 4, "label": "Etablissement de paiement – Agences Mandataires agréée", "type": "ep"},
-    {"code": 5, "label": "Etablissement de paiement – Agences Mandataires non-agréée", "type": "ep"},
-    {"code": 6, "label": "Etablissement Sous Délégataire", "type": "esd"},
-    {"code": 7, "label": "Banque", "type": "banque"},
-]
-
-
 def get_derogration_op(item, _):
-    matching_one = next(filter(lambda operator: operator["code"] == item.categorie_pc, operators_with_type), None)
+    matching_one = next(filter(lambda operator: operator["code"] == item.categorie_pc, OPERATORS_WITH_TYPE), None)
     if matching_one and getattr(item, matching_one["type"], None):
         op = getattr(item, matching_one['type'])
         return f"{op.registre_commerce}/{op.raison_sociale}"
@@ -44,19 +33,6 @@ def get_derogration_op(item, _):
 
 
 # authorized operation
-
-PAYMENT_METHODS_MAPPING = {
-    1: 'Billet de banque',
-    2: 'Carte Prépayée',
-    3: 'Carte bancaire internationale (TPE)',
-    4: 'Carte bancaire marocaine (TPE)',
-    5: 'Lettres de crédit',
-    6: 'Chèques bancaires',
-    7: 'Ordres monétaires',
-    8: 'Virement',
-}
-
-
 def get_sous_operation_code(item, _):
     if getattr(item, "sous_operation", None):
         return item.sous_operation.code

@@ -74,3 +74,25 @@ PM_TYPE_MAPPING = {
     "mandataire": "Mandataire",
     "scd": "Scd"
 }
+
+PAYMENT_METHODS_MAPPING = {
+    1: 'Billet de banque',
+    2: 'Carte Prépayée',
+    3: 'Carte bancaire internationale (TPE)',
+    4: 'Carte bancaire marocaine (TPE)',
+    5: 'Lettres de crédit',
+    6: 'Chèques bancaires',
+    7: 'Ordres monétaires',
+    8: 'Virement',
+}
+
+
+OPERATORS_WITH_TYPE = [
+    {"code": 1, "label": "Société de change de devises", "type": "scd"},
+    {"code": 2, "label": "Etablissement de paiement – Agences propres agréée", "type": "ep"},
+    {"code": 3, "label": "Etablissement de paiement – Agences propres non-agréée", "type": "ep"},
+    {"code": 4, "label": "Etablissement de paiement – Agences Mandataires agréée", "type": "ep"},
+    {"code": 5, "label": "Etablissement de paiement – Agences Mandataires non-agréée", "type": "ep"},
+    {"code": 6, "label": "Etablissement Sous Délégataire", "type": "esd"},
+    {"code": 7, "label": "Banque", "type": "banque"},
+]
