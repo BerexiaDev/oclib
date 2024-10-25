@@ -19,3 +19,5 @@ class DemandeChangeModifView(db.Model):
     change_key = db.Column(db.String)
     change_value = db.Column(JSONB)
     change_oldvalue = db.Column(JSONB)
+    change_field_name = db.Column(db.String)
+    change_field_value = db.Column(db.Integer)

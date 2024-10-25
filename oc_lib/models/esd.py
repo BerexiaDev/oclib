@@ -23,12 +23,6 @@ class Esd(Pm):
     associe_pms = db.relationship('AssociePm', backref='esd', foreign_keys="[AssociePm.esd_id]")
     co_gerants = db.relationship('Cogerant', backref='esd')
     co_gerants_pms = db.relationship('CogerantPm', backref='esd', foreign_keys="[CogerantPm.esd_id]")
-    inactif_gerants = db.relationship(
-        "Gerant",
-        backref="esd",
-        uselist=True,
-        foreign_keys="[Gerant.esd_inactifs_gerant]"
-    )
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))

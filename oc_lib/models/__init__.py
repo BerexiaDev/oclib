@@ -1,6 +1,5 @@
 from oc_lib.models.activation_complement_dotation import ActivationComplementDotation
 from oc_lib.models.affiliation_group import AffiliationGroup
-from oc_lib.models.agrement import Agrement
 from oc_lib.models.alias import Alias
 from oc_lib.models.associe_pm import AssociePm
 from oc_lib.models.associe_pp import AssociePp
@@ -63,9 +62,11 @@ from oc_lib.models.suppleant import Suppleant
 from oc_lib.models.user import User
 from oc_lib.models.blacklist_beneficiaire import BlacklistBeneficiaire
 from oc_lib.models.local_individual import LocalIndividual
+from oc_lib.models.demande_benef import DemandeBenef
 from oc_lib.models.operation_achat_view import OperationAchatView
 from oc_lib.models.operation_vente_view import OperationVenteView
 from oc_lib.models.operation_cession_view import OperationCessionView
+from oc_lib.models.beneficiaire_pp_final import BeneficiairePpFinal
 
 
 # Association tables

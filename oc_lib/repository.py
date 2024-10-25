@@ -128,17 +128,20 @@ class Repository:
             raise Exception(e)
 
     @classmethod
-    def receive_before_insert(cls):
-        obj = cls.query.order_by(desc(cls.sequence_number)).first()
+    def receive_before_insert(cls,ep_id):
+        filters = {}
+        if ep_id:   #it means we are calculating mandataire sequence for specific Ep
+            filters.update({'ep_id': ep_id})
+        obj = cls.query.filter_by(**filters).order_by(desc(cls.sequence_number)).first()
         if obj is None or obj.sequence_number is None:
             return 1
 
         return obj.sequence_number + 1
 
-    def save(self, commit=True, apply_before_insert=False):
+    def save(self, commit=True, apply_before_insert=False, ep_id=None):
         """Save an object to the database"""
         if apply_before_insert:
-            self.sequence_number = self.receive_before_insert()
+            self.sequence_number = self.receive_before_insert(ep_id)
 
         db.session.add(self)
         if commit:
