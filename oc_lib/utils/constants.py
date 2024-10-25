@@ -96,3 +96,14 @@ OPERATORS_WITH_TYPE = [
     {"code": 6, "label": "Etablissement Sous Délégataire", "type": "esd"},
     {"code": 7, "label": "Banque", "type": "banque"},
 ]
+
+ROLES_MAPPING = {
+    "OC_ADMIN": "Admin Oc",
+    "OC_SUPER_ADMIN": "Super Admin Oc",
+    "OC_AGENT": "Agent Oc",
+    "OC_MANAGER": "Manager Oc",
+    "OP": "Op",
+    "AGENT_AUTORISATION": "Agent Autorisation",
+    "MANAGER_AUTORISATION": "Manager Autorisation",
+    "PREPOSE": "Préposé"
+}

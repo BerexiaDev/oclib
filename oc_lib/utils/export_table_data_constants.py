@@ -1,5 +1,5 @@
 from oc_lib.utils.constants import Roles, QUALITE_BENEFICIAIRE_MAPPING, CATEGORIE_PC_MAPPING, STATUT_MAPPING, \
-    YES_NO_MAPPING, CREATION_STATUS_MAPPING, Type_Operation_MAPPING, PM_TYPE_MAPPING
+    YES_NO_MAPPING, CREATION_STATUS_MAPPING, Type_Operation_MAPPING, PM_TYPE_MAPPING, ROLES_MAPPING
 from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_id, get_pp_field_name, \
     get_lieu_implantation_label, get_categorie_op, get_pm_id, get_affiliation_group, get_apa_actif, \
     get_m_actif, get_ama_actif, get_pm, get_poc, get_motif, get_valide_manager_oc, get_numero_agrement, \
@@ -900,21 +900,23 @@ EXPORT_TABLE_INFO = {
     "user": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "values_mapping": {
+            "role": ROLES_MAPPING,
         },
         "columns": {
             "id": "ID",
+            "fullname": "Nom complet",
+            "email": "Adresse e-mail",
+            "role": "Rôle",
+            "created_on": "Créé le",
+            "modified_on": "Modifié le",
+
             "keycloak_id": "Keycloak ID",
             "firstName": "First Name",
             "lastName": "Last Name",
-            "fullname": "Full Name",
-            "email": "Email",
-            "role": "Role",
             "scd_id": "SCD ID",
             "esd_id": "ESD ID",
             "ep_id": "EP ID",
             "poc_id": "POC ID",
-            "created_on": "Created On",
-            "modified_on": "Modified On"
         }
     },
     "modification": {

@@ -1,4 +1,25 @@
+from sqlalchemy import asc, desc
+
+from oc_lib.models.user import User
 from oc_lib.utils.constants import QUALITE_BENEFICIAIRE_MAPPING, PAYMENT_METHODS_MAPPING, OPERATORS_WITH_TYPE
+
+
+# user
+def get_users_list(args):
+    query = User.query
+
+    sort_key = args.get("sort_key", "keycloak_id")
+    sort_order = args.get("sort_order")
+    fullname = args.get("search_value", "")
+
+    if fullname:
+        query = query.filter(User.fullname.ilike(f"%{fullname}%"))
+
+    query = query.order_by(
+        asc(sort_key) if sort_order == 1 else desc(sort_key))
+
+    return query.all()
+
 
 # cnasnu
 def get_only_date(item, field_name):
@@ -6,15 +27,18 @@ def get_only_date(item, field_name):
         return item.get(field_name).strftime("%b %d, %Y")
     return ""
 
+
 def get_cin(item, _):
     if getattr(item, "cin", None):
         return "****".join(item.cin)
     return ""
 
+
 def get_passport(item, _):
     if getattr(item, "passport", None):
         return "****".join(item.passport)
     return ""
+
 
 # cancel_deadline
 def get_delai(item, _):

@@ -15,6 +15,7 @@ from oc_lib.utils.filter import build_filters
 from oc_lib.utils.db_utils import find_class_by_table_name
 from oc_lib.utils.excel_utils import auto_adjust_column_width, set_data_sheet
 from oc_lib.utils.export_table_data_constants import EXPORT_TABLE_INFO
+from oc_lib.utils.export_table_data_func import get_users_list
 
 
 def get_function_from_path(module_path, function_name):
@@ -40,14 +41,17 @@ def export_tables(args, request_body):
 
     column_names = _validate_column_ids(column_ids, columns)
 
-    func_ins = get_function_from_path(func_path, func_name)
-    if is_multiple_sort:
-        if not isinstance(sort_key, list):
-            sort_key = [sort_key]
-        if not isinstance(sort_order, list):
-            sort_order = [sort_order]
+    if table_name == "user":
+        all_result = get_users_list(args)
+    else:
+        func_ins = get_function_from_path(func_path, func_name)
+        if is_multiple_sort:
+            if not isinstance(sort_key, list):
+                sort_key = [sort_key]
+            if not isinstance(sort_order, list):
+                sort_order = [sort_order]
 
-    all_result = func_ins({"sort_key": sort_key, "sort_order": sort_order}, request_body, True)
+        all_result = func_ins({**args, "sort_key": sort_key, "sort_order": sort_order}, request_body, True)
     data = []
     for d in all_result:
         each_data = []
