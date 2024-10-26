@@ -17,10 +17,10 @@ class Esd(Pm):
         primaryjoin="and_(Gerant.esd_id==Esd.id,Gerant.creation_status!=4 ,or_(Gerant.statut==True, Gerant.statut.is_(None)))", 
         uselist=False
     )
-    gerants_pm = db.relationship("GerantPm", backref="esd", uselist=True, foreign_keys="[GerantPm.esd_id]")
+    gerant_pms = db.relationship("GerantPm", backref="esd", uselist=True, foreign_keys="[GerantPm.esd_id]")
     gerant_pm = db.relationship(
         "GerantPm",
-        primaryjoin="and_(GerantPm.esd_id==Esd.id,GerantPm.creation_status!=4 ,or_(GerantPm.statut==True, GerantPm.statut.is_(None)))", 
+        primaryjoin="and_(GerantPm.esd_id==Esd.id,GerantPm.creation_status!=4 ,or_(GerantPm.is_actif==True, GerantPm.is_actif.is_(None)))", 
         uselist=False
     )
     
