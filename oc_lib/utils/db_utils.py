@@ -34,7 +34,7 @@ def validate_unique_active(class_name, current_instance):
     elif is_rep_sup:
         extra_conditions = class_name.scd_id == current_instance.scd_id
     elif is_pocp:
-        extra_conditions = class_name.ep_id = current_instance.ep_id
+        extra_conditions = class_name.ep_id == current_instance.ep_id
 
     filters.append(extra_conditions)
 
