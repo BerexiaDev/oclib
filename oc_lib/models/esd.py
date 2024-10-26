@@ -11,13 +11,18 @@ class Esd(Pm):
 
     poc = db.relationship('Poc', backref='esd', uselist=False)
     
+    gerants_pp = db.relationship("Gerant", backref="esd", uselist=True)
     gerant_pp = db.relationship(
         "Gerant",
-        backref="esd_gerant_pp_ref",
-        uselist=False,
-        foreign_keys="[Gerant.esd_id]" 
+        primaryjoin="and_(Gerant.esd_id==Esd.id,Gerant.creation_status!=4 ,or_(Gerant.statut==True, Gerant.statut.is_(None)))", 
+        uselist=False
     )
-    gerant_pm = db.relationship('GerantPm', backref='esd', uselist=False, foreign_keys="[GerantPm.esd_id]")
+    gerants_pm = db.relationship("GerantPm", backref="esd", uselist=True)
+    gerant_pm = db.relationship(
+        "GerantPm",
+        primaryjoin="and_(GerantPm.esd_id==Esd.id,GerantPm.creation_status!=4 ,or_(GerantPm.statut==True, GerantPm.statut.is_(None)))", 
+        uselist=False
+    )
     
     associe_pps = db.relationship('AssociePp', backref='esd')
     associe_pms = db.relationship('AssociePm', backref='esd', foreign_keys="[AssociePm.esd_id]")
