@@ -39,7 +39,7 @@ def validate_unique_active(class_name, current_instance):
     if not active_instance:
         return True
 
-    if is_gerant and active_instance:
+    if is_gerant and (active_instance != current_instance):
         raise ValueError(
             "Il existe déjà un gerant actif pour cet opérateur."
         )
