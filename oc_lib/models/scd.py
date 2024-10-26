@@ -31,7 +31,7 @@ class Scd(Pm):
     gerants = db.relationship("Gerant", backref="scd", uselist=True)
     gerant_pp = db.relationship(
         "Gerant",
-        primaryjoin="and_(Gerant.scd_id==Scd.id,Gerant.creation_status!=4 ,or_(Gerant.statut==True, Gerant.statut.is_(None)))", 
+        primaryjoin="and_(Gerant.scd_id==Scd.id,Gerant.creation_status!=4 ,or_(Gerant.statut==1, Gerant.statut.is_(None)))", 
         uselist=False
     )
     
