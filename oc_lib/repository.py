@@ -1,17 +1,10 @@
 from oc_lib.db import db
 from oc_lib.utils.exceptions import DateValidationError
-from sqlalchemy import desc, func, event
-from sqlalchemy.engine import Engine
+from sqlalchemy import desc, func
 from copy import deepcopy
 
 
 class Repository:
-    
-    @event.listens_for(Engine, "connect")
-    def set_timezone(dbapi_connection, connection_record):
-        cursor = dbapi_connection.cursor()
-        cursor.execute("SET TIME ZONE 'UTC+1'")
-        cursor.close() 
 
     def to_dict(self):
         full_dict = deepcopy(self.__dict__)
