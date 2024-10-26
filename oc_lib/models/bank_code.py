@@ -5,5 +5,5 @@ from oc_lib.db import db
 class BankCode(db.Model, Repository):
     __tablename__ = 'bank_code'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    nom = db.Column(db.String(100))
+    name = db.Column(db.String(100))
     code = db.Column(db.Integer)
