@@ -18,16 +18,16 @@ def validate_unique_active(class_name, current_instance):
     from oc_lib.models.gerant_pm import GerantPm
     # Create an alias for Pp
     PpAlias = aliased(Pp)
-    PmAlias = aliased(Pm)
+    GerantPmAlias = aliased(GerantPm)
 
     is_gerant = isinstance(current_instance, Gerant)
     is_rep_sup = isinstance(current_instance, (Representant, Suppleant))
     is_gerant_pm = isinstance(current_instance, GerantPm)
     #more models to be added
 
-    filter_class = PmAlias if is_gerant_pm else PpAlias 
+    filter_class = GerantPmAlias if is_gerant_pm else PpAlias 
     filters = [
-        filter_class.statut.in_([1, None] if is_gerant_pm else [True, None]),
+        filter_class.is_actif.in_([True, None] if is_gerant_pm else filter_class.statut.in_[True, None]),
         filter_class.creation_status != 4
     ]
 
@@ -41,7 +41,7 @@ def validate_unique_active(class_name, current_instance):
         
     filters.append(extra_conditions)
 
-    active_instance = db.session.query(class_name).join(PpAlias).filter(*filters).first()
+    active_instance = db.session.query(class_name).join(filter_class).filter(*filters).first()
 
     if not active_instance:
         return True
