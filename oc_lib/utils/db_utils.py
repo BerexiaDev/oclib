@@ -27,9 +27,12 @@ def validate_unique_active(class_name, current_instance):
 
     filter_class = GerantPmAlias if is_gerant_pm else PpAlias 
     filters = [
-        filter_class.is_actif.in_([True, None] if is_gerant_pm else filter_class.statut.in_[True, None]),
         filter_class.creation_status != 4
     ]
+    if is_gerant_pm:
+        filters.append(filter_class.is_actif.in_([True, None]))
+    else:
+        filters.append(filter_class.statut.in_([True, None]))
 
     # Add specific conditions based on the instance type
     if is_gerant:
