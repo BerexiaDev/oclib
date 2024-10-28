@@ -67,6 +67,7 @@ from oc_lib.models.operation_achat_view import OperationAchatView
 from oc_lib.models.operation_vente_view import OperationVenteView
 from oc_lib.models.operation_cession_view import OperationCessionView
 from oc_lib.models.beneficiaire_pp_final import BeneficiairePpFinal
+from oc_lib.models.demande_statut import DemandeStatut
 
 
 # Association tables
