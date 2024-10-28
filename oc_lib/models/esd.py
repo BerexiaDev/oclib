@@ -13,7 +13,7 @@ class Esd(Pm):
     
     gerant_pp = db.relationship(
         "Gerant",
-        backref="esd_gerant_pp_ref",
+        backref="esd",
         uselist=False,
         foreign_keys="[Gerant.esd_id]" 
     )
@@ -23,12 +23,18 @@ class Esd(Pm):
     associe_pms = db.relationship('AssociePm', backref='esd', foreign_keys="[AssociePm.esd_id]")
     co_gerants = db.relationship('Cogerant', backref='esd')
     co_gerants_pms = db.relationship('CogerantPm', backref='esd', foreign_keys="[CogerantPm.esd_id]")
+    inactif_gerants = db.relationship(
+        "Gerant",
+        backref="esd_inactif_gerant_pp_ref",
+        uselist=True,
+        foreign_keys="[Gerant.esd_inactifs_gerant]"
+    )
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
     affiliation_group_motif = db.Column(db.String(255), nullable=True)
     
-    numero_decision_autorisation = db .Column(db.String(255))
+    numero_decision_autorisation = db.Column(db.String(255))
     date_decision_autorisation = db.Column(db.Date)
 
     __mapper_args__ = {'polymorphic_identity': 'esd'}

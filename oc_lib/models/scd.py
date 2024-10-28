@@ -1,6 +1,6 @@
 from oc_lib.db import db
 from oc_lib.models.pm import Pm
-from sqlalchemy import or_
+
 
 class Scd(Pm):
     id = db.Column(db.Integer, db.ForeignKey("pm.id"), primary_key=True, nullable=False)
@@ -15,26 +15,45 @@ class Scd(Pm):
 
     # One to many
     associe_pps = db.relationship("AssociePp", backref="scd")
-    associe_pms = db.relationship("AssociePm", backref="scd", foreign_keys="[AssociePm.scd_id]")
+    associe_pms = db.relationship(
+        "AssociePm", backref="scd", foreign_keys="[AssociePm.scd_id]"
+    )
     co_gerants = db.relationship("Cogerant", backref="scd")
     pocs = db.relationship("Poc", backref="scd")
+    inactif_gerants = db.relationship(
+        "Gerant",
+        backref="scd_inactif_gerant_pp_ref",
+        uselist=True,
+        foreign_keys="[Gerant.scd_inactifs_gerant]"
+    )
+    inactif_suppleants = db.relationship(
+        "Suppleant",
+        backref="scd_inactif_suppleant_pp_ref",
+        uselist=True,
+        foreign_keys="[Suppleant.scd_inactifs_suppleant]"
+    )
 
-    # One to many (Actif + Inactif)
-    representants = db.relationship("Representant", backref="scd", uselist=True)
+    inactif_representants = db.relationship(
+        "Representant",
+        backref="esd_inactif_representant_pp_ref",
+        uselist=True,
+        foreign_keys="[Representant.scd_inactifs_representant]"
+    )
+
+    # One to one
     representant = db.relationship(
         "Representant",
-        primaryjoin="and_(Representant.scd_id==Scd.id,Representant.creation_status!=4 ,or_(Representant.statut==True, Representant.statut.is_(None)))", 
-        uselist=False, 
+        backref="scd", 
+        uselist=False,
+        foreign_keys="[Representant.scd_id]" 
     )
-
-    # One to many (Actif + Inactif)
-    gerants = db.relationship("Gerant", backref="scd", uselist=True)
     gerant_pp = db.relationship(
         "Gerant",
-        primaryjoin="and_(Gerant.scd_id==Scd.id,Gerant.creation_status!=4 ,or_(Gerant.statut==True, Gerant.statut.is_(None)))", 
-        uselist=False
+        backref="scd",  
+        uselist=False,
+        foreign_keys="[Gerant.scd_id]" 
     )
-    
+
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
     affiliation_group_motif = db.Column(db.String(255), nullable=True)
