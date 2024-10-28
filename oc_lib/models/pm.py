@@ -18,7 +18,7 @@ class Pm(db.Model, Repository):
     idce = db.Column(db.String(50))
     idf = db.Column(db.String(100))
     forme_juridique = db.Column(db.String(100))
-    capital_social = db.Column(db.Numeric(precision=20, scale=3))
+    capital_social = db.Column(db.Numeric(precision=20, scale=3), nullable=True)
     statut = db.Column(db.Integer) #1 actif #2 inactif
     email = db.Column(db.String(50))
     telephone = db.Column(db.String(50))
