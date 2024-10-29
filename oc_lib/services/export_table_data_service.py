@@ -12,7 +12,6 @@ from sqlalchemy import asc, desc
 from oc_lib.utils.decorators import exception_handler
 from oc_lib.utils.exceptions import UnauthorizedError, InvalidDataError
 from oc_lib.utils.filter import build_filters
-from oc_lib.utils.db_utils import find_class_by_table_name
 from oc_lib.utils.excel_utils import auto_adjust_column_width, set_data_sheet
 from oc_lib.utils.export_table_data_constants import EXPORT_TABLE_INFO
 from oc_lib.utils.export_table_data_func import get_users_list
@@ -30,10 +29,6 @@ def export_tables(args, request_body):
     table_name = args.get("table_name")
     file_type = args.get("file_type")
     column_ids = request_body.get("columns", [])
-
-    model_class = find_class_by_table_name(table_name)
-    if not model_class:
-        raise InvalidDataError(f"Table {table_name} not found")
 
     # Check if the user has permission to export the table
     values_mapping, columns, func_path, func_name, is_multiple_sort = _check_permission_and_return_values_mapping_and_column_name(

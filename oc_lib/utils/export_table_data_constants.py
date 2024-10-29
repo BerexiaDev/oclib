@@ -7,7 +7,6 @@ from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_
     get_sous_operation_lieu_implantations, get_payment_method, get_operator_pm, get_derogration_op, \
     get_latence_jours, get_nature_beneficiaire, get_delai, get_only_date, get_cin, get_passport
 
-
 EXPORT_TABLE_INFO = {
     "operation_achat_view": {
         "required_roles": [Roles.OC_SUPER_ADMIN.value],
@@ -1225,33 +1224,47 @@ EXPORT_TABLE_INFO = {
             "sous_operation_id": "Sous Operation ID"
         }
     },
-    "caisee": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
-        "func_path": "app.main.services.complement_dotation_service",
-        "func_name": "get_all_complement_dotations",
+    "caisse_devise": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OP.value, Roles.PREPOSE.value],
+        "func_path": "app.main.services.caisse_devise_service",
+        "func_name": "consult_caisse",
         "values_mapping": {
+            "categorie_pc": CATEGORIE_PC_MAPPING,
         },
         "columns": {
             "id": "ID",
-            "annee": "Année",
-            "label": "Libellé du complément",
-            "sous_operation_code": {
-                "title": "ID sous-opération",
-                "func": get_sous_operation_code
-            },
-            "sous_operation_label": {
-                "title": "Sous-opération",
-                "func": get_sous_operation_label
-            },
-            "nature_beneficiaire": {
-                "title": "Bénéficiaire",
-                "func": get_nature_beneficiaire
-            },
-            "base_calcul": "Base de calcul",
-            "percentage": "%",
-            "plafond": "Plafond de la dotation",
+            "nom_agence": "Dénomination PC",
+            "categorie_pm": "Catégorie PM",
+            "raison_sociale_pm": "RS (PM)",
+            "registre_commerce": "RC",
+            "centre": "Centre",
+            "categorie_pc": "Catégorie PC",
+            "numero_agrement": "N°Agrément",
 
-            "sous_operation_id": "Sous Operation ID"
+            # Columns for Prepose
+            "label": "Codes",
+            "montant": "Montant de la caisse de tout le point de change"
+        }
+    },
+    "encaisse": {
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OP.value, Roles.PREPOSE.value],
+        "func_path": "app.main.services.encaisse_service",
+        "func_name": "consult_encaisse",
+        "values_mapping": {
+            "categorie_pc": CATEGORIE_PC_MAPPING,
+        },
+        "columns": {
+            "id": "ID",
+            "categorie_pm": "Catégorie Opérateur (PM)",
+            "raison_sociale_pm": "RS",
+            "registre_commerce": "RC",
+            "centre": "Centre",
+            "categorie_pc": "Catégorie PC",
+            "nom_agence": "Point de change dénomination",
+            "numero_agrement": "N°Agrément",
+
+            # Columns for Prepose
+            "encaisse": "Montant de l’encaisse en MAD (*)",
         }
     },
     "individual": {
