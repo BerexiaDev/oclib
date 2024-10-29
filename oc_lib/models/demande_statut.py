@@ -7,5 +7,5 @@ class DemandeStatut(db.Model, Repository):
     decision = db.Column(db.Integer) # Statut (accepté/rejeté)
     etape = db.Column(db.Integer) # Avancement
 
-    statut = db.Column(db.Integer, db.ForeignKey("statut.id"))
+    statut_id = db.Column(db.Integer, db.ForeignKey("statut.id"))
     
