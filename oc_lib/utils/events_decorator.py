@@ -2,7 +2,7 @@ from sqlalchemy import event
 from sqlalchemy.orm import Session
 
 from oc_lib.utils.exceptions import DateValidationError
-from oc_lib.utils.strings import get_class_instance, date_now
+from oc_lib.utils.strings import get_class_instance, date_now, convert_str_to_date
 from datetime import datetime
 
 
@@ -19,7 +19,7 @@ def register_event_listeners(cls):
             if isinstance(target, Statut):
                 poc = session.query(Poc).filter_by(id=target.poc_id).first()
 
-                if target.is_valid:
+                if target.is_valid and convert_str_to_date(str(target.date_debut)) == datetime.today().date():
                     poc.statut_activite = target.statut_activite
                     poc.statut_agrement = target.statut_agrement
                 else:
