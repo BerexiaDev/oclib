@@ -9,5 +9,6 @@ class DemandeStatut(db.Model, Repository):
     etape = db.Column(db.Integer) # Avancement
     date_creation = db.Column(db.Date, default=date.today, onupdate=date.today)
     statut_id = db.Column(db.Integer, db.ForeignKey("statut.id"))
+    poc_id = db.Column(db.Integer, db.ForeignKey("poc.id"))
     change = db.Column(JSONB)
     
