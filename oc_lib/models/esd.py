@@ -11,24 +11,23 @@ class Esd(Pm):
 
     poc = db.relationship('Poc', backref='esd', uselist=False)
     
+    gerants_pp = db.relationship("Gerant", backref="esd", uselist=True)
     gerant_pp = db.relationship(
         "Gerant",
-        backref="esd_gerant_pp_ref",
-        uselist=False,
-        foreign_keys="[Gerant.esd_id]" 
+        primaryjoin="and_(Gerant.esd_id==Esd.id,Gerant.creation_status!=4 ,or_(Gerant.statut==True, Gerant.statut.is_(None)))", 
+        uselist=False
     )
-    gerant_pm = db.relationship('GerantPm', backref='esd', uselist=False, foreign_keys="[GerantPm.esd_id]")
+    gerant_pms = db.relationship("GerantPm", backref="esd", uselist=True, foreign_keys="[GerantPm.esd_id]")
+    gerant_pm = db.relationship(
+        "GerantPm",
+        primaryjoin="and_(GerantPm.esd_id==Esd.id,GerantPm.creation_status!=4 ,or_(GerantPm.is_actif==True, GerantPm.is_actif.is_(None)))", 
+        uselist=False
+    )
     
     associe_pps = db.relationship('AssociePp', backref='esd')
     associe_pms = db.relationship('AssociePm', backref='esd', foreign_keys="[AssociePm.esd_id]")
     co_gerants = db.relationship('Cogerant', backref='esd')
     co_gerants_pms = db.relationship('CogerantPm', backref='esd', foreign_keys="[CogerantPm.esd_id]")
-    inactif_gerants = db.relationship(
-        "Gerant",
-        backref="esd",
-        uselist=True,
-        foreign_keys="[Gerant.esd_inactifs_gerant]"
-    )
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
