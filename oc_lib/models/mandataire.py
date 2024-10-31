@@ -16,6 +16,8 @@ class Mandataire(Pm):
     pocs = db.relationship(
         "Poc", backref="mandataire", foreign_keys="[Poc.mandataire_id]"
     )
+    declarations_ana = db.relationship("DeclarationAna", backref="mandataire")
+
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"))
     
     # Many to one

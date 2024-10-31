@@ -18,6 +18,7 @@ class Ep(Pm):
     )
     poc_ss = db.relationship("PocS", backref="ep", foreign_keys="[PocS.ep_id]")
     pocs = db.relationship("Poc", backref="ep", foreign_keys="[Poc.ep_id]")
+    declarations_ana = db.relationship("DeclarationAna", backref="ep")
     inactif_pocps = db.relationship(
         "PocP",
         backref="ep_pocp_pp_ref",
