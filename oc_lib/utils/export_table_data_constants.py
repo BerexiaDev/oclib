@@ -255,12 +255,8 @@ EXPORT_TABLE_INFO = {
             "mandataire_id": "Mandataire ID",
             "lieu_implantation_id": "Lieu Implantation ID",
             "linked_poc_id": "ID PC liaison",
-            # "numero_delivrance": {
-            #     "title": "N° délivrance décision premier agrément"
-            # },
-            # "date_delivrance": {
-            #     "title": "Date délivrance décision premier agrément"
-            # },
+            "numero_delivrance": "N° délivrance décision premier agrément",
+            "date_delivrance": "Date délivrance décision premier agrément",
             "lieu_implantation": {
                 "title": "Lieu Implantation",
                 "func": get_lieu_implantation_label
