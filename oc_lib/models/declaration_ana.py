@@ -16,7 +16,7 @@ class DeclarationAna(db.Model, Repository):
     date_debut_activite = db.Column(db.Date, nullable=False)
     statut_activite = db.Column(db.Integer, default=1) #En activité par défaut
     statut_agrement = db.Column(db.Integer, default=3) #Neant par défaut
-    date_debut_statut = db.Column(db.Date, nullable=False)
+    date_debut_statut = db.Column(db.Date)
     nom = db.Column(db.String(50))
     prenom = db.Column(db.String(50))
     nature_prepose = db.Column(db.String(50))
