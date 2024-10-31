@@ -38,5 +38,5 @@ class DeclarationAna(db.Model, Repository):
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id", ondelete="SET NULL"))
     mandataire_id = db.Column(db.Integer, db.ForeignKey("mandataire.id", ondelete= "SET NULL"))
     
-    lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id"))
+    lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id", ondelete= "SET NULL"))
     lieu_implantation = db.relationship("LieuImplantation", backref="declaration_ana")
