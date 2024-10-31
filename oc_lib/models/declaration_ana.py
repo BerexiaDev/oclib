@@ -1,5 +1,7 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
+from datetime import date
+
 
 class DeclarationAna(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,6 +27,8 @@ class DeclarationAna(db.Model, Repository):
     phone = db.Column(db.String)
     date_nomination = db.Column(db.Date) 
     type_pm = db.Column(db.String)
+    date_declaration = db.Column(db.Date, default=date.today)
+    motif = db.Column(db.String(50)) 
     created_by = db.Column(db.String(240), nullable=False, server_default="")
     validator = db.Column(db.String)
     statut = db.Column(db.Integer)
