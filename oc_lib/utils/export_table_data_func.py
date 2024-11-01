@@ -46,9 +46,9 @@ def get_delai(item, _):
 
 
 # complement dotation
-def get_nature_beneficiaire(item, _):
-    if getattr(item, "nature_beneficiaire", None):
-        return ", ".join([QUALITE_BENEFICIAIRE_MAPPING.get(n, "") for n in getattr(item, "nature_beneficiaire", [])])
+def get_nature_beneficiaire(item, field_name):
+    if getattr(item, field_name, None):
+        return ", ".join([QUALITE_BENEFICIAIRE_MAPPING.get(n, "") for n in getattr(item, field_name, [])])
     return ""
 
 

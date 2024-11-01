@@ -1003,8 +1003,14 @@ EXPORT_TABLE_INFO = {
             "code_statistique": "Code statistique Sous-opération",
             "label": "Sous-opération",
             "statut": "Statut",
-            "nature_beneficiaire": "Qualité bénficiaire",
-            "beneficiaire_final_required": "Bénéficiaire = bénéficiaire final",
+            "nature_beneficiaire": {
+                "title": "Qualité bénficiaire",
+                "func": get_nature_beneficiaire
+            },
+            "beneficiaire_final_required": {
+                "title": "Bénéficiaire = bénéficiaire final",
+                "func": get_nature_beneficiaire
+            },
             "nature_beneficiaire_final": "Qualité bénficiaire final",
             "date_activation": "Date d’activation",
             "date_desactivation": "Date désactivation",
