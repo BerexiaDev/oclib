@@ -46,9 +46,9 @@ def get_delai(item, _):
 
 
 # complement dotation
-def get_nature_beneficiaire(item, field_name):
-    if getattr(item, field_name, None):
-        return ", ".join([QUALITE_BENEFICIAIRE_MAPPING.get(n, "") for n in getattr(item, field_name, [])])
+def get_nature_beneficiaire(item, _):
+    if getattr(item, "nature_beneficiaire", None):
+        return ", ".join([QUALITE_BENEFICIAIRE_MAPPING.get(n, "") for n in getattr(item, "nature_beneficiaire", [])])
     return ""
 
 
@@ -182,13 +182,13 @@ def get_lieu_implantation_label(item, _):
 
 
 def get_categorie_op(item, _):
-    if getattr(item, "scd_id", None):
+    if item.get("scd_id"):
         return "Scd"
-    elif getattr(item, "esd_id", None):
+    elif item.get("esd_id"):
         return "Esd"
-    elif getattr(item, "mandataire_id", None):
+    elif item.get("mandataire_id"):
         return "Mandataire"
-    elif getattr(item, "ep_id", None):
+    elif item.get("ep_id"):
         return "Ep"
     else:
         return "N/A"
@@ -230,3 +230,10 @@ def get_pp_field_name(item, field_name):
         return getattr(ite, field_name)
     else:
         return ""
+
+# poc
+
+def get_lieu_implantation_label_for_poc(item, _):
+    if item.get("lieu_implantation"):
+        return item.get("lieu_implantation").label
+    return ""

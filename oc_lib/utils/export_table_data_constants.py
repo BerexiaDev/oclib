@@ -5,7 +5,8 @@ from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_
     get_m_actif, get_ama_actif, get_pm, get_poc, get_motif, get_valide_manager_oc, get_numero_agrement, \
     get_pattern, get_sous_operation_code, get_sous_operation_code_statistique, get_sous_operation_label, \
     get_sous_operation_lieu_implantations, get_payment_method, get_operator_pm, get_derogration_op, \
-    get_latence_jours, get_nature_beneficiaire, get_delai, get_only_date, get_cin, get_passport
+    get_latence_jours, get_nature_beneficiaire, get_delai, get_only_date, get_cin, get_passport, \
+    get_lieu_implantation_label_for_poc
 
 EXPORT_TABLE_INFO = {
     "operation_achat_view": {
@@ -259,7 +260,7 @@ EXPORT_TABLE_INFO = {
             "date_delivrance": "Date délivrance décision premier agrément",
             "lieu_implantation": {
                 "title": "Lieu Implantation",
-                "func": get_lieu_implantation_label
+                "func": get_lieu_implantation_label_for_poc
             },
             "categorie_op": {
                 "title": "Catégorie Opérateur",
@@ -1003,14 +1004,8 @@ EXPORT_TABLE_INFO = {
             "code_statistique": "Code statistique Sous-opération",
             "label": "Sous-opération",
             "statut": "Statut",
-            "nature_beneficiaire": {
-                "title": "Qualité bénficiaire",
-                "func": get_nature_beneficiaire
-            },
-            "beneficiaire_final_required": {
-                "title": "Bénéficiaire = bénéficiaire final",
-                "func": get_nature_beneficiaire
-            },
+            "nature_beneficiaire": "Qualité bénficiaire",
+            "beneficiaire_final_required": "Bénéficiaire = bénéficiaire final",
             "nature_beneficiaire_final": "Qualité bénficiaire final",
             "date_activation": "Date d’activation",
             "date_desactivation": "Date désactivation",
