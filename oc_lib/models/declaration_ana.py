@@ -31,7 +31,7 @@ class DeclarationAna(db.Model, Repository):
     motif = db.Column(db.String(50)) 
     created_by = db.Column(db.String(240), nullable=False, server_default="")
     validator = db.Column(db.String)
-    statut = db.Column(db.Integer)
+    statut = db.Column(db.Integer, default=1)
     decision = db.Column(db.Integer)
     
     # One to one
