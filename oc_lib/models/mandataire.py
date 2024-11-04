@@ -14,7 +14,7 @@ class Mandataire(Pm):
 
     # One to many
     pocs = db.relationship(
-        "Poc", backref="mandataire", foreign_keys="[Poc.mandataire_id]"
+        "Poc", backref="mandataire", foreign_keys="[Poc.mandataire_id]", cascade="all, delete"
     )
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"))
     
