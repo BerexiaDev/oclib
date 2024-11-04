@@ -23,6 +23,5 @@ class Statut(db.Model, Repository):
     is_valid = db.Column(db.Boolean, default=True)
     date_avancement = db.Column(db.Date, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    demande_statut_id = db.Column(db.Integer, db.ForeignKey('demande_statut.id'))
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id'))
     __mapper_args__ = {'polymorphic_identity': 'statut'}
