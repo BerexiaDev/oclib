@@ -10,8 +10,6 @@ class DemandeStatut(db.Model, Repository):
     state = db.Column(db.Integer)
     rs_pm = db.Column(db.String)
     categorie_pm = db.Column(db.Integer)
-    statut_activite = db.Column(db.Integer)
-    statut_agrement = db.Column(db.Integer)
     motif = db.Column(db.String(150))
     initiateur = db.Column(db.String(150))
     validateur = db.Column(db.String(150))
