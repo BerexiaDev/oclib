@@ -4,7 +4,9 @@ from oc_lib.utils.exceptions import InvalidDataError, UnauthorizedError, NotFoun
     DateValidationError, PermissionDeniedError
 from werkzeug.exceptions import NotFound
 from loguru import logger
-from psycopg2.errors import NotNullViolation, IntegrityError, UniqueViolation
+from psycopg2.errors import NotNullViolation, IntegrityError
+
+from oc_lib.db import db
 
 
 def catch_exceptions(func):
@@ -47,7 +49,7 @@ def catch_exceptions(func):
 
     return wrapper
 
-def exception_handler(message=None, unique_violation_message=None):
+def exception_handler(message=None):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -55,18 +57,28 @@ def exception_handler(message=None, unique_violation_message=None):
                 return func(*args, **kwargs)
 
             except InvalidDataError as e:
+                db.session.rollback()
+
                 return {"status": "error", "message": e.message}, 400
             
             except UnauthorizedError as e:
+                db.session.rollback()
+
                 return {"status": "error", "message": e.message}, 401
             
             except NotFoundError as e:
+                db.session.rollback()
+
                 return {"status": "error", "message": e.message}, 404
             
             except AlreadyExistsError as e:
+                db.session.rollback()
+
                 return {"status": "error", "message": e.message}, 409
             
             except Exception as e:
+                db.session.rollback()
+
                 logger.error(f"Error in {func.__name__}: {e}")
                 return {
                     "status": "error",
