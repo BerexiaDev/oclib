@@ -55,6 +55,7 @@ class Poc(db.Model, Repository):
     lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id"))
     lieu_implantation = db.relationship("LieuImplantation", backref="lieu_implantation")
     
+    demande_statut_id = db.Column(db.Integer, db.ForeignKey('demande_statut.id'))
     #many to many
     derogation_operations = db.relationship(
         "DerogationOperation",
