@@ -36,7 +36,4 @@ class Esd(Pm):
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
     affiliation_group_motif = db.Column(db.String(255), nullable=True)
 
-    numero_decision_autorisation = db.Column(db.String(255))
-    date_decision_autorisation = db.Column(db.Date)
-
     __mapper_args__ = {'polymorphic_identity': 'esd'}
