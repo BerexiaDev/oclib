@@ -1,6 +1,5 @@
 from oc_lib.db import db
 from oc_lib.utils.exceptions import DateValidationError
-
 from sqlalchemy import desc, func
 from copy import deepcopy
 
