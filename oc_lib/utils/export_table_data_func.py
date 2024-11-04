@@ -3,6 +3,31 @@ from sqlalchemy import asc, desc
 from oc_lib.models.user import User
 from oc_lib.utils.constants import QUALITE_BENEFICIAIRE_MAPPING, PAYMENT_METHODS_MAPPING, OPERATORS_WITH_TYPE
 
+# autorisation_particuliere_pm
+def get_beneficiaire_pm_qualite(item, _):
+    if getattr(item, "beneficiaire_pm", None):
+        return QUALITE_BENEFICIAIRE_MAPPING.get(item.beneficiaire_pm.qualite, "")
+    return ""
+
+
+def get_beneficiaire_pm_field_value(item, field_name):
+    if getattr(item, "beneficiaire_pm", None):
+        return getattr(item.beneficiaire_pm, field_name)
+    return ""
+
+
+# autorisation_particuliere_pp
+def get_beneficiaire_pp_qualite(item, _):
+    if getattr(item, "beneficiaire_pp", None):
+        return QUALITE_BENEFICIAIRE_MAPPING.get(item.beneficiaire_pp.qualite, "")
+    return ""
+
+def get_beneficiaire_pp_field_value(item, field_name):
+    if getattr(item, "beneficiaire_pp", None):
+        return getattr(item.beneficiaire_pp, field_name)
+
+    return ""
+
 
 # user
 def get_users_list(args):

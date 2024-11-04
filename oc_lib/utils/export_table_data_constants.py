@@ -6,7 +6,8 @@ from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_
     get_pattern, get_sous_operation_code, get_sous_operation_code_statistique, get_sous_operation_label, \
     get_sous_operation_lieu_implantations, get_payment_method, get_operator_pm, get_derogration_op, \
     get_latence_jours, get_nature_beneficiaire, get_delai, get_only_date, get_cin, get_passport, \
-    get_lieu_implantation_label_for_poc
+    get_lieu_implantation_label_for_poc, get_beneficiaire_pm_qualite, get_beneficiaire_pm_field_value, \
+    get_beneficiaire_pp_qualite, get_beneficiaire_pp_field_value
 
 EXPORT_TABLE_INFO = {
     "operation_achat_view": {
@@ -1304,6 +1305,109 @@ EXPORT_TABLE_INFO = {
                 "title": "Passport",
                 "func": get_passport,
             },
+        }
+    },
+    "autorisation_particuliere_pm": {
+        "required_roles": [Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION],
+        "func_path": "app.main.services.autorisation_particuliere_pm_service",
+        "func_name": "get_all_autorisation_particuliere_pms",
+        "values_mapping": {
+            "statut": {
+                1: "En cours",
+                2: "Validé",
+                3: "Rejeté",
+            }
+        },
+        "columns": {
+            "sous_operation": {
+                "title": "Type de sous-opération",
+                "func": get_sous_operation_label
+            },
+            "beneficiaire_qualite": {
+                "title": "Qualité du bénéficiaire",
+                "func": get_beneficiaire_pm_qualite
+            },
+            "registre_commerce": {
+                "title": "RC",
+                "func": get_beneficiaire_pm_field_value
+            },
+            "centre": {
+                "title": "Centre",
+                "func": get_beneficiaire_pm_field_value
+            },
+            "raison_sociale": {
+                "title": "Raison Sociale",
+                "func": get_beneficiaire_pm_field_value
+            },
+            "montant_supplementaire": "Montant supplémentaire accordé",
+            "numero_autorisation": "Numéro d’autorisation",
+            "date_autorisation": "Date d’autorisation",
+            "date_debut_effet": "Date début effet",
+            "date_fin_effet": "Date fin effet",
+            "statut": "Statut",
+            "created_by": "Créé par",
+            "date_creation": "Date création",
+            "validated_by": "Validée par",
+            "date_validation": "Date validation",
+            "commentaire": "Commentaire",
+        }
+    },
+    "autorisation_particuliere_pp": {
+        "required_roles": [Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION],
+        "func_path": "app.main.services.autorisation_particuliere_pp_service",
+        "func_name": "get_all_autorisation_particuliere_pps",
+        "values_mapping": {
+            "statut": {
+                1: "En cours",
+                2: "Validé",
+                3: "Rejeté",
+            },
+            "flag_desactivation_complement_dotation": {
+                True: "Oui",
+                False: "Non"
+            }
+        },
+        "columns": {
+            "sous_operation": {
+                "title": "Type de sous-opération",
+                "func": get_sous_operation_label
+            },
+            "beneficiaire_qualite": {
+                "title": "Qualité du bénéficiaire",
+                "func": get_beneficiaire_pp_qualite
+            },
+
+            "nom": {
+                "title": "Nom",
+                "func": get_beneficiaire_pp_field_value
+            },
+            "prenom": {
+                "title": "Prénom",
+                "func": get_beneficiaire_pp_field_value
+            },
+            "nature_piece": {
+                "title": "Nature de la pièce d’identité",
+                "func": get_beneficiaire_pp_field_value
+            },
+            "numero_piece": {
+                "title": "Numéro de la pièce d’identité",
+                "func": get_beneficiaire_pp_field_value
+            },
+            "nationalite": {
+                "title": "Nationalité",
+                "func": get_beneficiaire_pp_field_value
+            },
+            "montant_supplementaire": "Montant supplémentaire accordé",
+            "numero_autorisation": "Numéro d’autorisation",
+            "date_autorisation": "Date d’autorisation",
+            "annee_effet": "Année effet autorisation",
+            "flag_desactivation_complement_dotation": "Flag désactivation complément de dotation",
+            "statut": "Statut",
+            "created_by": "Créé par",
+            "date_creation": "Date création",
+            "validated_by": "Validée par",
+            "date_validation": "Date de validation",
+            "commentaire": "Commentaire",
         }
     }
 }
