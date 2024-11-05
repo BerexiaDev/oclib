@@ -5,7 +5,6 @@ from datetime import date
 
 class DeclarationAna(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
-    poc_id = db.Column(db.Integer, nullable=False) 
     type_pm = db.Column(db.String)
     date_declaration = db.Column(db.Date, default=date.today)
     motif = db.Column(db.String(50)) 
@@ -14,6 +13,6 @@ class DeclarationAna(db.Model, Repository):
     statut = db.Column(db.Integer)
     decision = db.Column(db.Integer)
     
-    # One to one
+    poc_id = db.Column(db.Integer, db.ForeignKey("poc.id", ondelete="SET NULL")) 
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id", ondelete="SET NULL"))
     mandataire_id = db.Column(db.Integer, db.ForeignKey("mandataire.id", ondelete= "SET NULL"))
