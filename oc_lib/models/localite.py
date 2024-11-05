@@ -3,7 +3,7 @@ from oc_lib.db import db
 
 
 class Localite(db.Model, Repository):
-    __tablename__ = 'region'
+    __tablename__ = 'localite'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100))
     code = db.Column(db.Integer)
