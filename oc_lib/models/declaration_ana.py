@@ -19,7 +19,6 @@ class DeclarationAna(db.Model, Repository):
     date_debut_statut = db.Column(db.Date)
     nom = db.Column(db.String(50))
     prenom = db.Column(db.String(50))
-    nature_prepose = db.Column(db.String(50))
     numero_piece = db.Column(db.String(50))
     nationalite = db.Column(db.String(50))
     adresse_prepose = db.Column(db.String(100))
