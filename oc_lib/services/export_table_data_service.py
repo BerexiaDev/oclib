@@ -52,7 +52,7 @@ def export_tables(args, request_body):
         each_data = []
         for col_id in column_ids:
             col_info = columns.get(col_id)
-            if type(col_info) == str:
+            if isinstance(col_info, str):
                 try:
                     each_data.append(getattr(d, col_id))
                 except AttributeError:
@@ -68,16 +68,11 @@ def export_tables(args, request_body):
 
 def _validate_column_ids(column_ids, columns):
     column_names = []
-    error_column_ids = []
     for c in column_ids:
-        if c not in columns:
-            error_column_ids.append(c)
-        else:
-            column_name = columns.get(c) if type(columns.get(c)) == str else columns.get(c).get("title")
+        if c in columns:
+            column_name = columns.get(c) if isinstance(columns.get(c), str) else columns.get(c).get("title")
             column_names.append(column_name)
 
-    if error_column_ids:
-        raise InvalidDataError(f"Les colonnes suivantes n'existent pas: {', '.join(error_column_ids)}")
     return column_names
 
 
