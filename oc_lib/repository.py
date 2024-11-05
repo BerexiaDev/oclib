@@ -175,3 +175,19 @@ class Repository:
         except Exception as e:
             db.session.rollback()  # Rollback if something goes wrong
             raise Exception(f"Error in bulk saving objects: {e}")
+
+    @classmethod
+    def bulk_update(self, objects, commit=True):
+        """
+        Update multiple objects in the database in bulk.
+        """
+        try:
+            # Update all objects in the session in bulk
+            db.session.bulk_update_mappings(objects)
+
+            if commit:
+                db.session.commit()
+
+            return True  # Return True to indicate success
+        except Exception as e:
+            db.session.rollback()
