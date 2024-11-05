@@ -42,8 +42,8 @@ class Poc(db.Model, Repository):
     statuts = db.relationship("Statut", backref="poc", lazy=True)
     motifs = db.relationship("Motif", backref="poc", lazy=True)
 
-    preposes = db.relationship("Prepose", backref="poc", lazy=True)
-    
+    preposes = db.relationship("Prepose", backref="poc", lazy=True, cascade="all, delete")
+
     declarations = db.relationship("DeclarationPoc", backref="poc", lazy=True)
 
     # One to one
@@ -54,7 +54,7 @@ class Poc(db.Model, Repository):
 
     lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id"))
     lieu_implantation = db.relationship("LieuImplantation", backref="lieu_implantation")
-    
+
     #many to many
     derogation_operations = db.relationship(
         "DerogationOperation",
@@ -63,7 +63,7 @@ class Poc(db.Model, Repository):
     )
 
     derogation_encaisses = db.relationship(
-        "DerogationEncaisse", 
+        "DerogationEncaisse",
         secondary=derogation_encaisse_poc_association,
         back_populates="pocs"
     )

@@ -14,7 +14,7 @@ class Mandataire(Pm):
 
     # One to many
     pocs = db.relationship(
-        "Poc", backref="mandataire", foreign_keys="[Poc.mandataire_id]"
+        "Poc", backref="mandataire", foreign_keys="[Poc.mandataire_id]", cascade="all, delete"
     )
     declarations_ana = db.relationship("DeclarationAna", backref="mandataire")
 
@@ -23,8 +23,5 @@ class Mandataire(Pm):
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
     affiliation_group_motif = db.Column(db.String(255), nullable=True)
-    
-    numero_decision_autorisation = db .Column(db.String(255))
-    date_decision_autorisation = db.Column(db.Date)
 
     __mapper_args__ = {"polymorphic_identity": "mandataire"}
