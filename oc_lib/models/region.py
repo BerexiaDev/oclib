@@ -8,4 +8,4 @@ class Region(db.Model, Repository):
     name = db.Column(db.String(100))
     code = db.Column(db.Integer, unique=True)
 
-    localites = db.relationship("localite", backref="region", uselist=True)
+    localites = db.relationship("Localite", backref="region", uselist=True)
