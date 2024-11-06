@@ -8,4 +8,4 @@ class Localite(db.Model, Repository):
     name = db.Column(db.String(100))
     code = db.Column(db.Integer)
 
-    region_id = db.Column(db.Integer, db.ForeignKey('region.code'))
+    region_id = db.Column(db.Integer, db.ForeignKey('region.id'))
