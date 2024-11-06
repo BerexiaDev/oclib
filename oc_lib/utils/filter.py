@@ -34,7 +34,10 @@ tables_name_map = {
     "identity_documents": "identity_documents",
     "operation": "operation",
     "statut": "statuts",
-    "declaration_ana": "declaration_ana"
+    "declaration_ana": "declaration_ana",
+    "ep": "ep",
+    "mandataire": "mandataire",
+    "poc": "poc"
 }
 
 
