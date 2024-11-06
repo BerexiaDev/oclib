@@ -5,7 +5,6 @@ from datetime import date
 
 class DeclarationAna(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
-    type_pm = db.Column(db.String)
     date_declaration = db.Column(db.Date, default=date.today)
     motif = db.Column(db.String(50)) 
     created_by = db.Column(db.String(240), nullable=False, server_default="")
