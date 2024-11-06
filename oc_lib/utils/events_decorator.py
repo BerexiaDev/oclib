@@ -2,37 +2,37 @@ from sqlalchemy import event
 from sqlalchemy.orm import Session
 
 from oc_lib.utils.exceptions import DateValidationError
-from oc_lib.utils.strings import get_class_instance, date_now
+from oc_lib.utils.strings import get_class_instance, date_now, convert_str_to_date
 from datetime import datetime
 
 
 # TODO: Bug front must send Date type not Datetime to avoid == bug
 def register_event_listeners(cls):
-    @event.listens_for(cls, "after_insert")
-    @event.listens_for(cls, "after_update")
-    def change_poc_statut(mapper, connection, target):
-        Poc = get_class_instance("oc_lib.models.poc", "Poc")
-        Statut = get_class_instance("oc_lib.models.statut", "Statut")
+    # @event.listens_for(cls, "after_insert")
+    # @event.listens_for(cls, "after_update")
+    # def change_poc_statut(mapper, connection, target):
+    #     Poc = get_class_instance("oc_lib.models.poc", "Poc")
+    #     Statut = get_class_instance("oc_lib.models.statut", "Statut")
         
-        session = Session(connection)
-        try:
-            if isinstance(target, Statut):
-                poc = session.query(Poc).filter_by(id=target.poc_id).first()
+    #     session = Session(connection)
+    #     try:
+    #         if isinstance(target, Statut):
+    #             poc = session.query(Poc).filter_by(id=target.poc_id).first()
 
-                if target.is_valid:
-                    poc.statut_activite = target.statut_activite
-                    poc.statut_agrement = target.statut_agrement
-                else:
-                    last_isvalid_statut = session.query(Statut).filter_by(poc_id=poc.id, is_valid=True).order_by(Statut.id.desc()).first()
-                    if last_isvalid_statut:
-                        poc.statut_activite = last_isvalid_statut.statut_activite
-                        poc.statut_agrement = last_isvalid_statut.statut_agrement
-                session.commit()
-        except Exception as e:
-            session.rollback()
-            raise e
-        finally:
-            session.close()
+    #             if target.is_valid and convert_str_to_date(str(target.date_debut)) == datetime.today().date():
+    #                 poc.statut_activite = target.statut_activite
+    #                 poc.statut_agrement = target.statut_agrement
+    #             else:
+    #                 last_isvalid_statut = session.query(Statut).filter_by(poc_id=poc.id, is_valid=True).order_by(Statut.id.desc()).first()
+    #                 if last_isvalid_statut:
+    #                     poc.statut_activite = last_isvalid_statut.statut_activite
+    #                     poc.statut_agrement = last_isvalid_statut.statut_agrement
+    #             session.commit()
+    #     except Exception as e:
+    #         session.rollback()
+    #         raise e
+    #     finally:
+    #         session.close()
 
 
     @event.listens_for(cls, "before_insert")
