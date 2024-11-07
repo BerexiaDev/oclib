@@ -33,7 +33,8 @@ tables_name_map = {
     "aliases": "aliases",
     "identity_documents": "identity_documents",
     "operation": "operation",
-    "statut": "statuts"
+    "statut": "statuts",
+    "caisse_devises": "caisse_devises",
 }
 
 
@@ -145,6 +146,7 @@ def build_filters(entity_class, query, search_criteria, main_table):
     for criteria in criterias:
         try:
             table_name = criteria["table"]
+            logger.info(table_name)
             internal_table_name = tables_name_map.get(table_name, None)
 
             if not internal_table_name:
