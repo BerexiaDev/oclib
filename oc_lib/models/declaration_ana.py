@@ -6,7 +6,8 @@ from datetime import date
 class DeclarationAna(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     date_declaration = db.Column(db.Date, default=date.today)
-    motif = db.Column(db.String(50)) 
+    motif = db.Column(db.String(50))
+    motif_manager = db.Column(db.String(50))
     created_by = db.Column(db.String(240), nullable=False, server_default="")
     validateurs = db.Column(db.ARRAY(db.String(240)))
     valide_oc = db.Column(db.Boolean, default=False)
