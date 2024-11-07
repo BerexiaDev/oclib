@@ -3,7 +3,7 @@ from loguru import logger
 from oc_lib.models.poc import Poc
 
 # We map related objects
-# for example one to many: 
+# for example one to many:
 # Parent has many children, so we have to add to this map the children property name
 tables_name_map = {
     "manager-pp": "gerant_pp",
@@ -29,7 +29,7 @@ tables_name_map = {
     "autorization_particuliere_pm": "autorization_particuliere_pm",
     "beneficiaire_pp": "beneficiaire_pp",
     "beneficiaire_pm": "beneficiaire_pm",
-    "seuil_encaisse":"seuil_encaisse",
+    "seuil_encaisse": "seuil_encaisse",
     "aliases": "aliases",
     "identity_documents": "identity_documents",
     "operation": "operation",
@@ -65,7 +65,8 @@ def build_operator(column, operator, value):
     elif operator == "IS NOT NULL":
         return column.isnot(None)
     elif operator == "ARRAY CONTAINS":
-        conditions = [func.array_to_string(column, ' ').ilike(f"%{v.strip()}%") for v in value.split(',')]
+        conditions = [func.array_to_string(column, ' ').ilike(
+            f"%{v.strip()}%") for v in value.split(',')]
         return or_(*conditions)
     elif operator == "IN ARRAY":
         return column.in_(value)
@@ -133,8 +134,12 @@ def build_conditions(table, fields, is_class=False):
 
 def build_filters(entity_class, query, search_criteria, main_table):
     main_fields, criterias = format_criterias(search_criteria, main_table)
+    logger.info(main_fields)
+    logger.info(criterias)
     # Build conditions on main table
-    main_conditions = build_conditions(entity_class, main_fields, is_class=True)
+    main_conditions = build_conditions(
+        entity_class, main_fields, is_class=True)
+    logger.info(main_conditions)
     query = query.filter(and_(*main_conditions))
     # Join related tables
     for criteria in criterias:
@@ -150,7 +155,8 @@ def build_filters(entity_class, query, search_criteria, main_table):
 
             if not table:
                 logger.error(f"No  table attr {internal_table_name}")
-                raise ValueError(f"No internal name for table {internal_table_name}")
+                raise ValueError(
+                    f"No internal name for table {internal_table_name}")
 
             conditions = build_conditions(table, criteria["fields"])
             query = query.outerjoin(table).filter(and_(*conditions))
@@ -164,7 +170,8 @@ def build_filters(entity_class, query, search_criteria, main_table):
 # To refactor
 def split_filters(filters):
     normal_filters = [f for f in filters if f["field"][1]["type"] != "special"]
-    special_filters = [f for f in filters if f["field"][1]["type"] == "special"]
+    special_filters = [
+        f for f in filters if f["field"][1]["type"] == "special"]
     return normal_filters, special_filters
 
 
@@ -204,15 +211,19 @@ def query_pm(value, operator, query):
 
     elif value == "EP":
         if operator == "EQUALS":
-            query = query.filter(and_(Poc.ep_id != None, Poc.mandataire_id == None))
+            query = query.filter(
+                and_(Poc.ep_id != None, Poc.mandataire_id == None))
         else:
-            query = query.filter(or_(Poc.ep_id == None, Poc.mandataire_id == None))
+            query = query.filter(
+                or_(Poc.ep_id == None, Poc.mandataire_id == None))
 
     elif value == "Mandataire":
         if operator == "EQUALS":
-            query = query.filter(and_(Poc.ep_id != None, Poc.mandataire_id != None))
+            query = query.filter(
+                and_(Poc.ep_id != None, Poc.mandataire_id != None))
         else:
-            query = query.filter(or_(Poc.ep_id == None, Poc.mandataire_id == None))
+            query = query.filter(
+                or_(Poc.ep_id == None, Poc.mandataire_id == None))
     else:
         query = query.filter(sql.false())
 
@@ -229,15 +240,19 @@ def query_category(value, operator, query):
 
     elif value == "Agence propre":
         if operator == "EQUALS":
-            query = query.filter(and_(Poc.ep_id != None, Poc.mandataire_id == None))
+            query = query.filter(
+                and_(Poc.ep_id != None, Poc.mandataire_id == None))
         else:
-            query = query.filter(or_(Poc.ep_id == None, Poc.mandataire_id != None))
+            query = query.filter(
+                or_(Poc.ep_id == None, Poc.mandataire_id != None))
 
     elif value == "Agence mandataire":
         if operator == "EQUALS":
-            query = query.filter(and_(Poc.ep_id != None, Poc.mandataire_id != None))
+            query = query.filter(
+                and_(Poc.ep_id != None, Poc.mandataire_id != None))
         else:
-            query = query.filter(or_(Poc.ep_id == None, Poc.mandataire_id == None))
+            query = query.filter(
+                or_(Poc.ep_id == None, Poc.mandataire_id == None))
     else:
         query = query.filter(sql.false())
 
