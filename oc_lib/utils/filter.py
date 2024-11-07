@@ -152,7 +152,8 @@ def build_filters(entity_class, query, search_criteria, main_table):
             if not internal_table_name:
                 logger.error(f"No internal name for table {table_name}")
                 raise ValueError(f"No internal name for table {table_name}")
-
+            logger.info(entity_class)
+            logger.info(internal_table_name)
             table = getattr(entity_class, internal_table_name, None)
 
             if not table:
