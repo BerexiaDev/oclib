@@ -35,7 +35,7 @@ tables_name_map = {
     "operation": "operation",
     "statut": "statuts",
     "poc": "poc",
-    "caisse_devises": "caisse_devises",
+    "caisse_devise": "caisse_devise",
 }
 
 
