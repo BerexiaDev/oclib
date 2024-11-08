@@ -34,7 +34,8 @@ tables_name_map = {
     "identity_documents": "identity_documents",
     "operation": "operation",
     "statut": "statuts",
-    "caisse_devises": "caisse_devises",
+    "poc": "poc",
+    # "caisse_devises": "caisse_devises",
 }
 
 
