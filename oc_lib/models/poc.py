@@ -42,6 +42,9 @@ class Poc(db.Model, Repository):
     statuts = db.relationship("Statut", backref="poc", lazy=True)
     motifs = db.relationship("Motif", backref="poc", lazy=True)
 
+    prepose_actif = db.Column(db.Integer, default=0)
+    prepose_inactif = db.Column(db.Integer, default=0)
+    prepose_total = db.Column(db.Integer, default=0)
     preposes = db.relationship("Prepose", backref="poc", lazy=True, cascade="all, delete")
 
     declarations = db.relationship("DeclarationPoc", backref="poc", lazy=True)
