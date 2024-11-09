@@ -23,7 +23,7 @@ class Ep(Pm):
     poc_ps = db.relationship("PocP", backref="ep", uselist=True)
     poc_p = db.relationship(
         "PocP",
-        primaryjoin="and_(PocP.ep_id==Ep.id,PocP.creation_status!=4 ,or_(PocP.statut==True, PocP.statut.is_(None)))", 
+        primaryjoin="and_(PocP.ep_id==Ep.id, or_(PocP.statut==True, PocP.statut.is_(None)))", 
         uselist=False, 
     )
 
