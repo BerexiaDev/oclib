@@ -139,25 +139,19 @@ def build_conditions(table, fields, is_class=False):
 
 def build_filters(entity_class, query, search_criteria, main_table):
     main_fields, criterias = format_criterias(search_criteria, main_table)
-    logger.info(main_fields)
-    logger.info(criterias)
     # Build conditions on main table
     main_conditions = build_conditions(
         entity_class, main_fields, is_class=True)
-    logger.info(main_conditions)
     query = query.filter(and_(*main_conditions))
     # Join related tables
     for criteria in criterias:
         try:
             table_name = criteria["table"]
-            logger.info(table_name)
             internal_table_name = tables_name_map.get(table_name, None)
 
             if not internal_table_name:
                 logger.error(f"No internal name for table {table_name}")
                 raise ValueError(f"No internal name for table {table_name}")
-            logger.info(entity_class)
-            logger.info(internal_table_name)
             table = getattr(entity_class, internal_table_name, None)
 
             if not table:
