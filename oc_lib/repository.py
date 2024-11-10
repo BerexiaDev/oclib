@@ -45,7 +45,7 @@ class Repository:
         except Exception as e:
             db.session.rollback()
             raise Exception(e)
-        
+
     def rollack(self):
         db.session.rollback()
 
@@ -86,7 +86,7 @@ class Repository:
         except Exception as e:
             db.session.rollback()
             raise Exception(e)
-    
+
     @classmethod
     def get_before_last_filtered(cls, **kwargs):
         """Get the second-to-last inserted object with filters"""
@@ -128,9 +128,9 @@ class Repository:
             raise Exception(e)
 
     @classmethod
-    def receive_before_insert(cls,ep_id):
+    def receive_before_insert(cls, ep_id):
         filters = {}
-        if ep_id:   #it means we are calculating mandataire sequence for specific Ep
+        if ep_id:  # it means we are calculating mandataire sequence for specific Ep
             filters.update({'ep_id': ep_id})
         obj = cls.query.filter_by(**filters).order_by(desc(cls.sequence_number)).first()
         if obj is None or obj.sequence_number is None:
@@ -167,27 +167,28 @@ class Repository:
         try:
             # Add all objects to the session in bulk
             db.session.bulk_save_objects(objects)
-            
+
             if commit:
                 db.session.commit()
-            
+
             return True  # Return True to indicate success
         except Exception as e:
             db.session.rollback()  # Rollback if something goes wrong
             raise Exception(f"Error in bulk saving objects: {e}")
 
     @classmethod
-    def bulk_update(self, objects, commit=True):
+    def bulk_update(cls, objects, commit=True):
         """
         Update multiple objects in the database in bulk.
         """
         try:
-            # Update all objects in the session in bulk
-            db.session.bulk_update_mappings(objects)
+            mapped_objects = [{'id': obj['id'], **obj} for obj in objects if 'id' in obj]
+            db.session.bulk_update_mappings(cls, mapped_objects)
 
             if commit:
                 db.session.commit()
 
             return True  # Return True to indicate success
         except Exception as e:
-            db.session.rollback()
+            db.session.rollback()  # Rollback if something goes wrong
+            raise Exception(f"Error in bulk updating objects: {e}")
