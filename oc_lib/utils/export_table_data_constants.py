@@ -591,7 +591,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "beneficiaire_pm": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value],
         "func_path": "app.main.services.beneficiaire_pm_service",
         "func_name": "get_all_beneficiaire_pms",
         "values_mapping": {
@@ -623,7 +623,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "beneficiaire_pp": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value],
         "func_path": "app.main.services.beneficiaire_pp_service",
         "func_name": "get_all_beneficiaire_pps",
         "values_mapping": {
@@ -655,7 +655,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "beneficiaire_pc": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value],
         "func_path": "app.main.services.beneficiaire_pc_service",
         "func_name": "get_all_beneficiaire_pcs",
         "values_mapping": {
