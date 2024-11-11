@@ -616,6 +616,9 @@ EXPORT_TABLE_INFO = {
             "nom_agence": "Nom Agence",
             "date_deactivation": "Date Deactivation",
             "type": "Type",
+            "date_modification": "Date de modification",
+            "modified_by": "Modifié par",
+            "motif_modification": "Motif de modification",
 
         }
     },
@@ -645,7 +648,10 @@ EXPORT_TABLE_INFO = {
             "nom_agence": "Nom Agence",
             "date_deactivation": "Date Deactivation",
             "type": "Type",
-            "is_final": "Is Final"
+            "is_final": "Is Final",
+            "date_modification": "Date de modification",
+            "modified_by": "Modifié par",
+            "motif_modification": "Motif de modification",
         }
     },
     "beneficiaire_pc": {
