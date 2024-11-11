@@ -767,7 +767,6 @@ EXPORT_TABLE_INFO = {
             },
             "motif": "Motif",
             "date_debut": "Date début",
-            "date_fin": "Date fin",
             "created_by": "Crée par",
             "validator": "Validator",
             "denomination_pm": "Dénomination PM",
@@ -788,34 +787,37 @@ EXPORT_TABLE_INFO = {
         }
     },
     "declaration_pm": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER, Roles.OC_AGENT],
+        "func_path": "app.main.services.declaration_service",
+        "func_name": "get_all_pm_declarations",
+        "is_multiple_sort": True,
         "values_mapping": {
             "statut": {
-                1: "Active",
-                2: "Inactive"
+                0: "En cours de saisie",
+                1: "Traité",
+                2: "En cours de validation"
             },
             "decision": {
-                1: "Accepté",
-                2: "Rejetée"
-            }
+                1: "Rejetée",
+                2: "Acceptée"
+            },
+            "type_pm": PM_TYPE_MAPPING
         },
         "columns": {
             "id": "ID",
-            "type_pm": "Type PM",
-            "denomination_pm": "Denomination PM",
-            "centre_pm": "Centre PM",
-            "rc_pm": "RC PM",
-            "centre_m": "Centre M",
-            "rc_m": "RC M",
-            "created_by": "Created By",
-            "validator": "Validator",
-            "date_demande": "Date Demande",
-            "statut": "Statut",
-            "decision": "Decision",
-            "scd_id": "SCD ID",
-            "esd_id": "ESD ID",
-            "ep_id": "EP ID",
-            "mandataire_id": "Mandataire ID"
+            "pm_id": {
+                "title": "Identifiant PM",
+                "func": get_pm_id
+            },
+            "centre_pm": "Centre",
+            "rc_pm": "RC",
+            "denomination_pm": "Raison sociale",
+            "type_pm": "Type",
+            "created_by": "Agent",
+            "validator": "Validateur",
+            "date_demande": "Date de la demande",
+            "statut": "Avancement",
+            "decision": "Décision finale"
         }
     },
     "declaration_fiscal": {
