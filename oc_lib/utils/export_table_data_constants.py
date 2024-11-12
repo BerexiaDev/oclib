@@ -1168,7 +1168,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "cancel_deadline": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value],
         "func_path": "app.main.services.cancel_deadline_service",
         "func_name": "get_all_cancel_deadlines",
         "values_mapping": {
@@ -1186,7 +1186,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "plafond_dotation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value],
         "func_path": "app.main.services.plafond_dotation_service",
         "func_name": "get_all_plafond_dotations",
         "values_mapping": {
@@ -1202,7 +1202,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "complement_dotation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value],
         "func_path": "app.main.services.complement_dotation_service",
         "func_name": "get_all_complement_dotations",
         "values_mapping": {
