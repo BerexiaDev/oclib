@@ -11,7 +11,7 @@ from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_
 
 EXPORT_TABLE_INFO = {
     "operation_achat_view": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.operation_achat_service",
         "func_name": "get_all_operation_achats",
         "values_mapping": {
@@ -77,7 +77,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "operation_vente_view": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.operation_vente_service",
         "func_name": "get_all_operation_ventes",
         "values_mapping": {
@@ -149,7 +149,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "operation_cession_view": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.operation_cession_service",
         "func_name": "get_all_operation_cessions",
         "values_mapping": {
@@ -983,7 +983,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "lieu_implantation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_AGENT.value, Roles.OP.value, Roles.OC_MANAGER.value],
         "func_path": "app.main.services.lieu_implantation_service",
         "func_name": "get_all_lieu_implantations",
         "values_mapping": {
@@ -996,7 +996,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "sous_operation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value, Roles.OC_AGENT.value, Roles.OC_MANAGER.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value],
         "func_path": "app.main.services.sub_operation_service",
         "func_name": "get_all_sub_operations",
         "values_mapping": {
@@ -1072,7 +1072,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "derogation_encaisse": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_AGENT.value, Roles.OC_MANAGER.value],
         "func_path": "app.main.services.derogation_encaisse_service",
         "func_name": "get_all_derogation_encaisses",
         "values_mapping": {
@@ -1099,7 +1099,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "derogation_operation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_AGENT.value, Roles.OC_MANAGER.value],
         "func_path": "app.main.services.derogation_operation_service",
         "func_name": "get_all_derogation_operations",
         "values_mapping": {
@@ -1144,7 +1144,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "seuil_encaisse": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value],
         "func_path": "app.main.services.seuil_encaisse_service",
         "func_name": "get_all_seuil_encaisses",
         "values_mapping": {
