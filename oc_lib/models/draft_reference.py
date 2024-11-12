@@ -9,5 +9,6 @@ class DraftReference(db.Model, Repository):
     rc = db.Column(db.Integer, nullable=False)
     date_creation = db.Column(db.Date, nullable=False)
     status = db.Column(db.Integer, default=0)
+    column_name = db.Column(db.String(100))
     old_value = db.Column(db.String(250))
     new_value = db.Column(db.String(250))
