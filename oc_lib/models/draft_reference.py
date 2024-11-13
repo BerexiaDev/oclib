@@ -12,3 +12,4 @@ class DraftReference(db.Model, Repository):
     column_name = db.Column(db.String(100))
     old_value = db.Column(db.String(250))
     new_value = db.Column(db.String(250))
+    motif = db.Column(db.String(250))
