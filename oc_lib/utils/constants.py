@@ -72,7 +72,19 @@ PM_TYPE_MAPPING = {
     "esd": "Esd",
     "gerantpm": "Gérant",
     "mandataire": "Mandataire",
-    "scd": "Scd"
+    "scd": "Scd",
+    "cogerantpm": "Co-Gérant PM"
+}
+
+PP_TYPE_MAPPING = {
+    "associe_pp": "Associé",
+    "cogerant": "Co-Gérant",
+    "gerant": "Gérant",
+    "poc_p": "Point de contact P",
+    "poc_s": "Point de contact S",
+    "prepose": "Préposé",
+    "representant": "Représentant",
+    "suppleant": "Suppléant"
 }
 
 PAYMENT_METHODS_MAPPING = {
