@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from flask import g
-from oc_lib.models.user import User
+from oc_lib.models import User, Poc
+from oc_lib.utils.constants import Roles
 
 class AuthHelper:
     @staticmethod
@@ -16,3 +19,17 @@ class AuthHelper:
         g.user = user
 
         return user, 200
+
+
+    @staticmethod
+    def handle_prepose_first_connection():
+        if g.user.role == Roles.PREPOSE.value and g.user.poc_id and not g.user.first_connection_date:
+            today_date = datetime.utcnow()
+            g.user.first_connection_date = today_date
+
+            poc = Poc.find_one(id=g.user.poc_id, date_debut_activite=None)
+            if poc:
+                poc.date_debut_activite = today_date
+                poc.save()
+
+            g.user.save()

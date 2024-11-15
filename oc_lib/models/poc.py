@@ -30,7 +30,7 @@ class Poc(db.Model, Repository):
     flag_retablissement_agrement = db.Column(db.Boolean)
     date_retablissement_agrement = db.Column(db.Date)
     date_modification_encaisse = db.Column(db.Date)
-    date_debut_activite = db.Column(db.Date, nullable=False)
+    date_debut_activite = db.Column(db.DateTime, nullable=True)
     date_fin_activite = db.Column(db.Date)
     statut_activite = db.Column(db.Integer)
     statut_agrement = db.Column(db.Integer)
