@@ -33,7 +33,12 @@ tables_name_map = {
     "aliases": "aliases",
     "identity_documents": "identity_documents",
     "operation": "operation",
-    "statut": "statuts"
+    "statut": "statuts",
+    "ep": "ep",
+    "mandataire": "mandataire",
+    "poc": "poc",
+    "scd": "scd",
+    "esd": "esd"
 }
 
 
