@@ -11,7 +11,7 @@ from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_
 
 EXPORT_TABLE_INFO = {
     "operation_achat_view": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.operation_achat_service",
         "func_name": "get_all_operation_achats",
         "values_mapping": {
@@ -77,7 +77,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "operation_vente_view": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.operation_vente_service",
         "func_name": "get_all_operation_ventes",
         "values_mapping": {
@@ -149,7 +149,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "operation_cession_view": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.operation_cession_service",
         "func_name": "get_all_operation_cessions",
         "values_mapping": {
@@ -591,7 +591,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "beneficiaire_pm": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value],
         "func_path": "app.main.services.beneficiaire_pm_service",
         "func_name": "get_all_beneficiaire_pms",
         "values_mapping": {
@@ -616,11 +616,14 @@ EXPORT_TABLE_INFO = {
             "nom_agence": "Nom Agence",
             "date_deactivation": "Date Deactivation",
             "type": "Type",
+            "date_modification": "Date de modification",
+            "modified_by": "Modifié par",
+            "motif_modification": "Motif de modification",
 
         }
     },
     "beneficiaire_pp": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value],
         "func_path": "app.main.services.beneficiaire_pp_service",
         "func_name": "get_all_beneficiaire_pps",
         "values_mapping": {
@@ -645,11 +648,14 @@ EXPORT_TABLE_INFO = {
             "nom_agence": "Nom Agence",
             "date_deactivation": "Date Deactivation",
             "type": "Type",
-            "is_final": "Is Final"
+            "is_final": "Is Final",
+            "date_modification": "Date de modification",
+            "modified_by": "Modifié par",
+            "motif_modification": "Motif de modification",
         }
     },
     "beneficiaire_pc": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value],
         "func_path": "app.main.services.beneficiaire_pc_service",
         "func_name": "get_all_beneficiaire_pcs",
         "values_mapping": {
@@ -767,7 +773,6 @@ EXPORT_TABLE_INFO = {
             },
             "motif": "Motif",
             "date_debut": "Date début",
-            "date_fin": "Date fin",
             "created_by": "Crée par",
             "validator": "Validator",
             "denomination_pm": "Dénomination PM",
@@ -788,34 +793,37 @@ EXPORT_TABLE_INFO = {
         }
     },
     "declaration_pm": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER, Roles.OC_AGENT],
+        "func_path": "app.main.services.declaration_service",
+        "func_name": "get_all_pm_declarations",
+        "is_multiple_sort": True,
         "values_mapping": {
             "statut": {
-                1: "Active",
-                2: "Inactive"
+                0: "En cours de saisie",
+                1: "Traité",
+                2: "En cours de validation"
             },
             "decision": {
-                1: "Accepté",
-                2: "Rejetée"
-            }
+                1: "Rejetée",
+                2: "Acceptée"
+            },
+            "type_pm": PM_TYPE_MAPPING
         },
         "columns": {
             "id": "ID",
-            "type_pm": "Type PM",
-            "denomination_pm": "Denomination PM",
-            "centre_pm": "Centre PM",
-            "rc_pm": "RC PM",
-            "centre_m": "Centre M",
-            "rc_m": "RC M",
-            "created_by": "Created By",
-            "validator": "Validator",
-            "date_demande": "Date Demande",
-            "statut": "Statut",
-            "decision": "Decision",
-            "scd_id": "SCD ID",
-            "esd_id": "ESD ID",
-            "ep_id": "EP ID",
-            "mandataire_id": "Mandataire ID"
+            "pm_id": {
+                "title": "Identifiant PM",
+                "func": get_pm_id
+            },
+            "centre_pm": "Centre",
+            "rc_pm": "RC",
+            "denomination_pm": "Raison sociale",
+            "type_pm": "Type",
+            "created_by": "Agent",
+            "validator": "Validateur",
+            "date_demande": "Date de la demande",
+            "statut": "Avancement",
+            "decision": "Décision finale"
         }
     },
     "declaration_fiscal": {
@@ -975,7 +983,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "lieu_implantation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_AGENT.value, Roles.OP.value, Roles.OC_MANAGER.value],
         "func_path": "app.main.services.lieu_implantation_service",
         "func_name": "get_all_lieu_implantations",
         "values_mapping": {
@@ -988,7 +996,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "sous_operation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value, Roles.OC_AGENT.value, Roles.OC_MANAGER.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value],
         "func_path": "app.main.services.sub_operation_service",
         "func_name": "get_all_sub_operations",
         "values_mapping": {
@@ -1064,7 +1072,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "derogation_encaisse": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_AGENT.value, Roles.OC_MANAGER.value],
         "func_path": "app.main.services.derogation_encaisse_service",
         "func_name": "get_all_derogation_encaisses",
         "values_mapping": {
@@ -1091,7 +1099,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "derogation_operation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_AGENT.value, Roles.OC_MANAGER.value],
         "func_path": "app.main.services.derogation_operation_service",
         "func_name": "get_all_derogation_operations",
         "values_mapping": {
@@ -1136,7 +1144,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "seuil_encaisse": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value],
         "func_path": "app.main.services.seuil_encaisse_service",
         "func_name": "get_all_seuil_encaisses",
         "values_mapping": {
@@ -1160,7 +1168,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "cancel_deadline": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value],
         "func_path": "app.main.services.cancel_deadline_service",
         "func_name": "get_all_cancel_deadlines",
         "values_mapping": {
@@ -1178,7 +1186,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "plafond_dotation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value],
         "func_path": "app.main.services.plafond_dotation_service",
         "func_name": "get_all_plafond_dotations",
         "values_mapping": {
@@ -1194,7 +1202,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "complement_dotation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value],
         "func_path": "app.main.services.complement_dotation_service",
         "func_name": "get_all_complement_dotations",
         "values_mapping": {
