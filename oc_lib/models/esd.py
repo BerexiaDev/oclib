@@ -14,14 +14,14 @@ class Esd(Pm):
     gerants_pp = db.relationship("Gerant", backref="esd", uselist=True, cascade="all, delete")
     gerant_pp = db.relationship(
         "Gerant",
-        primaryjoin="and_(Gerant.esd_id==Esd.id,Gerant.creation_status!=4 ,or_(Gerant.statut==True, Gerant.statut.is_(None)))",
+        primaryjoin="and_(Gerant.esd_id==Esd.id,or_(Gerant.statut==True, Gerant.statut.is_(None)))",
         uselist=False
     )
     gerant_pms = db.relationship("GerantPm", backref="esd", uselist=True, foreign_keys="[GerantPm.esd_id]",
                                  cascade="all, delete")
     gerant_pm = db.relationship(
         "GerantPm",
-        primaryjoin="and_(GerantPm.esd_id==Esd.id,GerantPm.creation_status!=4 ,or_(GerantPm.is_actif==True, GerantPm.is_actif.is_(None)))",
+        primaryjoin="and_(GerantPm.esd_id==Esd.id,or_(GerantPm.is_actif==True, GerantPm.is_actif.is_(None)))",
         uselist=False
     )
 

@@ -3,6 +3,7 @@ from flask import request, g
 from oc_lib.auth.keycloak_auth import KeycloakAuth
 from oc_lib.auth.auth_helper import AuthHelper
 
+
 IGNORE_PATHS = ["/", "/swagger.json"]
 
 def decode_jwt(f):
@@ -20,7 +21,8 @@ def decode_jwt(f):
             if status != 200:
                 g.decoded_token = None
                 return data, status
-    
+
+            AuthHelper.handle_prepose_first_connection()
 
         except Exception as e:
             return {"status": "fail", "message": str(e)}, 401
