@@ -13,3 +13,5 @@ class DraftReference(db.Model, Repository):
     old_value = db.Column(db.String(250))
     new_value = db.Column(db.String(250))
     motif = db.Column(db.String(250))
+    raison_sociale = db.Column(db.String(250))
+    full_name = db.Column(db.String(250))
