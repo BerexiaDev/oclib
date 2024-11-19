@@ -24,7 +24,7 @@ class Scd(Pm):
     representants = db.relationship("Representant", backref="scd", uselist=True, cascade="all, delete")
     representant = db.relationship(
         "Representant",
-        primaryjoin="and_(Representant.scd_id==Scd.id,Representant.creation_status!=4 ,or_(Representant.statut==True, Representant.statut.is_(None)))",
+        primaryjoin="and_(Representant.scd_id==Scd.id ,or_(Representant.statut==True, Representant.statut.is_(None)))",
         uselist=False,
     )
 
@@ -32,7 +32,7 @@ class Scd(Pm):
     gerants = db.relationship("Gerant", backref="scd", uselist=True, cascade="all, delete")
     gerant_pp = db.relationship(
         "Gerant",
-        primaryjoin="and_(Gerant.scd_id==Scd.id,Gerant.creation_status!=4 ,or_(Gerant.statut==True, Gerant.statut.is_(None)))",
+        primaryjoin="and_(Gerant.scd_id==Scd.id,or_(Gerant.statut==True, Gerant.statut.is_(None)))",
         uselist=False
     )
 

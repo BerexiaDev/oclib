@@ -16,3 +16,4 @@ class User(db.Model, Repository):
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id'))
     created_on = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     modified_on = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+    first_connection_date = db.Column(db.DateTime, nullable=True)
