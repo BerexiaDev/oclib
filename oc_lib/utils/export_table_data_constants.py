@@ -696,7 +696,7 @@ EXPORT_TABLE_INFO = {
             "created_by": "Agent Traitant",
             "validateurs": "Validateurs",
             "date_creation": "Date de la demande",
-            "motif_oc_manager_decision": "Motif de rejet",
+            "motif": "Motif de rejet",
             "denomination_pm": "Dénomination PM",
             "centre_pm": "Centre PM",
             "rc_pm": "RC PM",
