@@ -12,7 +12,7 @@ class DeclarationPm(db.Model, Repository):
     date_demande = db.Column(db.Date)
     statut = db.Column(db.Integer) # Avancement
     decision = db.Column(db.Integer) # Statut (accepté/rejeté)
-    motif = db.Column(db.Integer)
+    motif = db.Column(db.String)
     
     
     # One to one
