@@ -10,7 +10,6 @@ class Demande(db.Model, Repository):
     etape = db.Column(db.Integer)
     motif_oc_decision = db.Column(db.String)
     motif = db.Column(db.String)
-    motif_annulation = db.Column(db.String)
     initiateur = db.Column(db.Integer)
     created_by = db.Column(db.String(240), nullable=False, server_default="")
     validateurs = db.Column(db.ARRAY(db.String(240)))
