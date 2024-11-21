@@ -1,6 +1,7 @@
 from datetime import datetime
 import importlib
 
+
 def get_class_instance(module_name, class_name):
     module = importlib.import_module(module_name)
     return getattr(module, class_name)
@@ -10,9 +11,14 @@ def date_now():
     return datetime.date(datetime.now())
 
 
-def update_element(data, element):
-    for key, value in data.items():
-        setattr(element, key, value)
+def update_element(data, element, allowed_attributes=None):
+    if allowed_attributes:
+        for attr in allowed_attributes:
+            if attr in data:
+                setattr(element, attr, data[attr])
+    else:
+        for key, value in data.items():
+            setattr(element, key, value)
     return element
 
 
