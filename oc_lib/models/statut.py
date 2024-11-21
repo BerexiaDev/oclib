@@ -4,6 +4,7 @@ from sqlalchemy.orm import validates
 from oc_lib.repository import Repository
 from oc_lib.db import db
 from oc_lib.utils.events_decorator import register_event_listeners
+from oc_lib.utils.validators import validate_numero_decision
 
 
 @register_event_listeners
