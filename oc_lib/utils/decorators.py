@@ -75,6 +75,11 @@ def exception_handler(message=None):
                 db.session.rollback()
 
                 return {"status": "error", "message": e.message}, 409
+
+            except ValueError as e:
+                db.session.rollback()
+
+                return {"status": "error", "message": str(e)}, 400
             
             except Exception as e:
                 db.session.rollback()
