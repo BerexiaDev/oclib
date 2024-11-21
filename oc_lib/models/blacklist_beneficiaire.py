@@ -2,6 +2,7 @@ from sqlalchemy.dialects.postgresql import JSONB
 
 from oc_lib.db import db
 from oc_lib.repository import Repository
+from oc_lib.utils.validators import validate_numero_piece
 
 
 class BlacklistBeneficiaire(db.Model, Repository):
@@ -21,3 +22,7 @@ class BlacklistBeneficiaire(db.Model, Repository):
     operation_id = db.Column(db.Integer, db.ForeignKey('operation.id'), nullable=False)
     local_individual_id = db.Column(db.Integer, db.ForeignKey('local_individual.id'))
     international_individual_id = db.Column(db.Integer, db.ForeignKey('individual.id'))
+
+    @validates('numero_piece')
+    def validate_numero_piece_value(self, key, value):
+        return validate_numero_piece(key, value)

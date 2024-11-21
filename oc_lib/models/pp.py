@@ -1,6 +1,9 @@
+from sqlalchemy.orm import validates
+
 from oc_lib.repository import Repository
 from oc_lib.db import db
 from oc_lib.utils.events_decorator import register_event_listeners, change_statut_pp_pm_listener
+from oc_lib.utils.validators import validate_numero_piece
 
 
 class Pp(db.Model, Repository):
@@ -26,3 +29,7 @@ class Pp(db.Model, Repository):
         super().__init__(*args, **kwargs)
         register_event_listeners(type(self))
         change_statut_pp_pm_listener(type(self))
+
+    @validates('numero_piece')
+    def validate_numero_piece_value(self, key, value):
+        return validate_numero_piece(key, value)
