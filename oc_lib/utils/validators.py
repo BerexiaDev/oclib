@@ -1,6 +1,8 @@
 import re
 from datetime import date
 
+from oc_lib.utils.exceptions import InvalidDataError
+
 NUMERO_DECISION_PATTERN = r"^[a-zA-Z0-9]{1,6}/[1-9]\d{0,4}/\d{4}$"
 NUMERO_PIECE_PATTERN = r"^[A-Z]{1,2}\d{1,6}$"
 
@@ -17,12 +19,12 @@ def validate_numero_decision(key, value, error_msg=None):
 
     error_msg = error_msg if error_msg else f"Format de {key} non valide"
     if not re.match(NUMERO_DECISION_PATTERN, value):
-        raise ValueError(error_msg)
+        raise InvalidDataError(error_msg)
 
     # check the third part is a valid year and less than this year
     year = int(value.split("/")[-1])
     if year > date.today().year:
-        raise ValueError(error_msg)
+        raise InvalidDataError(error_msg)
     return value
 
 
@@ -37,6 +39,6 @@ def validate_numero_piece(key, value, error_msg=None):
     error_msg = error_msg if error_msg else f"Format de {key} non valide"
 
     if not re.match(NUMERO_PIECE_PATTERN, value):
-        raise ValueError(error_msg)
+        raise InvalidDataError(error_msg)
 
     return value
