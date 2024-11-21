@@ -1,3 +1,5 @@
+from sqlalchemy.orm import validates
+
 from oc_lib.db import db
 from oc_lib.models.beneficiaire import Beneficiaire
 from oc_lib.utils.validators import validate_numero_piece
