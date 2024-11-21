@@ -17,6 +17,6 @@ class Derogation(db.Model, Repository):
     __mapper_args__ = {'polymorphic_identity': 'derogation', 'polymorphic_on': type}
 
     @validates('numero_decision')
-    def validate_numero_decision(self, key, value):
+    def validate_numero_decision_value(self, key, value):
         return validate_numero_decision(key, value)
 
