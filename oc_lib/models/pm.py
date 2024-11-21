@@ -13,7 +13,7 @@ class Pm(db.Model, Repository):
     centre = db.Column(db.Integer)
     ville = db.Column(db.String(50))
     registre_commerce = db.Column(db.Integer)
-    adresse = db.Column(db.String(100))
+    adresse = db.Column(db.String(100), nullable=False)
     raison_sociale = db.Column(db.String(100), nullable=False)
     idce = db.Column(db.String(50))
     idf = db.Column(db.String(100))
