@@ -11,13 +11,11 @@ def date_now():
     return datetime.date(datetime.now())
 
 
-def update_element(data, element, allowed_attributes=None):
-    if allowed_attributes:
-        for attr in allowed_attributes:
-            if attr in data:
-                setattr(element, attr, data[attr])
-    else:
-        for key, value in data.items():
+def update_element(data, element, non_editable_attrs=None):
+
+    non_editable_attrs = non_editable_attrs or []
+    for key, value in data.items():
+        if key not in non_editable_attrs:
             setattr(element, key, value)
     return element
 
