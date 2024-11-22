@@ -24,8 +24,9 @@ class Poc(db.Model, Repository):
     is_permanent = db.Column(db.Boolean, nullable=False)
     numero_agrement = db.Column(db.String(50))
     encaisse = db.Column(db.Float, nullable=False, default=0)
+    # Indicates if seuil_encaisse is exceeded
     seuil_encaisse = db.Column(db.Float)
-    seuil_encaisse_depasse = db.Column(db.Boolean, default=False)  # Indicates if seuil_encaisse is exceeded
+    seuil_encaisse_depasse = db.Column(db.Boolean, default=False)
     date_depassement_seuil = db.Column(db.DateTime)
     flag_retablissement_agrement = db.Column(db.Boolean)
     date_retablissement_agrement = db.Column(db.Date)
@@ -35,6 +36,7 @@ class Poc(db.Model, Repository):
     statut_activite = db.Column(db.Integer)
     statut_agrement = db.Column(db.Integer)
     raison_sociale_pm = db.Column(db.String(100), nullable=False)
+    mail = db.Column(db.String(50))
 
     creation_status = db.Column(db.Integer, default=0)
     categorie = db.Column(db.Integer)
@@ -42,6 +44,7 @@ class Poc(db.Model, Repository):
     statuts = db.relationship("Statut", backref="poc", lazy=True)
     motifs = db.relationship("Motif", backref="poc", lazy=True)
 
+    prepose_actif = db.Column(db.Integer, default=0)
     preposes = db.relationship("Prepose", backref="poc", lazy=True, cascade="all, delete")
 
     declarations = db.relationship("DeclarationPoc", backref="poc", lazy=True)
@@ -52,13 +55,15 @@ class Poc(db.Model, Repository):
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"))
     mandataire_id = db.Column(db.Integer, db.ForeignKey("mandataire.id"))
 
-    lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id"))
-    lieu_implantation = db.relationship("LieuImplantation", backref="lieu_implantation")
+    lieu_implantation_id = db.Column(
+        db.Integer, db.ForeignKey("lieu_implantation.id"))
+    lieu_implantation = db.relationship(
+        "LieuImplantation", backref="lieu_implantation")
 
-    #many to many
+    # many to many
     derogation_operations = db.relationship(
         "DerogationOperation",
-        secondary = derogation_operation_poc_association,
+        secondary=derogation_operation_poc_association,
         back_populates="pocs"
     )
 
@@ -69,7 +74,8 @@ class Poc(db.Model, Repository):
     )
 
     # Self-referential one-to-one relationship
-    linked_poc_id = db.Column(db.Integer, db.ForeignKey("poc.id"), nullable=True)
+    linked_poc_id = db.Column(
+        db.Integer, db.ForeignKey("poc.id"), nullable=True)
     linked_poc = db.relationship("Poc", remote_side=[id], uselist=False)
 
     caisse_devises = db.relationship("CaisseDevise", cascade="all, delete")
