@@ -4,7 +4,7 @@ from datetime import date
 from oc_lib.utils.exceptions import InvalidDataError
 
 NUMERO_DECISION_PATTERN = r"^[a-zA-Z0-9]{1,6}/[1-9]\d{0,4}/\d{4}$"
-NUMERO_PIECE_PATTERN = r"^[A-Z]{1,2}\d{1,6}$"
+NUMERO_PIECE_PATTERN = r"^[A-Z]{1,2}\d{1,6}[A-Z]{1,2}$"
 
 
 def validate_numero_decision(key, value, error_msg=None):
@@ -30,7 +30,7 @@ def validate_numero_decision(key, value, error_msg=None):
 
 def validate_numero_piece(key, value, error_msg=None):
     """
-        La CIN doit comporter 1 à 2 lettres majuscules suivies de 1 à 6 chiffres.
+        La CIN doit comporter 1 à 2 lettres majuscules suivies de 1 à 6 chiffres, suivie d'un 1 à 2 lettres majuscules
     """
 
     if not value:
