@@ -159,7 +159,7 @@ def get_motif(item, _):
 
 def get_valide_manager_oc(item, _):
     if getattr(item, "valide_manager_oc", False) or (
-            not getattr(item, "valide_manager_oc", False) and getattr(item, "motif_oc_manager_decision",
+            not getattr(item, "valide_manager_oc", False) and getattr(item, "motif",
                                                                       None) is not None):
         return "Fini"
     elif getattr(item, "valide_oc", False) or (
