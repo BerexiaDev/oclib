@@ -6,6 +6,7 @@ from oc_lib.utils.events_decorator import register_event_listeners, change_statu
 @change_statut_pp_pm_listener
 class Cogerant(Pp):
     id = db.Column(db.Integer, db.ForeignKey("pp.id"), primary_key=True)
+    adresse = db.Column(db.String(100), nullable=False)
 
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
     esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"))
