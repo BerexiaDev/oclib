@@ -2,7 +2,7 @@ from sqlalchemy.orm import validates
 
 from oc_lib.db import db
 from oc_lib.models.beneficiaire import Beneficiaire
-from oc_lib.utils.validators import validate_numero_piece, validate_cni, validate_cim, validate_normal_pattern
+from oc_lib.utils.validators import validate_cni, validate_cim, validate_normal_pattern
 
 
 class BeneficiairePp(Beneficiaire):
