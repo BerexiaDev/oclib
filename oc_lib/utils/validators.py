@@ -4,7 +4,9 @@ from datetime import date
 from oc_lib.utils.exceptions import InvalidDataError
 
 NUMERO_DECISION_PATTERN = r"^[a-zA-Z0-9]{1,6}/[1-9]\d{0,4}/\d{4}$"
-NUMERO_PIECE_PATTERN = r"^[A-Z]{1,2}\d{1,6}[A-Z]{1,2}$"
+CIM_PATTERN = r"^[A-Z]{1,2}\d{1,6}[A-Z]{1,2}$"
+CNI_PATTERN = r"^[A-Z]{1,2}\d{1,6}$"
+NORMAL_PATTERN = r"^[a-zA-Z0-9]*$"
 
 
 def validate_numero_decision(key, value, error_msg=None):
@@ -28,7 +30,23 @@ def validate_numero_decision(key, value, error_msg=None):
     return value
 
 
-def validate_numero_piece(key, value, error_msg=None):
+def validate_cni(key, value, error_msg=None):
+    """
+        La CIN doit comporter 1 à 2 lettres majuscules suivies de 1 à 6 chiffres
+    """
+
+    if not value:
+        return value
+
+    error_msg = error_msg if error_msg else f"Format de {key} non valide"
+
+    if not re.match(CNI_PATTERN, value):
+        raise InvalidDataError(error_msg)
+
+    return value
+
+
+def validate_cim(key, value, error_msg=None):
     """
         La CIN doit comporter 1 à 2 lettres majuscules suivies de 1 à 6 chiffres, suivie d'un 1 à 2 lettres majuscules
     """
@@ -38,7 +56,19 @@ def validate_numero_piece(key, value, error_msg=None):
 
     error_msg = error_msg if error_msg else f"Format de {key} non valide"
 
-    if not re.match(NUMERO_PIECE_PATTERN, value):
+    if not re.match(CIM_PATTERN, value):
+        raise InvalidDataError(error_msg)
+
+    return value
+
+
+def validate_normal_pattern(key, value, error_msg=None):
+    if not value:
+        return value
+
+    error_msg = error_msg if error_msg else f"Format de {key} non valide"
+
+    if not re.match(NORMAL_PATTERN, value):
         raise InvalidDataError(error_msg)
 
     return value
