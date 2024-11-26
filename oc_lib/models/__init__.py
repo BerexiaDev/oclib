@@ -17,6 +17,7 @@ from oc_lib.models.change import Change
 from oc_lib.models.co_gerant import Cogerant
 from oc_lib.models.co_gerant_pm import CogerantPm
 from oc_lib.models.complement_dotation import ComplementDotation
+from oc_lib.models.declaration_ana import DeclarationAna
 from oc_lib.models.declaration_docs import DeclarationDocs
 from oc_lib.models.declaration_fiscal import DeclarationFiscal
 from oc_lib.models.declaration_pm import DeclarationPm
@@ -67,6 +68,7 @@ from oc_lib.models.operation_achat_view import OperationAchatView
 from oc_lib.models.operation_vente_view import OperationVenteView
 from oc_lib.models.operation_cession_view import OperationCessionView
 from oc_lib.models.beneficiaire_pp_final import BeneficiairePpFinal
+from oc_lib.models.demande_statut import DemandeStatut
 from oc_lib.models.country import Country
 from oc_lib.models.currency import Currency
 from oc_lib.models.bank_code import BankCode

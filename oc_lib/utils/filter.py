@@ -33,7 +33,11 @@ tables_name_map = {
     "aliases": "aliases",
     "identity_documents": "identity_documents",
     "operation": "operation",
-    "statut": "statuts"
+    "statut": "statuts",
+    "declaration_ana": "declaration_ana",
+    "ep": "ep",
+    "mandataire": "mandataire",
+    "poc": "poc"
 }
 
 
@@ -67,6 +71,8 @@ def build_operator(column, operator, value):
     elif operator == "ARRAY CONTAINS":
         conditions = [func.array_to_string(column, ' ').ilike(f"%{v.strip()}%") for v in value.split(',')]
         return or_(*conditions)
+    elif operator == "IN ARRAY":
+        return column.in_(value)
     else:
         return column == value
 
