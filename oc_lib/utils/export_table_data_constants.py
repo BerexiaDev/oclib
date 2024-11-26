@@ -363,6 +363,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "scd": {
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.scd_service",
         "func_name": "get_all_scds",
         "values_mapping": {
@@ -418,6 +419,7 @@ EXPORT_TABLE_INFO = {
 
     },
     "esd": {
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.esd_service",
         "func_name": "get_all_esds",
         "values_mapping": {
@@ -472,6 +474,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "ep": {
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.ep_service",
         "func_name": "get_all_eps",
         "values_mapping": {
@@ -538,6 +541,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "mandataire": {
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.mandataire_service",
         "func_name": "get_all_eps",
         "values_mapping": {
