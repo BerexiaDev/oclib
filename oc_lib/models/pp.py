@@ -41,6 +41,6 @@ class Pp(db.Model, Repository):
         
     @validates('adresse')
     def validate_adresse(self, key, adresse):
-        if self.type in ["cogerant", "gerant"] and not adresse:
+        if self.type in ["cogerant", "gerant"] and (not adresse or adresse == ""):
             raise ValueError("L'addresse est obligatoir.")
         return adresse
