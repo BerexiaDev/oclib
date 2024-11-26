@@ -11,10 +11,4 @@ class Cogerant(Pp):
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
     esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"))
 
-    @validates("address")
-    def validate_address(self, key, address):
-        if not address:
-            raise ValueError("L'adress est obligatoir pour un cogerant.")
-        return address
-
     __mapper_args__ = {"polymorphic_identity": "cogerant"}

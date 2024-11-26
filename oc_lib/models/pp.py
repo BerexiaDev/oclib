@@ -38,3 +38,9 @@ class Pp(db.Model, Repository):
             return validate_cim(key, value)
         elif self.nature_piece == "Passport" and self.nature_pp == "ENR":
             return validate_normal_pattern(key, value)
+        
+    @validates('adresse')
+    def validate_adresse(self, key, adresse):
+        if self.type in ["cogerant", "gerant"] and not adresse:
+            raise ValueError("L'addresse est obligatoir.")
+        return adresse
