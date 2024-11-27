@@ -13,4 +13,3 @@ class SeuilEncaisse(db.Model, Repository):
 
     lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id"))
     lieu_implantation = db.relationship("LieuImplantation")
-    statut = db.Column(db.Boolean)
