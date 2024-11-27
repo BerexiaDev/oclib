@@ -197,7 +197,6 @@ EXPORT_TABLE_INFO = {
         }
     },
     "poc": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "func_path": "app.main.services.entity_service",
         "func_name": "get_all_pocs",
         "values_mapping": {
@@ -274,7 +273,6 @@ EXPORT_TABLE_INFO = {
         }
     },
     "pp": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "func_path": "app.main.services.entity_service",
         "func_name": "get_all_pps",
         "values_mapping": {
@@ -328,7 +326,6 @@ EXPORT_TABLE_INFO = {
         }
     },
     "pm": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "func_path": "app.main.services.entity_service",
         "func_name": "get_all_pms",
         "values_mapping": {
@@ -366,7 +363,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "scd": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.scd_service",
         "func_name": "get_all_scds",
         "values_mapping": {
@@ -422,7 +419,7 @@ EXPORT_TABLE_INFO = {
 
     },
     "esd": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.esd_service",
         "func_name": "get_all_esds",
         "values_mapping": {
@@ -477,7 +474,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "ep": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.ep_service",
         "func_name": "get_all_eps",
         "values_mapping": {
@@ -544,7 +541,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "mandataire": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
         "func_path": "app.main.services.mandataire_service",
         "func_name": "get_all_eps",
         "values_mapping": {
@@ -670,7 +667,6 @@ EXPORT_TABLE_INFO = {
         }
     },
     "demande": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "func_path": "app.main.services.demande_service",
         "func_name": "get_all_demandes",
         "is_multiple_sort": True,
@@ -696,7 +692,7 @@ EXPORT_TABLE_INFO = {
             "created_by": "Agent Traitant",
             "validateurs": "Validateurs",
             "date_creation": "Date de la demande",
-            "motif_oc_manager_decision": "Motif de rejet",
+            "motif": "Motif",
             "denomination_pm": "Dénomination PM",
             "centre_pm": "Centre PM",
             "rc_pm": "RC PM",
@@ -717,7 +713,6 @@ EXPORT_TABLE_INFO = {
         }
     },
     "demande_change_modif_view": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "func_path": "app.main.services.modification_history_service",
         "func_name": "get_all_history_info",
         "values_mapping": {
@@ -750,7 +745,6 @@ EXPORT_TABLE_INFO = {
         }
     },
     "declaration_poc": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "func_path": "app.main.services.declaration_service",
         "func_name": "get_all_poc_declarations",
         "is_multiple_sort": True,
@@ -827,7 +821,6 @@ EXPORT_TABLE_INFO = {
         }
     },
     "declaration_fiscal": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "func_path": "app.main.services.declaration_service",
         "func_name": "get_all_fiscal_declarations",
         "values_mapping": {
@@ -925,7 +918,6 @@ EXPORT_TABLE_INFO = {
         }
     },
     "modification": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "func_path": "app.main.services.modification_service",
         "func_name": "get_all_modification_info",
         "values_mapping": {
@@ -964,7 +956,6 @@ EXPORT_TABLE_INFO = {
         }
     },
     "affiliation_group": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
         "func_path": "app.main.services.affiliation_group_service",
         "func_name": "get_all_affiliation_groups",
         "values_mapping": {
@@ -1024,7 +1015,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "authorized_operation": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OC_ADMIN.value, Roles.OC_AGENT.value, Roles.OC_MANAGER.value],
         "func_path": "app.main.services.authorized_operation_service",
         "func_name": "get_all_authorized_operations",
         "values_mapping": {
