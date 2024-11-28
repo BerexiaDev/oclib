@@ -20,6 +20,8 @@ class OperationCessionView(db.Model, Repository):
     date_creation = db.Column(db.DateTime)
     code_banque = db.Column(db.Integer)
     code_agence = db.Column(db.Integer)
+    label_banque = db.Column(db.String(100))
+    label_agence = db.Column(db.String(100))
     devise_labels = db.Column(db.String(1000))
     is_late = db.Column(db.Boolean)
     poc_date_depassement_seuil = db.Column(db.DateTime)
