@@ -17,7 +17,6 @@ class BeneficiairePp(Beneficiaire):
 
     @validates('numero_piece')
     def validate_numero_piece_value(self, key, value):
-        print(self.nature_piece)
         if self.nature_piece == "CNI":
         #and self.qualite in [5, 6]
             return validate_cni(key, value)
