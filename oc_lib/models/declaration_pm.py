@@ -13,7 +13,7 @@ class DeclarationPm(db.Model, Repository):
     statut = db.Column(db.Integer) # Avancement
     decision = db.Column(db.Integer) # Statut (accepté/rejeté)
     motif = db.Column(db.String)
-    initiateur = db.Column(db.String)
+    initiateur = db.Column(db.String) 
     
     
     # One to one
