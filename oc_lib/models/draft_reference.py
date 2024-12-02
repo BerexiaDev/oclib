@@ -8,7 +8,7 @@ class DraftReference(db.Model, Repository):
     centre = db.Column(db.Integer, nullable=False)
     rc = db.Column(db.Integer, nullable=False)
     date_creation = db.Column(db.Date, nullable=False)
-    date_modification = db.Column(db.Date, nullable=True)
+    date_modification = db.Column(db.Date)
     status = db.Column(db.Integer, default=0)
     column_name = db.Column(db.String(100))
     old_value = db.Column(db.String(250))
