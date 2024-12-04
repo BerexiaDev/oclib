@@ -1,7 +1,10 @@
+from datetime import datetime
+from sqlalchemy.orm import validates
+
 from oc_lib.repository import Repository
 from oc_lib.db import db
-from datetime import datetime
 from oc_lib.utils.events_decorator import register_event_listeners
+from oc_lib.utils.validators import validate_numero_decision
 
 
 @register_event_listeners
@@ -25,3 +28,7 @@ class Statut(db.Model, Repository):
 
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id'))
     __mapper_args__ = {'polymorphic_identity': 'statut'}
+
+    @validates('numero_decision')
+    def validate_numero_decision_value(self, key, value):
+        return validate_numero_decision(key, value)

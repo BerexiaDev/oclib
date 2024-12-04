@@ -34,11 +34,12 @@ tables_name_map = {
     "identity_documents": "identity_documents",
     "operation": "operation",
     "statut": "statuts",
-    "ep": "ep",
-    "mandataire": "mandataire",
-    "poc": "poc",
     "scd": "scd",
     "esd": "esd"
+    "declaration_ana": "declaration_ana",
+    "ep": "ep",
+    "mandataire": "mandataire",
+    "poc": "poc"
 }
 
 
@@ -74,6 +75,8 @@ def build_operator(column, operator, value):
         return or_(*conditions)
     elif operator == "IN ARRAY":
         return column.in_(value)
+    elif operator == "EQUALS IGNORECASE":
+        return func.lower(value) == func.lower(column)
     else:
         return column == value
 

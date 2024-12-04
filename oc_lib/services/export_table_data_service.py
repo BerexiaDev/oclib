@@ -80,8 +80,8 @@ def _check_permission_and_return_values_mapping_and_column_name(table_name):
     table_info = EXPORT_TABLE_INFO.get(table_name)
 
     if table_info:
-        required_roles = table_info.get("required_roles", [])
-        if g.user.role not in required_roles:
+        required_roles = table_info.get("required_roles")
+        if required_roles is not None and g.user.role not in required_roles:
             raise UnauthorizedError("Vous n'êtes pas autorisé à exporter les données de cette table.")
 
         return table_info.get("values_mapping", {}), table_info.get("columns", {}), table_info.get(

@@ -17,13 +17,15 @@ class Ep(Pm):
     mandataires = db.relationship(
         "Mandataire", backref="ep", foreign_keys="[Mandataire.ep_id]", cascade="all, delete"
     )
+
+    declarations_ana = db.relationship("DeclarationAna", backref="ep")
     poc_ss = db.relationship("PocS", backref="ep", foreign_keys="[PocS.ep_id]", cascade="all, delete")
     pocs = db.relationship("Poc", backref="ep", foreign_keys="[Poc.ep_id]", cascade="all, delete")
 
     poc_ps = db.relationship("PocP", backref="ep", uselist=True)
     poc_p = db.relationship(
         "PocP",
-        primaryjoin="and_(PocP.ep_id==Ep.id,PocP.creation_status!=4 ,or_(PocP.statut==True, PocP.statut.is_(None)))", 
+        primaryjoin="and_(PocP.ep_id==Ep.id, or_(PocP.statut==True, PocP.statut.is_(None)))", 
         uselist=False, 
     )
 
