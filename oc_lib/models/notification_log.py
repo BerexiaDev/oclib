@@ -1,7 +1,8 @@
 from oc_lib.db import db
 from datetime import datetime
+from oc_lib.repository import Repository
 
-class NotificationLog(db.Model):
+class NotificationLog(db.Model, Repository):
     __tablename__ = 'notification_logs'
 
     id = db.Column(db.Integer, primary_key=True)
