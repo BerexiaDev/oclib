@@ -18,7 +18,7 @@ class NotificationLog(db.Model):
     date_modification = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # one to one relationships
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
     esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"))
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"))
