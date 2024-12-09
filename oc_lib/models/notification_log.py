@@ -13,13 +13,13 @@ class NotificationLog(db.Model, Repository):
     pm_rs = db.Column(db.String(100), nullable=False)
     pm_rc = db.Column(db.Integer)
     pm_centre = db.Column(db.Integer)
-    pc_designation = db.Column(db.String(50), nullable=False)
+    pc_designation = db.Column(db.String(50))
     pc_numero_agrement = db.Column(db.String(50))
     date_creation = db.Column(db.DateTime, default=datetime.utcnow)
     date_modification = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # one to one relationships
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
     esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"))
     ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"))
