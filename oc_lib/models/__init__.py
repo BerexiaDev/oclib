@@ -74,7 +74,7 @@ from oc_lib.models.currency import Currency
 from oc_lib.models.bank_code import BankCode
 from oc_lib.models.region import Region
 from oc_lib.models.localite import Localite
-
+from oc_lib.models.notification_log import NotificationLog
 
 # Association tables
 from oc_lib.models.authorized_operation_lieu_implantation_association import authorized_operation_lieu_implantation_association
