@@ -8,6 +8,7 @@ from oc_lib.utils.db_utils import validate_unique_active
 class Gerant(Pp):
     id = db.Column(db.Integer, db.ForeignKey("pp.id"), primary_key=True)
     adresse = db.Column(db.String(100), nullable=False)
+    
     # One to one
     scd_id = db.Column(db.Integer, db.ForeignKey('scd.id'))
     esd_id = db.Column(db.Integer, db.ForeignKey('esd.id'))
