@@ -34,11 +34,7 @@ tables_name_map = {
     "identity_documents": "identity_documents",
     "operation": "operation",
     "statut": "statuts",
-    "poc": "poc",
-    "caisse_devise": "caisse_devises",
-    "scd": "scd",
-    "ep": "ep",
-    "esd": "esd",
+    "caisse_devise": "caisse_devises"
 }
 
 
