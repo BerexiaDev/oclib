@@ -1,5 +1,4 @@
 from sqlalchemy.dialects.postgresql import JSONB
-
 from oc_lib.db import db
 from oc_lib.repository import Repository
 

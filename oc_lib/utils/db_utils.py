@@ -15,6 +15,7 @@ def validate_unique_active(class_name, current_instance):
     from oc_lib.models.gerant import Gerant
     from oc_lib.models.representant import Representant
     from oc_lib.models.suppleant import Suppleant
+    from oc_lib.models.poc_p import PocP
     from oc_lib.models.gerant_pm import GerantPm
     # Create an alias for Pp
     PpAlias = aliased(Pp)
@@ -22,6 +23,7 @@ def validate_unique_active(class_name, current_instance):
 
     is_gerant = isinstance(current_instance, Gerant)
     is_rep_sup = isinstance(current_instance, (Representant, Suppleant))
+    is_pocp = isinstance(current_instance, PocP)
     is_gerant_pm = isinstance(current_instance, GerantPm)
     #more models to be added
 
@@ -39,6 +41,8 @@ def validate_unique_active(class_name, current_instance):
         extra_conditions = class_name.scd_id == current_instance.scd_id if current_instance.scd_id else class_name.esd_id == current_instance.esd_id
     elif is_rep_sup:
         extra_conditions = class_name.scd_id == current_instance.scd_id
+    elif is_pocp:
+        extra_conditions = class_name.ep_id == current_instance.ep_id
     elif is_gerant_pm:
         extra_conditions = class_name.esd_id == current_instance.esd_id
         
@@ -56,6 +60,10 @@ def validate_unique_active(class_name, current_instance):
     elif is_rep_sup and (active_instance != current_instance):
         raise ValueError(
             "Il existe déjà un representant/suppleant actif pour cet opérateur."
+        )
+    elif is_pocp and (active_instance != current_instance):
+        raise ValueError(
+            "Il existe déjà un Poc principale actif pour cet opérateur."
         )
     elif is_gerant_pm and (active_instance != current_instance):
         raise ValueError(

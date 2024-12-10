@@ -1,6 +1,7 @@
 from oc_lib.db import db
 from oc_lib.models.pp import Pp
 from oc_lib.utils.events_decorator import register_event_listeners, change_statut_pp_pm_listener
+from sqlalchemy.orm import validates
 
 @register_event_listeners
 @change_statut_pp_pm_listener
