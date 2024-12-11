@@ -13,6 +13,7 @@ class ComplementDotation(db.Model, Repository):
     base_calcul = db.Column(db.String(100), nullable=False, default="")
     percentage = db.Column(db.Float, nullable=False, default = 0 )
     plafond= db.Column(db.Float, nullable=False, default = 0)
+    statut = db.Column(db.Boolean)
 
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
     sous_operation = db.relationship("SousOperation")

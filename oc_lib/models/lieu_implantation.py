@@ -9,3 +9,4 @@ class LieuImplantation(db.Model, Repository):
     label = db.Column(db.String(100), nullable=False)
     creation_date = db.Column(db.Date, nullable=False, default=date_now())
     modification_date = db.Column(db.Date, nullable=False)
+    actif = db.Column(db.Boolean)
