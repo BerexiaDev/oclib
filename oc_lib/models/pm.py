@@ -2,7 +2,6 @@ from oc_lib.repository import Repository
 from oc_lib.db import db
 from oc_lib.utils.events_decorator import register_event_listeners, change_statut_pp_pm_listener
 
-
 class Pm(db.Model, Repository):
     __tablename__ = "pm"
     id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +13,7 @@ class Pm(db.Model, Repository):
     centre = db.Column(db.Integer)
     ville = db.Column(db.String(50))
     registre_commerce = db.Column(db.Integer)
-    adresse = db.Column(db.String(100))
+    adresse = db.Column(db.String(100), nullable=False, server_default="")
     raison_sociale = db.Column(db.String(100), nullable=False)
     idce = db.Column(db.Integer)
     idf = db.Column(db.Integer)
