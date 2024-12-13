@@ -4,6 +4,7 @@ from oc_lib.utils.strings import date_now
 from sqlalchemy.dialects.postgresql import ARRAY
 
 
+
 class SousOperation(db.Model, Repository):
     """ Model pour paramétrage des sous opérations """
 
@@ -23,8 +24,11 @@ class SousOperation(db.Model, Repository):
     beneficiaire_final_required = db.Column(
         db.Boolean, nullable=False, default=False)
     attachements = db.Column(db.ARRAY(db.String), nullable=False, default=[])
+
     support_mad = db.Column(ARRAY(db.Integer), nullable=False)
     support_devise = db.Column(ARRAY(db.Integer), nullable=False)
+
+    declaration_importation = db.Column(db.Boolean, default=False)
 
     # many to one
     cancel_deadline_id = db.Column(
