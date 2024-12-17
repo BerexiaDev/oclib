@@ -8,3 +8,5 @@ class Change(db.Model, Repository):
     data = db.Column(JSONB)
     demande_id = db.Column(db.Integer, db.ForeignKey('demande.id'))
     demande_benef_id = db.Column(db.Integer, db.ForeignKey('demande_benef.id'))
+    demande_operation_id = db.Column(
+        db.Integer, db.ForeignKey('demande_operation.id'))
