@@ -8,6 +8,8 @@ class DemandeAnnulation(db.Model, Repository):
     decision_final = db.Column(db.Boolean)
     initiateur = db.Column(db.String)
     motif = db.Column(db.Text)
+    motif_rejet = db.Column(db.Text)
+    operation_type = db.Column(db.Integer)
     validateur = db.Column(db.String)
     date_creation = db.Column(db.Date, default=date.today)
     date_validation = db.Column(db.Date)
