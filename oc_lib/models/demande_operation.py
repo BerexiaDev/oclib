@@ -6,6 +6,7 @@ from datetime import date
 class DemandeOperation(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     statut = db.Column(db.Integer)
+    decision = db.Column(db.Integer)
     motif_modif = db.Column(db.String)
     date_creation = db.Column(db.Date, default=date.today, onupdate=date.today)
     date_validation = db.Column(db.Date)
