@@ -8,6 +8,7 @@ class DemandeOperation(db.Model, Repository):
     statut = db.Column(db.Integer)
     decision = db.Column(db.Integer)
     motif_modif = db.Column(db.String)
+    motif_rejet = db.Column(db.String)
     date_creation = db.Column(db.Date, default=date.today, onupdate=date.today)
     date_validation = db.Column(db.Date)
     initiateur = db.Column(db.String(240))
@@ -20,4 +21,4 @@ class DemandeOperation(db.Model, Repository):
         db.Integer, db.ForeignKey("operation_cession.id"))
 
     change = db.relationship(
-        "Change", backref="demande_operation", lazy=True, uselist=False)
+        "Change", backref="demande_operation", lazy=True, uselist=False) 
