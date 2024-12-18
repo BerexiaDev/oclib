@@ -21,4 +21,4 @@ class DemandeOperation(db.Model, Repository):
         db.Integer, db.ForeignKey("operation_cession.id"))
 
     change = db.relationship(
-        "Change", backref="demande_operation", lazy=True, uselist=False)
+        "Change", backref="demande_operation", lazy=True, uselist=False) 
