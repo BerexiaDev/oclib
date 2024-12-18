@@ -73,6 +73,7 @@ from oc_lib.models.country import Country
 from oc_lib.models.currency import Currency
 from oc_lib.models.region import Region
 from oc_lib.models.localite import Localite
+from oc_lib.models.demande_operation import DemandeOperation
 
 
 # Association tables
