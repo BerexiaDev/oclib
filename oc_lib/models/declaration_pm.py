@@ -9,7 +9,7 @@ class DeclarationPm(db.Model, Repository):
     rc_pm = db.Column(db.Integer, nullable=False)
     created_by = db.Column(db.String(240), nullable=False, server_default="")
     validator = db.Column(db.String)
-    date_demande = db.Column(db.Date)
+    date_demande = db.Column(db.DateTime)
     statut = db.Column(db.Integer) # Avancement
     decision = db.Column(db.Integer) # Statut (accepté/rejeté)
     motif = db.Column(db.String)

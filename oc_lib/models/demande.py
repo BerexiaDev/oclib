@@ -18,7 +18,7 @@ class Demande(db.Model, Repository):
     validateurs = db.Column(db.ARRAY(db.String(240)))
     valide_oc = db.Column(db.Boolean, default=False)
     valide_manager_oc = db.Column(db.Boolean, default=False)
-    date_creation = db.Column(db.Date, default=date.today, onupdate=date.today)
+    date_creation = db.Column(db.DateTime, default=date.today)
     modification_id = db.Column(db.Integer, db.ForeignKey('modification.id'))
     modification = db.relationship('Modification', back_populates='demandes', lazy=True)
 
