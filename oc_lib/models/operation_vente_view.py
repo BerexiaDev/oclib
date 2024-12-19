@@ -23,6 +23,7 @@ class OperationVenteView(db.Model, Repository):
     date_creation = db.Column(db.DateTime)
     beneficiaire_pm_qualite = db.Column(db.Integer, nullable=False)
     beneficiaire_pp_qualite = db.Column(db.Integer, nullable=False)
+    beneficiaire_final_pp_id = db.Column(db.Integer, nullable=False)
     beneficiaire_final_pp_qualite = db.Column(db.Integer, nullable=False)
     sous_operation_label = db.Column(db.String, nullable=False)
     sous_operation_id = db.Column(db.Integer, nullable=False)
