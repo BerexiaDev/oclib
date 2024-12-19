@@ -1,6 +1,6 @@
 from oc_lib.db import db
 from oc_lib.repository import Repository
-from datetime import date
+from datetime import datetime
 from sqlalchemy.dialects.postgresql import JSONB
 
 class DemandeStatut(db.Model, Repository):
@@ -13,7 +13,7 @@ class DemandeStatut(db.Model, Repository):
     motif = db.Column(db.String(150))
     initiateur = db.Column(db.String(150))
     validateur = db.Column(db.String(150))
-    date_creation = db.Column(db.DateTime, default=date.today)
+    date_creation = db.Column(db.DateTime, default=datetime.today)
     statut_id = db.Column(db.Integer, db.ForeignKey("statut.id"))
     statut = db.relationship("Statut", backref="demande_statut", lazy=True, uselist=False)
     poc_id = db.Column(db.Integer, db.ForeignKey("poc.id"))
