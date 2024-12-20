@@ -38,7 +38,8 @@ tables_name_map = {
     "declaration_ana": "declaration_ana",
     "ep": "ep",
     "mandataire": "mandataire",
-    "poc": "poc"
+    "poc": "poc",
+    "plafond_dotations": "plafond_dotations"
 }
 
 

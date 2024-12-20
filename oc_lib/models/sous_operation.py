@@ -33,3 +33,10 @@ class SousOperation(db.Model, Repository):
     # many to one
     cancel_deadline_id = db.Column(
         db.Integer, db.ForeignKey('cancel_deadline.id'))
+
+    # Relationship with PlafondDotation
+    plafond_dotations = db.relationship(
+        "PlafondDotation", 
+        back_populates="sous_operation", 
+        cascade="all, delete-orphan"
+    )
