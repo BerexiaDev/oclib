@@ -9,26 +9,31 @@ class Esd(Pm):
     groupe = db.Column(db.Integer, nullable=True)
     motif = db.Column(db.Integer, nullable=True)
 
-    poc = db.relationship('Poc', backref='esd', uselist=False)
-    
+    poc = db.relationship('Poc', backref='esd', uselist=False, cascade="all, delete")
+
+    gerants_pp = db.relationship("Gerant", backref="esd", uselist=True, cascade="all, delete")
     gerant_pp = db.relationship(
         "Gerant",
-        backref="esd_gerant_pp_ref",
-        uselist=False,
-        foreign_keys="[Gerant.esd_id]" 
+        primaryjoin="and_(Gerant.esd_id==Esd.id,or_(Gerant.statut==True, Gerant.statut.is_(None)))",
+        uselist=False
     )
-    gerant_pm = db.relationship('GerantPm', backref='esd', uselist=False, foreign_keys="[GerantPm.esd_id]")
-    
-    associe_pps = db.relationship('AssociePp', backref='esd')
-    associe_pms = db.relationship('AssociePm', backref='esd', foreign_keys="[AssociePm.esd_id]")
-    co_gerants = db.relationship('Cogerant', backref='esd')
-    co_gerants_pms = db.relationship('CogerantPm', backref='esd', foreign_keys="[CogerantPm.esd_id]")
+    gerant_pms = db.relationship("GerantPm", backref="esd", uselist=True, foreign_keys="[GerantPm.esd_id]",
+                                 cascade="all, delete")
+    gerant_pm = db.relationship(
+        "GerantPm",
+        primaryjoin="and_(GerantPm.esd_id==Esd.id,or_(GerantPm.is_actif==True, GerantPm.is_actif.is_(None)))",
+        uselist=False
+    )
+
+    associe_pps = db.relationship('AssociePp', backref='esd', cascade="all, delete")
+    associe_pms = db.relationship('AssociePm', backref='esd', foreign_keys="[AssociePm.esd_id]", cascade="all, delete")
+
+    co_gerants = db.relationship('Cogerant', backref='esd', cascade="all, delete")
+    co_gerants_pms = db.relationship('CogerantPm', backref='esd', foreign_keys="[CogerantPm.esd_id]",
+                                     cascade="all, delete")
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
     affiliation_group_motif = db.Column(db.String(255), nullable=True)
-    
-    numero_decision_autorisation = db .Column(db.String(255))
-    date_decision_autorisation = db.Column(db.Date)
 
     __mapper_args__ = {'polymorphic_identity': 'esd'}

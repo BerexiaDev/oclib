@@ -17,6 +17,7 @@ from oc_lib.models.change import Change
 from oc_lib.models.co_gerant import Cogerant
 from oc_lib.models.co_gerant_pm import CogerantPm
 from oc_lib.models.complement_dotation import ComplementDotation
+from oc_lib.models.declaration_ana import DeclarationAna
 from oc_lib.models.declaration_docs import DeclarationDocs
 from oc_lib.models.declaration_fiscal import DeclarationFiscal
 from oc_lib.models.declaration_pm import DeclarationPm
@@ -69,6 +70,13 @@ from oc_lib.models.operation_cession_view import OperationCessionView
 from oc_lib.models.beneficiaire_pp_final import BeneficiairePpFinal
 from oc_lib.models.draft_reference import DraftReference
 from oc_lib.models.synchronization_job import SynchronizationJob
+from oc_lib.models.demande_statut import DemandeStatut
+from oc_lib.models.country import Country
+from oc_lib.models.currency import Currency
+from oc_lib.models.region import Region
+from oc_lib.models.localite import Localite
+from oc_lib.models.demande_annulation import DemandeAnnulation
+
 
 # Association tables
 from oc_lib.models.authorized_operation_lieu_implantation_association import authorized_operation_lieu_implantation_association

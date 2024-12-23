@@ -10,6 +10,7 @@ class SeuilEncaisse(db.Model, Repository):
     encaisse = db.Column(db.Float, nullable=False, default = 0)
     latence_jours = db.Column(db.Integer, nullable=False)
     latence_heure = db.Column(db.Integer, nullable=False) 
+    statut = db.Column(db.Boolean)    
 
     lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id"))
     lieu_implantation = db.relationship("LieuImplantation")
