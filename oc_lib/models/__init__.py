@@ -71,9 +71,9 @@ from oc_lib.models.beneficiaire_pp_final import BeneficiairePpFinal
 from oc_lib.models.demande_statut import DemandeStatut
 from oc_lib.models.country import Country
 from oc_lib.models.currency import Currency
-from oc_lib.models.bank_code import BankCode
 from oc_lib.models.region import Region
 from oc_lib.models.localite import Localite
+from oc_lib.models.demande_annulation import DemandeAnnulation
 
 
 # Association tables

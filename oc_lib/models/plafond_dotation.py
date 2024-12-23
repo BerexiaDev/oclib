@@ -11,4 +11,4 @@ class PlafondDotation(db.Model, Repository):
 
     #many to one
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
-    sous_operation = db.relationship("SousOperation")
+    sous_operation = db.relationship("SousOperation", back_populates="plafond_dotations")

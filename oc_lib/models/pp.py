@@ -32,9 +32,15 @@ class Pp(db.Model, Repository):
 
     @validates('numero_piece')
     def validate_numero_piece_value(self, key, value):
-        if self.nature_piece == "CNI" and self.nature_pp in ["MR", "MRE"]:
+        if self.nature_pp in ["MR", "MRE"]:
             return validate_cni(key, value)
-        elif self.nature_piece == "CIM" and self.nature_pp == "ER":
+        elif self.nature_pp == "ER":
             return validate_cim(key, value)
-        elif self.nature_piece == "Passport" and self.nature_pp == "ENR":
+        elif self.nature_pp == "ENR":
             return validate_normal_pattern(key, value)
+        
+    @validates('adresse')
+    def validate_adresse(self, key, adresse):
+        if self.type in ["cogerant", "gerant"] and (not adresse or adresse == ""):
+            raise ValueError("L'addresse est obligatoir.")
+        return adresse
