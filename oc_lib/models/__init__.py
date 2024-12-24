@@ -74,6 +74,7 @@ from oc_lib.models.currency import Currency
 from oc_lib.models.region import Region
 from oc_lib.models.localite import Localite
 from oc_lib.models.demande_operation import DemandeOperation
+from oc_lib.models.beneficiaire import Beneficiaire
 
 
 # Association tables
