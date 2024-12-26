@@ -5,11 +5,11 @@ class OperationDevise(db.Model, Repository):
     __tablename__ = 'operation_devise'
     
     id = db.Column(db.Integer, primary_key=True)
-    label = db.Column(db.String(100), nullable=False)
+    label = db.Column(db.String(100))
     montant_devise = db.Column(db.Float)
     cours = db.Column(db.Float)
     montant_mad = db.Column(db.Float)
-    support = db.Column(db.Integer) # support devise
+    support = db.Column(db.Integer, nullable=False) # support devise
     
     operation_id = db.Column(db.Integer, db.ForeignKey('operation.id'))
     operation_cession_id = db.Column(db.Integer, db.ForeignKey('operation_cession.id'))
