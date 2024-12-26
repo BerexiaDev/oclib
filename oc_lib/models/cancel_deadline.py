@@ -9,6 +9,7 @@ class CancelDeadline(db.Model, Repository):
     type_operation = db.Column(db.Integer, nullable=False)
     delai = db.Column(db.Integer, nullable=False) # en minute
     statut = db.Column(db.Boolean)
-    
-    #One to Many
-    sous_operations = db.relationship('SousOperation',backref="cancel_deadline")
+
+        # many to one
+    sous_operation_id = db.Column( 
+        db.Integer, db.ForeignKey('sous_operation.id'))
