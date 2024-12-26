@@ -31,7 +31,7 @@ class SousOperation(db.Model, Repository):
     declaration_importation = db.Column(db.Boolean, default=False)
 
     #One to Many
-    cancel_deadlines = db.relationship('CancelDeadline',backref="sous_operation") 
+    cancel_deadlines = db.relationship('CancelDeadline',backref="sous_operation", cascade="all, delete-orphan") 
 
     # Relationship with PlafondDotation
     plafond_dotations = db.relationship(

@@ -12,4 +12,4 @@ class CancelDeadline(db.Model, Repository):
 
         # many to one
     sous_operation_id = db.Column( 
-        db.Integer, db.ForeignKey('sous_operation.id'))
+        db.Integer, db.ForeignKey('sous_operation.id'), nullable=False)
