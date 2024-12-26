@@ -9,7 +9,7 @@ class OperationDevise(db.Model, Repository):
     montant_devise = db.Column(db.Float)
     cours = db.Column(db.Float)
     montant_mad = db.Column(db.Float)
-    support = db.Column(db.Integer, nullable=False) # support devise
+    support = db.Column(db.Integer)
     
     operation_id = db.Column(db.Integer, db.ForeignKey('operation.id'))
     operation_cession_id = db.Column(db.Integer, db.ForeignKey('operation_cession.id'))
