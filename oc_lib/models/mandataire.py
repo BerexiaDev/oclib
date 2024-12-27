@@ -23,5 +23,6 @@ class Mandataire(Pm):
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
     affiliation_group_motif = db.Column(db.String(255), nullable=True)
+    affiliation_group = db.relationship('AffiliationGroup', back_populates='mandataires', lazy=True)
 
     __mapper_args__ = {"polymorphic_identity": "mandataire"}

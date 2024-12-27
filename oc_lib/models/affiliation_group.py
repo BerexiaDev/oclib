@@ -8,7 +8,7 @@ class AffiliationGroup(db.Model, Repository):
     description = db.Column(db.String)
     type_operator = db.Column(db.Integer, default=1)
 
-    scds = db.relationship("Scd", backref="affiliation_group", lazy=True)
-    esds = db.relationship("Esd", backref="affiliation_group", lazy=True)
-    eps = db.relationship("Ep", backref="affiliation_group", lazy=True)
-    mandataires = db.relationship("Mandataire", backref="affiliation_group", lazy=True)
+    scds = db.relationship("Scd", back_populates="affiliation_group", lazy=True)
+    esds = db.relationship("Esd", back_populates="affiliation_group", lazy=True)
+    eps = db.relationship("Ep", back_populates="affiliation_group", lazy=True)
+    mandataires = db.relationship("Mandataire", back_populates="affiliation_group", lazy=True)
