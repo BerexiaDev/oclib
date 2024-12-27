@@ -40,6 +40,7 @@ class Scd(Pm):
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
+    affiliation_group = db.relationship('AffiliationGroup', back_populates='scds', lazy=True)
     affiliation_group_motif = db.Column(db.String(255), nullable=True)
 
     __mapper_args__ = {"polymorphic_identity": "scd"}
