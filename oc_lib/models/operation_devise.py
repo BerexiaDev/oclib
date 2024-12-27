@@ -22,7 +22,7 @@ class OperationDevise(db.Model, Repository):
                 raise ValueError(
                     "support field is required."
                 )
-            elif self.support == SupportOperationDevise.BILLET_DE_BANQUE.value:
+            if self.support == SupportOperationDevise.BILLET_DE_BANQUE.value:
                 # Validate all fields
                 if not all([self.label, self.montant_devise, self.cours, self.montant_mad]):
                     raise ValueError(
