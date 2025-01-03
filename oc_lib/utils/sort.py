@@ -11,11 +11,7 @@ def build_sort_column(model, field_path, query):
     if not hasattr(attr, "relationship"):
         try:
             related_model = attr.property.mapper.class_  #Finding related model from current model
-            join_on = getattr(model, nested_field).property.backref #checking for an existing backref
-            if join_on:
-                query = query.join(related_model, on=join_on)
-            else:
-                query = query.join(related_model)
+            query = query.join(related_model)
             return getattr(related_model, subfield), query
         except AttributeError:
             logger.error(f"'{nested_field}' is not a relationship or valid _id field on {model.__name__}")
