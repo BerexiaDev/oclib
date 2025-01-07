@@ -32,6 +32,11 @@ class OperationCession(db.Model, Repository):
     cancelled_by_id = db.Column(db.Integer)
     date_cancellation = db.Column(db.DateTime)
 
+    updated_by = db.Column(db.String(240))
+    updated_at = db.Column(db.DateTime)
+    update_reason = db.Column(db.String(240))
+    update_validated_by = db.Column(db.String(240))
+
     # Relationships
     poc_id = db.Column(db.Integer, db.ForeignKey('poc.id')) 
     sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
