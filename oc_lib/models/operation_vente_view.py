@@ -60,6 +60,11 @@ class OperationVenteView(db.Model, Repository):
     cancelled_by = db.Column(db.String(240))
     date_cancellation = db.Column(db.DateTime)
 
+    updated_by = db.Column(db.String(240))
+    updated_at = db.Column(db.DateTime)
+    update_reason = db.Column(db.String(240))
+    update_validated_by = db.Column(db.String(240))
+
     activation_complement_dotation_id = db.Column(db.Integer)
 
     # operation_vente_lien_parente = db.Column(db.String(240)) # dans le cas de PP

@@ -33,5 +33,10 @@ class OperationCessionView(db.Model, Repository):
     cancelled_by = db.Column(db.String(240))
     date_cancellation = db.Column(db.DateTime)
 
+    updated_by = db.Column(db.String(240))
+    updated_at = db.Column(db.DateTime)
+    update_reason = db.Column(db.String(240))
+    update_validated_by = db.Column(db.String(240))
+
     sous_operation_label = db.Column(db.String, nullable=False)
     sous_operation_id = db.Column(db.Integer, nullable=False)
