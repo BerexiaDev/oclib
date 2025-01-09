@@ -7,7 +7,7 @@ class AlertLog(db.Model, Repository):
     __tablename__ = 'alert_log'
 
     id = db.Column(db.Integer, primary_key=True)
-    pc_id = db.Column(db.Integer, nullable=False)
+    pc_id = db.Column(db.Integer, nullable=True)
     pc_agreement_number = db.Column(db.String(100), nullable=False)
     pc_designation = db.Column(db.String(255), nullable=False)
     triggered_by = db.Column(db.String(100), nullable=False)
