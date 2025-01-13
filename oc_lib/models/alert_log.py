@@ -13,6 +13,9 @@ class AlertLog(db.Model, Repository):
     triggered_by = db.Column(db.String(100), nullable=False)
     triggered_by_id = db.Column(db.Integer, nullable=False)
     date_creation = db.Column(db.DateTime, default=datetime.utcnow)
+    operation_id = db.Column(db.Integer, db.ForeignKey('operation.id'))
+    operation_cession_id = db.Column(
+        db.Integer, db.ForeignKey('operation_cession.id'))
 
     alert_code = db.Column(db.String(50), nullable=False)
     alert_name = db.Column(db.String(255), nullable=False)
