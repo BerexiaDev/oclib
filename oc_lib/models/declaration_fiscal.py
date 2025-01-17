@@ -31,3 +31,6 @@ class DeclarationFiscal(db.Model, Repository):
     documents = db.relationship('DeclarationDocs', backref='declarationfiscal', lazy='dynamic')
     
     scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"))
+
+    updated_by = db.Column(db.String(240))
+    updated_at = db.Column(db.Date)
