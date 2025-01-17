@@ -15,7 +15,7 @@ class Pm(db.Model, Repository):
     registre_commerce = db.Column(db.Integer)
     adresse = db.Column(db.String(100), nullable=False, server_default="")
     raison_sociale = db.Column(db.String(100), nullable=False)
-    idce = db.Column(db.Integer)
+    idce = db.Column(db.BigInteger)
     idf = db.Column(db.Integer)
     forme_juridique = db.Column(db.String(100))
     capital_social = db.Column(db.Numeric(
