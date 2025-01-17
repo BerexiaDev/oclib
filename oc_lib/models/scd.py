@@ -5,8 +5,6 @@ from sqlalchemy import or_
 
 class Scd(Pm):
     id = db.Column(db.Integer, db.ForeignKey("pm.id"), primary_key=True, nullable=False)
-    groupe = db.Column(db.Integer, nullable=True)
-    motif = db.Column(db.Integer, nullable=True)
 
     poc_total = db.Column(db.Integer, default=0)
     poc_actif = db.Column(db.Integer, default=0)
