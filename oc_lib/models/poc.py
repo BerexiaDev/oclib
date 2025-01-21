@@ -81,5 +81,5 @@ class Poc(db.Model, Repository):
 
     caisse_devises = db.relationship("CaisseDevise", cascade="all, delete")
 
-    longitude = db.Column(db.Integer, default=0)
-    latitude = db.Column(db.Integer, default=0)
+    longitude = db.Column(db.Integer, nullable=True)
+    latitude = db.Column(db.Integer, nullable=True)
