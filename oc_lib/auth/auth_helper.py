@@ -1,8 +1,8 @@
 from datetime import datetime
-
 from flask import g
 from oc_lib.models import User, Poc
 from oc_lib.utils.constants import Roles
+from oc_lib.utils.strings import date_now
 
 class AuthHelper:
     @staticmethod
@@ -29,7 +29,7 @@ class AuthHelper:
 
             poc = Poc.find_one(id=g.user.poc_id, date_debut_activite=None)
             if poc:
-                poc.date_debut_activite = today_date
+                poc.date_debut_activite = date_now()
                 poc.save()
 
             g.user.save()
