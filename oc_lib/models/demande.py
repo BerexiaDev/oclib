@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 from sqlalchemy.orm import validates
 
 from oc_lib.utils.validators import validate_numero_decision
@@ -13,12 +13,13 @@ class Demande(db.Model, Repository):
     etape = db.Column(db.Integer)
     motif_oc_decision = db.Column(db.String)
     motif = db.Column(db.String)
+    motif_annulation = db.Column(db.String)
     initiateur = db.Column(db.Integer)
     created_by = db.Column(db.String(240), nullable=False, server_default="")
     validateurs = db.Column(db.ARRAY(db.String(240)))
     valide_oc = db.Column(db.Boolean, default=False)
     valide_manager_oc = db.Column(db.Boolean, default=False)
-    date_creation = db.Column(db.Date, default=date.today, onupdate=date.today)
+    date_creation = db.Column(db.DateTime, default=datetime.today)
     modification_id = db.Column(db.Integer, db.ForeignKey('modification.id'))
     modification = db.relationship('Modification', back_populates='demandes', lazy=True)
 

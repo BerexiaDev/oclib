@@ -7,6 +7,7 @@ NUMERO_DECISION_PATTERN = r"^[a-zA-Z0-9]{1,6}/[1-9]\d{0,4}/\d{4}$"
 CIM_PATTERN = r"^[A-Z]{1,2}\d{1,6}[A-Z]{1,2}$"
 CNI_PATTERN = r"^[A-Z]{1,2}\d{1,6}$"
 NORMAL_PATTERN = r"^[a-zA-Z0-9]*$"
+ICE_PATTERN = r"^[0-9]{15}$"
 
 
 def validate_numero_decision(key, value, error_msg=None):

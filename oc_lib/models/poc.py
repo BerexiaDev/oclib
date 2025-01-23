@@ -80,3 +80,6 @@ class Poc(db.Model, Repository):
     linked_poc = db.relationship("Poc", remote_side=[id], uselist=False)
 
     caisse_devises = db.relationship("CaisseDevise", cascade="all, delete")
+
+    longitude = db.Column(db.Integer, nullable=True)
+    latitude = db.Column(db.Integer, nullable=True)

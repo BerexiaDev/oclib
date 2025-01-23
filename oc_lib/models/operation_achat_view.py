@@ -35,7 +35,7 @@ class OperationAchatView(db.Model, Repository):
     beneficiaire_pm_registre_commerce = db.Column(db.Integer, nullable=False)
     beneficiaire_pm_centre = db.Column(db.Integer, nullable=False)
     beneficiaire_pm_raison_sociale = db.Column(db.String(100))
-    beneficiaire_pm_idce = db.Column(db.Integer)
+    beneficiaire_pm_idce = db.Column(db.BigInteger)
     numero_declaration = db.Column(db.String(240))
     date_declaration = db.Column(db.Date)
     statut = db.Column(db.Integer)
@@ -51,3 +51,5 @@ class OperationAchatView(db.Model, Repository):
     cancellation_reason = db.Column(db.String(240))
     cancelled_by = db.Column(db.String(240))
     date_cancellation = db.Column(db.DateTime)
+    validated_by = db.Column(db.String(240))
+

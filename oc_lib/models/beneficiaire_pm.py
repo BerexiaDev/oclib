@@ -8,6 +8,6 @@ class BeneficiairePm(Beneficiaire):
     registre_commerce = db.Column(db.Integer)
     centre = db.Column(db.Integer)
     raison_sociale =db.Column(db.String(100))
-    idce = db.Column(db.Integer)
+    idce = db.Column(db.BigInteger)
 
     __mapper_args__ = {"polymorphic_identity": "beneficiaire_pm"}
