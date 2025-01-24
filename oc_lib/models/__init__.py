@@ -74,6 +74,7 @@ from oc_lib.models.currency import Currency
 from oc_lib.models.region import Region
 from oc_lib.models.localite import Localite
 from oc_lib.models.demande_annulation import DemandeAnnulation
+from oc_lib.models.snapshot import SnapShot
 from oc_lib.models.alert_log import AlertLog
 
 # Association tables
