@@ -25,5 +25,3 @@ class AuthorizedOperation(db.Model, Repository):
 
     derogations = db.relationship(
         "DerogationOperation", backref="operation", lazy=True)
-
-    solde = db.Column(db.Integer, nullable=False)
