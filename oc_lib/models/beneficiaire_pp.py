@@ -12,6 +12,7 @@ class BeneficiairePp(Beneficiaire):
     prenom = db.Column(db.String(120))
     nature_piece = db.Column(db.String(50))
     numero_piece = db.Column(db.String(50))
+    adresse = db.Column(db.String(100))
 
     __mapper_args__ = {"polymorphic_identity": "beneficiaire_pp"}
 
