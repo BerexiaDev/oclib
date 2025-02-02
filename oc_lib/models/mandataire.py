@@ -12,6 +12,9 @@ class Mandataire(Pm):
 
     sequence_number = db.Column(db.Integer)
 
+    numero_decision_autorisation = db.Column(db.String(255))
+    date_decision_autorisation = db.Column(db.Date)
+
     # One to many
     pocs = db.relationship(
         "Poc", backref="mandataire", foreign_keys="[Poc.mandataire_id]", cascade="all, delete"
