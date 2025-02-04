@@ -10,7 +10,7 @@ class NotificationLog(db.Model, Repository):
     code = db.Column(db.String(50), nullable=False)
     name = db.Column(db.String(150), nullable=False)
     message = db.Column(db.Text, nullable=False)
-    pm_rs = db.Column(db.String(100), nullable=False)
+    pm_rs = db.Column(db.String(100))
     pm_rc = db.Column(db.Integer)
     pm_centre = db.Column(db.Integer)
     pc_designation = db.Column(db.String(50))
