@@ -3,6 +3,7 @@ from oc_lib.db import db
 from oc_lib.utils.events_decorator import register_event_listeners
 from oc_lib.models.derogation_operation_poc_association import derogation_operation_poc_association
 from oc_lib.models.derogation_encaisse_poc_association import derogation_encaisse_poc_association
+from datetime import date
 
 
 @register_event_listeners
@@ -40,6 +41,8 @@ class Poc(db.Model, Repository):
 
     creation_status = db.Column(db.Integer, default=0)
     categorie = db.Column(db.Integer)
+    date_creation = db.Column(db.Date, default=date.today)
+    is_blocked = db.Column(db.Date, default=False)
 
     statuts = db.relationship("Statut", backref="poc", lazy=True)
     motifs = db.relationship("Motif", backref="poc", lazy=True)
