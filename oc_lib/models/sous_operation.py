@@ -2,7 +2,7 @@ from oc_lib.repository import Repository
 from oc_lib.db import db
 from oc_lib.utils.strings import date_now
 from sqlalchemy.dialects.postgresql import ARRAY
-
+from sqlalchemy.dialects.postgresql import JSONB
 
 
 class SousOperation(db.Model, Repository):
@@ -23,7 +23,8 @@ class SousOperation(db.Model, Repository):
         db.ARRAY(db.Integer), nullable=False, default=[])
     beneficiaire_final_required = db.Column(
         db.Boolean, nullable=False, default=False)
-    attachements = db.Column(db.ARRAY(db.String), nullable=False, default=[])
+    
+    attachements = db.Column(JSONB, nullable=False, default=[])
 
     support_mad = db.Column(ARRAY(db.Integer), nullable=False)
     support_devise = db.Column(ARRAY(db.Integer), nullable=False)
