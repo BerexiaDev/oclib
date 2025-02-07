@@ -5,7 +5,7 @@ class OperationDevise(db.Model, Repository):
     __tablename__ = 'operation_devise'
     
     id = db.Column(db.Integer, primary_key=True)
-    label = db.Column(db.String(100), nullable=False)
+    label = db.Column(db.String(100))
     montant_devise = db.Column(db.Float)
     cours = db.Column(db.Float)
     montant_mad = db.Column(db.Float)
