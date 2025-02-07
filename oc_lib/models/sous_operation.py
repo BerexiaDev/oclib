@@ -29,6 +29,7 @@ class SousOperation(db.Model, Repository):
     support_devise = db.Column(ARRAY(db.Integer), nullable=False)
 
     declaration_importation = db.Column(db.Boolean, default=False)
+    attachements_required = db.Column(db.Boolean, default=False)
 
     #One to Many
     cancel_deadlines = db.relationship('CancelDeadline',backref="sous_operation", cascade="all, delete-orphan") 
