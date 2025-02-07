@@ -23,7 +23,6 @@ class SousOperation(db.Model, Repository):
         db.ARRAY(db.Integer), nullable=False, default=[])
     beneficiaire_final_required = db.Column(
         db.Boolean, nullable=False, default=False)
-    
     attachements = db.Column(JSONB, nullable=False, default=[])
 
     support_mad = db.Column(ARRAY(db.Integer), nullable=False)
