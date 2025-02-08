@@ -83,3 +83,6 @@ class Poc(db.Model, Repository):
 
     longitude = db.Column(db.Integer, nullable=True)
     latitude = db.Column(db.Integer, nullable=True)
+
+    numero_decision_autorisation = db.Column(db.String(255))
+    date_decision_autorisation = db.Column(db.Date)
