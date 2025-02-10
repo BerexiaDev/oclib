@@ -11,6 +11,8 @@ class Mandataire(Pm):
     amna_actif = db.Column(db.Integer, default=0)
 
     sequence_number = db.Column(db.Integer)
+    date_debut_mandat = db.Column(db.Date, nullable=False)
+    date_rupture_mandat = db.Column(db.Date, nullable=True)
 
     numero_decision_autorisation = db.Column(db.String(255))
     date_decision_autorisation = db.Column(db.Date)
