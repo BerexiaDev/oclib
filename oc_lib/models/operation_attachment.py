@@ -6,7 +6,7 @@ class OperationAttachment(db.Model, Repository):
     
     id = db.Column(db.Integer, primary_key=True)
     designation = db.Column(db.String(240))
-    nom_fichier = db.Column(db.String(500), nullable=False)
+    nom_fichier = db.Column(db.String(500), nullable=False, unique=True)
     full_path= db.Column(db.String(500), nullable =False)
     file_extension = db.Column(db.String(5), nullable=False)
     date_creation = db.Column(db.Date, default=db.func.now())
