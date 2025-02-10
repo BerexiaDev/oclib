@@ -13,6 +13,8 @@ class Ep(Pm):
     amna_actif = db.Column(db.Integer, default=0)
     ap_inactif = db.Column(db.Integer, default=0)
     ap_total = db.Column(db.Integer, default=0)
+    am_inactif = db.Column(db.Integer, default=0)
+    am_total = db.Column(db.Integer, default=0)
 
     sequence_number = db.Column(db.Integer)
 
