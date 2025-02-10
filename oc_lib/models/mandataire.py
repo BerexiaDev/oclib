@@ -14,6 +14,9 @@ class Mandataire(Pm):
     date_debut_mandat = db.Column(db.Date, nullable=False)
     date_rupture_mandat = db.Column(db.Date, nullable=True)
 
+    numero_decision_autorisation = db.Column(db.String(255))
+    date_decision_autorisation = db.Column(db.Date)
+
     # One to many
     pocs = db.relationship(
         "Poc", backref="mandataire", foreign_keys="[Poc.mandataire_id]", cascade="all, delete"

@@ -12,6 +12,9 @@ class Scd(Pm):
     part_total = db.Column(db.Integer, default=0)
     sequence_number = db.Column(db.Integer)
 
+    numero_decision_autorisation = db.Column(db.String(255))
+    date_decision_autorisation = db.Column(db.Date)
+
     # One to many
     associe_pps = db.relationship("AssociePp", backref="scd", cascade="all, delete")
     associe_pms = db.relationship("AssociePm", backref="scd", foreign_keys="[AssociePm.scd_id]", cascade="all, delete")
@@ -39,5 +42,5 @@ class Scd(Pm):
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
     affiliation_group_motif = db.Column(db.String(255), nullable=True)
-
+    
     __mapper_args__ = {"polymorphic_identity": "scd"}
