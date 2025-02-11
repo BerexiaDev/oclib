@@ -1,6 +1,6 @@
 from oc_lib.db import db
 from oc_lib.models.pm import Pm
-
+from datetime import datetime
 
 class Mandataire(Pm):
     id = db.Column(db.Integer, db.ForeignKey("pm.id"), primary_key=True, nullable=False)
@@ -11,7 +11,7 @@ class Mandataire(Pm):
     amna_actif = db.Column(db.Integer, default=0)
 
     sequence_number = db.Column(db.Integer)
-    date_debut_mandat = db.Column(db.Date, nullable=False)
+    date_debut_mandat = db.Column(db.Date, nullable=False, server_default=datetime.now)
     date_rupture_mandat = db.Column(db.Date, nullable=True)
 
     # One to many
