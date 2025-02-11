@@ -14,6 +14,7 @@ from oc_lib.models.beneficiaire_pp import BeneficiairePp
 from oc_lib.models.caisse_devise import CaisseDevise
 from oc_lib.models.cancel_deadline import CancelDeadline
 from oc_lib.models.change import Change
+from oc_lib.models.client import Client
 from oc_lib.models.co_gerant import Cogerant
 from oc_lib.models.co_gerant_pm import CogerantPm
 from oc_lib.models.complement_dotation import ComplementDotation
