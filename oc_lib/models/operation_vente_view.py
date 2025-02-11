@@ -32,14 +32,12 @@ class OperationVenteView(db.Model, Repository):
     beneficiaire_pp_nom = db.Column(db.String(120), nullable=False)
     beneficiaire_pp_prenom = db.Column(db.String(120), nullable=False)
     beneficiaire_pp_nationalite = db.Column(db.String(120), nullable=True)
-    beneficiaire_pp_adresse = db.Column(db.String(120), nullable=True)
     beneficiaire_final_pp_nature_piece = db.Column(
         db.String(50), nullable=False)
     beneficiaire_final_pp_numero_piece = db.Column(
         db.String(50), nullable=False)
     beneficiaire_final_pp_nom = db.Column(db.String(120), nullable=False)
     beneficiaire_final_pp_prenom = db.Column(db.String(120), nullable=False)
-    beneficiaire_final_pp_adresse = db.Column(db.String(120), nullable=True)
     beneficiaire_pm_id = db.Column(db.Integer, nullable=False)
     beneficiaire_pm_registre_commerce = db.Column(db.Integer, nullable=False)
     beneficiaire_pm_centre = db.Column(db.Integer, nullable=False)
