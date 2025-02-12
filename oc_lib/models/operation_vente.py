@@ -9,7 +9,7 @@ class OperationVente(Operation):
     lien_parente = db.Column(db.String(240))  # dans le cas de PP
     fonction_pp = db.Column(db.String(240))  # dans le cas de PM
     # Si pp dispose d'autorisation
-    numero_autorisation = db.Column(db.String(50), nullable=False)
+    numero_autorisation = db.Column(db.String(50))
 
     beneficiaire_final_pp_id = db.Column(
         db.Integer, db.ForeignKey('beneficiaire_pp_final.id'))
