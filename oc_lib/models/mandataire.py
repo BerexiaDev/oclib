@@ -13,6 +13,8 @@ class Mandataire(Pm):
     am_total = db.Column(db.Integer, default=0)
 
     sequence_number = db.Column(db.Integer)
+    date_debut_mandat = db.Column(db.Date, nullable=False)
+    date_rupture_mandat = db.Column(db.Date, nullable=True)
 
     # One to many
     pocs = db.relationship(
