@@ -42,7 +42,7 @@ class Poc(db.Model, Repository):
     creation_status = db.Column(db.Integer, default=0)
     categorie = db.Column(db.Integer)
     date_creation = db.Column(db.Date, default=date.today)
-    is_blocked = db.Column(db.Date, default=False)
+    is_blocked = db.Column(db.Boolean, default=False)
 
     statuts = db.relationship("Statut", backref="poc", lazy=True)
     motifs = db.relationship("Motif", backref="poc", lazy=True)
