@@ -6,7 +6,7 @@ from sqlalchemy import text
 class DeclarationDocs(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     declaration_fiscal_id = db.Column(db.Integer, db.ForeignKey("declaration_fiscal.id"), nullable=False)
-    intitule_document = db.Column(db.String(1000), nullable=False)
+    intitule_document = db.Column(db.String(1000), nullable=False, unique=True)
     nom_fichier = db.Column(db.String(1000), nullable=False, unique=True)
     date_creation = db.Column(db.Date, default=db.func.now())
     full_path= db.Column(db.String(250))
