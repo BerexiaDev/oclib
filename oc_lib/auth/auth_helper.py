@@ -40,8 +40,6 @@ class AuthHelper:
                         "poc_id": poc.id,
                         "code": "NOTIF_011"
                     }
-                    set_notif_poc_pm_data = get_registered_function("set_notif_poc_pm_data")
-                    notif_params = set_notif_poc_pm_data(notif_params)
                     handle_create_notification(notif_params)
 
             g.user.save()
