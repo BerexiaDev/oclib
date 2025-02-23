@@ -35,13 +35,13 @@ class AuthHelper:
                 poc.save()
                 first_statut = db.session.query(Statut).filter(Statut.poc_id == poc.id).order_by(Statut.id).first()
                 if first_statut and first_statut.date_delivrance > poc.date_debut_activite.date():
-                    create_notification = get_registered_function("create_notification")
+                    handle_create_notification = get_registered_function("handle_create_notification")
                     notif_params = {
                         "poc_id": poc.id,
                         "code": "NOTIF_011"
                     }
                     set_notif_poc_pm_data = get_registered_function("set_notif_poc_pm_data")
                     notif_params = set_notif_poc_pm_data(notif_params)
-                    create_notification(notif_params)
+                    handle_create_notification(notif_params)
 
             g.user.save()
