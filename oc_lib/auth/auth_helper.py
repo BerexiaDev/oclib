@@ -1,10 +1,10 @@
 from datetime import datetime
-
 from flask import g
 from oc_lib.models import User, Poc, Statut
 from oc_lib.utils.constants import Roles
 from oc_lib.db import db
 from oc_lib.utils.funtion_registry import get_registered_function
+from oc_lib.utils.strings import date_now
 
 class AuthHelper:
     @staticmethod
@@ -31,7 +31,7 @@ class AuthHelper:
 
             poc = Poc.find_one(id=g.user.poc_id, date_debut_activite=None)
             if poc:
-                poc.date_debut_activite = today_date
+                poc.date_debut_activite = date_now()
                 poc.save()
                 first_statut = db.session.query(Statut).filter(Statut.poc_id == poc.id).order_by(Statut.id).first()
                 if first_statut and first_statut.date_delivrance > poc.date_debut_activite.date():
