@@ -1,6 +1,6 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
-from oc_lib.utils.strings import current_year
+from oc_lib.utils.strings import current_year, date_now
 
 
 class SeuilEncaisse(db.Model, Repository):
@@ -10,7 +10,8 @@ class SeuilEncaisse(db.Model, Repository):
     encaisse = db.Column(db.Float, nullable=False, default = 0)
     latence_jours = db.Column(db.Integer, nullable=False)
     latence_heure = db.Column(db.Integer, nullable=False) 
-    statut = db.Column(db.Boolean)    
+    statut = db.Column(db.Boolean)
+    creation_date = db.Column(db.Date, nullable=False, default=date_now())
 
     lieu_implantation_id = db.Column(db.Integer, db.ForeignKey("lieu_implantation.id"))
     lieu_implantation = db.relationship("LieuImplantation")
