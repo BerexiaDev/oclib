@@ -39,6 +39,8 @@ class Operation(db.Model, Repository):
     cancellation_reason = db.Column(db.String(240))
     cancelled_by = db.Column(db.String(240))
     cancelled_by_id = db.Column(db.Integer)
+    validated_by = db.Column(db.String(240))
+    validated_by_id = db.Column(db.Integer)
     date_cancellation = db.Column(db.DateTime)
  
     __mapper_args__ = {"polymorphic_identity": "operation", "polymorphic_on": type_operation}
