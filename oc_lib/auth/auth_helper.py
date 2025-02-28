@@ -1,7 +1,9 @@
 from datetime import datetime
 from flask import g
-from oc_lib.models import User, Poc
+from oc_lib.models import User, Poc, Statut
 from oc_lib.utils.constants import Roles
+from oc_lib.db import db
+from oc_lib.utils.funtion_registry import get_registered_function
 from oc_lib.utils.strings import date_now
 
 class AuthHelper:
@@ -31,5 +33,13 @@ class AuthHelper:
             if poc:
                 poc.date_debut_activite = date_now()
                 poc.save()
+                first_statut = db.session.query(Statut).filter(Statut.poc_id == poc.id).order_by(Statut.id).first()
+                if first_statut and first_statut.date_delivrance > poc.date_debut_activite.date():
+                    handle_create_notification = get_registered_function("handle_create_notification")
+                    notif_params = {
+                        "poc_id": poc.id,
+                        "code": "NOTIF_011"
+                    }
+                    handle_create_notification(notif_params)
 
             g.user.save()
