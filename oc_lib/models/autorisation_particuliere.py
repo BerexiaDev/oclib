@@ -16,6 +16,8 @@ class AutorisationParticuliere(db.Model, Repository):
     date_creation = db.Column(db.Date, nullable=False, default=date_now())
     validated_by = db.Column(db.String(240))
     date_validation = db.Column(db.Date)
+    canceled_by = db.Column(db.String(240))
+    date_cancelation = db.Column(db.Date)
     commentaire = db.Column(db.String(200), nullable=True)
     solde = db.Column(db.Integer, nullable=False)
 
