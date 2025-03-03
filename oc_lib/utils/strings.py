@@ -10,6 +10,8 @@ def get_class_instance(module_name, class_name):
 def date_now():
     return datetime.date(datetime.now())
 
+def timestamp():
+    return datetime.now()
 
 def update_element(data, element, non_editable_attrs=None):
 
