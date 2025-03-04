@@ -77,6 +77,7 @@ from oc_lib.models.demande_annulation import DemandeAnnulation
 from oc_lib.models.snapshot import SnapShot
 from oc_lib.models.alert_log import AlertLog
 from oc_lib.models.paiment_modes import PaimentModes
+from oc_lib.models.beneficiaire_qualite_parametrage import BeneficiaireQualiteParameterage
 
 # Association tables
 from oc_lib.models.authorized_operation_lieu_implantation_association import authorized_operation_lieu_implantation_association
