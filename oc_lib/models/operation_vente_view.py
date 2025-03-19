@@ -46,7 +46,7 @@ class OperationVenteView(db.Model, Repository):
     beneficiaire_pm_raison_sociale = db.Column(db.String(100))
     beneficiaire_pm_idce = db.Column(db.BigInteger)
     # Si pp dispose d'autorisation
-    numero_autorisation = db.Column(db.Integer, nullable=True)
+    numero_autorisation = db.Column(db.String(50), nullable=True)
     statut = db.Column(db.Integer)
     devise_labels = db.Column(db.String(1000))
     montant_global = db.Column(db.Float)

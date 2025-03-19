@@ -50,9 +50,7 @@ def get_path(folder, import_folder: str, filename="", extension="pdf", as_folder
 
 def get_upload_file_path(import_folder, folder=""):
     """constructs the full path for a file under UPLOAD FOLDER """
-    main_path = app.root_path
-    project_path = Path(main_path).parent.parent
-    upload_path = Path(str(project_path) + app.config['UPLOAD_FOLDER'] + "/" + import_folder)
+    upload_path = Path(app.config["UPLOAD_FOLDER"] + "/" + import_folder)
     return upload_path.joinpath(folder)
 
 
