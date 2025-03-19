@@ -12,7 +12,7 @@ class SousOperation(db.Model, Repository):
     type_operation = db.Column(db.Integer, nullable=False)
     # code de la sous operation A###, V###, C###
     code = db.Column(db.String(4), nullable=False, unique=True)
-    code_statistique = db.Column(db.Integer, unique=True)  # code statistique
+    code_statistique = db.Column(db.Integer)
     label = db.Column(db.String, nullable=False)
     statut = db.Column(db.Boolean, nullable=False, default=True)
     date_activation = db.Column(db.Date, nullable=False, default=date_now())
@@ -29,10 +29,10 @@ class SousOperation(db.Model, Repository):
     support_devise = db.Column(ARRAY(db.Integer), nullable=False)
 
     declaration_importation = db.Column(db.Boolean, default=False)
+    attachements_required = db.Column(db.Boolean, default=False)
 
-    # many to one
-    cancel_deadline_id = db.Column(
-        db.Integer, db.ForeignKey('cancel_deadline.id'))
+    #One to Many
+    cancel_deadlines = db.relationship('CancelDeadline',backref="sous_operation", cascade="all, delete-orphan") 
 
     # Relationship with PlafondDotation
     plafond_dotations = db.relationship(
