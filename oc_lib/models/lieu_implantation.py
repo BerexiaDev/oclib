@@ -10,4 +10,4 @@ class LieuImplantation(db.Model, Repository):
     creation_date = db.Column(db.Date, nullable=False, default=date_now())
     modification_date = db.Column(db.Date, nullable=False)
     actif = db.Column(db.Boolean)
-    code_inter_operation = db.Column(db.String, nullable=False, server_default="")
+    code_inter_operation = db.Column(db.String)
