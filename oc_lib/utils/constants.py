@@ -127,12 +127,3 @@ ROLES_MAPPING = {
     "MANAGER_AUTORISATION": "Manager Autorisation",
     "PREPOSE": "Préposé"
 }
-
-class StatutActivite(Enum):
-    EN_ACTIVITE = 1
-    ARRET_PROVISOIRE = 2
-    SUSPENSION_FERME = 3
-    SUSPENSION_OUVERTE = 4
-    RETIRE = 5
-    ANNULE = 6
-    EN_ARRET = 7
