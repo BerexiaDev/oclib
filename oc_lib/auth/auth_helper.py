@@ -19,10 +19,11 @@ class AuthHelper:
         poc = Poc.find_one(id=user.poc_id)
         if poc:
             user.poc_statut_activite = poc.statut_activite
-            if poc.statut_activite in [StatutActivite.RETIRE.value, StatutActivite.ANNULE.value]:
-                return user, 403
 
         g.user = user
+        
+        if poc.statut_activite in [StatutActivite.RETIRE.value, StatutActivite.ANNULE.value]:
+            return user, 403
 
         return user, 200
 
