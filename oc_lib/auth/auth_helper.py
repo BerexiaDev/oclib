@@ -15,6 +15,10 @@ class AuthHelper:
 
         if not user:
             return {"status": "fail", "message": "No such user with the provided keycloak id"}, 404
+        
+        poc = Poc.find_one(id=g.user.poc_id)
+        if poc:
+            user.poc_statut_activite = poc.statut_activite
 
         g.user = user
 
