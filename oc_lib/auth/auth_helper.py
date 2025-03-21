@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import g
 from oc_lib.models import User, Poc
-from oc_lib.utils.constants import Roles, StatutActivite
+from oc_lib.utils.constants import Roles
 from oc_lib.utils.strings import date_now
 
 class AuthHelper:
@@ -21,9 +21,6 @@ class AuthHelper:
             user.poc_statut_activite = poc.statut_activite
 
         g.user = user
-        
-        if poc.statut_activite in [StatutActivite.RETIRE.value, StatutActivite.ANNULE.value]:
-            return user, 403
 
         return user, 200
 
