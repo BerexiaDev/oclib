@@ -16,11 +16,9 @@ class AuthHelper:
         if not user:
             return {"status": "fail", "message": "No such user with the provided keycloak id"}, 404
         
-        poc = Poc.find_one(id=user.poc_id)
-        if poc:
-            user.poc_statut_activite = poc.statut_activite
-            if poc.statut_activite in [StatutActivite.RETIRE.value, StatutActivite.ANNULE.value]:
-                return {"statut": "fail", "message": "User is blocked"}, 403
+        if user.role == Roles.PREPOSE.value and user.is_blocked == True:
+            return {"statut": "fail", "message": "User is blocked"}, 403
+               
 
         g.user = user
 
