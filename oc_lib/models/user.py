@@ -17,3 +17,4 @@ class User(db.Model, Repository):
     created_on = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     modified_on = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
     first_connection_date = db.Column(db.DateTime, nullable=True)
+    is_blocked = db.Column(db.Boolean, default=False)
