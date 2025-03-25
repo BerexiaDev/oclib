@@ -17,6 +17,7 @@ class Scd(Pm):
     associe_pms = db.relationship("AssociePm", backref="scd", foreign_keys="[AssociePm.scd_id]", cascade="all, delete")
     co_gerants = db.relationship("Cogerant", backref="scd", cascade="all, delete")
     pocs = db.relationship("Poc", backref="scd", cascade="all, delete")
+    documents = db.relationship("PmDocument", backref="scd", cascade="all, delete")
 
     # One to many (Actif + Inactif)
     representants = db.relationship("Representant", backref="scd", uselist=True, cascade="all, delete")
