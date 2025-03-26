@@ -17,6 +17,7 @@ class Ep(Pm):
     mandataires = db.relationship(
         "Mandataire", backref="ep", foreign_keys="[Mandataire.ep_id]", cascade="all, delete"
     )
+    documents = db.relationship("PmDocument", backref="ep", cascade="all, delete")
 
     declarations_ana = db.relationship("DeclarationAna", backref="ep")
     poc_ss = db.relationship("PocS", backref="ep", foreign_keys="[PocS.ep_id]", cascade="all, delete")
