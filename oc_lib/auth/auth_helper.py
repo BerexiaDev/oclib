@@ -40,6 +40,6 @@ class AuthHelper:
                         "poc_id": poc.id,
                         "code": "NOTIF_011"
                     }
-                    handle_create_notification(notif_params)
+                    handle_create_notification(notif_params, is_mail=False)
 
             g.user.save()
