@@ -33,8 +33,8 @@ class AuthHelper:
             if poc:
                 poc.date_debut_activite = date_now()
                 poc.save()
-                first_statut = db.session.query(Statut).filter(Statut.poc_id == poc.id).order_by(Statut.id).first()
-                if first_statut and first_statut.date_delivrance > poc.date_debut_activite.date():
+                first_statut = db.session.query(Statut).filter(Statut.poc_id == poc.id, Statut.is_valid == True).order_by(Statut.id).first()
+                if first_statut and first_statut.date_delivrance > poc.date_debut_activite:
                     handle_create_notification = get_registered_function("handle_create_notification")
                     notif_params = {
                         "poc_id": poc.id,
