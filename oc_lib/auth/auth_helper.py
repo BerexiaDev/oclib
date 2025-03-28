@@ -31,7 +31,7 @@ class AuthHelper:
 
             poc = Poc.find_one(id=g.user.poc_id, date_debut_activite=None)
             if poc:
-                poc.date_debut_activite = date_now()
+                poc.date_debut_activite = today_date
                 poc.save()
                 first_statut = db.session.query(Statut).filter(Statut.poc_id == g.user.poc_id, Statut.is_valid == True).order_by(Statut.id).first()
                 if first_statut and convert_str_to_date(str(first_statut.date_delivrance)) > convert_str_to_date(str(poc.date_debut_activite.date())):
