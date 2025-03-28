@@ -27,6 +27,14 @@ Type_Operation_MAPPING = {
     3: "Cession"
 }
 
+class QualiteBeneficiaire(Enum):
+    PM_R = 1    # PM-Résident
+    PM_NR = 2   # PM-Non Résident
+    PP_ENR = 3  # PP-Etranger non Résident
+    PP_ER = 4   # PP-Etranger Résident
+    PP_MR = 5   # PP-Marocain Résident
+    PP_MRE = 6  # PP-Marocain non résident (MRE)
+    PC = 7
 
 QUALITE_BENEFICIAIRE_MAPPING = {
     1: "PM-Résident",

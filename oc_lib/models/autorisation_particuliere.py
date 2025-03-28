@@ -1,6 +1,6 @@
 from oc_lib.db import db
 from oc_lib.repository import Repository
-from oc_lib.utils.strings import date_now
+from datetime import datetime
 
 
 class AutorisationParticuliere(db.Model, Repository):
@@ -13,9 +13,11 @@ class AutorisationParticuliere(db.Model, Repository):
     date_autorisation = db.Column(db.Date, nullable=False)
     statut = db.Column(db.Integer, default=1)  # 1 Encours, 2 valide
     created_by = db.Column(db.String(240), nullable=False, default='')
-    date_creation = db.Column(db.Date, nullable=False, default=date_now())
+    date_creation = db.Column(db.DateTime, default=datetime.utcnow)
     validated_by = db.Column(db.String(240))
-    date_validation = db.Column(db.Date)
+    date_validation = db.Column(db.DateTime)
+    canceled_by = db.Column(db.String(240))
+    date_cancelation = db.Column(db.DateTime)
     commentaire = db.Column(db.String(200), nullable=True)
     solde = db.Column(db.Integer, nullable=False)
 
