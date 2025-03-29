@@ -1,5 +1,6 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
+from oc_lib.utils.strings import date_now
 
 class CancelDeadline(db.Model, Repository):
     """ Model pour délai d'annulation """
@@ -9,6 +10,7 @@ class CancelDeadline(db.Model, Repository):
     type_operation = db.Column(db.Integer, nullable=False)
     delai = db.Column(db.Integer, nullable=False) # en minute
     statut = db.Column(db.Boolean)
+    creation_date = db.Column(db.Date, nullable=False, default=date_now())
 
         # many to one
     sous_operation_id = db.Column( 

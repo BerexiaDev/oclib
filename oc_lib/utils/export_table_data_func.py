@@ -116,9 +116,9 @@ def get_sous_operation_label(item, _):
     return ""
 
 
-def get_sous_operation_lieu_implantations(item, _):
-    if getattr(item, "lieu_implantations", None):
-        return ", ".join([lieu.label for lieu in item.lieu_implantations])
+def get_sous_operation_lieu_implantation(item, _):
+    if getattr(item, "lieu_implantation", None):
+        return item.lieu_implantation.label
     return ""
 
 

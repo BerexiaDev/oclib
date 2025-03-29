@@ -78,6 +78,5 @@ from oc_lib.models.snapshot import SnapShot
 from oc_lib.models.alert_log import AlertLog
 
 # Association tables
-from oc_lib.models.authorized_operation_lieu_implantation_association import authorized_operation_lieu_implantation_association
 from oc_lib.models.derogation_encaisse_poc_association import derogation_encaisse_poc_association
 from oc_lib.models.derogation_operation_poc_association import derogation_operation_poc_association
