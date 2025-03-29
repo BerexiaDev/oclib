@@ -11,6 +11,8 @@ class Ep(Pm):
     ama_actif = db.Column(db.Integer, default=0)
     amna_actif = db.Column(db.Integer, default=0)
 
+    numero_decision_autorisation = db.Column(db.String(255))
+    date_decision_autorisation = db.Column(db.Date)
     sequence_number = db.Column(db.Integer)
 
     # One to many
