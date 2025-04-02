@@ -5,9 +5,9 @@ from sqlalchemy import text
 
 class PmDocument(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
-    scd_id = db.Column(db.Integer, db.ForeignKey("scd.id"), nullable=True)
-    esd_id = db.Column(db.Integer, db.ForeignKey("esd.id"), nullable=True)
-    ep_id = db.Column(db.Integer, db.ForeignKey("ep.id"), nullable=True)
+    pm_id = db.Column(db.Integer, db.ForeignKey("pm.id"), nullable=True)
+    pp_id = db.Column(db.Integer, db.ForeignKey("pp.id"), nullable=True)
+    poc_id = db.Column(db.Integer, db.ForeignKey("poc.id"), nullable=True)
     intitule_document = db.Column(db.String(1000), nullable=False)
     nom_fichier = db.Column(db.String(1000), nullable=False)
     date_creation = db.Column(db.Date, default=db.func.now())
