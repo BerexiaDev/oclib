@@ -14,6 +14,10 @@ class PmDocument(db.Model, Repository):
     pp_id = db.Column(db.Integer, db.ForeignKey("pp.id"), nullable=True)
     poc_id = db.Column(db.Integer, db.ForeignKey("poc.id"), nullable=True)
     
+    pm = db.relationship("Pm")
+    pp = db.relationship("Pp")
+    poc = db.relationship("Poc")
+    
     intitule_document = db.Column(db.String(1000), nullable=False)
     nom_fichier = db.Column(db.String(1000), nullable=False)
     date_creation = db.Column(db.Date, default=db.func.now())
