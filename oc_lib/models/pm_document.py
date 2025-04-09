@@ -18,7 +18,7 @@ class PmDocument(db.Model, Repository):
     pp = db.relationship("Pp")
     poc = db.relationship("Poc")
     
-    intitule_document = db.Column(db.String(1000), nullable=False)
+    code = db.Column(db.Integer, nullable=False)
     nom_fichier = db.Column(db.String(1000), nullable=False)
     date_creation = db.Column(db.Date, default=db.func.now())
     full_path= db.Column(db.String(250))
