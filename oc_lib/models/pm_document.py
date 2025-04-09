@@ -27,4 +27,5 @@ class PmDocument(db.Model, Repository):
     file_extension = db.Column(db.String(5), nullable=False)
     file_extension_check = db.CheckConstraint(text("file_extension IN ('PDF')"))
     creation_status = db.Column(db.Integer, default=0)
+    archived = db.Column(db.Boolean, default=False)
 
