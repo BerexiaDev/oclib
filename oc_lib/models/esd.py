@@ -36,7 +36,7 @@ class Esd(Pm):
         "Document",
         backref="esd",
         cascade="all, delete",
-        primaryjoin="and_(Esd.id==Document.scd_id, or_(Document.archived==False, Document.archived.is_(None)))"
+        primaryjoin="and_(Esd.id==Document.esd_id, or_(Document.archived==False, Document.archived.is_(None)))"
     )
 
     # Many to one
