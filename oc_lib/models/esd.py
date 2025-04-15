@@ -31,8 +31,6 @@ class Esd(Pm):
     co_gerants = db.relationship('Cogerant', backref='esd', cascade="all, delete")
     co_gerants_pms = db.relationship('CogerantPm', backref='esd', foreign_keys="[CogerantPm.esd_id]",
                                      cascade="all, delete")
-    
-    documents = db.relationship("PmDocument", backref="esd", cascade="all, delete")
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))
