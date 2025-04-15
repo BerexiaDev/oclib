@@ -3,7 +3,7 @@ from oc_lib.db import db
 from sqlalchemy import text
 
 
-class PmDocument(db.Model, Repository):
+class Document(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
     
     scd_id = db.Column(db.Integer, db.ForeignKey('scd.id'))
