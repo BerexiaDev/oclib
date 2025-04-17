@@ -24,7 +24,9 @@ class DerogationOperation(Derogation):
     
     # Many to many
     pocs = db.relationship("Poc",secondary=derogation_operation_poc_association,back_populates="derogation_operations")
-    authorized_operation_id = db.Column(db.Integer, db.ForeignKey("authorized_operation.id"))
+    
+    type_operation = db.Column(db.Integer, nullable=False)
+    sous_operation_id = db.Column(db.Integer, db.ForeignKey('sous_operation.id'))
     
     is_included = db.Column(db.Boolean, nullable=False)
 
