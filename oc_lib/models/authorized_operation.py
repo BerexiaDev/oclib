@@ -22,6 +22,3 @@ class AuthorizedOperation(db.Model, Repository):
 
     lieu_implantations = db.relationship(
         "LieuImplantation", secondary="authorized_operation_lieu_implantation", backref="authorized_operations")
-
-    derogations = db.relationship(
-        "DerogationOperation", backref="operation", lazy=True)
