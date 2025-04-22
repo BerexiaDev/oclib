@@ -10,7 +10,6 @@ NOTIFICATION_CREATION_PATH = "/notifications"
 def decode_jwt(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        print(request.path)
         if request.path in IGNORE_PATHS or "swagger" in request.path:
             return f(*args, **kwargs)
         
