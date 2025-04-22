@@ -5,11 +5,15 @@ from oc_lib.auth.auth_helper import AuthHelper
 
 
 IGNORE_PATHS = ["/", "/swagger.json"]
+NOTIFICATION_CREATION_PATH = "/notifications"
 
 def decode_jwt(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if request.path in IGNORE_PATHS or "swagger" in request.path:
+            return f(*args, **kwargs)
+        
+        elif request.path == NOTIFICATION_CREATION_PATH and request.headers.get('X-NotifCreation', "false") == "true":
             return f(*args, **kwargs)
         try:
             # Decode token and store it in the global scope
