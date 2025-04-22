@@ -1,6 +1,6 @@
 from oc_lib.db import db
 from oc_lib.models.pm import Pm
-from sqlalchemy import or_
+from sqlalchemy import Numeric, or_
 
 
 class Scd(Pm):
@@ -9,7 +9,7 @@ class Scd(Pm):
     poc_total = db.Column(db.Integer, default=0)
     poc_actif = db.Column(db.Integer, default=0)
     poc_inactif = db.Column(db.Integer, default=0)
-    part_total = db.Column(db.Integer, default=0)
+    part_total = db.Column(Numeric(precision=12, scale=2), default=0)
     sequence_number = db.Column(db.Integer)
 
     # One to many

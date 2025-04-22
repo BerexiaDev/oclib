@@ -9,6 +9,6 @@ class BeneficiairePm(Beneficiaire):
     centre = db.Column(db.Integer)
     raison_sociale =db.Column(db.String(100))
     id_pays = db.Column( db.String(120))
-    idce = db.Column(db.BigInteger)
+    idce = db.Column(db.String, default="", server_default="")
 
     __mapper_args__ = {"polymorphic_identity": "beneficiaire_pm"}
