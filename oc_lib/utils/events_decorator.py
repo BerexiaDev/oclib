@@ -60,8 +60,7 @@ def register_event_listeners(cls):
             if (
                     target.date_debut_activite
                     and target.date_fin_activite
-                    and datetime.strptime(str(target.date_fin_activite), "%Y-%m-%d").date() < datetime.strptime(
-                str(target.date_debut_activite), "%Y-%m-%d").date()
+                    and convert_str_to_date(str(target.date_fin_activite)) < convert_str_to_date(str(target.date_debut_activite))
             ):
                 raise DateValidationError(
                     "La date de fin activité doit être supérieure à la date de début d'activité."

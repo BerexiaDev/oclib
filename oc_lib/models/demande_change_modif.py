@@ -8,7 +8,7 @@ class DemandeChangeModifView(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     demande_id = db.Column(db.Integer)
     demande_initiateur = db.Column(db.Integer)
-    demande_date_creation = db.Column(db.Date)
+    demande_date_creation = db.Column(db.DateTime)
     demande_scd = db.Column(db.Integer)
     demande_ep = db.Column(db.Integer)
     demande_esd = db.Column(db.Integer)

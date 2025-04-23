@@ -40,3 +40,4 @@ class OperationCessionView(db.Model, Repository):
 
     sous_operation_label = db.Column(db.String, nullable=False)
     sous_operation_id = db.Column(db.Integer, nullable=False)
+    validated_by = db.Column(db.String(240))

@@ -14,7 +14,7 @@ class Beneficiaire(db.Model, Repository):
     modified_by = db.Column(db.String(150))
     motif_modification = db.Column(db.String(100))
 
-    # this will be the discriminator attribute
+    # this will be the discriminator attribute 
     type = db.Column(db.String(50))
 
     __mapper_args__ = {"polymorphic_identity": "beneficiaire", "polymorphic_on": type}

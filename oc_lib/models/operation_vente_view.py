@@ -33,19 +33,21 @@ class OperationVenteView(db.Model, Repository):
     beneficiaire_pp_nom = db.Column(db.String(120), nullable=False)
     beneficiaire_pp_prenom = db.Column(db.String(120), nullable=False)
     beneficiaire_pp_nationalite = db.Column(db.String(120), nullable=True)
+    beneficiaire_pp_adresse = db.Column(db.String(120), nullable=True)
     beneficiaire_final_pp_nature_piece = db.Column(
         db.String(50), nullable=False)
     beneficiaire_final_pp_numero_piece = db.Column(
         db.String(50), nullable=False)
     beneficiaire_final_pp_nom = db.Column(db.String(120), nullable=False)
     beneficiaire_final_pp_prenom = db.Column(db.String(120), nullable=False)
+    beneficiaire_final_pp_adresse = db.Column(db.String(120), nullable=True)
     beneficiaire_pm_id = db.Column(db.Integer, nullable=False)
     beneficiaire_pm_registre_commerce = db.Column(db.Integer, nullable=False)
     beneficiaire_pm_centre = db.Column(db.Integer, nullable=False)
     beneficiaire_pm_raison_sociale = db.Column(db.String(100))
-    beneficiaire_pm_idce = db.Column(db.Integer)
+    beneficiaire_pm_idce = db.Column(db.String)
     # Si pp dispose d'autorisation
-    numero_autorisation = db.Column(db.Integer, nullable=True)
+    numero_autorisation = db.Column(db.String(50), nullable=True)
     statut = db.Column(db.Integer)
     devise_labels = db.Column(db.String(1000))
     montant_global = db.Column(db.Float)
@@ -66,6 +68,7 @@ class OperationVenteView(db.Model, Repository):
     update_validated_by = db.Column(db.String(240))
 
     activation_complement_dotation_id = db.Column(db.Integer)
+    validated_by = db.Column(db.String(240))
 
     # operation_vente_lien_parente = db.Column(db.String(240)) # dans le cas de PP
     # operation_vente_fonction_pp = db.Column(db.String(240)) # dans le cas de PM

@@ -76,6 +76,12 @@ from oc_lib.models.localite import Localite
 from oc_lib.models.demande_operation import DemandeOperation
 from oc_lib.models.beneficiaire import Beneficiaire
 
+from oc_lib.models.notification_log import NotificationLog
+from oc_lib.models.notifications_parametrage import NotificationParameters
+from oc_lib.models.demande_annulation import DemandeAnnulation
+from oc_lib.models.snapshot import SnapShot
+from oc_lib.models.alert_log import AlertLog
+from oc_lib.models.document import Document
 
 # Association tables
 from oc_lib.models.authorized_operation_lieu_implantation_association import authorized_operation_lieu_implantation_association
