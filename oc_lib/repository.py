@@ -137,6 +137,12 @@ class Repository:
             return 1
 
         return obj.sequence_number + 1
+    
+    def add(self, flush = False):
+        db.session.add(self)
+        if flush:
+            db.session.flush()
+        return self
 
     def save(self, commit=True, apply_before_insert=False, ep_id=None):
         """Save an object to the database"""
