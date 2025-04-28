@@ -26,12 +26,14 @@ class Repository:
             self.save()
         return self
 
-    def delete(self, commit=True):
+    def delete(self, commit=True, flush = False):
         """Delete an object from the database"""
         try:
             db.session.delete(self)
             if commit:
                 db.session.commit()
+            if flush:
+                db.session.flush()
         except Exception as e:
             db.session.rollback()
             raise Exception(e)
