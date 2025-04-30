@@ -70,6 +70,15 @@ class Repository:
             raise Exception(e)
 
     @classmethod
+    def get_first_inserted(cls, **kwargs):
+        """Get the last inserted object"""
+        try:
+            return cls.query.filter_by(**kwargs).order_by(cls.id).first()
+        except Exception as e:
+            db.session.rollback()
+            raise Exception(e)
+
+    @classmethod
     def get_last_inserted(cls):
         """Get the last inserted object"""
         try:

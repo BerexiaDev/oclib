@@ -10,6 +10,8 @@ class Esd(Pm):
     groupe = db.Column(db.Integer, nullable=True)
     motif = db.Column(db.Integer, nullable=True)
 
+    numero_decision_autorisation = db.Column(db.String(255))
+    date_decision_autorisation = db.Column(db.Date)
     poc = db.relationship('Poc', backref='esd', uselist=False, cascade="all, delete")
 
     gerants_pp = db.relationship("Gerant", backref="esd", uselist=True, cascade="all, delete")
