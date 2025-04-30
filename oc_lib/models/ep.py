@@ -8,8 +8,13 @@ class Ep(Pm):
     apa_actif = db.Column(db.Integer, default=0)
     apna_actif = db.Column(db.Integer, default=0)
     m_actif = db.Column(db.Integer, default=0)
+    m_inactif = db.Column(db.Integer, default=0)
     ama_actif = db.Column(db.Integer, default=0)
     amna_actif = db.Column(db.Integer, default=0)
+    ap_inactif = db.Column(db.Integer, default=0)
+    ap_total = db.Column(db.Integer, default=0)
+    am_inactif = db.Column(db.Integer, default=0)
+    am_total = db.Column(db.Integer, default=0)
 
     sequence_number = db.Column(db.Integer)
 

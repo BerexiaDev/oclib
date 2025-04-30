@@ -9,6 +9,8 @@ class Mandataire(Pm):
 
     ama_actif = db.Column(db.Integer, default=0)
     amna_actif = db.Column(db.Integer, default=0)
+    am_inactif = db.Column(db.Integer, default=0)
+    am_total = db.Column(db.Integer, default=0)
 
     sequence_number = db.Column(db.Integer)
     date_debut_mandat = db.Column(db.Date, nullable=False)
