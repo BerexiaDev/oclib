@@ -1,8 +1,6 @@
 from oc_lib.repository import Repository
 from oc_lib.db import db
 from oc_lib.utils.events_decorator import register_event_listeners
-from oc_lib.models.derogation_operation_poc_association import derogation_operation_poc_association
-from oc_lib.models.derogation_encaisse_poc_association import derogation_encaisse_poc_association
 from datetime import date
 
 
@@ -64,18 +62,12 @@ class Poc(db.Model, Repository):
     lieu_implantation = db.relationship(
         "LieuImplantation", backref="lieu_implantation")
 
-    # many to many
-    derogation_operations = db.relationship(
-        "DerogationOperation",
-        secondary=derogation_operation_poc_association,
-        back_populates="pocs"
-    )
+    # one to one
+    derogation_operation_id = db.Column(db.Integer, db.ForeignKey("derogation_operation.id"))
+    derogation_operation = db.relationship("DerogationOperation", backref="poc", uselist=False)
 
-    derogation_encaisses = db.relationship(
-        "DerogationEncaisse",
-        secondary=derogation_encaisse_poc_association,
-        back_populates="pocs"
-    )
+    derogation_encaisse_id = db.Column(db.Integer, db.ForeignKey("derogation_encaisse.id"))
+    derogation_encaisse = db.relationship("DerogationEncaisse", backref="poc", uselist=False)
 
     # Self-referential one-to-one relationship
     linked_poc_id = db.Column(

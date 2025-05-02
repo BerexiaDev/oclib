@@ -1,7 +1,5 @@
 from oc_lib.models.derogation import Derogation
 from oc_lib.db import db
-from oc_lib.models.derogation_encaisse_poc_association import derogation_encaisse_poc_association
-
 
 
 class DerogationEncaisse(Derogation):
