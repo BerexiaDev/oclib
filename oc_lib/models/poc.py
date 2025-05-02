@@ -62,13 +62,6 @@ class Poc(db.Model, Repository):
     lieu_implantation = db.relationship(
         "LieuImplantation", backref="lieu_implantation")
 
-    # one to one
-    derogation_operation_id = db.Column(db.Integer, db.ForeignKey("derogation_operation.id"))
-    derogation_operation = db.relationship("DerogationOperation", backref="poc", uselist=False)
-
-    derogation_encaisse_id = db.Column(db.Integer, db.ForeignKey("derogation_encaisse.id"))
-    derogation_encaisse = db.relationship("DerogationEncaisse", backref="poc", uselist=False)
-
     # Self-referential one-to-one relationship
     linked_poc_id = db.Column(
         db.Integer, db.ForeignKey("poc.id"), nullable=True)
