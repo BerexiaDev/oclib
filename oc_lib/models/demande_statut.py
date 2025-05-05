@@ -11,6 +11,7 @@ class DemandeStatut(db.Model, Repository):
     rs_pm = db.Column(db.String)
     categorie_pm = db.Column(db.Integer)
     motif = db.Column(db.String(150))
+    old_statut_activite = db.Column(db.Integer)
     initiateur = db.Column(db.String(150))
     validateur = db.Column(db.String(150))
     date_creation = db.Column(db.DateTime, default=datetime.today)
