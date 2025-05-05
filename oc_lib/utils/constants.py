@@ -9,6 +9,9 @@ class Roles(Enum):
     PREPOSE = "PREPOSE"
     AGENT_AUTORISATION = "AGENT_AUTORISATION"
     MANAGER_AUTORISATION = "MANAGER_AUTORISATION"
+    AGENCE = "AGENCE"
+    BQ_ADMIN = "BQ_ADMIN"
+    BQ_SUPERVISEUR = "BQ_SUPERVISEUR"
 
     @classmethod
     def get_oc_roles(cls):
@@ -125,5 +128,8 @@ ROLES_MAPPING = {
     "OP": "Op",
     "AGENT_AUTORISATION": "Agent Autorisation",
     "MANAGER_AUTORISATION": "Manager Autorisation",
-    "PREPOSE": "Préposé"
+    "PREPOSE": "Préposé",
+    "AGENCE": "Agence",
+    "BQ_ADMIN": "Admin Banque",
+    "BQ_SUPERVISEUR": "Superviseur Banque",
 }
