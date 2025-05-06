@@ -6,7 +6,7 @@ from sqlalchemy.dialects.postgresql import JSONB
 
 class Modification(db.Model, Repository):
     id = db.Column(db.Integer, primary_key=True)
-    motif = db.Column(db.String(300), unique=True)
+    motif = db.Column(db.String(300))
     modifications = db.Column(JSONB)
     op_category = db.Column(db.Integer)
     motif_status = db.Column(db.Boolean, default=True)
