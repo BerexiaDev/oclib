@@ -17,6 +17,10 @@ class AuthHelper:
 
         if not user:
             return {"status": "fail", "message": "No such user with the provided keycloak id"}, 404
+        
+        if user.role == Roles.PREPOSE.value and user.is_blocked == True:
+            return {"statut": "fail", "message": "User is blocked"}, 403
+               
 
         g.user = user
 
