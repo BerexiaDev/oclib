@@ -1,7 +1,5 @@
 from oc_lib.models.derogation import Derogation
 from oc_lib.db import db
-from oc_lib.models.derogation_encaisse_poc_association import derogation_encaisse_poc_association
-
 
 
 class DerogationEncaisse(Derogation):
@@ -12,6 +10,8 @@ class DerogationEncaisse(Derogation):
 
     encaisse = db.Column(db.Float, nullable=False, default = 0 )
     
-    # Many to Many
-    pocs = db.relationship("Poc",secondary=derogation_encaisse_poc_association,back_populates="derogation_encaisses")
+    # Add a one-to-one relationship with Poc
+    poc_id = db.Column(db.Integer, db.ForeignKey("poc.id"))
+    poc = db.relationship("Poc", backref="derogation_encaisse")
+
     __mapper_args__ = {"polymorphic_identity": "derogation_encaisse"}
