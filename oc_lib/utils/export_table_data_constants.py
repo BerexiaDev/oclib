@@ -11,7 +11,7 @@ from oc_lib.utils.export_table_data_func import get_designation_agence, get_poc_
 
 EXPORT_TABLE_INFO = {
     "operation_achat_view": {
-        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.AGENCE.value, Roles.OP.value],
         "func_path": "app.main.services.operation_achat_service",
         "func_name": "get_all_operation_achats",
         "values_mapping": {
@@ -77,7 +77,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "operation_vente_view": {
-        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.AGENCE.value, Roles.OP.value],
         "func_path": "app.main.services.operation_vente_service",
         "func_name": "get_all_operation_ventes",
         "values_mapping": {
@@ -149,7 +149,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "operation_cession_view": {
-        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.AGENCE.value, Roles.OP.value],
         "func_path": "app.main.services.operation_cession_service",
         "func_name": "get_all_operation_cessions",
         "values_mapping": {
@@ -363,7 +363,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "scd": {
-        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.AGENCE.value, Roles.OP.value],
         "func_path": "app.main.services.scd_service",
         "func_name": "get_all_scds",
         "values_mapping": {
@@ -419,7 +419,7 @@ EXPORT_TABLE_INFO = {
 
     },
     "esd": {
-        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.AGENCE.value, Roles.OP.value],
         "func_path": "app.main.services.esd_service",
         "func_name": "get_all_esds",
         "values_mapping": {
@@ -474,7 +474,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "ep": {
-        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.AGENCE.value, Roles.OP.value],
         "func_path": "app.main.services.ep_service",
         "func_name": "get_all_eps",
         "values_mapping": {
@@ -541,7 +541,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "mandataire": {
-        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.OP.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.PREPOSE.value, Roles.AGENCE.value, Roles.OP.value],
         "func_path": "app.main.services.mandataire_service",
         "func_name": "get_all_eps",
         "values_mapping": {
@@ -588,7 +588,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "beneficiaire_pm": {
-        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value, Roles.AGENCE.value],
         "func_path": "app.main.services.beneficiaire_pm_service",
         "func_name": "get_all_beneficiaire_pms",
         "values_mapping": {
@@ -620,7 +620,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "beneficiaire_pp": {
-        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value, Roles.AGENCE.value],
         "func_path": "app.main.services.beneficiaire_pp_service",
         "func_name": "get_all_beneficiaire_pps",
         "values_mapping": {
@@ -652,7 +652,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "beneficiaire_pc": {
-        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value],
+        "required_roles": [Roles.OC_ADMIN.value, Roles.OC_SUPER_ADMIN.value, Roles.OC_MANAGER.value, Roles.OC_AGENT.value, Roles.AGENT_AUTORISATION.value, Roles.MANAGER_AUTORISATION.value, Roles.PREPOSE.value, Roles.AGENCE.value],
         "func_path": "app.main.services.beneficiaire_pc_service",
         "func_name": "get_all_beneficiaire_pcs",
         "values_mapping": {
@@ -1222,7 +1222,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "caisse_devise": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OP.value, Roles.PREPOSE.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OP.value, Roles.PREPOSE.value, Roles.AGENCE.value],
         "func_path": "app.main.services.caisse_devise_service",
         "func_name": "consult_caisse",
         "values_mapping": {
@@ -1244,7 +1244,7 @@ EXPORT_TABLE_INFO = {
         }
     },
     "encaisse": {
-        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OP.value, Roles.PREPOSE.value],
+        "required_roles": [Roles.OC_SUPER_ADMIN.value, Roles.OP.value, Roles.PREPOSE.value, Roles.AGENCE.value],
         "func_path": "app.main.services.encaisse_service",
         "func_name": "consult_encaisse",
         "values_mapping": {
