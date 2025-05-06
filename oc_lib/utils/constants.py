@@ -15,7 +15,7 @@ class Roles(Enum):
 
     @classmethod
     def get_oc_roles(cls):
-        return [cls.OC_MANAGER.value, cls.OC_ADMIN.value, cls.OC_AGENT.value, cls.OC_SUPER_ADMIN.value]
+        return [cls.OC_MANAGER.value, cls.OC_ADMIN.value, cls.OC_AGENT.value, cls.OC_SUPER_ADMIN.value, cls.BQ_SUPERVISEUR.value]
 
 
 class TypeOperation(Enum):
