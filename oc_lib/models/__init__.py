@@ -73,9 +73,12 @@ from oc_lib.models.country import Country
 from oc_lib.models.currency import Currency
 from oc_lib.models.region import Region
 from oc_lib.models.localite import Localite
+from oc_lib.models.notification_log import NotificationLog
+from oc_lib.models.notifications_parametrage import NotificationParameters
 from oc_lib.models.demande_annulation import DemandeAnnulation
 from oc_lib.models.snapshot import SnapShot
 from oc_lib.models.alert_log import AlertLog
+from oc_lib.models.document import Document
 
 # Association tables
 from oc_lib.models.derogation_encaisse_poc_association import derogation_encaisse_poc_association

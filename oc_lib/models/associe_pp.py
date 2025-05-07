@@ -1,3 +1,4 @@
+from sqlalchemy import Numeric
 from oc_lib.db import db
 from oc_lib.models.pp import Pp
 from oc_lib.utils.events_decorator import register_event_listeners, change_statut_pp_pm_listener
@@ -6,7 +7,7 @@ from oc_lib.utils.events_decorator import register_event_listeners, change_statu
 @change_statut_pp_pm_listener
 class AssociePp(Pp):
     id = db.Column(db.Integer, db.ForeignKey('pp.id'), primary_key=True)
-    part_capital = db.Column(db.Integer)
+    part_capital = db.Column(Numeric(precision=12, scale=2))
 
     # many to one
     scd_id = db.Column(db.Integer, db.ForeignKey('scd.id'))
