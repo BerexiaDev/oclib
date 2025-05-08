@@ -1,10 +1,11 @@
+from sqlalchemy import Numeric
 from oc_lib.db import db
 from oc_lib.models.pm import Pm
 
 
 class Esd(Pm):
     id = db.Column(db.Integer, db.ForeignKey('pm.id'), primary_key=True)
-    part_total = db.Column(db.Integer, default=0)  # Set default value to 0
+    part_total = db.Column(Numeric(precision=12, scale=2), default=0)
     sequence_number = db.Column(db.Integer)
     groupe = db.Column(db.Integer, nullable=True)
     motif = db.Column(db.Integer, nullable=True)
@@ -31,6 +32,13 @@ class Esd(Pm):
     co_gerants = db.relationship('Cogerant', backref='esd', cascade="all, delete")
     co_gerants_pms = db.relationship('CogerantPm', backref='esd', foreign_keys="[CogerantPm.esd_id]",
                                      cascade="all, delete")
+    
+    documents = db.relationship(
+        "Document",
+        backref="esd",
+        cascade="all, delete",
+        primaryjoin="and_(Esd.id==Document.esd_id, or_(Document.archived==False, Document.archived.is_(None)))"
+    )
 
     # Many to one
     affiliation_group_id = db.Column(db.Integer, db.ForeignKey('affiliation_group.id'))

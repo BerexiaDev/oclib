@@ -39,7 +39,9 @@ tables_name_map = {
     "ep": "ep",
     "mandataire": "mandataire",
     "poc": "poc",
-    "plafond_dotations": "plafond_dotations"
+    "plafond_dotations": "plafond_dotations",
+    "esd": "esd",
+    "scd": "scd"
 }
 
 

@@ -1,6 +1,6 @@
 from oc_lib.db import db
 from oc_lib.models.pm import Pm
-from sqlalchemy import or_
+from sqlalchemy import Numeric, or_
 
 
 class Scd(Pm):
@@ -9,7 +9,7 @@ class Scd(Pm):
     poc_total = db.Column(db.Integer, default=0)
     poc_actif = db.Column(db.Integer, default=0)
     poc_inactif = db.Column(db.Integer, default=0)
-    part_total = db.Column(db.Integer, default=0)
+    part_total = db.Column(Numeric(precision=12, scale=2), default=0)
     sequence_number = db.Column(db.Integer)
 
     # One to many
@@ -17,6 +17,13 @@ class Scd(Pm):
     associe_pms = db.relationship("AssociePm", backref="scd", foreign_keys="[AssociePm.scd_id]", cascade="all, delete")
     co_gerants = db.relationship("Cogerant", backref="scd", cascade="all, delete")
     pocs = db.relationship("Poc", backref="scd", cascade="all, delete")
+    
+    documents = db.relationship(
+        "Document",
+        backref="scd",
+        cascade="all, delete",
+        primaryjoin="and_(Scd.id==Document.scd_id, or_(Document.archived==False, Document.archived.is_(None)))"
+    )
 
     # One to many (Actif + Inactif)
     representants = db.relationship("Representant", backref="scd", uselist=True, cascade="all, delete")

@@ -17,6 +17,13 @@ class Ep(Pm):
     mandataires = db.relationship(
         "Mandataire", backref="ep", foreign_keys="[Mandataire.ep_id]", cascade="all, delete"
     )
+    
+    documents = db.relationship(
+        "Document",
+        backref="ep",
+        cascade="all, delete",
+        primaryjoin="and_(Ep.id==Document.ep_id, or_(Document.archived==False, Document.archived.is_(None)))"
+    )
 
     declarations_ana = db.relationship("DeclarationAna", backref="ep")
     poc_ss = db.relationship("PocS", backref="ep", foreign_keys="[PocS.ep_id]", cascade="all, delete")
